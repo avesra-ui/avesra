@@ -1,0 +1,197 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Badge</h1>
+      <p class="av-doc-prose__description">
+        Displays a small indicator positioned relative to another element, commonly used for
+        notification counts, status dots, and labels
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="badge" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Badge is designed to be positioned relative to another element using
+        <code>av-badge-anchor</code>. Use the <code>label</code> input or project content (optionally
+        via <code>av-badge-label</code>). Leave the badge empty for a dot indicator.
+      </p>
+      <p class="av-doc-prose__description">
+        For standalone label usage, use the
+        <a routerLink="/docs/components/chip">Chip</a> component instead.
+      </p>
+      <app-doc-snippet component="badge" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="variants">
+      <h2 class="av-doc-prose__heading">Variants</h2>
+      <app-component-preview [demo]="demos.variants" />
+    </section>
+
+    <section class="av-doc-prose__section" id="sizes">
+      <h2 class="av-doc-prose__heading">Sizes</h2>
+      <app-component-preview [demo]="demos.sizes" />
+    </section>
+
+    <section class="av-doc-prose__section" id="colors">
+      <h2 class="av-doc-prose__heading">Colors</h2>
+      <app-component-preview [demo]="demos.colors" />
+    </section>
+
+    <section class="av-doc-prose__section" id="placements">
+      <h2 class="av-doc-prose__heading">Placements</h2>
+      <app-component-preview [demo]="demos.placements" />
+    </section>
+
+    <section class="av-doc-prose__section" id="dot-badge">
+      <h2 class="av-doc-prose__heading">Dot Badge</h2>
+      <p class="av-doc-prose__description">
+        Empty badges act as status indicators — useful for online/offline states or activity
+        signals.
+      </p>
+      <app-component-preview [demo]="demos.dotBadge" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-content">
+      <h2 class="av-doc-prose__heading">With Content</h2>
+      <p class="av-doc-prose__description">
+        Badge supports text, numbers, and icons as content. When no children are provided, it
+        renders as a dot indicator.
+      </p>
+      <app-component-preview [demo]="demos.withContent" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on the badge host to customize typography, sizing, and decoration.
+      </p>
+      <app-component-preview [demo]="demos.customStyles" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Badge classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The Badge component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-badge</code> — Base badge container styles</li>
+        <li><code>.av-badge__label</code> — Label text slot styles</li>
+        <li><code>.av-badge-anchor</code> — Positioning wrapper for the anchored element</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Color Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-badge--accent</code> — Accent color variant</li>
+        <li><code>.av-badge--danger</code> — Danger color variant</li>
+        <li><code>.av-badge--default</code> — Default color variant</li>
+        <li><code>.av-badge--success</code> — Success color variant</li>
+        <li><code>.av-badge--warning</code> — Warning color variant</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Variant Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-badge--primary</code> — Primary variant with filled background</li>
+        <li><code>.av-badge--secondary</code> — Secondary variant with default background</li>
+        <li><code>.av-badge--soft</code> — Soft variant with lighter background</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Size Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-badge--sm</code> — Small size</li>
+        <li><code>.av-badge--md</code> — Medium size (default)</li>
+        <li><code>.av-badge--lg</code> — Large size</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Placement Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-badge--top-right</code> — Position at top-right corner (default)</li>
+        <li><code>.av-badge--top-left</code> — Position at top-left corner</li>
+        <li><code>.av-badge--bottom-right</code> — Position at bottom-right corner</li>
+        <li><code>.av-badge--bottom-left</code> — Position at bottom-left corner</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Compound Variant Classes</h4>
+      <p class="av-doc-prose__description">
+        Badges support combining variant and color classes (e.g.
+        <code>.av-badge--primary.av-badge--accent</code>).
+      </p>
+      <p class="av-doc-prose__description"><strong>Primary Variants:</strong></p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>.av-badge--primary.av-badge--accent</code> — Primary accent with filled background
+        </li>
+        <li>
+          <code>.av-badge--primary.av-badge--default</code> — Primary default with filled background
+        </li>
+        <li>
+          <code>.av-badge--primary.av-badge--success</code> — Primary success with filled background
+        </li>
+        <li>
+          <code>.av-badge--primary.av-badge--warning</code> — Primary warning with filled background
+        </li>
+        <li>
+          <code>.av-badge--primary.av-badge--danger</code> — Primary danger with filled background
+        </li>
+      </ul>
+      <p class="av-doc-prose__description"><strong>Soft Variants:</strong></p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>.av-badge--soft.av-badge--accent</code> — Soft accent with lighter background
+        </li>
+        <li>
+          <code>.av-badge--soft.av-badge--default</code> — Soft default with lighter background
+        </li>
+        <li>
+          <code>.av-badge--soft.av-badge--success</code> — Soft success with lighter background
+        </li>
+        <li>
+          <code>.av-badge--soft.av-badge--warning</code> — Soft warning with lighter background
+        </li>
+        <li>
+          <code>.av-badge--soft.av-badge--danger</code> — Soft danger with lighter background
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API Reference</h2>
+      <p class="av-doc-prose__description">
+        Anchor the badge with <code>span[av-badge-anchor]</code>, configure the indicator on
+        <code>span[av-badge]</code>, and optionally use <code>span[av-badge-label]</code> for
+        projected label content.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

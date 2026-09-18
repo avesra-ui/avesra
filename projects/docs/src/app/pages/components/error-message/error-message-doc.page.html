@@ -1,0 +1,96 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Error Message</h1>
+      <p class="av-doc-prose__description">
+        A low-level error message component for displaying errors in non-form contexts. Apply
+        <code>av-error-message</code> to a native <code>&lt;p&gt;</code> element.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="error-message" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <p class="av-doc-prose__description">
+        ErrorMessage is a low-level component for displaying error messages in non-form components
+        such as TagGroup, Calendar, and other collection-based components.
+      </p>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Error Message uses the <code>av-error-message</code> attribute selector on a native
+        <code>&lt;p&gt;</code> element. The host sets <code>role="alert"</code> and
+        <code>aria-live="polite"</code> for screen reader announcement.
+      </p>
+      <app-doc-snippet component="error-message" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="when-to-use">
+      <h2 class="av-doc-prose__heading">When to Use</h2>
+      <p class="av-doc-prose__description">
+        Error Message is not tied to forms. It's a generic error display component for non-form
+        contexts.
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          Recommended for non-form components (e.g.
+          <code>TagGroup</code>, <code>Calendar</code>, collection components)
+        </li>
+        <li>
+          For form fields, use
+          <a routerLink="/docs/components/field-error">Field Error</a>
+          instead, which provides form-specific validation features and automatic error handling.
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="error-message-vs-field-error">
+      <h2 class="av-doc-prose__heading">ErrorMessage vs FieldError</h2>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Error Message</strong> — Non-form components · no form integration · e.g.
+          <code>TagGroup</code>, <code>Calendar</code>
+        </li>
+        <li>
+          <strong>Field Error</strong> — Form fields (recommended) · form integration · e.g.
+          <code>TextField</code>, <code>NumberField</code>, <code>Select</code>
+        </li>
+      </ul>
+      <p class="av-doc-prose__description">
+        For form validation, prefer
+        <a routerLink="/docs/components/field-error">Field Error</a>
+        — it follows form validation patterns and provides field-specific features.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+      <p class="av-doc-prose__description">
+        To customize Error Message classes, use the <code>&#64;layer components</code> directive or
+        pass utility classes on the host.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">
+        The Error Message component uses these CSS classes:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>.av-error-message</code> — Base error message styles with danger color and word
+          wrapping
+        </li>
+        <li>
+          <code>[data-slot="error-message"]</code> — Slot attribute on the host for targeting in
+          CSS
+        </li>
+      </ul>
+    </section>
+  </div>
+</app-doc-page>

@@ -1,0 +1,2 @@
+/* Lavender design preset - overrides default tokens when data-av-design-theme="lavender" */
+@import "./variables.css" layer(theme);

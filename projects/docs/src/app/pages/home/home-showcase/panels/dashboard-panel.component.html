@@ -1,0 +1,353 @@
+<div class="av-dashboard-demo">
+  <aside class="av-dashboard-demo__sidebar" aria-label="Dashboard navigation">
+    <div class="av-dashboard-demo__profile">
+      <span av-avatar size="sm" class="av-dashboard-demo__avatar-gradient">
+        <span av-avatar-fallback>KM</span>
+      </span>
+      <div>
+        <div class="av-dashboard-demo__profile-name">Kate Moore</div>
+        <div class="av-dashboard-demo__profile-role">Admin</div>
+      </div>
+    </div>
+
+    <nav class="av-dashboard-demo__nav" aria-label="Primary">
+      @for (item of navItems; track item.label) {
+        <button
+          av-button
+          type="button"
+          size="sm"
+          full-width
+          class="av-dashboard-demo__nav-button"
+          [variant]="item.active ? 'tertiary' : 'ghost'"
+        >
+          <app-icon [icon]="item.icon" size="16" />
+          <span class="min-w-0 truncate">{{ item.label }}</span>
+          @if (item.badge) {
+            <span
+              av-chip
+              size="sm"
+              variant="soft"
+              color="success"
+              [label]="item.badge"
+              class="ms-auto shrink-0"
+            ></span>
+          }
+        </button>
+      }
+    </nav>
+
+    <div class="av-dashboard-demo__nav-footer">
+      @for (item of footerNavItems; track item.label) {
+        <button
+          av-button
+          type="button"
+          variant="ghost"
+          size="sm"
+          full-width
+          class="av-dashboard-demo__nav-button"
+        >
+          <app-icon [icon]="item.icon" size="16" />
+          <span class="min-w-0 truncate">{{ item.label }}</span>
+        </button>
+      }
+    </div>
+  </aside>
+
+  <div class="av-dashboard-demo__main">
+    <header class="av-dashboard-demo__topbar">
+      <div class="av-dashboard-demo__topbar-start">
+        <button
+          av-button
+          type="button"
+          variant="tertiary"
+          size="sm"
+          icon-only
+          aria-label="Toggle sidebar"
+        >
+          <app-icon icon="solar:sidebar-minimalistic-linear" size="16" />
+        </button>
+        <h2 class="av-dashboard-demo__topbar-title">Good morning, Kate</h2>
+      </div>
+      <div class="av-dashboard-demo__topbar-actions">
+        <button av-button type="button" variant="tertiary" size="sm" icon-only aria-label="Search">
+          <app-icon icon="solar:magnifer-linear" size="16" />
+        </button>
+        <button
+          av-button
+          type="button"
+          variant="tertiary"
+          size="sm"
+          icon-only
+          aria-label="Notifications"
+        >
+          <app-icon icon="solar:bell-linear" size="16" />
+        </button>
+        <button av-button type="button" size="sm">
+          <app-icon icon="solar:user-plus-linear" size="16" />
+          Invite
+        </button>
+      </div>
+    </header>
+
+    <div class="av-dashboard-demo__toolbar">
+      <av-tabs class="w-full max-w-xs" default-selected-key="overview">
+        <div av-tabs-list-container>
+          <div av-tabs-list aria-label="Dashboard views">
+            <span av-tabs-indicator></span>
+            <button av-tabs-tab id="overview" type="button">Overview</button>
+            <button av-tabs-tab id="sales" type="button">Sales</button>
+            <button av-tabs-tab id="expenses" type="button">Expenses</button>
+          </div>
+        </div>
+      </av-tabs>
+
+      <div class="av-dashboard-demo__toolbar-actions">
+        <button av-button type="button" variant="tertiary" size="sm" icon-only aria-label="Refresh">
+          <app-icon icon="solar:refresh-linear" size="16" />
+        </button>
+        <av-dropdown>
+          <av-button-group variant="secondary" size="sm">
+            <button av-button type="button">
+              <app-icon icon="solar:calendar-linear" size="16" />
+              {{ selectedPeriod }}
+            </button>
+            <button
+              av-button
+              type="button"
+              icon-only
+              aria-label="Select period"
+              av-dropdown-trigger
+            >
+              <span av-button-group-separator></span>
+              <app-icon icon="solar:alt-arrow-down-linear" size="16" />
+            </button>
+          </av-button-group>
+          <av-dropdown-popover placement="bottom end">
+            <div av-dropdown-menu (action)="onPeriodAction($event)">
+              @for (period of periods; track period.id) {
+                <div av-menu-item [id]="period.id" [textValue]="period.label">
+                  <label av-label>{{ period.label }}</label>
+                </div>
+              }
+            </div>
+          </av-dropdown-popover>
+        </av-dropdown>
+        <button av-button type="button" size="sm">
+          <app-icon icon="solar:download-linear" size="16" />
+          Download
+        </button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3 min-[900px]:grid-cols-4">
+      @for (metric of metrics; track metric.label) {
+        <div
+          av-card
+          class="min-h-[6.5rem]"
+          [attr.aria-label]="metric.label"
+        >
+          <div av-card-header>
+            <p av-card-description>{{ metric.label }}</p>
+          </div>
+          <div av-card-content class="flex flex-row items-end justify-between gap-3 p-0">
+            <p class="m-0 text-[1.75rem] font-semibold leading-none tracking-tight text-foreground">
+              {{ metric.value }}
+            </p>
+            <span
+              av-chip
+              size="sm"
+              variant="soft"
+              [color]="metric.chipColor"
+            >
+              <app-icon [icon]="metric.trendIcon" size="12" aria-hidden="true" />
+              <span av-chip-label>{{ metric.change }}</span>
+            </span>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="grid grid-cols-1 gap-3 md:grid-cols-2">
+      <div av-card class="min-h-[11rem]" aria-label="Sales Performance">
+        <div av-card-header class="flex flex-row items-start justify-between gap-2">
+          <h3 av-card-title>Sales Performance</h3>
+          <av-dropdown>
+            <button av-button type="button" variant="tertiary" size="sm" av-dropdown-trigger>
+              {{ selectedSalesRangeLabel() }}
+              <app-icon icon="solar:alt-arrow-down-linear" size="16" />
+            </button>
+            <av-dropdown-popover placement="bottom end">
+              <div
+                av-dropdown-menu
+                selection-mode="single"
+                [(selectedKeys)]="selectedSalesRange"
+              >
+                @for (range of salesRangeOptions; track range.id) {
+                  <div av-menu-item [id]="range.id" [textValue]="range.label">
+                    <span av-menu-item-indicator></span>
+                    <label av-label>{{ range.label }}</label>
+                  </div>
+                }
+              </div>
+            </av-dropdown-popover>
+          </av-dropdown>
+        </div>
+        <div av-card-content class="p-0">
+          <div
+            class="flex min-h-28 items-center justify-center rounded-xl bg-foreground/4 text-[0.8125rem] text-muted"
+          >
+            Chart placeholder
+          </div>
+        </div>
+      </div>
+
+      <div av-card class="min-h-[11rem]" aria-label="Traffic Source">
+        <div av-card-header class="flex flex-row items-start justify-between gap-2">
+          <h3 av-card-title>Traffic Source</h3>
+          <button
+            av-button
+            type="button"
+            variant="tertiary"
+            size="sm"
+            icon-only
+            aria-label="More options"
+            avTooltip="More options"
+            tooltip-position="bottom"
+          >
+            <app-icon icon="solar:menu-dots-linear" size="16" />
+          </button>
+        </div>
+        <div av-card-content class="p-0">
+          <div
+            class="flex min-h-28 items-center justify-center rounded-xl bg-foreground/4 text-[0.8125rem] text-muted"
+          >
+            Chart placeholder
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="flex flex-col gap-3" aria-labelledby="dashboard-employees-title">
+      <div class="flex flex-col gap-2">
+        <h3
+          class="m-0 flex items-center gap-2 text-base font-semibold leading-none tracking-tight"
+          id="dashboard-employees-title"
+        >
+          All Employees
+          <span av-chip label="32" size="sm" color="default"></span>
+        </h3>
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex flex-wrap items-center gap-2">
+            <button av-button type="button" variant="tertiary" size="sm">
+              <app-icon icon="solar:filter-linear" size="16" />
+              Filter
+            </button>
+            <button av-button type="button" variant="tertiary" size="sm">
+              <app-icon icon="solar:sort-vertical-linear" size="16" />
+              Sort
+            </button>
+            <button av-button type="button" variant="tertiary" size="sm">
+              <app-icon icon="solar:widget-linear" size="16" />
+              Columns
+            </button>
+          </div>
+          <div av-input-group class="w-full min-w-0 shrink-0 rounded-full sm:w-56">
+            <div av-input-group-prefix>
+              <app-icon icon="solar:magnifer-linear" size="16" class="text-muted" />
+            </div>
+            <input
+              av-input-group-input
+              type="search"
+              placeholder="Search..."
+              aria-label="Search employees"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div av-table>
+        <div av-table-scroll-container>
+          <table av-table-content aria-label="Employees" class="min-w-[720px]">
+            <thead av-table-header>
+              <tr>
+                <th av-table-column>Worker ID</th>
+                <th av-table-column>Member</th>
+                <th av-table-column>Role</th>
+                <th av-table-column>Worker Type</th>
+                <th av-table-column>Actions</th>
+              </tr>
+            </thead>
+            <tbody av-table-body>
+              @for (employee of employees; track employee.id) {
+                <tr av-table-row>
+                  <td av-table-cell>
+                    <span class="av-dashboard-demo__worker-id">
+                      {{ employee.id }}
+                      <button
+                        av-button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        icon-only
+                        aria-label="Copy worker ID"
+                      >
+                        <app-icon icon="solar:copy-linear" size="14" />
+                      </button>
+                    </span>
+                  </td>
+                  <td av-table-cell>
+                    <div class="av-dashboard-demo__member">
+                      <span av-avatar size="sm" [class]="employee.avatarClass">
+                        <span av-avatar-fallback>{{ employee.initials }}</span>
+                      </span>
+                      <div class="av-dashboard-demo__member-text">
+                        <span class="av-dashboard-demo__member-name">{{ employee.name }}</span>
+                        <span class="av-dashboard-demo__member-email">{{ employee.email }}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td av-table-cell>{{ employee.role }}</td>
+                  <td av-table-cell>{{ employee.type }}</td>
+                  <td av-table-cell>
+                    <div class="av-dashboard-demo__row-actions">
+                      <button
+                        av-button
+                        type="button"
+                        variant="tertiary"
+                        size="sm"
+                        icon-only
+                        aria-label="View employee"
+                      >
+                        <app-icon icon="solar:eye-linear" size="16" />
+                      </button>
+                      <button
+                        av-button
+                        type="button"
+                        variant="tertiary"
+                        size="sm"
+                        icon-only
+                        aria-label="Edit employee"
+                      >
+                        <app-icon icon="solar:pen-linear" size="16" />
+                      </button>
+                      <button
+                        av-button
+                        type="button"
+                        variant="danger-soft"
+                        size="sm"
+                        icon-only
+                        aria-label="Delete employee"
+                      >
+                        <app-icon icon="solar:trash-bin-trash-linear" size="16" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

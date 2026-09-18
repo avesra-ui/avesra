@@ -1,0 +1,219 @@
+.av-doc-code-block {
+  position: relative;
+  margin: 0;
+  padding: 1rem 0.5rem 0;
+  background-color: transparent;
+}
+
+/* Import snippet: soft gray pill, copy inline on the right */
+.av-doc-code-block--import {
+  display: block;
+  position: relative;
+  padding: 0.75rem 2.75rem 0.75rem 1rem;
+  border: none;
+  border-radius: 0.75rem;
+  background-color: color-mix(in srgb, var(--av-foreground) 4%, transparent);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.av-doc-code-block__import-scroll {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: visible;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.av-doc-code-block--import .av-doc-code-block__copy {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  flex-shrink: 0;
+  min-width: 0;
+  padding: 0.25rem;
+  color: var(--av-muted);
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+    background-color: transparent;
+  }
+}
+
+.av-doc-code-block__actions {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 2;
+}
+
+.av-doc-code-block__copy {
+  min-width: 0;
+  padding: 0.25rem;
+  color: var(--av-muted);
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+    background-color: transparent;
+  }
+}
+
+.av-doc-code-block__body {
+  position: relative;
+}
+
+.av-doc-code-block__body--collapsed {
+  max-height: 9.375rem;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.av-doc-code-block__scroll {
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.av-doc-code-block--collapsed .av-doc-code-block__scroll {
+  overflow: visible;
+}
+
+.av-doc-code-block__content {
+  min-width: max-content;
+
+  ::ng-deep .shiki {
+    margin: 0;
+    background: transparent !important;
+    box-shadow: none;
+  }
+
+  ::ng-deep .shiki pre {
+    margin: 0;
+    padding: 0;
+    min-width: 100%;
+    width: max-content;
+    background: transparent !important;
+  }
+
+  ::ng-deep .shiki code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    line-height: 1.5;
+    white-space: pre;
+  }
+}
+
+.av-doc-code-block--import .av-doc-code-block__content,
+.av-doc-code-block--anatomy .av-doc-code-block__content {
+  min-width: max-content;
+
+  ::ng-deep .shiki,
+  ::ng-deep .shiki pre,
+  ::ng-deep .shiki code {
+    white-space: pre;
+    width: max-content;
+    min-width: max-content;
+  }
+
+  ::ng-deep .shiki .line {
+    white-space: pre;
+  }
+
+  ::ng-deep .shiki code {
+    display: block;
+  }
+}
+
+/* Multi-line anatomy snippet: soft gray pill, horizontal scroll without visible scrollbar */
+.av-doc-code-block--anatomy {
+  display: block;
+  position: relative;
+  padding: 1rem 2.75rem 1rem 1rem;
+  border: none;
+  border-radius: 0.75rem;
+  background-color: color-mix(in srgb, var(--av-foreground) 4%, transparent);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.av-doc-code-block__import-scroll--multiline {
+  min-width: 0;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+.av-doc-code-block--anatomy .av-doc-code-block__copy {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  flex-shrink: 0;
+  min-width: 0;
+  padding: 0.25rem;
+  color: var(--av-muted);
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+    background-color: transparent;
+  }
+}
+
+.av-doc-code-block--line-numbers ::ng-deep code {
+  counter-reset: step;
+  counter-increment: step 0;
+  white-space: pre;
+}
+
+.av-doc-code-block--line-numbers ::ng-deep code .line::before {
+  content: counter(step);
+  counter-increment: step;
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1.5rem;
+  text-align: right;
+  color: rgba(115, 138, 148, 0.4);
+  user-select: none;
+}
+
+.av-doc-code-block__toggle {
+  position: absolute;
+  right: 50%;
+  bottom: 0.5rem;
+  z-index: 2;
+  transform: translateX(50%);
+  font-size: 0.75rem;
+  background-color: var(--av-surface);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.av-doc-code-block--collapsed {
+  padding-bottom: 2.5rem;
+}
+
+.av-doc-code-block:not(.av-doc-code-block--collapsed):not(.av-doc-code-block--import):not(
+    .av-doc-code-block--anatomy
+  ) {
+  padding-bottom: 2.5rem;
+}

@@ -1,0 +1,96 @@
+/* av-tag — selectable / removable tag item */
+
+.av-tag {
+  --av-optical-offset: 0.031em;
+
+  @apply relative inline-flex items-center gap-1 rounded-xl font-medium select-none av-no-highlight;
+
+  /**
+   * Transitions
+   * CRITICAL: av-motion-reduce must be AFTER transition for correct override specificity
+   */
+  transition:
+    color 100ms var(--ease-smooth),
+    scale 100ms var(--ease-smooth),
+    opacity 100ms var(--ease-smooth),
+    background-color 100ms var(--ease-smooth),
+    box-shadow 100ms var(--ease-out);
+  @apply origin-center transform-gpu av-motion-reduce:transition-none;
+
+  cursor: var(--av-cursor-interactive);
+
+  /* Default size — matches --md */
+  @apply px-2 py-1 text-xs;
+
+  & svg {
+    @apply pointer-events-none size-3 shrink-0 self-center text-current;
+  }
+}
+
+.av-tag:is([data-disabled="true"], [aria-disabled="true"]) {
+  @apply av-status-disabled;
+}
+
+.av-tag:is(:focus-visible, [data-focus-visible="true"]) {
+  @apply av-status-focused;
+}
+
+.av-tag:is([data-selected="true"], [aria-selected="true"]) {
+  @apply bg-accent-soft text-accent-soft-foreground;
+
+  @media (hover: hover) {
+    &:is(:hover, [data-hovered="true"]) {
+      @apply bg-accent-soft-hover;
+    }
+  }
+}
+
+/* Size variants */
+.av-tag--sm {
+  @apply px-2 py-0.5 text-xs;
+}
+
+.av-tag--md {
+  /* Default size — styles live on base */
+}
+
+.av-tag--lg {
+  @apply rounded-2xl px-2.5 py-1.5 text-sm;
+}
+
+/* Variant */
+.av-tag--default {
+  @apply bg-default text-default-foreground;
+
+  @media (hover: hover) {
+    &:is(:hover, [data-hovered="true"]):not([data-selected="true"]):not([data-disabled="true"]) {
+      @apply bg-default-hover;
+    }
+  }
+}
+
+.av-tag--surface {
+  @apply bg-surface text-surface-foreground;
+
+  @media (hover: hover) {
+    &:is(:hover, [data-hovered="true"]):not([data-selected="true"]):not([data-disabled="true"]) {
+      @apply bg-surface-hover;
+    }
+  }
+}
+
+/* Remove button */
+.av-tag__remove-button {
+  @apply inline-flex size-3 shrink-0 items-center justify-center text-inherit;
+
+  cursor: var(--av-cursor-interactive);
+
+  & svg {
+    @apply size-[inherit] shrink-0 self-center text-current;
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    @apply av-status-disabled;
+  }
+}

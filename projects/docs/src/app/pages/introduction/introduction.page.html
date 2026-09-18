@@ -1,0 +1,173 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header id="overview">
+      <h1 class="av-doc-prose__title">Introduction</h1>
+      <p class="av-doc-prose__description">
+        Built for Angular developers who value both aesthetics and functionality. Avesra bridges
+        the gap between a real design system and a practical Angular API.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="why-avesra">
+      <h2 class="av-doc-prose__heading">Why Avesra?</h2>
+      <p class="av-doc-prose__description">
+        A component library that does not force you to choose between beauty and functionality.
+      </p>
+
+      <div class="grid gap-4 md:grid-cols-2">
+        @for (card of features; track card.title) {
+          <div av-card>
+            <div av-card-header>
+              <div
+                class="flex size-10 items-center justify-center rounded-lg bg-accent/10 text-accent"
+              >
+                <app-icon [icon]="card.icon" size="20" />
+              </div>
+            </div>
+            <div av-card-content>
+              <h3 class="mt-4 text-base font-semibold text-foreground">{{ card.title }}</h3>
+              <p class="mt-2 text-sm leading-6 text-muted">{{ card.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <section class="av-doc-prose__section" id="packages">
+      <h2 class="av-doc-prose__heading">Two packages</h2>
+      <p class="av-doc-prose__description">
+        Install the behavior and the look as regular dependencies. No copy-paste, no forked files,
+        no CLI required.
+      </p>
+
+      <div
+        class="rounded-xl bg-[color-mix(in_srgb,var(--av-foreground)_4%,transparent)] px-4 py-3"
+      >
+        <div class="flex items-center gap-2">
+          <span
+            class="flex size-6 items-center justify-center rounded bg-accent font-mono text-xs text-accent-foreground"
+          >
+            $
+          </span>
+          <code class="text-sm">npm install {{ packages.angular }} {{ packages.themes }}</code>
+        </div>
+        <div class="mt-4 ps-8 text-sm leading-7 text-muted">
+          ✓ Installed {{ packages.angular }}
+          <br />
+          ✓ Installed {{ packages.themes }}
+          <br />
+          ✓ Ready to import
+        </div>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-3">
+        @for (point of packagePoints; track point.title) {
+          <div class="flex flex-col gap-2">
+            <h3 class="text-base font-semibold text-foreground">{{ point.title }}</h3>
+            <p class="text-sm leading-6 text-muted">{{ point.description }}</p>
+          </div>
+        }
+      </div>
+    </section>
+
+    <section class="av-doc-prose__section" id="ai-ready">
+      <div class="flex flex-wrap items-center gap-2">
+        <h2 class="av-doc-prose__heading">AI Ready</h2>
+        <span av-chip size="sm" color="default" variant="secondary" label="Future Ready"></span>
+      </div>
+      <p class="av-doc-prose__description">
+        Avesra is designed so AI tools can understand it. Clear patterns, a consistent API, and
+        documentation that gives models the context they need.
+      </p>
+
+      <div class="grid gap-4 md:grid-cols-2">
+        @for (card of aiCards; track card.title) {
+          <div av-card>
+            <div av-card-header>
+              <div class="flex items-center gap-2">
+                <app-icon [icon]="card.icon" size="18" />
+                <h3 class="text-base font-semibold text-foreground">{{ card.title }}</h3>
+              </div>
+            </div>
+            <div av-card-content>
+              <p class="text-sm leading-6 text-muted">{{ card.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <section class="av-doc-prose__section" id="open-source">
+      <div class="flex flex-col-reverse items-start gap-2 md:flex-row md:items-center md:gap-3">
+        <h2 class="av-doc-prose__heading">Open Source</h2>
+        <span av-chip size="sm" color="success" variant="primary" label="MIT License"></span>
+      </div>
+      <p class="av-doc-prose__description">
+        The core library is open source. Read the code, open issues, and ship Avesra in personal
+        or commercial apps under the MIT license.
+      </p>
+
+      <div class="grid gap-4 md:grid-cols-3">
+        @for (card of openSource; track card.title) {
+          <div av-card>
+            <div av-card-header>
+              <div
+                class="flex size-10 items-center justify-center rounded-full bg-success/10 text-success"
+              >
+                <app-icon [icon]="card.icon" size="20" />
+              </div>
+              <h3 class="mt-4 text-base font-semibold text-foreground">{{ card.title }}</h3>
+            </div>
+            <div av-card-content>
+              <p class="text-sm leading-6 text-muted">{{ card.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <section class="av-doc-prose__section" id="support">
+      <div class="relative overflow-hidden rounded-xl border border-dashed border-border p-8">
+        <div class="flex flex-col items-center gap-4 text-center">
+          <div
+            class="flex size-12 items-center justify-center rounded-full bg-accent/10 text-accent"
+          >
+            <app-icon icon="avesra:github" size="22" />
+          </div>
+          <h3 class="text-xl font-semibold text-foreground">Get involved</h3>
+          <p class="max-w-2xl text-sm leading-7 text-muted">
+            Star the repo, file an issue, or send a pull request. Community feedback is how Avesra
+            gets better.
+          </p>
+          <div class="flex flex-wrap justify-center gap-3">
+            <button av-button type="button" (click)="openGithub()">
+              <app-icon icon="avesra:github" size="16" />
+              Star on GitHub
+            </button>
+            <button
+              av-button
+              type="button"
+              variant="secondary"
+              routerLink="/docs/components"
+            >
+              Browse components
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="flex justify-end">
+      <button
+        av-button
+        type="button"
+        size="sm"
+        variant="secondary"
+        routerLink="/docs/theming"
+      >
+        Next: Theming
+        <app-icon icon="solar:alt-arrow-right-linear" size="16" />
+      </button>
+    </div>
+  </div>
+</app-doc-page>

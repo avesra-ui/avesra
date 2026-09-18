@@ -1,0 +1,133 @@
+/* av-accordion component styles */
+
+.av-accordion {
+  @apply block w-full;
+
+  /* Performance optimization - contain layout changes */
+  contain: layout style;
+}
+
+.av-accordion__body {
+  @apply text-sm;
+}
+
+.av-accordion__body-inner {
+  @apply px-4 pt-0 pb-4 text-muted;
+}
+
+.av-accordion__heading {
+  @apply flex;
+}
+
+.av-accordion__indicator {
+  @apply ml-auto size-4 shrink-0 text-muted;
+
+  /**
+   * Transitions
+   */
+  @apply transition duration-250 av-motion-reduce:transition-none;
+
+  /* Expanded state for indicator rotation */
+  &[data-expanded="true"] {
+    @apply -rotate-180;
+  }
+}
+
+/* Accordion Item - Separator styles */
+.av-accordion__item {
+  @apply relative border-none;
+}
+
+.av-accordion__item::after {
+  content: "";
+  @apply absolute bottom-0 left-0 h-px w-full rounded-xs bg-separator;
+}
+
+.av-accordion__item:last-child::after {
+  content: none;
+}
+
+/* Hide separator when hideSeparator prop is set */
+.av-accordion__item[data-hide-separator="true"]::after {
+  display: none;
+}
+
+.av-accordion__trigger {
+  cursor: var(--av-cursor-interactive);
+
+  @apply flex flex-1 items-center justify-between px-4 py-4 text-left text-sm font-medium av-no-highlight;
+
+  transition:
+    opacity 150ms var(--ease-out),
+    box-shadow 150ms var(--ease-out);
+  @apply av-motion-reduce:transition-none;
+
+  @media (hover: hover) {
+    &:hover:not([aria-expanded="true"]),
+    &[data-hovered="true"]:not([aria-expanded="true"]) {
+      background-color: color-mix(in oklab, var(--foreground) 3%, transparent 90%);
+    }
+  }
+
+  &:focus-visible:not(:focus),
+  &[data-focus-visible="true"] {
+    @apply av-status-focused;
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    @apply av-status-disabled;
+  }
+}
+
+.av-accordion__panel {
+  opacity: 0;
+  height: var(--av-disclosure-panel-height, 0px);
+  overflow: clip;
+
+  transition:
+    height 200ms var(--ease-out-quad),
+    opacity 200ms var(--ease-out);
+  @apply av-motion-reduce:transition-none;
+
+  &[data-expanded="true"] {
+    will-change: height, opacity;
+    opacity: 1;
+  }
+}
+
+/* Surface variant */
+.av-accordion--surface {
+  @apply bg-surface;
+  border-radius: min(32px, var(--radius-3xl));
+
+  .av-accordion__trigger {
+    @media (hover: hover) {
+      &:hover:not([aria-expanded="true"]),
+      &[data-hovered="true"]:not([aria-expanded="true"]) {
+        @apply bg-default;
+      }
+    }
+  }
+
+  .av-accordion__item::after {
+    @apply bg-surface-foreground/6;
+  }
+}
+
+.av-accordion--surface .av-accordion__item {
+  &::after {
+    @apply left-[3%] w-[94%];
+  }
+
+  &:first-child [data-slot="accordion-trigger"] {
+    border-top-left-radius: min(32px, var(--radius-3xl));
+    border-top-right-radius: min(32px, var(--radius-3xl));
+  }
+
+  &:last-child:not(:has([data-slot="accordion-trigger"][aria-expanded="true"]))
+    [data-slot="accordion-trigger"] {
+    border-bottom-left-radius: min(32px, var(--radius-3xl));
+    border-bottom-right-radius: min(32px, var(--radius-3xl));
+  }
+}

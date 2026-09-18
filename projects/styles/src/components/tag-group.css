@@ -1,0 +1,16 @@
+/* av-tag-group — collection of selectable / removable tags */
+
+.av-tag-group {
+  @apply relative flex flex-col gap-1;
+}
+
+.av-tag-group__list {
+  @apply relative flex flex-wrap gap-1.5;
+}
+
+.av-tag-group [slot="description"],
+.av-tag-group [data-slot="description"],
+.av-tag-group [slot="errorMessage"],
+.av-tag-group [data-slot="error-message"] {
+  @apply p-1;
+}

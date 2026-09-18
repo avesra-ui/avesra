@@ -1,0 +1,441 @@
+<div class="av-home-bento">
+  <!-- Left column -->
+  <div class="av-home-bento__col av-home-bento__col--left">
+    <div class="av-home-bento__control flex flex-col items-start gap-1">
+      <label av-label for="home-email">Your email</label>
+      <input
+        av-input
+        id="home-email"
+        type="email"
+        class="w-full"
+        placeholder="john&#64;email.com"
+        full-width
+      />
+      <p av-description class="mt-0.5">We won&apos;t share your email</p>
+    </div>
+
+    <div class="av-home-bento__control flex flex-col gap-1">
+      <label av-label>State</label>
+      <av-dropdown class="w-full">
+        <button
+          av-button
+          variant="secondary"
+          full-width
+          av-dropdown-trigger
+          class="av-home-bento__select"
+        >
+          <span class="truncate">{{ stateLabel() }}</span>
+          <app-icon class="ms-auto opacity-60" icon="solar:alt-arrow-down-linear" size="16" />
+        </button>
+        <av-dropdown-popover class="w-56">
+          <div av-dropdown-menu>
+            <div av-menu-section>
+              @for (
+                state of ['Florida', 'Delaware', 'California', 'Texas', 'New York', 'Washington'];
+                track state
+              ) {
+                <div
+                  av-menu-item
+                  [id]="state"
+                  [textValue]="state"
+                  (click)="selectState(state)"
+                >
+                  <label av-label>{{ state }}</label>
+                </div>
+              }
+            </div>
+          </div>
+        </av-dropdown-popover>
+      </av-dropdown>
+    </div>
+
+    <div class="av-home-bento__controls-row">
+      <div av-checkbox default-selected aria-label="Checkbox">
+        <span av-checkbox-control>
+          <span av-checkbox-indicator></span>
+        </span>
+      </div>
+      <div av-switch [(selected)]="notifications" aria-label="Switch">
+        <span av-switch-control>
+          <span av-switch-thumb></span>
+        </span>
+      </div>
+      <av-radio-group
+        class="gap-8"
+        orientation="horizontal"
+        default-value="b"
+        aria-label="Radio"
+      >
+        <div av-radio value="a">
+          <span av-radio-control>
+            <span av-radio-indicator></span>
+          </span>
+        </div>
+        <div av-radio value="b">
+          <span av-radio-control>
+            <span av-radio-indicator></span>
+          </span>
+        </div>
+      </av-radio-group>
+      <span av-spinner aria-label="Loading"></span>
+    </div>
+
+    <div
+      class="av-home-bento__slider"
+      av-slider
+      [min]="0"
+      [max]="500"
+      [step]="10"
+      [default-value]="250"
+      [format-options]="{ style: 'currency', currency: 'USD' }"
+    >
+      <label av-label>Price</label>
+      <span av-slider-output></span>
+      <div av-slider-track>
+        <div av-slider-fill></div>
+        <div av-slider-thumb></div>
+      </div>
+    </div>
+
+    <av-tabs class="av-home-bento__control" default-selected-key="1d">
+      <div class="av-tabs__list-container">
+        <div av-tabs-list aria-label="Range">
+          <span av-tabs-indicator></span>
+          <button av-tabs-tab id="1d">1D</button>
+          <button av-tabs-tab id="7d">7D</button>
+          <button av-tabs-tab id="1m">1M</button>
+          <button av-tabs-tab id="1y">1Y</button>
+          <button av-tabs-tab id="all">All</button>
+        </div>
+      </div>
+      <div av-tabs-panel id="1d"></div>
+      <div av-tabs-panel id="7d"></div>
+      <div av-tabs-panel id="1m"></div>
+      <div av-tabs-panel id="1y"></div>
+      <div av-tabs-panel id="all"></div>
+    </av-tabs>
+
+    <av-tabs class="av-home-bento__control" default-selected-key="chats">
+      <div class="av-tabs__list-container">
+        <div av-tabs-list aria-label="Channels">
+          <span av-tabs-indicator></span>
+          <button av-tabs-tab id="chats" class="gap-1.5">
+            <app-icon icon="solar:chat-round-line-linear" size="16" />
+            <span>Chats</span>
+          </button>
+          <button av-tabs-tab id="emails" class="gap-1.5">
+            <app-icon icon="solar:letter-linear" size="16" />
+            <span>Emails</span>
+          </button>
+        </div>
+      </div>
+      <div av-tabs-panel id="chats"></div>
+      <div av-tabs-panel id="emails"></div>
+    </av-tabs>
+
+    <div av-surface class="av-home-bento__actions shadow-surface">
+      <div
+        av-list-box
+        aria-label="File actions"
+        selection-mode="none"
+        class="w-full p-2"
+      >
+        <div av-list-box-section>
+          <p class="px-2.5 py-1 text-xs font-medium text-muted">Actions</p>
+          <div av-list-box-item id="new-file" textValue="New file">
+            <div class="flex h-8 items-start justify-center pt-px">
+              <app-icon class="size-4 shrink-0 text-muted" icon="solar:add-square-linear" size="16" />
+            </div>
+            <div class="flex flex-col">
+              <label av-label>New file</label>
+              <p av-description>Create a new file</p>
+            </div>
+            <kbd av-kbd variant="light" class="ms-auto">
+              <abbr av-kbd-abbr key-value="command"></abbr>
+              <span av-kbd-content>N</span>
+            </kbd>
+          </div>
+          <div av-list-box-item id="edit-file" textValue="Edit file">
+            <div class="flex h-8 items-start justify-center pt-px">
+              <app-icon class="size-4 shrink-0 text-muted" icon="solar:pen-linear" size="16" />
+            </div>
+            <div class="flex flex-col">
+              <label av-label>Edit file</label>
+              <p av-description>Make changes</p>
+            </div>
+            <kbd av-kbd variant="light" class="ms-auto">
+              <abbr av-kbd-abbr key-value="command"></abbr>
+              <span av-kbd-content>E</span>
+            </kbd>
+          </div>
+        </div>
+        <div av-separator></div>
+        <div av-list-box-section>
+          <p class="px-2.5 py-1 text-xs font-medium text-muted">Danger zone</p>
+          <div av-list-box-item id="delete-file" textValue="Delete file" variant="danger">
+            <div class="flex h-8 items-start justify-center pt-px">
+              <app-icon
+                class="size-4 shrink-0 text-danger"
+                icon="solar:trash-bin-trash-linear"
+                size="16"
+              />
+            </div>
+            <div class="flex flex-col">
+              <label av-label>Delete file</label>
+              <p av-description>Move to trash</p>
+            </div>
+            <kbd av-kbd variant="light" class="ms-auto">
+              <abbr av-kbd-abbr key-value="command"></abbr>
+              <abbr av-kbd-abbr key-value="shift"></abbr>
+              <span av-kbd-content>D</span>
+            </kbd>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Center column -->
+  <div class="av-home-bento__col av-home-bento__col--center">
+    <div class="flex w-full justify-center">
+      <div class="flex -space-x-2">
+        @for (user of avatars; track user.name) {
+          <span av-avatar class="ring-2 ring-background">
+            <img av-avatar-image [alt]="user.name" [src]="user.src" />
+            <span av-avatar-fallback>{{ user.name.charAt(0) }}</span>
+          </span>
+        }
+        <span av-avatar class="ring-2 ring-background">
+          <span av-avatar-fallback class="bg-surface text-xs font-medium text-muted">+5</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="flex w-full justify-center">
+      <div class="av-home-bento__otp">
+        <div class="flex flex-col items-start gap-1">
+          <label av-label>Verify account</label>
+          <p class="text-sm text-muted">We&apos;ve sent a code to a****&#64;gmail.com</p>
+        </div>
+        <div av-input-otp [maxLength]="6" [(value)]="otp">
+          <div av-input-otp-group>
+            <div av-input-otp-slot [index]="0"></div>
+            <div av-input-otp-slot [index]="1"></div>
+            <div av-input-otp-slot [index]="2"></div>
+          </div>
+          <div av-input-otp-separator></div>
+          <div av-input-otp-group>
+            <div av-input-otp-slot [index]="3"></div>
+            <div av-input-otp-slot [index]="4"></div>
+            <div av-input-otp-slot [index]="5"></div>
+          </div>
+        </div>
+        <div class="flex items-center gap-[5px] px-1 pt-1">
+          <p class="text-sm text-muted">Didn&apos;t receive a code?</p>
+          <a av-link href="#" class="text-foreground" (click)="$event.preventDefault()">Resend</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="av-home-bento__buttons">
+      <button av-button size="sm">Click me</button>
+      <button av-button size="sm" variant="secondary">Click me</button>
+      <button av-button size="sm" variant="tertiary">Click me</button>
+      <button av-button size="sm" variant="danger">Click me</button>
+      <button av-button size="sm" variant="danger-soft">Click me</button>
+      <button av-button size="sm" variant="ghost">Click me</button>
+    </div>
+
+    <div av-card class="av-home-bento__profile">
+      <div av-card-header class="w-full flex-row items-start justify-between">
+        <div class="flex items-center gap-3">
+          <span av-avatar size="sm">
+            <img
+              av-avatar-image
+              class="object-contain p-1.5 dark:hidden"
+              src="/images/brand/avesra-mark-light.webp"
+              alt="Avesra"
+            />
+            <img
+              av-avatar-image
+              class="hidden object-contain p-1.5 dark:block"
+              src="/images/brand/avesra-mark-dark.webp"
+              alt=""
+            />
+            <span av-avatar-fallback>A</span>
+          </span>
+          <div class="flex h-full flex-col items-start justify-center">
+            <div class="flex items-center gap-0.5">
+              <span class="text-sm font-semibold leading-4">Avesra</span>
+              <app-icon class="text-warning" icon="solar:verified-check-bold" size="18" />
+            </div>
+            <span class="text-sm tracking-tight text-muted">&#64;avesra</span>
+          </div>
+        </div>
+      </div>
+      <div av-card-content class="flex-row text-left">
+        <p class="pl-px text-sm font-medium">
+          Building the future of UI for Angular apps.
+          <br />
+          <span role="img" aria-label="rocket">🚀</span>&nbsp;(OSS)
+        </p>
+      </div>
+      <div av-card-footer class="gap-2">
+        <div class="flex gap-1">
+          <p class="text-sm font-semibold">4</p>
+          <p class="text-sm text-muted">Following</p>
+        </div>
+        <div class="flex gap-1">
+          <p class="text-sm font-semibold">12.4K</p>
+          <p class="text-sm text-muted">Followers</p>
+        </div>
+      </div>
+    </div>
+
+    <div av-alert class="av-home-bento__alert">
+      <div av-alert-indicator></div>
+      <div av-alert-content class="text-left">
+        <p av-alert-title class="leading-5">You have 2 credits left</p>
+        <span av-alert-description class="text-xs">Get a paid plan for more credits</span>
+      </div>
+      <button av-button variant="tertiary">Upgrade</button>
+    </div>
+
+    <div class="flex w-full justify-center">
+      <div av-switch [(selected)]="notifications" class="p-4">
+        <span av-switch-content class="-mt-0.5 flex flex-col justify-start gap-1">
+          <label av-label class="w-fit text-sm font-medium">Allow notifications</label>
+          <span av-description>Receive push notifications from Avesra</span>
+        </span>
+        <span av-switch-control>
+          <span av-switch-thumb></span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right column -->
+  <div class="av-home-bento__col--right">
+    <div class="av-home-bento__signup-wrap row-span-2">
+      <div av-card class="av-home-bento__signup">
+        <div av-card-header class="flex w-full items-center justify-center gap-2">
+          <span av-avatar>
+            <span av-avatar-fallback>
+              <app-icon icon="solar:user-linear" size="16" />
+            </span>
+          </span>
+          <h3 av-card-title>Create an account</h3>
+          <button
+            av-close-button
+            class="av-home-bento__signup-close"
+            aria-label="Close"
+            type="button"
+          ></button>
+        </div>
+        <div av-card-content class="w-full gap-2">
+          <p class="text-center text-sm font-medium text-balance text-muted">
+            Start your free 7-day trial. No credit card required.
+          </p>
+          <button av-button full-width>Get Started</button>
+          <div class="flex w-full items-center gap-2 py-2">
+            <div av-separator class="flex-1"></div>
+            <p class="text-center text-xs font-medium uppercase text-muted">Or</p>
+            <div av-separator class="flex-1"></div>
+          </div>
+          <button av-button variant="tertiary" full-width>
+            <svg aria-hidden="true" fill="none" height="16" viewBox="0 0 16 16" width="16">
+              <path
+                d="M5.877 1.46a6.921 6.921 0 0 0 .474 13.224c1.159.3 2.373.312 3.539.038a6.248 6.248 0 0 0 2.833-1.472 6.28 6.28 0 0 0 1.75-2.872 8.125 8.125 0 0 0 .176-3.673h-6.51v2.7h3.77a3.25 3.25 0 0 1-1.385 2.136c-.46.304-.98.509-1.523.601a4.517 4.517 0 0 1-1.652 0 4.068 4.068 0 0 1-1.537-.67 4.299 4.299 0 0 1-1.586-2.124 4.189 4.189 0 0 1 0-2.694c.208-.613.551-1.17 1.005-1.631a4.066 4.066 0 0 1 4.096-1.07c.558.172 1.07.471 1.492.875.425-.423.849-.847 1.273-1.272.218-.228.457-.446.672-.68a6.693 6.693 0 0 0-2.227-1.374 7 7 0 0 0-4.66-.042Z"
+                fill="#fff"
+              />
+              <path
+                d="M5.877 1.46a7 7 0 0 1 4.66.04c.826.31 1.582.78 2.226 1.381-.219.234-.45.453-.672.68l-1.272 1.267a3.752 3.752 0 0 0-1.492-.875 4.066 4.066 0 0 0-4.098 1.065A4.293 4.293 0 0 0 4.225 6.65L1.958 4.894A6.949 6.949 0 0 1 5.877 1.46Z"
+                fill="#E33629"
+              />
+              <path
+                d="M1.356 6.633a6.89 6.89 0 0 1 .602-1.74l2.267 1.76a4.19 4.19 0 0 0 0 2.694c-.755.584-1.511 1.17-2.267 1.76a6.927 6.927 0 0 1-.602-4.474Z"
+                fill="#F8BD00"
+              />
+              <path
+                d="M8.139 6.704h6.51a8.127 8.127 0 0 1-.176 3.673 6.283 6.283 0 0 1-1.75 2.872c-.732-.571-1.467-1.138-2.199-1.709a3.25 3.25 0 0 0 1.385-2.137h-3.77v-2.7Z"
+                fill="#587DBD"
+              />
+              <path
+                d="M1.957 11.106a539.69 539.69 0 0 0 2.267-1.759 4.298 4.298 0 0 0 1.588 2.125c.462.326.987.552 1.54.665a4.517 4.517 0 0 0 1.652 0 3.96 3.96 0 0 0 1.524-.602c.731.57 1.466 1.137 2.198 1.708a6.25 6.25 0 0 1-2.833 1.474 7.394 7.394 0 0 1-3.54-.039 6.967 6.967 0 0 1-4.397-3.572Z"
+                fill="#319F43"
+              />
+            </svg>
+            Continue with Google
+          </button>
+          <button av-button variant="tertiary" full-width>
+            <svg
+              aria-hidden="true"
+              class="text-foreground"
+              fill="none"
+              focusable="false"
+              height="16"
+              role="presentation"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.367 13.52c-.654.633-1.367.533-2.054.233-.726-.306-1.393-.32-2.16 0-.96.414-1.466.294-2.04-.233-3.253-3.353-2.773-8.46.92-8.647.9.047 1.527.494 2.054.534.786-.16 1.54-.62 2.38-.56 1.006.08 1.766.48 2.266 1.2-2.08 1.246-1.586 3.986.32 4.753-.38 1-.873 1.993-1.693 2.727l.007-.007ZM8.02 4.833C7.92 3.347 9.127 2.12 10.513 2c.194 1.72-1.56 3-2.493 2.833Z"
+                fill="currentColor"
+              />
+            </svg>
+            Continue with Apple
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full self-start">
+      <div class="av-home-bento__community">
+        @for (item of communities; track item.name) {
+          <div av-card class="av-home-bento__community-card">
+            <div av-card-header>
+              <span av-avatar class="av-home-bento__community-cover rounded-xl">
+                <img av-avatar-image [src]="item.cover" [alt]="item.name" />
+                <span av-avatar-fallback>{{ item.name.charAt(0) }}</span>
+              </span>
+            </div>
+            <div av-card-content class="items-start">
+              <p class="text-sm font-medium">{{ item.name }}</p>
+              <p class="text-sm text-muted">{{ item.members }}</p>
+            </div>
+            <div av-card-footer class="items-center gap-2">
+              <span av-avatar class="size-4">
+                <img av-avatar-image [src]="item.avatar" [alt]="item.by" />
+                <span av-avatar-fallback>{{ item.by.charAt(3) }}</span>
+              </span>
+              <p class="text-xs text-muted">{{ item.by }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div av-card class="av-home-bento__dialog">
+      <div av-card-header class="flex w-full items-start justify-center gap-2 px-1">
+        <span av-avatar variant="soft" color="warning">
+          <span av-avatar-fallback color="warning">
+            <app-icon icon="solar:diskette-linear" size="18" />
+          </span>
+        </span>
+        <h3 av-card-title>Unsaved changes</h3>
+        <p av-card-description>Do you want to save or discard changes?</p>
+        <button
+          av-close-button
+          class="av-home-bento__dialog-close"
+          aria-label="Close"
+          type="button"
+        ></button>
+      </div>
+      <div av-card-footer class="flex w-full items-center gap-2 px-0.5 pt-3">
+        <button av-button variant="tertiary" full-width>Discard</button>
+        <button av-button full-width>Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

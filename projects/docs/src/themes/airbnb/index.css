@@ -1,0 +1,2 @@
+/* Airbnb design preset - overrides default tokens when data-av-design-theme="airbnb" */
+@import "./variables.css" layer(theme);

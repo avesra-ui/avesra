@@ -1,0 +1,17 @@
+/* av-fieldset component styles */
+
+.av-fieldset {
+  @apply flex shrink grow basis-0 flex-col gap-6;
+}
+
+.av-fieldset__legend {
+  @apply text-base font-medium text-foreground;
+}
+
+.av-fieldset__field-group {
+  @apply w-full space-y-4;
+}
+
+.av-fieldset__actions {
+  @apply flex items-center gap-2 pt-1;
+}

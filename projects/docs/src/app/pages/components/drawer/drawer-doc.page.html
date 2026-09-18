@@ -1,0 +1,227 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Drawer</h1>
+      <p class="av-doc-prose__description">
+        Slide-out panel for supplementary content and actions
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="drawer" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Declare the trigger and an <code>ng-template avDrawerContent</code> inside
+        <code>av-drawer</code>. The overlay content is rendered into a CDK overlay only while the
+        drawer is open. Optional pieces include <code>av-drawer-close-trigger</code> and
+        <code>av-drawer-handle</code>.
+      </p>
+      <app-doc-snippet component="drawer" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="placement">
+      <h2 class="av-doc-prose__heading">Placement</h2>
+      <p class="av-doc-prose__description">
+        Set <code>placement</code> on <code>av-drawer</code> —
+        <code>top</code>, <code>bottom</code>, <code>left</code>, or <code>right</code>.
+      </p>
+      <app-component-preview [demo]="demos.placements" />
+    </section>
+
+    <section class="av-doc-prose__section" id="non-dismissable">
+      <h2 class="av-doc-prose__heading">Non-Dismissable</h2>
+      <p class="av-doc-prose__description">
+        Set <code>[dismissable]="false"</code> on <code>av-drawer</code> to prevent closing by
+        clicking the backdrop. The user must interact with the drawer's action buttons.
+      </p>
+      <app-component-preview [demo]="demos.nonDismissable" />
+    </section>
+
+    <section class="av-doc-prose__section" id="scrollable-content">
+      <h2 class="av-doc-prose__heading">Scrollable Content</h2>
+      <p class="av-doc-prose__description">
+        The <code>av-drawer-body</code> automatically handles overflow with native scrolling.
+      </p>
+      <app-component-preview [demo]="demos.scrollableContent" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled-state">
+      <h2 class="av-doc-prose__heading">Controlled State</h2>
+      <app-component-preview [demo]="demos.controlled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-form">
+      <h2 class="av-doc-prose__heading">With Form</h2>
+      <app-component-preview [demo]="demos.withForm" />
+    </section>
+
+    <section class="av-doc-prose__section" id="navigation-drawer">
+      <h2 class="av-doc-prose__heading">Navigation Drawer</h2>
+      <app-component-preview [demo]="demos.navigationDrawer" />
+    </section>
+
+    <section class="av-doc-prose__section" id="backdrop-variants">
+      <h2 class="av-doc-prose__heading">Backdrop Variants</h2>
+      <p class="av-doc-prose__description">
+        Choose a backdrop style with <code>backdrop</code> on <code>av-drawer</code>:
+        <code>opaque</code> (default), <code>blur</code>, or <code>transparent</code>.
+      </p>
+      <app-component-preview [demo]="demos.backdropVariants" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-backdrop">
+      <h2 class="av-doc-prose__heading">Custom Backdrop</h2>
+      <p class="av-doc-prose__description">
+        Combine the <code>backdrop</code> variant with utility classes passed through
+        <code>backdrop-class</code> for gradients and other overlays.
+      </p>
+      <app-component-preview [demo]="demos.customBackdrop" />
+    </section>
+
+    <section class="av-doc-prose__section" id="service">
+      <h2 class="av-doc-prose__heading">Service</h2>
+      <p class="av-doc-prose__description">
+        Use <code>AvDrawerService.open()</code> to mount any component as a drawer without declaring
+        overlay markup. Pass <code>data</code> through the config, read it with
+        <code>AV_DRAWER_DATA</code>, and receive the close result from <code>afterClosed()</code>.
+      </p>
+      <app-component-preview [demo]="demos.service" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Style the overlay chrome with <code>backdrop-class</code> and <code>content-class</code> on
+        <code>av-drawer</code>, and pass utility classes directly on
+        <code>div[av-drawer-dialog]</code> and the other part hosts.
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Drawer classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize. The
+        overlay is portaled into a CDK pane with class <code>.av-drawer-overlay-pane</code>.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The Drawer component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-drawer-overlay-pane</code> — Full-viewport CDK overlay container</li>
+        <li><code>.av-drawer__trigger</code> — Trigger element that opens the drawer</li>
+        <li><code>.av-drawer__backdrop</code> — Overlay backdrop behind the drawer</li>
+        <li><code>.av-drawer__content</code> — Positioning wrapper for the drawer panel</li>
+        <li><code>.av-drawer__dialog</code> — The drawer panel itself</li>
+        <li><code>.av-drawer__header</code> — Header section for titles</li>
+        <li><code>.av-drawer__heading</code> — Main title text</li>
+        <li><code>.av-drawer__body</code> — Main scrollable content area</li>
+        <li><code>.av-drawer__footer</code> — Footer section for actions</li>
+        <li><code>.av-drawer__handle</code> — Visual drag handle indicator</li>
+        <li><code>.av-drawer__close-trigger</code> — Close button element</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Backdrop Variants</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-drawer__backdrop--opaque</code> — Opaque colored backdrop (default)</li>
+        <li><code>.av-drawer__backdrop--blur</code> — Blurred backdrop with glass effect</li>
+        <li><code>.av-drawer__backdrop--transparent</code> — Transparent backdrop (no overlay)</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Placement Variants</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-drawer__content--bottom</code> — Slides up from the bottom edge (default)</li>
+        <li><code>.av-drawer__content--top</code> — Slides down from the top edge</li>
+        <li><code>.av-drawer__content--left</code> — Slides in from the left edge</li>
+        <li><code>.av-drawer__content--right</code> — Slides in from the right edge</li>
+        <li><code>.av-drawer__dialog--top</code> — Top placement padding adjustment</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">The component supports these interactive states:</p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Focus:</strong> <code>:focus-visible</code> or
+          <code>[data-focus-visible="true"]</code> — Applied to trigger and close button
+        </li>
+        <li>
+          <strong>Hover:</strong> <code>:hover</code> or <code>[data-hovered="true"]</code> —
+          Applied to close button on hover
+        </li>
+        <li>
+          <strong>Active:</strong> <code>:active</code> or <code>[data-pressed="true"]</code> —
+          Applied to trigger and close button when pressed
+        </li>
+        <li>
+          <strong>Entering:</strong> <code>[data-entering="true"]</code> — During opening animation
+        </li>
+        <li>
+          <strong>Exiting:</strong> <code>[data-exiting="true"]</code> — During closing animation
+        </li>
+        <li>
+          <strong>Placement:</strong> <code>[data-placement="*"]</code> — Drawer edge
+          (<code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>)
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API Reference</h2>
+      <p class="av-doc-prose__description">
+        Overlay configuration lives on <code>av-drawer</code>; the dialog and its child parts are
+        composed inside <code>ng-template avDrawerContent</code>. Close actions use
+        <code>av-drawer-close</code> on interactive elements.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+
+    <section class="av-doc-prose__section" id="accessibility">
+      <h2 class="av-doc-prose__heading">Accessibility</h2>
+      <p class="av-doc-prose__description">
+        Implements the
+        <a
+          href="https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >WAI-ARIA Dialog pattern</a
+        >:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li><strong>Focus trap:</strong> Focus locked within the drawer when open</li>
+        <li>
+          <strong>Keyboard:</strong> <kbd>Escape</kbd> closes (when enabled), <kbd>Tab</kbd> cycles
+          elements
+        </li>
+        <li><strong>Screen readers:</strong> Proper ARIA attributes on the dialog</li>
+        <li><strong>Scroll lock:</strong> Body scroll disabled when open</li>
+      </ul>
+    </section>
+  </div>
+</app-doc-page>

@@ -1,0 +1,133 @@
+/* av-progress-bar — determinate or indeterminate progress */
+
+.av-progress-bar {
+  @apply grid w-full gap-1;
+  grid-template-areas:
+    "label output"
+    "track track";
+  grid-template-columns: 1fr auto;
+
+  /* Default color token (accent) */
+  --av-progress-bar-fill: var(--av-accent);
+
+  [data-slot="label"] {
+    @apply w-fit text-sm font-medium;
+
+    grid-area: label;
+  }
+
+  .av-progress-bar__output {
+    @apply text-sm font-medium tabular-nums;
+
+    grid-area: output;
+  }
+
+  .av-progress-bar__track {
+    @apply relative overflow-hidden rounded-sm bg-default;
+
+    grid-area: track;
+
+    /* Default height (matches --md) */
+    @apply h-2;
+  }
+
+  .av-progress-bar__fill {
+    @apply absolute top-0 left-0 h-full rounded-sm;
+
+    background-color: var(--av-progress-bar-fill);
+
+    /**
+     * Transitions
+     * CRITICAL: av-motion-reduce must be AFTER transition for correct override specificity
+     */
+    transition: width 300ms var(--ease-out);
+    @apply av-motion-reduce:transition-none;
+  }
+
+  /* Indeterminate state - when no aria-valuenow is set */
+  &:not([aria-valuenow]) {
+    .av-progress-bar__fill {
+      @apply w-2/5;
+
+      animation: av-progress-bar-indeterminate 1.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+
+      @apply av-motion-reduce:animate-none;
+    }
+  }
+
+  /* Disabled state */
+  &:disabled,
+  &[data-disabled="true"],
+  &[aria-disabled="true"] {
+    @apply av-status-disabled;
+
+    [data-slot="label"] {
+      @apply opacity-100;
+    }
+  }
+}
+
+/* ==========================================================================
+   Indeterminate animation
+   ========================================================================== */
+
+@keyframes av-progress-bar-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(350%);
+  }
+}
+
+/* ==========================================================================
+   Size variants
+   ========================================================================== */
+
+.av-progress-bar--sm {
+  .av-progress-bar__track {
+    @apply h-1 rounded-xs;
+  }
+
+  .av-progress-bar__fill {
+    @apply rounded-xs;
+  }
+}
+
+.av-progress-bar--md {
+  /* No styles as this is the default size */
+}
+
+.av-progress-bar--lg {
+  .av-progress-bar__track {
+    @apply h-3 rounded-md;
+  }
+
+  .av-progress-bar__fill {
+    @apply rounded-md;
+  }
+}
+
+/* ==========================================================================
+   Color variants
+   ========================================================================== */
+
+.av-progress-bar--default {
+  --av-progress-bar-fill: var(--av-default-foreground);
+}
+
+.av-progress-bar--accent {
+  --av-progress-bar-fill: var(--av-accent);
+}
+
+.av-progress-bar--success {
+  --av-progress-bar-fill: var(--av-success);
+}
+
+.av-progress-bar--warning {
+  --av-progress-bar-fill: var(--av-warning);
+}
+
+.av-progress-bar--danger {
+  --av-progress-bar-fill: var(--av-danger);
+}

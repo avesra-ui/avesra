@@ -1,0 +1,45 @@
+/* av-spinner — loading indicator */
+
+.av-spinner {
+  @apply pointer-events-none inline-flex size-6 shrink-0 animate-spin-fast av-motion-reduce:animate-none;
+
+  /* Default size — matches av-spinner--md */
+}
+
+/* Size variants */
+.av-spinner--sm {
+  @apply size-4;
+}
+
+.av-spinner--md {
+  /* No styles as this is the default size */
+}
+
+.av-spinner--lg {
+  @apply size-8;
+}
+
+.av-spinner--xl {
+  @apply size-10;
+}
+
+/* Color variants */
+.av-spinner--current {
+  color: inherit;
+}
+
+.av-spinner--accent {
+  color: var(--av-accent);
+}
+
+.av-spinner--danger {
+  color: var(--av-danger);
+}
+
+.av-spinner--success {
+  color: var(--av-success);
+}
+
+.av-spinner--warning {
+  color: var(--av-warning);
+}

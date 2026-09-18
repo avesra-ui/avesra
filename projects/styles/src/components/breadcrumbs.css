@@ -1,0 +1,35 @@
+/* av-breadcrumbs component styles */
+
+.av-breadcrumbs {
+  @apply flex items-center;
+
+  .av-breadcrumbs__list {
+    @apply m-0 flex list-none items-center p-0;
+  }
+
+  .av-breadcrumbs__link {
+    @apply relative px-0.5 text-sm leading-5 font-medium text-muted no-underline opacity-100 av-no-highlight;
+
+    &:hover,
+    &[data-hovered="true"] {
+      @apply underline;
+    }
+
+    &[data-current="true"] {
+      @apply text-link opacity-100;
+    }
+
+    &[data-disabled="true"],
+    &[aria-disabled="true"] {
+      @apply av-status-disabled pointer-events-none;
+    }
+  }
+
+  .av-breadcrumbs__item {
+    @apply flex shrink-0 items-center justify-center gap-0.5 px-0.5;
+  }
+
+  .av-breadcrumbs__separator {
+    @apply size-3 text-muted rtl:rotate-180;
+  }
+}

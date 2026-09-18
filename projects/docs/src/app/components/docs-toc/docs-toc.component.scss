@@ -1,0 +1,121 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.av-docs-toc {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - var(--sticky-offset-top) - 4.375rem);
+}
+
+.av-docs-toc__header {
+  flex-shrink: 0;
+  margin-bottom: 0.75rem;
+}
+
+.av-docs-toc__title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--av-muted);
+}
+
+.av-docs-toc__title-icon {
+  flex-shrink: 0;
+  color: var(--av-muted);
+}
+
+.av-docs-toc__scroll {
+  flex: 0 1 auto;
+  max-height: calc(100vh - var(--sticky-offset-top) - 4.375rem - 11rem);
+  min-height: 0;
+  margin-inline-start: 1px;
+  padding-block: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.av-docs-toc__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.av-docs-toc__newsletter {
+  flex-shrink: 0;
+  padding-block: 0.75rem 0;
+  padding-inline: 0.125rem;
+}
+
+.av-docs-toc__track {
+  position: relative;
+}
+
+.av-docs-toc__thumb {
+  position: absolute;
+  inset-inline-start: 0;
+  width: 1px;
+  background-color: var(--av-foreground);
+  pointer-events: none;
+  transition:
+    top 150ms ease,
+    height 150ms ease,
+    opacity 150ms ease;
+}
+
+.av-docs-toc__thumb--hidden {
+  opacity: 0;
+}
+
+.av-docs-toc__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-inline-start: 1px solid color-mix(in srgb, var(--av-foreground) 10%, transparent);
+}
+
+.av-docs-toc__list > li {
+  display: block;
+}
+
+.av-docs-toc__link {
+  display: block;
+  padding-block: 0.375rem;
+  padding-inline: 0.75rem 0;
+  margin-inline-start: -1px;
+  border-inline-start: 2px solid transparent;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--av-muted);
+  text-decoration: none;
+  scroll-margin: 1rem;
+  transition: color 150ms ease;
+}
+
+.av-docs-toc__link[data-depth='2'] {
+  padding-inline-start: 1.5rem;
+}
+
+.av-docs-toc__link[data-depth='3'] {
+  padding-inline-start: 2rem;
+}
+
+.av-docs-toc__list > li:first-child .av-docs-toc__link {
+  padding-top: 0;
+}
+
+.av-docs-toc__list > li:last-child .av-docs-toc__link {
+  padding-bottom: 0;
+}
+
+.av-docs-toc__link:hover {
+  color: var(--av-foreground);
+}
+
+.av-docs-toc__link[data-active='true'] {
+  color: var(--av-foreground);
+  font-weight: 500;
+}

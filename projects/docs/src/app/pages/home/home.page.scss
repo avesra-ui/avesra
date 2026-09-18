@@ -1,0 +1,134 @@
+.av-home {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 0;
+}
+
+.av-home__hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  max-width: 42rem;
+  margin-inline: auto;
+  padding: 1.25rem 0 0.5rem;
+  text-align: center;
+}
+
+.av-home__badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5rem;
+}
+
+.av-home__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  max-width: 100%;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  background-color: var(--av-accent-soft);
+  color: var(--av-accent-soft-foreground);
+  font-size: 0.75rem;
+  line-height: 1.25;
+  text-decoration: none;
+  transition: background-color 150ms var(--ease-smooth);
+
+  &:hover {
+    background-color: var(--av-accent-soft-hover);
+  }
+
+  .app-icon {
+    flex-shrink: 0;
+  }
+}
+
+.av-home__badge-label {
+  max-width: 15rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.av-home__title {
+  margin: 0.5rem 0 0;
+  font-size: clamp(1.875rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  color: var(--av-foreground);
+}
+
+.av-home__title-muted {
+  display: block;
+  color: color-mix(in oklab, var(--av-muted) 70%, transparent);
+}
+
+.av-home__lead {
+  margin: 0.75rem 0 0;
+  max-width: 34rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-wrap: balance;
+  color: var(--av-muted);
+}
+
+.av-home__cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.av-home__github {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  color: var(--av-muted);
+  font-size: 0.75rem;
+  text-decoration: none;
+  transition: color 150ms var(--ease-smooth);
+
+  &:hover {
+    color: var(--av-foreground);
+  }
+}
+
+.av-home__showcase {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .av-home {
+    gap: 2.75rem;
+  }
+
+  .av-home__hero {
+    padding-top: 1.75rem;
+  }
+
+  .av-home__badge-label {
+    max-width: none;
+  }
+
+  .av-home__title {
+    margin-top: 1rem;
+    font-size: clamp(2.25rem, 5vw, 3rem);
+  }
+
+  .av-home__lead {
+    font-size: 1.125rem;
+  }
+
+  .av-home__github {
+    margin-top: 1rem;
+  }
+}

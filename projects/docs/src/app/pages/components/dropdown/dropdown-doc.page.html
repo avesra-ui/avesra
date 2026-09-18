@@ -1,0 +1,236 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Dropdown</h1>
+      <p class="av-doc-prose__description">
+        A dropdown displays a list of actions or options that a user can choose from a trigger. Built
+        with a floating popover, compound trigger / menu / item / section / indicator parts, and
+        single or multiple selection.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="dropdown" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the Dropdown parts and compose them with attribute selectors.
+      </p>
+      <app-doc-snippet component="dropdown" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-icons">
+      <h2 class="av-doc-prose__heading">With Icons</h2>
+      <app-component-preview [demo]="demos.withIcons" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-descriptions">
+      <h2 class="av-doc-prose__heading">With Descriptions</h2>
+      <app-component-preview [demo]="demos.withDescriptions" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-disabled-items">
+      <h2 class="av-doc-prose__heading">With Disabled Items</h2>
+      <app-component-preview [demo]="demos.withDisabledItems" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-sections">
+      <h2 class="av-doc-prose__heading">With Sections</h2>
+      <app-component-preview [demo]="demos.withSections" />
+    </section>
+
+    <section class="av-doc-prose__section" id="multiple-selection">
+      <h2 class="av-doc-prose__heading">With Multiple Selection</h2>
+      <p class="av-doc-prose__description">
+        Set <code>selection-mode="multiple"</code> to let users toggle several items without closing
+        the menu. Project a custom <code>av-checkbox</code> into the indicator and bind it with
+        <code>#item="avMenuItem"</code> and <code>[selected]="item.isSelected()"</code>.
+      </p>
+      <app-component-preview [demo]="demos.multipleSelection" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled">
+      <h2 class="av-doc-prose__heading">Controlled</h2>
+      <app-component-preview [demo]="demos.controlled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled-open-state">
+      <h2 class="av-doc-prose__heading">Controlled Open State</h2>
+      <app-component-preview [demo]="demos.controlledOpenState" />
+    </section>
+
+    <section class="av-doc-prose__section" id="single-selection">
+      <h2 class="av-doc-prose__heading">With Single Selection</h2>
+      <app-component-preview [demo]="demos.singleSelection" />
+    </section>
+
+    <section class="av-doc-prose__section" id="single-custom-indicator">
+      <h2 class="av-doc-prose__heading">Single With Custom Indicator</h2>
+      <app-component-preview [demo]="demos.singleCustomIndicator" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-keyboard-shortcuts">
+      <h2 class="av-doc-prose__heading">With Keyboard Shortcuts</h2>
+      <p class="av-doc-prose__description">
+        Compose <code>kbd[av-kbd]</code> inside <code>av-menu-item</code> with
+        <code>class="ms-auto"</code> to show trailing keyboard shortcuts.
+      </p>
+      <app-component-preview [demo]="demos.withKeyboardShortcuts" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-trigger">
+      <h2 class="av-doc-prose__heading">Custom Trigger</h2>
+      <app-component-preview [demo]="demos.customTrigger" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+      <p class="av-doc-prose__description">
+        Pass utility classes on the host elements, or override BEM classes in
+        <code>&#64;layer components</code>.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-dropdown</code> — Base dropdown container</li>
+        <li><code>.av-dropdown__trigger</code> — The element that toggles the popover</li>
+        <li><code>.av-dropdown__popover</code> — The floating popover panel</li>
+        <li><code>.av-dropdown__menu</code> — The menu container inside the popover</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="menu-classes">Menu Classes</h3>
+      <p class="av-doc-prose__description">
+        Dropdown composes the shared <code>av-menu-item</code> and <code>av-menu-section</code>
+        primitives, so their classes are also available for customization:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-menu-item</code> — Individual menu item container</li>
+        <li><code>.av-menu-item--danger</code> — Danger item variant</li>
+        <li><code>.av-menu-item__indicator</code> — Selection indicator (checkmark or dot)</li>
+        <li>
+          <code>[data-slot="menu-item-indicator--checkmark"]</code> — Checkmark indicator SVG
+        </li>
+        <li><code>[data-slot="menu-item-indicator--dot"]</code> — Dot indicator SVG</li>
+        <li><code>.av-menu-section</code> — Section group (<code>role="group"</code>)</li>
+        <li><code>[data-slot="separator"]</code> — Separator elements within the menu</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">
+        Trigger and item styles support both CSS pseudo-classes and data attributes:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li><strong>Hover:</strong> <code>:hover</code> or <code>[data-hovered="true"]</code> on items</li>
+        <li><strong>Pressed:</strong> <code>:active</code> or <code>[data-pressed="true"]</code></li>
+        <li>
+          <strong>Focus:</strong> <code>:focus-visible</code> or
+          <code>[data-focus-visible="true"]</code>
+        </li>
+        <li><strong>Selected:</strong> <code>[data-selected="true"]</code> or <code>[aria-checked="true"]</code></li>
+        <li><strong>Disabled:</strong> <code>[data-disabled="true"]</code> or <code>[aria-disabled="true"]</code></li>
+        <li><strong>Entering/exiting popover:</strong> <code>[data-entering="true"]</code> / <code>[data-exiting="true"]</code></li>
+        <li>
+          <strong>Selection mode:</strong>
+          <code>.av-dropdown__menu[data-selection-mode="single"]</code> /
+          <code>[data-selection-mode="multiple"]</code>
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="examples">
+      <h2 class="av-doc-prose__heading">Examples</h2>
+
+      <h3 class="av-doc-prose__subheading" id="example-basic">Basic Usage</h3>
+      <pre class="av-doc-code"><code>&lt;av-dropdown&gt;
+  &lt;button av-button variant="secondary" aria-label="Menu" av-dropdown-trigger&gt;
+    Actions
+  &lt;/button&gt;
+  &lt;av-dropdown-popover&gt;
+    &lt;div av-dropdown-menu (action)="onAction($event)"&gt;
+      &lt;div av-menu-item id="new-file" textValue="New file"&gt;
+        &lt;label av-label&gt;New file&lt;/label&gt;
+      &lt;/div&gt;
+      &lt;div av-menu-item id="open-file" textValue="Open file"&gt;
+        &lt;label av-label&gt;Open file&lt;/label&gt;
+      &lt;/div&gt;
+      &lt;div av-menu-item id="delete-file" textValue="Delete file" variant="danger"&gt;
+        &lt;label av-label&gt;Delete file&lt;/label&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/av-dropdown-popover&gt;
+&lt;/av-dropdown&gt;</code></pre>
+
+      <h3 class="av-doc-prose__subheading" id="example-controlled-selection">Controlled Selection</h3>
+      <p class="av-doc-prose__description">
+        Drive selection from a <code>signal&lt;string[]&gt;</code> and bind it with
+        <code>[(selectedKeys)]</code> for two-way sync between the menu and outside state.
+      </p>
+      <pre class="av-doc-code"><code>&lt;av-dropdown&gt;
+  &lt;button av-button variant="secondary" aria-label="Format" av-dropdown-trigger&gt;
+    Format
+  &lt;/button&gt;
+  &lt;av-dropdown-popover&gt;
+    &lt;div
+      av-dropdown-menu
+      selection-mode="multiple"
+      [(selectedKeys)]="selected"
+    &gt;
+      &lt;div av-menu-item id="bold" textValue="Bold"&gt;
+        &lt;label av-label&gt;Bold&lt;/label&gt;
+        &lt;span av-menu-item-indicator&gt;&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div av-menu-item id="italic" textValue="Italic"&gt;
+        &lt;label av-label&gt;Italic&lt;/label&gt;
+        &lt;span av-menu-item-indicator&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/av-dropdown-popover&gt;
+&lt;/av-dropdown&gt;</code></pre>
+    </section>
+
+    <section class="av-doc-prose__section" id="accessibility">
+      <h2 class="av-doc-prose__heading">Accessibility</h2>
+      <p class="av-doc-prose__description">
+        Dropdown implements the ARIA menu pattern via Angular CDK Menu and provides:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>Full keyboard navigation (arrow keys, Enter/Space, Escape to dismiss)</li>
+        <li>Typeahead search using each item's <code>textValue</code></li>
+        <li>
+          <code>aria-haspopup="menu"</code> and <code>aria-expanded</code> automatically managed on
+          the trigger
+        </li>
+        <li>Focus is moved to the first item on open and returned to the trigger on close</li>
+        <li>Proper <code>aria-checked</code> / <code>aria-disabled</code> item states for selection</li>
+        <li>
+          Section containers expose <code>role="group"</code>; indicators are
+          <code>aria-hidden</code>
+        </li>
+      </ul>
+      <p class="av-doc-prose__description">
+        Always provide an accessible label for the trigger — either visible text or
+        <code>aria-label</code> when using an icon-only button.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Compound API across <code>av-dropdown</code>, <code>av-dropdown-trigger</code>,
+        <code>av-dropdown-popover</code>, <code>av-dropdown-menu</code>, <code>av-menu-item</code>,
+        <code>av-menu-item-indicator</code>, and <code>av-menu-section</code> (no inputs). See also
+        <a routerLink="/docs/components/list-box">List Box</a>, which shares the same item and section
+        composition for non-overlay selection lists.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

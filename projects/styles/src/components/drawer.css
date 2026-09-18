@@ -1,0 +1,387 @@
+/* -------------------------------------------------------------------------------------------------
+ * av-drawer — slide-in overlay panel
+ * Block: av-drawer
+ * -----------------------------------------------------------------------------------------------*/
+
+/**
+ * CDK overlay pane — full-viewport host for backdrop + content.
+ * !important: CDK injects unlayered `.cdk-overlay-pane { pointer-events: auto }`,
+ * which otherwise beats this rule inside `@layer components`.
+ */
+.av-drawer-overlay-pane.cdk-overlay-pane {
+  pointer-events: none !important;
+  position: relative;
+}
+
+/**
+ * Element: trigger — the element that opens the drawer
+ */
+.av-drawer__trigger {
+  @apply inline-block;
+  cursor: var(--av-cursor-interactive);
+}
+
+/**
+ * Element: backdrop — visual overlay inside the CDK pane
+ * (CDK keeps a transparent click-catcher sibling; painting happens here.)
+ */
+.av-drawer__backdrop {
+  @apply absolute inset-0;
+  @apply pointer-events-none;
+  opacity: 1;
+
+  &:not([data-exiting="true"]) {
+    animation: av-drawer-backdrop-in var(--drawer-enter-duration, 250ms) var(--ease-out-fluid) both;
+  }
+
+  &[data-exiting="true"] {
+    animation: av-drawer-backdrop-out var(--drawer-exit-duration, 250ms) var(--ease-out-fluid) both;
+    will-change: opacity;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    transition: none;
+  }
+}
+
+@keyframes av-drawer-backdrop-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes av-drawer-backdrop-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/**
+ * Modifier: backdrop--transparent
+ */
+.av-drawer__backdrop--transparent {
+  @apply bg-transparent;
+}
+
+/**
+ * Modifier: backdrop--opaque
+ */
+.av-drawer__backdrop--opaque {
+  @apply bg-backdrop;
+}
+
+/**
+ * Modifier: backdrop--blur
+ */
+.av-drawer__backdrop--blur {
+  @apply bg-backdrop backdrop-blur-md;
+}
+
+/**
+ * Element: content — the positioning wrapper for the drawer panel
+ */
+.av-drawer__content {
+  @apply pointer-events-none;
+  @apply absolute inset-0 flex;
+  @apply h-full w-full min-w-0;
+}
+
+/**
+ * Modifier: content--bottom (default)
+ * Slides up from the bottom edge
+ */
+.av-drawer__content--bottom {
+  @apply items-end;
+}
+
+/**
+ * Modifier: content--top
+ * Slides down from the top edge
+ */
+.av-drawer__content--top {
+  @apply items-start;
+}
+
+/**
+ * Modifier: content--left
+ * Slides in from the left edge
+ */
+.av-drawer__content--left {
+  @apply justify-start;
+}
+
+/**
+ * Modifier: content--right
+ * Slides in from the right edge
+ */
+.av-drawer__content--right {
+  @apply justify-end;
+}
+
+/**
+ * Element: dialog — the drawer panel itself
+ */
+.av-drawer__dialog {
+  @apply relative;
+  @apply flex flex-col;
+  @apply bg-overlay shadow-overlay outline-none;
+  @apply p-6;
+  @apply pointer-events-auto;
+
+  --drawer-enter-duration: 250ms;
+  --drawer-exit-duration: 250ms;
+  --drawer-enter-ease: var(--ease-out-fluid);
+  --drawer-exit-ease: var(--ease-out-fluid);
+
+  will-change: translate;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+  }
+
+  /* Bottom/top placement: full width, auto height */
+  &[data-placement="bottom"] {
+    @apply w-full;
+    @apply max-h-[85vh];
+    border-top-left-radius: min(32px, var(--radius-2xl));
+    border-top-right-radius: min(32px, var(--radius-2xl));
+  }
+
+  &[data-placement="top"] {
+    @apply w-full;
+    @apply max-h-[85vh];
+    border-bottom-left-radius: min(32px, var(--radius-2xl));
+    border-bottom-right-radius: min(32px, var(--radius-2xl));
+  }
+
+  /* Left/right placement: auto width, full height */
+  &[data-placement="left"] {
+    @apply h-full rounded-none;
+    @apply w-80 max-w-[85vw] sm:w-96;
+  }
+
+  &[data-placement="right"] {
+    @apply h-full rounded-none;
+    @apply w-80 max-w-[85vw] sm:w-96;
+  }
+}
+
+[data-exiting="true"] .av-drawer__dialog {
+  animation-fill-mode: both;
+}
+
+.av-drawer__content--left .av-drawer__dialog,
+.av-drawer__content--right .av-drawer__dialog,
+.av-drawer__content--top .av-drawer__dialog,
+.av-drawer__content--bottom .av-drawer__dialog {
+  translate: 0 0;
+}
+
+.av-drawer__content--left:not([data-exiting="true"]) .av-drawer__dialog {
+  animation: av-drawer-enter-left var(--drawer-enter-duration) var(--drawer-enter-ease) both;
+}
+
+.av-drawer__content--right:not([data-exiting="true"]) .av-drawer__dialog {
+  animation: av-drawer-enter-right var(--drawer-enter-duration) var(--drawer-enter-ease) both;
+}
+
+.av-drawer__content--top:not([data-exiting="true"]) .av-drawer__dialog {
+  animation: av-drawer-enter-top var(--drawer-enter-duration) var(--drawer-enter-ease) both;
+}
+
+.av-drawer__content--bottom:not([data-exiting="true"]) .av-drawer__dialog {
+  animation: av-drawer-enter-bottom var(--drawer-enter-duration) var(--drawer-enter-ease) both;
+}
+
+.av-drawer__content--left[data-exiting="true"] .av-drawer__dialog {
+  animation: av-drawer-exit-left var(--drawer-exit-duration) var(--drawer-exit-ease) both;
+}
+
+.av-drawer__content--right[data-exiting="true"] .av-drawer__dialog {
+  animation: av-drawer-exit-right var(--drawer-exit-duration) var(--drawer-exit-ease) both;
+}
+
+.av-drawer__content--top[data-exiting="true"] .av-drawer__dialog {
+  animation: av-drawer-exit-top var(--drawer-exit-duration) var(--drawer-exit-ease) both;
+}
+
+.av-drawer__content--bottom[data-exiting="true"] .av-drawer__dialog {
+  animation: av-drawer-exit-bottom var(--drawer-exit-duration) var(--drawer-exit-ease) both;
+}
+
+@keyframes av-drawer-enter-bottom {
+  from {
+    translate: 0 100%;
+  }
+
+  to {
+    translate: 0 0;
+  }
+}
+
+@keyframes av-drawer-enter-top {
+  from {
+    translate: 0 -100%;
+  }
+
+  to {
+    translate: 0 0;
+  }
+}
+
+@keyframes av-drawer-enter-left {
+  from {
+    translate: -100% 0;
+  }
+
+  to {
+    translate: 0 0;
+  }
+}
+
+@keyframes av-drawer-enter-right {
+  from {
+    translate: 100% 0;
+  }
+
+  to {
+    translate: 0 0;
+  }
+}
+
+@keyframes av-drawer-exit-bottom {
+  from {
+    translate: 0 0;
+  }
+
+  to {
+    translate: 0 100%;
+  }
+}
+
+@keyframes av-drawer-exit-top {
+  from {
+    translate: 0 0;
+  }
+
+  to {
+    translate: 0 -100%;
+  }
+}
+
+@keyframes av-drawer-exit-left {
+  from {
+    translate: 0 0;
+  }
+
+  to {
+    translate: -100% 0;
+  }
+}
+
+@keyframes av-drawer-exit-right {
+  from {
+    translate: 0 0;
+  }
+
+  to {
+    translate: 100% 0;
+  }
+}
+
+.av-drawer__dialog--top {
+  @apply pb-2;
+
+  .av-drawer__handle {
+    @apply pb-0;
+  }
+}
+
+/**
+ * Element: header — the top section with the title
+ */
+.av-drawer__header {
+  @apply flex flex-col gap-3;
+  @apply mb-0;
+}
+
+/**
+ * Element: heading — the main title text
+ */
+.av-drawer__heading {
+  @apply align-middle;
+  @apply text-base font-medium text-foreground;
+}
+
+/**
+ * Element: body — the main content area
+ * touch-action: pan-y allows vertical scrolling while the dialog captures drag gestures
+ */
+.av-drawer__body {
+  @apply min-h-0 flex-1 av-scrollbar;
+  @apply text-sm leading-[1.43] text-muted;
+  @apply -m-[3px] my-0 p-[3px];
+  @apply overflow-y-auto overscroll-contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/**
+ * Element: footer — the bottom action section
+ */
+.av-drawer__footer {
+  @apply flex flex-row items-center justify-end gap-2;
+  @apply mt-0;
+}
+
+/**
+ * Element: handle — visual drag handle indicator
+ */
+.av-drawer__handle {
+  @apply flex items-center justify-center;
+  @apply pb-2;
+
+  /* The handle bar */
+  & > [data-slot="drawer-handle-bar"] {
+    @apply h-1 w-9 rounded-xs;
+    @apply bg-separator;
+  }
+}
+
+/**
+ * Element: close-trigger — the close button
+ */
+.av-drawer__close-trigger {
+  @apply absolute top-4 right-4;
+}
+
+/**
+ * Elements Spacing
+ */
+.av-drawer__header + .av-drawer__body {
+  @apply mt-2;
+}
+
+.av-drawer__header + .av-drawer__footer {
+  @apply mt-5;
+}
+
+.av-drawer__body + .av-drawer__footer {
+  @apply mt-5;
+}
+
+.av-drawer__handle + .av-drawer__header {
+  @apply mt-0;
+}
+
+.av-drawer__handle + .av-drawer__body {
+  @apply mt-0;
+}

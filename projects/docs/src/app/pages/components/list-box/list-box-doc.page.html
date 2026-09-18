@@ -1,0 +1,210 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">List Box</h1>
+      <p class="av-doc-prose__description">
+        A listbox displays a list of options and allows a user to select one or more of them.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="list-box" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the List Box parts and compose them with attribute selectors. Project
+        <code>av-label</code>, <code>av-description</code>, and
+        <code>av-list-box-item-indicator</code> inside each item. Group related items with
+        <code>av-list-box-section</code>.
+      </p>
+      <app-doc-snippet component="list-box" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-disabled-items">
+      <h2 class="av-doc-prose__heading">With Disabled Items</h2>
+      <p class="av-doc-prose__description">
+        Set <code>disabled</code> on an individual <code>av-list-box-item</code> to prevent
+        activation. The item remains visible but is skipped by keyboard navigation. Use
+        <code>disabled</code> on <code>av-list-box</code> to disable the entire list.
+      </p>
+      <app-component-preview [demo]="demos.withDisabledItems" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-sections">
+      <h2 class="av-doc-prose__heading">With Sections</h2>
+      <p class="av-doc-prose__description">
+        Use <code>selection-mode="none"</code> with <code>(action)</code> for action menus. Group
+        items in sections and separate groups with <code>av-separator</code>. Mark destructive
+        actions with <code>variant="danger"</code> on the item.
+      </p>
+      <app-component-preview [demo]="demos.withSections" />
+    </section>
+
+    <section class="av-doc-prose__section" id="multi-select">
+      <h2 class="av-doc-prose__heading">Multi Select</h2>
+      <p class="av-doc-prose__description">
+        Set <code>selection-mode="multiple"</code> so users can select several items. Selected item
+        ids are stored in <code>selectedKeys</code> (<code>string[]</code>).
+      </p>
+      <app-component-preview [demo]="demos.multiSelect" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled">
+      <h2 class="av-doc-prose__heading">Controlled</h2>
+      <p class="av-doc-prose__description">
+        Drive selection from outside the listbox with <code>[(selectedKeys)]</code> — for example
+        Select all / Clear controls next to the list, or any signal that updates the model.
+      </p>
+      <app-component-preview [demo]="demos.controlled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-check-icon">
+      <h2 class="av-doc-prose__heading">Custom Check Icon</h2>
+      <p class="av-doc-prose__description">
+        Project custom content into <code>av-list-box-item-indicator</code> to replace the default
+        checkmark. The indicator host is shown only when the item is selected.
+      </p>
+      <app-component-preview [demo]="demos.customCheckIcon" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on the <code>av-list-box</code> and <code>av-list-box-item</code>
+        hosts.
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the List Box classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The List Box component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-list-box</code> — Base listbox container</li>
+        <li><code>.av-list-box-item</code> — Individual listbox item</li>
+        <li><code>.av-list-box-item__indicator</code> — Selection indicator</li>
+        <li><code>.av-list-box-section</code> — Section group (<code>role="group"</code>)</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Variant Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-list-box-item--danger</code> — Danger item variant</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">State Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>.av-list-box-item[data-selected="true"]</code> — Selected item state
+        </li>
+        <li>
+          <code>.av-list-box-item[data-focus-visible="true"]</code> — Focused item state
+        </li>
+        <li>
+          <code>.av-list-box-item[data-disabled="true"]</code> — Disabled item state
+        </li>
+        <li>
+          <code>.av-list-box-item__indicator[data-visible="true"]</code> — Visible indicator state
+        </li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">
+        The component supports both CSS pseudo-classes and data attributes:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Hover:</strong> <code>:hover</code> or <code>[data-hovered="true"]</code> on item
+        </li>
+        <li>
+          <strong>Pressed:</strong> <code>:active</code> or <code>[data-pressed="true"]</code> on
+          item
+        </li>
+        <li>
+          <strong>Focus:</strong> <code>:focus-visible</code> or
+          <code>[data-focus-visible="true"]</code> on item
+        </li>
+        <li><strong>Selected:</strong> <code>[data-selected="true"]</code> on item</li>
+        <li><strong>Disabled:</strong> <code>[data-disabled="true"]</code> on item</li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="examples">
+      <h2 class="av-doc-prose__heading">Examples</h2>
+
+      <h3 class="av-doc-prose__subheading" id="example-basic">Basic Usage</h3>
+      <app-doc-snippet [source]="exampleBasic" lang="html" section="anatomy" />
+
+      <h3 class="av-doc-prose__subheading" id="example-with-sections">With Sections</h3>
+      <app-doc-snippet [source]="exampleWithSections" lang="html" section="anatomy" />
+
+      <h3 class="av-doc-prose__subheading" id="example-controlled">Controlled Selection</h3>
+      <app-doc-snippet [source]="exampleControlled" lang="typescript" section="anatomy" />
+
+      <h3 class="av-doc-prose__subheading" id="example-custom-indicator">Custom Indicator</h3>
+      <app-doc-snippet [source]="exampleCustomIndicator" lang="html" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="accessibility">
+      <h2 class="av-doc-prose__heading">Accessibility</h2>
+      <p class="av-doc-prose__description">
+        List Box implements the ARIA listbox pattern via Angular CDK and provides:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>Full keyboard navigation (arrow keys, Home/End, Enter/Space)</li>
+        <li>Typeahead search using each item's <code>textValue</code></li>
+        <li>Screen reader announcements for selection changes</li>
+        <li>Proper focus management and disabled item skipping</li>
+        <li>
+          Section containers expose <code>role="group"</code>; indicators are
+          <code>aria-hidden</code>
+        </li>
+      </ul>
+      <p class="av-doc-prose__description">
+        Always set <code>aria-label</code> on the listbox when there is no visible label. Prefer
+        <code>textValue</code> on items that contain icons or complex content.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Props for <code>div[av-list-box]</code> and <code>div[av-list-box-item]</code>.
+        <code>span[av-list-box-item-indicator]</code> has no inputs — omit children for the default
+        checkmark, or project a custom icon.
+        <code>div[av-list-box-section]</code> has no inputs.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

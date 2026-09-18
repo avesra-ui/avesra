@@ -1,0 +1,154 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Label</h1>
+      <p class="av-doc-prose__description">
+        Renders an accessible label associated with form controls. Apply
+        <code>av-label</code> to a native <code>&lt;label&gt;</code> element and associate it with
+        a control using <code>for</code>.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="label" />
+      <p class="av-doc-prose__description">
+        Compose with <code>av-input</code>, <code>av-description</code>, and
+        <code>av-field-error</code> for labeled fields. For form-level validation, see
+        <a routerLink="/docs/components/form">Form</a>.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Label uses the <code>av-label</code> attribute selector on a native
+        <code>&lt;label&gt;</code> element. Content is projected via <code>ng-content</code>. Pair
+        <code>for</code> on the label with <code>id</code> on the control.
+      </p>
+      <app-doc-snippet component="label" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="examples">
+      <h2 class="av-doc-prose__heading">Examples</h2>
+
+      <h3 class="av-doc-prose__subheading" id="with-required-indicator">
+        With Required Indicator
+      </h3>
+      <p class="av-doc-prose__description">
+        Set <code>required</code> on <code>av-label</code> to show a danger-colored asterisk.
+      </p>
+      <app-component-preview [demo]="demos.required" />
+
+      <h3 class="av-doc-prose__subheading" id="with-disabled-state">With Disabled State</h3>
+      <p class="av-doc-prose__description">
+        Set <code>disabled</code> on the label and the associated control for muted styling.
+      </p>
+      <app-component-preview [demo]="demos.disabled" />
+
+      <h3 class="av-doc-prose__subheading" id="with-invalid-state">With Invalid State</h3>
+      <p class="av-doc-prose__description">
+        Set <code>invalid</code> on the label and the associated control for danger text styling.
+      </p>
+      <app-component-preview [demo]="demos.invalid" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">
+        The Label component uses these CSS classes. Override them in
+        <code>&#64;layer components</code> or pass utility classes on the host.
+      </p>
+
+      <h4 class="av-doc-prose__subheading">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-label</code> — Base label styles with text styling</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">State Modifier Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>.av-label--required</code> or
+          <code>[data-required="true"] &gt; .av-label</code> — Shows required asterisk indicator
+        </li>
+        <li>
+          <code>.av-label--disabled</code> or
+          <code>[data-disabled="true"] .av-label</code> — Disabled state styling
+        </li>
+        <li>
+          <code>.av-label--invalid</code> or
+          <code>[data-invalid="true"] .av-label</code> or
+          <code>[aria-invalid="true"] .av-label</code> — Invalid state styling (danger text
+          color)
+        </li>
+      </ul>
+      <p class="av-doc-prose__description">
+        The required asterisk is smartly applied using role and data-slot detection. It excludes:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          Elements with <code>role="group"</code>, <code>role="radiogroup"</code>, or
+          <code>role="checkboxgroup"</code>
+        </li>
+        <li>
+          Elements with <code>data-slot="radio"</code> or <code>data-slot="checkbox"</code>
+        </li>
+      </ul>
+      <p class="av-doc-prose__description">
+        This prevents duplicate asterisks when using group components with required fields.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Label classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Props for <code>label[av-label]</code>. Children are projected with
+        <code>ng-content</code>. Host classes can be passed as standard HTML
+        <code>class</code> attributes.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+
+    <section class="av-doc-prose__section" id="accessibility">
+      <h2 class="av-doc-prose__heading">Accessibility</h2>
+      <p class="av-doc-prose__description">
+        Label is built on the native HTML
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label"
+          target="_blank"
+          rel="noopener noreferrer"
+          >&lt;label&gt;</a
+        >
+        element and follows WAI-ARIA best practices:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>Associates with form controls using the <code>for</code> attribute</li>
+        <li>Provides a semantic HTML <code>&lt;label&gt;</code> element</li>
+        <li>Supports keyboard navigation when associated with form controls</li>
+        <li>Communicates required and invalid states visually to users</li>
+        <li>Clicking the label focuses or activates the associated form control</li>
+      </ul>
+    </section>
+  </div>
+</app-doc-page>

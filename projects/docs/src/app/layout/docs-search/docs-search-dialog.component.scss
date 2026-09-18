@@ -1,0 +1,112 @@
+:host {
+  display: contents;
+}
+
+.av-docs-search-dialog {
+  display: flex;
+  width: min(calc(100% - 1rem), 32rem);
+  max-width: min(calc(100% - 1rem), 32rem);
+  flex-direction: column;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0.75rem;
+  background-color: var(--av-overlay, var(--av-surface));
+  padding: 0;
+  box-shadow:
+    0 25px 50px -12px color-mix(in srgb, black 50%, transparent),
+    var(--av-shadow-overlay, var(--av-shadow-surface, none));
+}
+
+.av-docs-search-dialog.av-modal__dialog {
+  background-color: var(--av-overlay, var(--av-surface));
+}
+
+.av-docs-search-dialog__body {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem 0.5rem 0;
+}
+
+.av-docs-search-dialog__field.av-input-group {
+  min-height: 2.25rem;
+  box-shadow: none;
+}
+
+.av-docs-search-dialog__field.av-input-group:has([data-slot='input-group-input']:focus) {
+  box-shadow: none;
+  outline: none;
+}
+
+.av-docs-search-dialog__field [data-slot='input-group-prefix'] {
+  border: 0;
+  padding-inline-end: 0.25rem;
+}
+
+.av-docs-search-dialog__list {
+  max-height: 20rem;
+  min-height: 8rem;
+  overflow-y: auto;
+  padding-bottom: 0.375rem;
+}
+
+.av-docs-search-dialog__empty {
+  margin: 0;
+  padding: 1.5rem 0.75rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--av-muted);
+}
+
+.av-docs-search-dialog__group-title {
+  margin: 0;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--av-muted);
+}
+
+.av-docs-search-dialog__item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2.25rem;
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  padding: 0 0.75rem;
+  background: transparent;
+  color: var(--av-foreground);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: start;
+  cursor: pointer;
+
+  &:hover,
+  &[data-active='true'] {
+    background-color: color-mix(in srgb, var(--av-default) 80%, transparent);
+    border-color: var(--av-border);
+    color: var(--av-foreground);
+  }
+}
+
+.av-docs-search-dialog__divider {
+  margin: 0.25rem 0;
+}
+
+.av-docs-search-dialog__footer {
+  display: flex;
+  height: 2.5rem;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.5rem;
+  border-top: 1px solid var(--av-border);
+  background-color: color-mix(in srgb, var(--av-default) 50%, transparent);
+  padding: 0 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--av-muted);
+}

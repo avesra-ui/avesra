@@ -1,0 +1,158 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Input</h1>
+      <p class="av-doc-prose__description">
+        Primitive single-line text input. Apply <code>av-input</code> to a native
+        <code>&lt;input&gt;</code> element. Accepts standard HTML attributes and implements
+        <code>ControlValueAccessor</code> for Angular forms.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="input" />
+      <p class="av-doc-prose__description">
+        For labels, descriptions, and validation errors, compose with
+        <code>av-label</code>, <code>av-description</code>, and <code>av-field-error</code>. For
+        form-level validation and submission, see
+        <a routerLink="/docs/components/form">Form</a>.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Input uses the <code>av-input</code> attribute selector on a native
+        <code>&lt;input&gt;</code> element. Compose with shared label and error primitives as
+        needed.
+      </p>
+      <app-doc-snippet component="input" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="variants">
+      <h2 class="av-doc-prose__heading">Variants</h2>
+      <p class="av-doc-prose__description">The Input component supports two visual variants:</p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong><code>primary</code></strong> (default) — Standard styling with shadow, suitable
+          for most use cases
+        </li>
+        <li>
+          <strong><code>secondary</code></strong> — Lower emphasis variant without shadow,
+          suitable for use in Surface components
+        </li>
+      </ul>
+      <app-component-preview [demo]="demos.variants" />
+    </section>
+
+    <section class="av-doc-prose__section" id="in-surface">
+      <h2 class="av-doc-prose__heading">In Surface</h2>
+      <p class="av-doc-prose__description">
+        When used inside a
+        <a routerLink="/docs/components/surface">Surface</a>
+        component, use <code>variant="secondary"</code> to apply the lower emphasis variant
+        suitable for surface backgrounds.
+      </p>
+      <app-component-preview [demo]="demos.onSurface" />
+    </section>
+
+    <section class="av-doc-prose__section" id="full-width">
+      <h2 class="av-doc-prose__heading">Full Width</h2>
+      <p class="av-doc-prose__description">
+        Set <code>full-width</code> to expand the input to its container width.
+      </p>
+      <app-component-preview [demo]="demos.fullWidth" />
+    </section>
+
+    <section class="av-doc-prose__section" id="input-types">
+      <h2 class="av-doc-prose__heading">Input Types</h2>
+      <p class="av-doc-prose__description">
+        Use the native <code>type</code> attribute for email, password, number, and other HTML
+        input types. Pair with <code>av-label</code> via matching <code>for</code> and
+        <code>id</code>.
+      </p>
+      <app-component-preview [demo]="demos.inputTypes" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled">
+      <h2 class="av-doc-prose__heading">Controlled</h2>
+      <p class="av-doc-prose__description">
+        Bind the value with <code>[(ngModel)]</code> (requires <code>FormsModule</code>) or
+        <code>formControlName</code> / <code>[formControl]</code> with
+        <code>ReactiveFormsModule</code>.
+      </p>
+      <app-component-preview [demo]="demos.controlled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on the host <code>&lt;input&gt;</code>, or compose with
+        <code>av-label</code> for labeled fields.
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        The base class <code>.av-input</code> powers every instance. Override it once with
+        <code>&#64;layer components</code>.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-input</code> — Native input element styling</li>
+        <li><code>.av-input--primary</code> — Primary visual variant</li>
+        <li><code>.av-input--secondary</code> — Secondary visual variant</li>
+        <li><code>.av-input--full-width</code> — Full-width layout</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Hover:</strong> <code>:hover</code> or <code>[data-hovered="true"]</code>
+        </li>
+        <li>
+          <strong>Focus Visible:</strong> <code>:focus-visible</code> or
+          <code>[data-focus-visible="true"]</code>
+        </li>
+        <li>
+          <strong>Invalid:</strong> <code>[data-invalid="true"]</code> (also syncs with
+          <code>aria-invalid</code>)
+        </li>
+        <li>
+          <strong>Disabled:</strong> <code>:disabled</code> or
+          <code>[data-disabled="true"]</code>
+        </li>
+        <li>
+          <strong>Read Only:</strong> native <code>readonly</code> /
+          <code>[aria-readonly="true"]</code>
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Input accepts all standard HTML <code>&lt;input&gt;</code> attributes plus the following
+        Angular inputs. Use <code>[(ngModel)]</code> or reactive forms via
+        <code>ControlValueAccessor</code>. For field-level validation UI, compose with
+        <code>av-label</code>, <code>av-description</code>, <code>av-field-error</code>, and
+        optionally <a routerLink="/docs/components/form">Form</a>.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

@@ -1,0 +1,21 @@
+/* av-surface component styles */
+
+.av-surface {
+  @apply relative text-foreground;
+}
+
+.av-surface--transparent {
+  @apply bg-transparent;
+}
+
+.av-surface--default {
+  @apply bg-surface text-surface-foreground;
+}
+
+.av-surface--secondary {
+  @apply bg-surface-secondary text-surface-secondary-foreground;
+}
+
+.av-surface--tertiary {
+  @apply bg-surface-tertiary text-surface-tertiary-foreground;
+}

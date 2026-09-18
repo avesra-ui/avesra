@@ -1,0 +1,236 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Calendar</h1>
+      <p class="av-doc-prose__description">
+        Composable date calendar with month grid, navigation, and year picker support.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="calendar" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <app-doc-snippet component="calendar" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="disabled">
+      <h2 class="av-doc-prose__heading">Disabled</h2>
+      <app-component-preview [demo]="demos.disabled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="read-only">
+      <h2 class="av-doc-prose__heading">Read Only</h2>
+      <app-component-preview [demo]="demos.readOnly" />
+    </section>
+
+    <section class="av-doc-prose__section" id="default-value">
+      <h2 class="av-doc-prose__heading">Default Value</h2>
+      <app-component-preview [demo]="demos.defaultValue" />
+    </section>
+
+    <section class="av-doc-prose__section" id="year-picker">
+      <h2 class="av-doc-prose__heading">Year Picker</h2>
+      <p class="av-doc-prose__description">
+        <code>av-calendar-year-picker-trigger</code>, <code>av-calendar-year-picker-grid</code>, and
+        their body/cell parts provide an integrated year navigation pattern.
+      </p>
+      <app-component-preview [demo]="demos.yearPicker" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled">
+      <h2 class="av-doc-prose__heading">Controlled</h2>
+      <p class="av-doc-prose__description">
+        Use controlled <code>value</code> and <code>focused-value</code> for external state
+        coordination and custom shortcuts.
+      </p>
+      <app-component-preview [demo]="demos.controlled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="min-max">
+      <h2 class="av-doc-prose__heading">Min and Max Dates</h2>
+      <app-component-preview [demo]="demos.minMax" />
+    </section>
+
+    <section class="av-doc-prose__section" id="unavailable">
+      <h2 class="av-doc-prose__heading">Unavailable Dates</h2>
+      <p class="av-doc-prose__description">
+        Use <code>is-date-unavailable</code> to block dates such as weekends, holidays, or booked
+        slots.
+      </p>
+      <app-component-preview [demo]="demos.unavailable" />
+    </section>
+
+    <section class="av-doc-prose__section" id="weeks-in-month">
+      <h2 class="av-doc-prose__heading">Weeks in Month</h2>
+      <p class="av-doc-prose__description">
+        Set <code>weeks-in-month</code> to a fixed value (for example, <code>6</code>) to keep the
+        grid height stable when navigating between months.
+      </p>
+      <app-component-preview [demo]="demos.weeksInMonth" />
+    </section>
+
+    <section class="av-doc-prose__section" id="week-view">
+      <h2 class="av-doc-prose__heading">Week View</h2>
+      <p class="av-doc-prose__description">
+        Set <code>visible-duration</code> to <code>&#123; weeks: n &#125;</code> to show one or more
+        weeks at a time. Navigation advances by the visible week range. Use
+        <code>page-behavior="single"</code> to move one week at a time when showing multiple weeks.
+      </p>
+      <app-component-preview [demo]="demos.weekView" />
+    </section>
+
+    <section class="av-doc-prose__section" id="day-view">
+      <h2 class="av-doc-prose__heading">Day View</h2>
+      <p class="av-doc-prose__description">
+        Set <code>visible-duration</code> to <code>&#123; days: n &#125;</code> to show a rolling
+        window of consecutive days. Navigation advances by the visible day range. Use
+        <code>page-behavior="single"</code> to move one day at a time when showing multiple days.
+      </p>
+      <app-component-preview [demo]="demos.dayView" />
+    </section>
+
+    <section class="av-doc-prose__section" id="multiple">
+      <h2 class="av-doc-prose__heading">Multiple Selection</h2>
+      <p class="av-doc-prose__description">
+        Set <code>selection-mode="multiple"</code> to let users select several dates.
+        <code>value</code> / <code>default-value</code> use an array of dates.
+      </p>
+      <app-component-preview [demo]="demos.multiple" />
+    </section>
+
+    <section class="av-doc-prose__section" id="focused-value">
+      <h2 class="av-doc-prose__heading">Focused Value</h2>
+      <p class="av-doc-prose__description">
+        Programmatically control which date is focused using <code>focused-value</code>.
+      </p>
+      <app-component-preview [demo]="demos.focusedValue" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-indicators">
+      <h2 class="av-doc-prose__heading">Cell Indicators</h2>
+      <p class="av-doc-prose__description">
+        Customize cell content with <code>avCalendarCell</code> and use
+        <code>av-calendar-cell-indicator</code> to display metadata like events.
+      </p>
+      <app-component-preview [demo]="demos.withIndicators" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-icons">
+      <h2 class="av-doc-prose__heading">Custom Navigation Icons</h2>
+      <p class="av-doc-prose__description">
+        Project children into <code>av-calendar-nav-button</code> to replace the default chevron
+        icons.
+      </p>
+      <app-component-preview [demo]="demos.customIcons" />
+    </section>
+
+    <section class="av-doc-prose__section" id="multiple-months">
+      <h2 class="av-doc-prose__heading">Multiple Months</h2>
+      <p class="av-doc-prose__description">
+        Render multiple grids with <code>visible-duration</code> and <code>offset</code> for booking
+        and planning experiences.
+      </p>
+      <app-component-preview [demo]="demos.multipleMonths" />
+    </section>
+
+    <section class="av-doc-prose__section" id="booking-calendar">
+      <h2 class="av-doc-prose__heading">Real-World Example</h2>
+      <app-component-preview [demo]="demos.bookingCalendar" />
+    </section>
+
+    <section class="av-doc-prose__section" id="international-calendar">
+      <h2 class="av-doc-prose__heading">International Calendars</h2>
+      <p class="av-doc-prose__description">
+        By default, Calendar displays dates using the calendar system for the locale. Override the
+        calendar system with <code>&#64;internationalized/date</code> (for example
+        <code>IndianCalendar</code>) and set <code>locale</code> accordingly.
+      </p>
+      <app-component-preview [demo]="demos.internationalCalendar" />
+      <p class="av-doc-prose__description">
+        <strong>Note:</strong> Keep application logic on a consistent calendar system via
+        <code>CalendarDate</code> from <code>&#64;internationalized/date</code>, while still formatting
+        labels for the user’s preferred locale.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="customization">
+      <h2 class="av-doc-prose__heading">Customization</h2>
+
+      <h3 class="av-doc-prose__subheading" id="custom-styles">Tailwind CSS</h3>
+      <p class="av-doc-prose__description">
+        Style individual cells with <code>avCalendarCellDef</code> (own the
+        <code>av-calendar-cell</code> host) and utility classes on the cell element.
+      </p>
+      <app-component-preview [demo]="demos.customStyles" />
+
+      <h3 class="av-doc-prose__subheading" id="global-css">Global CSS</h3>
+      <p class="av-doc-prose__description">
+        To customize the Calendar component classes, you can use the
+        <code>&#64;layer components</code> directive.
+        <a av-link href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes">
+          Learn more
+        </a>.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling Reference</h2>
+      <p class="av-doc-prose__description">
+        Avesra follows the BEM methodology so variants and states are reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">
+        Calendar uses these classes in <code>&#64;avesra/styles</code>
+        (<code>calendar.css</code>):
+      </p>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-calendar</code> — Root container</li>
+        <li><code>.av-calendar__header</code> — Header row containing nav buttons and heading</li>
+        <li><code>.av-calendar__heading</code> — Current month label</li>
+        <li><code>.av-calendar__nav-button</code> — Previous/next navigation controls</li>
+        <li><code>.av-calendar__grid</code> — Main day grid</li>
+        <li><code>.av-calendar__grid-header</code> — Weekday header row wrapper</li>
+        <li><code>.av-calendar__grid-body</code> — Date rows wrapper</li>
+        <li><code>.av-calendar__header-cell</code> — Weekday header cell</li>
+        <li><code>.av-calendar__cell</code> — Interactive day cell</li>
+        <li><code>.av-calendar__cell-indicator</code> — Dot indicator inside a day cell</li>
+        <li><code>.av-calendar-year-picker__trigger</code> — Year picker toggle button</li>
+        <li><code>.av-calendar-year-picker__trigger-heading</code> — Heading text inside year picker trigger</li>
+        <li><code>.av-calendar-year-picker__trigger-indicator</code> — Indicator icon inside year picker trigger</li>
+        <li><code>.av-calendar-year-picker__year-grid</code> — Overlay grid of selectable years</li>
+        <li><code>.av-calendar-year-picker__year-cell</code> — Individual year option</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">
+        Calendar supports both pseudo-classes and data attributes:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li><strong>Selected:</strong> <code>[data-selected="true"]</code></li>
+        <li><strong>Today:</strong> <code>[data-today="true"]</code></li>
+        <li><strong>Unavailable:</strong> <code>[data-unavailable="true"]</code></li>
+        <li><strong>Outside month:</strong> <code>[data-outside-month="true"]</code></li>
+        <li><strong>Hovered:</strong> <code>:hover</code> or <code>[data-hovered="true"]</code></li>
+        <li><strong>Pressed:</strong> <code>:active</code> or <code>[data-pressed="true"]</code></li>
+        <li><strong>Focus visible:</strong> <code>:focus-visible</code> or <code>[data-focus-visible="true"]</code></li>
+        <li><strong>Disabled:</strong> <code>:disabled</code> or <code>[data-disabled="true"]</code></li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

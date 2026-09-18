@@ -1,0 +1,207 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Pagination</h1>
+      <p class="av-doc-prose__description">
+        Page navigation with composable page links, previous/next buttons, and ellipsis indicators.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="pagination" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the Pagination parts and compose them with element and attribute selectors. Optional
+        pieces include <code>div[av-pagination-summary]</code> and
+        <code>span[av-pagination-ellipsis]</code>.
+      </p>
+      <app-doc-snippet component="pagination" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="sizes">
+      <h2 class="av-doc-prose__heading">Sizes</h2>
+      <p class="av-doc-prose__description">
+        Set <code>size</code> on <code>av-pagination</code> — <code>sm</code>, <code>md</code>
+        (default), or <code>lg</code>.
+      </p>
+      <app-component-preview [demo]="demos.sizes" />
+    </section>
+
+    <section class="av-doc-prose__section" id="disabled">
+      <h2 class="av-doc-prose__heading">Disabled</h2>
+      <p class="av-doc-prose__description">
+        Set <code>disabled</code> on <code>button[av-pagination-prev]</code>,
+        <code>button[av-pagination-next]</code>, or <code>button[av-pagination-link]</code> to
+        prevent interaction.
+      </p>
+      <app-component-preview [demo]="demos.disabled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="simple-prev-next">
+      <h2 class="av-doc-prose__heading">Simple (Previous / Next)</h2>
+      <p class="av-doc-prose__description">
+        A minimal pattern with only previous and next controls plus a summary line.
+      </p>
+      <app-component-preview [demo]="demos.simplePrevNext" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled">
+      <h2 class="av-doc-prose__heading">Controlled</h2>
+      <p class="av-doc-prose__description">
+        Drive the current page with a <code>model()</code> signal and update it from
+        <code>(click)</code> handlers on page links and prev/next buttons.
+      </p>
+      <app-component-preview [demo]="demos.controlled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-ellipsis">
+      <h2 class="av-doc-prose__heading">With Ellipsis</h2>
+      <p class="av-doc-prose__description">
+        Use <code>getPaginationRange()</code> from <code>&#64;avesra/angular</code> to compute
+        visible page numbers and insert <code>span[av-pagination-ellipsis]</code> between ranges.
+      </p>
+      <app-component-preview [demo]="demos.withEllipsis" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-summary">
+      <h2 class="av-doc-prose__heading">With Summary</h2>
+      <p class="av-doc-prose__description">
+        Add <code>div[av-pagination-summary]</code> alongside the content list to show result
+        counts.
+      </p>
+      <app-component-preview [demo]="demos.withSummary" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-icons">
+      <h2 class="av-doc-prose__heading">Custom Icons</h2>
+      <p class="av-doc-prose__description">
+        Replace the default chevrons by projecting custom content into
+        <code>span[av-pagination-prev-icon]</code> and
+        <code>span[av-pagination-next-icon]</code>.
+      </p>
+      <app-component-preview [demo]="demos.customIcons" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on individual Pagination parts — for example
+        <code>av-pagination</code>, <code>ul[av-pagination-content]</code>, and
+        <code>button[av-pagination-link]</code>.
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Pagination classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The Pagination component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base &amp; Layout Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-pagination</code> — Root navigation container with flex layout</li>
+        <li><code>.av-pagination__summary</code> — Left-side info text container</li>
+        <li><code>.av-pagination__content</code> — Container for pagination items</li>
+        <li><code>.av-pagination__item</code> — Individual item wrapper</li>
+        <li><code>.av-pagination__link</code> — Page number button</li>
+        <li><code>.av-pagination__link--nav</code> — Navigation button modifier (Previous/Next)</li>
+        <li><code>.av-pagination__ellipsis</code> — Ellipsis indicator</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Size Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-pagination--sm</code> — Small size variant</li>
+        <li><code>.av-pagination--md</code> — Medium size variant (default)</li>
+        <li><code>.av-pagination--lg</code> — Large size variant</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">
+        The component supports both CSS pseudo-classes and data attributes:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Active page:</strong> <code>[data-active="true"]</code> or
+          <code>[aria-current="page"]</code>
+        </li>
+        <li>
+          <strong>Hover:</strong> <code>:hover</code> or <code>[data-hovered="true"]</code>
+        </li>
+        <li>
+          <strong>Focus:</strong> <code>:focus-visible</code> or
+          <code>[data-focus-visible="true"]</code>
+        </li>
+        <li>
+          <strong>Disabled:</strong> <code>:disabled</code> or
+          <code>[aria-disabled="true"]</code>
+        </li>
+        <li>
+          <strong>Pressed:</strong> <code>:active</code> or <code>[data-pressed="true"]</code>
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API Reference</h2>
+      <p class="av-doc-prose__description">
+        Compound API across <code>av-pagination</code>, summary, content, item, link, prev/next, and
+        ellipsis parts. Page changes use native <code>(click)</code> handlers. Use
+        <code>getPaginationRange()</code> to build ellipsis-aware page lists.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+
+    <section class="av-doc-prose__section" id="accessibility">
+      <h2 class="av-doc-prose__heading">Accessibility</h2>
+      <p class="av-doc-prose__description">Pagination provides:</p>
+      <ul class="av-doc-prose__list">
+        <li>
+          Semantic <code>&lt;nav&gt;</code> via <code>role="navigation"</code> with
+          <code>aria-label="pagination"</code> on <code>av-pagination</code>
+        </li>
+        <li>
+          Active page indicated via <code>aria-current="page"</code> on
+          <code>button[av-pagination-link]</code>
+        </li>
+        <li>Keyboard navigation via Tab through all interactive elements</li>
+        <li>Focus ring on keyboard navigation via <code>:focus-visible</code></li>
+        <li>
+          Ellipsis marked with <code>aria-hidden="true"</code> to avoid screen reader confusion
+        </li>
+        <li>
+          Disabled states communicated via native <code>disabled</code> and
+          <code>aria-disabled</code>
+        </li>
+      </ul>
+    </section>
+  </div>
+</app-doc-page>

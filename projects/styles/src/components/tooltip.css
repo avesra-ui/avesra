@@ -1,0 +1,79 @@
+/* av-tooltip component styles */
+
+.av-tooltip {
+  @apply pointer-events-none fixed z-50 max-w-xs origin-(--trigger-anchor-point) bg-overlay p-2 text-xs break-all;
+  border-radius: min(32px, var(--radius-xl));
+  box-shadow: var(--shadow-overlay);
+
+  &[data-entering="true"] {
+    @apply animate-in duration-150 ease-out fade-in-0 zoom-in-90;
+
+    &[data-placement="top"] {
+      @apply slide-in-from-bottom-1;
+    }
+
+    &[data-placement="bottom"] {
+      @apply slide-in-from-top-1;
+    }
+
+    &[data-placement="left"] {
+      @apply slide-in-from-right-1;
+    }
+
+    &[data-placement="right"] {
+      @apply slide-in-from-left-1;
+    }
+  }
+
+  &[data-exiting="true"] {
+    @apply animate-out duration-100 ease-out zoom-out-95 fade-out;
+    animation-fill-mode: forwards;
+  }
+
+  &[data-exiting="true"],
+  &[data-entering="true"] {
+    @apply transition-[opacity,transform] will-change-[opacity,transform];
+    @apply av-motion-reduce:animate-none;
+  }
+
+  & [data-slot="overlay-arrow"] {
+    @apply pointer-events-none absolute block size-3 stroke-border/40;
+    color: var(--av-overlay);
+
+    path {
+      fill: currentColor;
+      stroke: inherit;
+    }
+  }
+
+  &[data-placement="top"] [data-slot="overlay-arrow"] {
+    bottom: 0;
+    left: 50%;
+    translate: -50% calc(100% - 1px);
+  }
+
+  &[data-placement="bottom"] [data-slot="overlay-arrow"] {
+    top: 0;
+    left: 50%;
+    translate: -50% calc(-100% + 1px);
+    rotate: 180deg;
+  }
+
+  &[data-placement="left"] [data-slot="overlay-arrow"] {
+    top: 50%;
+    right: 0;
+    translate: calc(100% - 1px) -50%;
+    rotate: -90deg;
+  }
+
+  &[data-placement="right"] [data-slot="overlay-arrow"] {
+    top: 50%;
+    left: 0;
+    translate: calc(-100% + 1px) -50%;
+    rotate: 90deg;
+  }
+}
+
+.av-tooltip__text {
+  @apply relative z-10;
+}

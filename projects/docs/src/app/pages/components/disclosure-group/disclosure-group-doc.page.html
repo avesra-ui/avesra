@@ -1,0 +1,75 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Disclosure Group</h1>
+      <p class="av-doc-prose__description">
+        Container that manages multiple <a routerLink="/docs/components/disclosure">Disclosure</a>
+        items with coordinated expanded states. Supports single or multiple open items and two-way
+        binding on <code>[(expandedKeys)]</code>.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="disclosure-group" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import all parts and piece them together.
+      </p>
+      <app-doc-snippet component="disclosure-group" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled">
+      <h2 class="av-doc-prose__heading">Controlled</h2>
+      <p class="av-doc-prose__description">
+        You can control which disclosures are expanded with external navigation controls using the
+        <code>expandedKeys</code> and <code>expandedKeysChange</code> bindings.
+      </p>
+      <app-component-preview [demo]="demos.controlled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+      <p class="av-doc-prose__description">
+        Pass utility classes on the group root, or override BEM classes in
+        <code>&#64;layer components</code>.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-disclosure-group</code> — Base group container with layout containment</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <ul class="av-doc-prose__list">
+        <li><strong>Disabled:</strong> <code>[disabled]="true"</code> disables all child disclosures</li>
+        <li><strong>Expanded management:</strong> group synchronizes expanded state on child disclosures</li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="accessibility">
+      <h2 class="av-doc-prose__heading">Accessibility</h2>
+      <p class="av-doc-prose__description">
+        Each child disclosure retains its own trigger semantics. When using external navigation,
+        ensure focus moves to the corresponding trigger or panel heading for screen reader users.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Group-level props on <code>av-disclosure-group</code>. Child disclosures inherit disabled
+        state and expansion coordination when given an <code>id</code>.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

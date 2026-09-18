@@ -1,0 +1,21 @@
+<app-doc-page [toc]="toc">
+  <div class="av-components-index">
+    <header class="av-components-index__header">
+      <h1 class="av-components-index__title">All Components</h1>
+      <p class="av-components-index__description">
+        Explore the full list of components available in the library. More are on the way.
+      </p>
+    </header>
+
+    @for (section of sections; track section.id) {
+      <section class="av-components-index__section" [attr.id]="section.id">
+        <h2 class="av-components-index__section-title">{{ section.category }}</h2>
+        <div class="av-components-index__grid">
+          @for (component of section.components; track component.slug) {
+            <app-component-gallery-card [component]="component" />
+          }
+        </div>
+      </section>
+    }
+  </div>
+</app-doc-page>

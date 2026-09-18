@@ -1,0 +1,43 @@
+/* av-card component styles */
+
+.av-card {
+  @apply relative flex flex-col gap-3 overflow-visible p-4;
+  @apply shadow-surface;
+  border-radius: min(32px, var(--radius-3xl));
+}
+
+.av-card__header {
+  @apply flex flex-col;
+}
+
+.av-card__title {
+  @apply text-sm leading-6 font-medium text-foreground;
+}
+
+.av-card__description {
+  @apply text-sm leading-5 text-muted;
+}
+
+.av-card__content {
+  @apply flex flex-1 flex-col gap-1;
+}
+
+.av-card__footer {
+  @apply flex flex-row items-center;
+}
+
+.av-card--transparent {
+  @apply border-none bg-transparent shadow-none;
+}
+
+.av-card--default {
+  @apply bg-surface;
+}
+
+.av-card--secondary {
+  @apply bg-surface-secondary;
+}
+
+.av-card--tertiary {
+  @apply bg-surface-tertiary;
+}

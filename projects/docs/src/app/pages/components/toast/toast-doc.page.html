@@ -1,0 +1,212 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Toast</h1>
+      <p class="av-doc-prose__description">
+        Display temporary notifications and messages with automatic dismissal and customizable
+        placement.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="toast" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.usage" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Toast is service-driven. Call <code>provideAvesraToast()</code> (or provide
+        <code>AvToastService</code>), mount a <code>av-toast</code> region, then inject the service
+        anywhere to publish messages. Hover the stack to expand peeks into a full list.
+      </p>
+      <app-doc-snippet component="toast" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="variants">
+      <h2 class="av-doc-prose__heading">Variants</h2>
+      <app-component-preview [demo]="demos.variants" />
+    </section>
+
+    <section class="av-doc-prose__section" id="placements">
+      <h2 class="av-doc-prose__heading">Placements</h2>
+      <p class="av-doc-prose__description">
+        Set <code>placement</code> on <code>av-toast</code> —
+        <code>bottom</code>, <code>bottom-start</code>, <code>bottom-end</code>,
+        <code>top</code>, <code>top-start</code>, or <code>top-end</code>. Mount separate regions
+        for multiple placements.
+      </p>
+      <app-component-preview [demo]="demos.placements" />
+    </section>
+
+    <section class="av-doc-prose__section" id="simple">
+      <h2 class="av-doc-prose__heading">Simple Toasts</h2>
+      <p class="av-doc-prose__description">
+        Use shorthand helpers — <code>success()</code>, <code>info()</code>,
+        <code>warning()</code>, and <code>danger()</code> — for title-only toasts.
+      </p>
+      <app-component-preview [demo]="demos.simple" />
+    </section>
+
+    <section class="av-doc-prose__section" id="hide-indicator">
+      <h2 class="av-doc-prose__heading">Custom Indicators</h2>
+      <p class="av-doc-prose__description">
+        Pass <code>hideIndicator: true</code> to omit the default variant icon. Enable
+        <code>prevent-duplicates</code> on the region to suppress repeated title and description
+        pairs while that toast is still open.
+      </p>
+      <app-component-preview [demo]="demos.hideIndicator" />
+    </section>
+
+    <section class="av-doc-prose__section" id="promise">
+      <h2 class="av-doc-prose__heading">Promise & Loading</h2>
+      <p class="av-doc-prose__description">
+        <code>toast.promise()</code> shows a loading toast, then updates the same toast to success
+        or danger when the promise settles. <code>success</code> / <code>error</code> accept a
+        string or a callback.
+      </p>
+      <app-component-preview [demo]="demos.promise" />
+    </section>
+
+    <section class="av-doc-prose__section" id="loading">
+      <h2 class="av-doc-prose__heading">Loading</h2>
+      <p class="av-doc-prose__description">
+        Pass <code>isLoading: true</code> with <code>life: 0</code> (or <code>sticky: true</code>)
+        for a persistent loading toast, then <code>close()</code> the id and show a result toast —
+        or use <code>promise()</code> above for the common async flow.
+      </p>
+      <app-component-preview [demo]="demos.loading" />
+    </section>
+
+    <section class="av-doc-prose__section" id="hover-expand">
+      <h2 class="av-doc-prose__heading">Hover Expand</h2>
+      <p class="av-doc-prose__description">
+        Collapsed stacks peek behind the front toast. Hover the region to expand full heights and
+        pause auto-dismiss. Pass <code>expand</code> to keep the stack open. Swipe vertically to
+        dismiss on touch devices.
+      </p>
+      <app-component-preview [demo]="demos.hoverExpand" />
+    </section>
+
+    <section class="av-doc-prose__section" id="callbacks">
+      <h2 class="av-doc-prose__heading">Callbacks</h2>
+      <p class="av-doc-prose__description">
+        Control auto-dismiss with <code>life</code> (milliseconds). Set <code>life: 0</code> or
+        <code>sticky: true</code> for persistent toasts. Use <code>onClose</code> when a toast is
+        removed, and <code>clear()</code> to dismiss all toasts in a region.
+      </p>
+      <app-component-preview [demo]="demos.callbacks" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-queues">
+      <h2 class="av-doc-prose__heading">Custom Queues</h2>
+      <p class="av-doc-prose__description">
+        Route messages with the <code>key</code> option on each toast and a matching
+        <code>key</code> on <code>av-toast</code>. Tune stacking per region with
+        <code>max-visible-toasts</code>.
+      </p>
+      <app-component-preview [demo]="demos.customQueues" />
+    </section>
+
+    <section class="av-doc-prose__section" id="setup">
+      <h2 class="av-doc-prose__heading">Setup</h2>
+      <p class="av-doc-prose__description">
+        Register <code>provideAvesraToast()</code> (or <code>AvToastService</code>) and render a
+        toast region in the root of your app. Hovering the region expands the stack.
+      </p>
+      <app-doc-snippet [source]="setupExample" lang="typescript" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="customization">
+      <h2 class="av-doc-prose__heading">Customization</h2>
+
+      <h3 class="av-doc-prose__subheading" id="global-css">Global CSS</h3>
+      <p class="av-doc-prose__description">
+        To customize Toast classes, use the <code>&#64;layer components</code> directive.
+      </p>
+      <app-doc-snippet [source]="globalCssExample" lang="css" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling Reference</h2>
+      <p class="av-doc-prose__description">
+        Avesra follows the BEM methodology so variants and states stay reusable and easy to
+        customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <h4 class="av-doc-prose__subheading">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-toast-region</code> — Toast region container</li>
+        <li><code>.av-toast</code> — Base toast container</li>
+        <li><code>.av-toast__content</code> — Content wrapper for title and description</li>
+        <li><code>.av-toast__indicator</code> — Icon / loading indicator container</li>
+        <li><code>.av-toast__title</code> — Toast title text</li>
+        <li><code>.av-toast__description</code> — Toast description text</li>
+        <li><code>.av-toast__action</code> — Action button container</li>
+        <li><code>.av-toast__close-button</code> — Close button</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Variant Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-toast--default</code> — Default gray variant</li>
+        <li><code>.av-toast--accent</code> — Accent variant</li>
+        <li><code>.av-toast--success</code> — Success variant</li>
+        <li><code>.av-toast--warning</code> — Warning variant</li>
+        <li><code>.av-toast--danger</code> — Danger variant</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Front</strong>: <code>[data-front]</code> / <code>[data-frontmost]</code> —
+          topmost visible toast
+        </li>
+        <li>
+          <strong>Expanded</strong>: <code>[data-expanded]</code> — hover / expand stack state
+        </li>
+        <li><strong>Index</strong>: <code>[data-index]</code> — position in the stack</li>
+        <li>
+          <strong>Placement</strong>: region modifiers such as
+          <code>.av-toast-region--bottom</code>
+        </li>
+        <li>
+          <strong>Hidden / Entering / Exiting</strong>: <code>[data-hidden]</code>,
+          <code>[data-entering]</code>, <code>[data-exiting]</code>
+        </li>
+        <li>
+          <strong>Swipe</strong>: <code>[data-swiping]</code>, <code>[data-swipe-out]</code>
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API Reference</h2>
+
+      <h3 class="av-doc-prose__subheading">av-toast (region)</h3>
+      <p class="av-doc-prose__description">
+        Region host that listens to <code>AvToastService</code> and renders stacked toasts.
+      </p>
+      <app-doc-api-table [props]="regionProps" />
+
+      <h3 class="av-doc-prose__subheading">AvToastService</h3>
+      <p class="av-doc-prose__description">
+        Inject <code>AvToastService</code> to publish and dismiss toasts from anywhere in the app.
+      </p>
+      <app-doc-api-table [props]="serviceProps" />
+      <app-doc-snippet [source]="toastMethodExample" lang="typescript" section="anatomy" />
+
+      <h3 class="av-doc-prose__subheading">Toast options</h3>
+      <p class="av-doc-prose__description">
+        Options accepted by <code>add()</code> and the variant helpers
+        (<code>success</code> / <code>info</code> / <code>warning</code> / <code>danger</code>).
+      </p>
+      <app-doc-api-table [props]="toastOptionsProps" />
+    </section>
+  </div>
+</app-doc-page>

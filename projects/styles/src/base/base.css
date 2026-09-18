@@ -1,0 +1,22 @@
+/*
+ * Default border color for bare Tailwind `border` / `border-*` width utilities.
+ * Imported in `@layer components` so it wins over Tailwind preflight
+ * (`border: 0 solid` → currentColor) even when preflight is emitted later.
+ * Explicit color utilities (`border-border`, `border-accent`, …) still win
+ * via `@layer utilities`.
+ */
+*,
+::after,
+::before,
+::backdrop,
+::file-selector-button {
+  border-color: var(--av-border, currentColor);
+}
+
+:root {
+  view-transition-name: none;
+}
+
+::view-transition {
+  pointer-events: none;
+}

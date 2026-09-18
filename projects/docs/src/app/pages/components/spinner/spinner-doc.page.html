@@ -1,0 +1,101 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Spinner</h1>
+      <p class="av-doc-prose__description">
+        A loading indicator component to show pending states.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="spinner" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the Spinner and apply it with the
+        <code>span[av-spinner]</code> attribute selector. Optional
+        <code>size</code> and <code>color</code> inputs control appearance.
+      </p>
+      <app-doc-snippet component="spinner" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="colors">
+      <h2 class="av-doc-prose__heading">Colors</h2>
+      <app-component-preview [demo]="demos.colors" />
+    </section>
+
+    <section class="av-doc-prose__section" id="sizes">
+      <h2 class="av-doc-prose__heading">Sizes</h2>
+      <app-component-preview [demo]="demos.sizes" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on the spinner host —
+        <code>span[av-spinner]</code>.
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Spinner classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The Spinner component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base &amp; Size Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-spinner</code> — Base spinner styles with default size</li>
+        <li><code>.av-spinner--sm</code> — Small size variant</li>
+        <li><code>.av-spinner--md</code> — Medium size variant (default)</li>
+        <li><code>.av-spinner--lg</code> — Large size variant</li>
+        <li><code>.av-spinner--xl</code> — Extra large size variant</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Color Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-spinner--current</code> — Inherits current text color</li>
+        <li><code>.av-spinner--accent</code> — Accent color variant</li>
+        <li><code>.av-spinner--danger</code> — Danger color variant</li>
+        <li><code>.av-spinner--success</code> — Success color variant</li>
+        <li><code>.av-spinner--warning</code> — Warning color variant</li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Props for <code>span[av-spinner]</code>.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

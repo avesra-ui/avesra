@@ -1,0 +1,158 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Skeleton</h1>
+      <p class="av-doc-prose__description">
+        Skeleton is a placeholder to show a loading state and the expected shape of a component.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="skeleton" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Use the <code>div[av-skeleton]</code> attribute selector and size or shape the placeholder
+        with Tailwind utility classes. Optional <code>animation-type</code> overrides the theme
+        default (<code>--av-skeleton-animation</code>).
+      </p>
+      <app-doc-snippet component="skeleton" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="text-content">
+      <h2 class="av-doc-prose__heading">Text Content</h2>
+      <app-component-preview [demo]="demos.textContent" />
+    </section>
+
+    <section class="av-doc-prose__section" id="user-profile">
+      <h2 class="av-doc-prose__heading">User Profile</h2>
+      <app-component-preview [demo]="demos.userProfile" />
+    </section>
+
+    <section class="av-doc-prose__section" id="list">
+      <h2 class="av-doc-prose__heading">List Items</h2>
+      <app-component-preview [demo]="demos.list" />
+    </section>
+
+    <section class="av-doc-prose__section" id="grid">
+      <h2 class="av-doc-prose__heading">Grid</h2>
+      <app-component-preview [demo]="demos.grid" />
+    </section>
+
+    <section class="av-doc-prose__section" id="single-shimmer">
+      <h2 class="av-doc-prose__heading">Single Shimmer</h2>
+      <p class="av-doc-prose__description">
+        A synchronized shimmer effect that passes over all skeleton elements at once. Apply the
+        <code>av-skeleton--shimmer</code> class to a parent container and set
+        <code>animation-type="none"</code> on child skeletons.
+      </p>
+      <app-component-preview [demo]="demos.singleShimmer" />
+    </section>
+
+    <section class="av-doc-prose__section" id="animation-types">
+      <h2 class="av-doc-prose__heading">Animation Types</h2>
+      <app-component-preview [demo]="demos.animationTypes" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="global-animation">
+        Global Animation Configuration
+      </h3>
+      <p class="av-doc-prose__description">
+        You can set a default animation type for all Skeleton components by defining the
+        <code>--av-skeleton-animation</code> CSS variable:
+      </p>
+      <app-doc-snippet [source]="globalAnimationExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        This global setting is overridden by the <code>animation-type</code> input when specified on
+        an individual <code>div[av-skeleton]</code>.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on <code>div[av-skeleton]</code> to control size, shape, and layout.
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Skeleton classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The Skeleton component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base Class</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-skeleton</code> — Base skeleton styles with background and rounded corners</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Animation Variant Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>.av-skeleton--shimmer</code> — Shimmer animation with gradient effect (default)
+        </li>
+        <li><code>.av-skeleton--pulse</code> — Pulse animation using Tailwind's animate-pulse</li>
+        <li><code>.av-skeleton--none</code> — No animation, static skeleton</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="animation">Animation</h3>
+      <p class="av-doc-prose__description">
+        The Skeleton component supports three animation types, each with different visual effects:
+      </p>
+
+      <h4 class="av-doc-prose__subheading">Shimmer Animation</h4>
+      <p class="av-doc-prose__description">
+        The shimmer effect creates a gradient that moves across the skeleton element:
+      </p>
+      <app-doc-snippet [source]="shimmerAnimationExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">The shimmer animation is defined in the theme using:</p>
+      <app-doc-snippet [source]="shimmerKeyframesExample" lang="css" section="anatomy" />
+
+      <h4 class="av-doc-prose__subheading">Pulse Animation</h4>
+      <p class="av-doc-prose__description">
+        The pulse animation uses Tailwind's built-in <code>animate-pulse</code> utility:
+      </p>
+      <app-doc-snippet [source]="pulseAnimationExample" lang="css" section="anatomy" />
+
+      <h4 class="av-doc-prose__subheading">No Animation</h4>
+      <p class="av-doc-prose__description">For static skeletons without any animation:</p>
+      <app-doc-snippet [source]="noneAnimationExample" lang="css" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Props for <code>div[av-skeleton]</code>. Size and shape come from host utility classes rather
+        than dedicated inputs.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

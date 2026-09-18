@@ -1,0 +1,223 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Slider</h1>
+      <p class="av-doc-prose__description">
+        A slider allows a user to select one or more values within a range.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="slider" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the Slider parts and compose them with attribute selectors on
+        <code>&lt;div&gt;</code>, <code>&lt;span&gt;</code>, and <code>&lt;label&gt;</code> hosts.
+        Pair with shared <code>av-label</code> for accessible labeling.
+      </p>
+      <app-doc-snippet component="slider" section="anatomy" />
+
+      <h3 class="av-doc-prose__subheading" id="range-slider-anatomy">Range Slider Anatomy</h3>
+      <p class="av-doc-prose__description">
+        For a dual-thumb range, pass a number array to <code>default-value</code> or
+        <code>[(value)]</code>, and add a second <code>av-slider-thumb</code> with
+        <code>[index]="1"</code>.
+      </p>
+      <app-doc-snippet [source]="rangeAnatomySource" lang="html" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="disabled">
+      <h2 class="av-doc-prose__heading">Disabled</h2>
+      <p class="av-doc-prose__description">
+        Set the <code>disabled</code> attribute to prevent interaction and apply disabled styling.
+      </p>
+      <app-component-preview [demo]="demos.disabled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="vertical">
+      <h2 class="av-doc-prose__heading">Vertical</h2>
+      <p class="av-doc-prose__description">
+        Set <code>orientation="vertical"</code> for a vertical track layout.
+      </p>
+      <app-component-preview [demo]="demos.vertical" />
+    </section>
+
+    <section class="av-doc-prose__section" id="range">
+      <h2 class="av-doc-prose__heading">Range</h2>
+      <p class="av-doc-prose__description">
+        Provide two <code>av-slider-thumb</code> elements with <code>[index]="0"</code> and
+        <code>[index]="1"</code>, and bind a number array for the value.
+      </p>
+      <app-component-preview [demo]="demos.range" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled">
+      <h2 class="av-doc-prose__heading">Controlled</h2>
+      <p class="av-doc-prose__description">
+        Drive the value from the parent with <code>[(value)]</code> two-way binding.
+      </p>
+      <app-component-preview [demo]="demos.controlled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-formatting">
+      <h2 class="av-doc-prose__heading">Custom Value Formatting</h2>
+      <p class="av-doc-prose__description">
+        Pass <code>format-options</code> (
+        <code>Intl.NumberFormatOptions</code>) to format the output label — for example currency.
+      </p>
+      <app-component-preview [demo]="demos.customFormatting" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-output">
+      <h2 class="av-doc-prose__heading">Custom Output Display</h2>
+      <p class="av-doc-prose__description">
+        Project custom content into <code>av-slider-output</code> to replace the default formatted
+        value display.
+      </p>
+      <app-component-preview [demo]="demos.customOutput" />
+    </section>
+
+    <section class="av-doc-prose__section" id="reactive-form">
+      <h2 class="av-doc-prose__heading">Reactive form</h2>
+      <p class="av-doc-prose__description">
+        Integrate with Angular reactive forms using <code>formControlName</code> or
+        <code>[formControl]</code> on <code>div[av-slider]</code>.
+      </p>
+      <app-component-preview [demo]="demos.reactiveForm" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on individual Slider parts — for example
+        <code>av-slider-track</code>, <code>av-slider-fill</code>, and
+        <code>av-slider-thumb</code>.
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Slider classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The Slider component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-slider</code> — Base slider container</li>
+        <li><code>.av-slider__output</code> — Output element displaying current value(s)</li>
+        <li><code>.av-slider__track</code> — Track element containing fill and thumbs</li>
+        <li><code>.av-slider__fill</code> — Fill element showing selected range</li>
+        <li><code>.av-slider__thumb</code> — Individual thumb element</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Orientation Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-slider--horizontal</code> — Horizontal orientation (default)</li>
+        <li><code>.av-slider--vertical</code> — Vertical orientation</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">State Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-slider[data-disabled="true"]</code> — Disabled slider state</li>
+        <li><code>.av-slider[data-orientation="vertical"]</code> — Vertical orientation</li>
+        <li><code>.av-slider__thumb[data-dragging="true"]</code> — Thumb being dragged</li>
+        <li>
+          <code>.av-slider__thumb[data-focus-visible="true"]</code> — Thumb keyboard focused
+        </li>
+        <li><code>.av-slider__thumb[data-disabled="true"]</code> — Disabled thumb state</li>
+        <li><code>.av-slider__track[data-fill-start="true"]</code> — Fill starts at beginning</li>
+        <li><code>.av-slider__track[data-fill-end="true"]</code> — Fill ends at end</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">
+        The component supports both CSS pseudo-classes and data attributes:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Focus:</strong>
+          <code>:focus-visible</code> or <code>[data-focus-visible="true"]</code> on thumb
+        </li>
+        <li>
+          <strong>Dragging:</strong>
+          <code>[data-dragging="true"]</code> on thumb
+        </li>
+        <li>
+          <strong>Disabled:</strong>
+          <code>:disabled</code>, <code>[data-disabled="true"]</code>, or
+          <code>[aria-disabled="true"]</code> on slider or thumb
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="accessibility">
+      <h2 class="av-doc-prose__heading">Accessibility</h2>
+      <p class="av-doc-prose__description">
+        Slider implements the ARIA slider pattern and provides:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>Full keyboard navigation support (Arrow keys, Home, End)</li>
+        <li>
+          <code>aria-valuenow</code>, <code>aria-valuemin</code>, and
+          <code>aria-valuemax</code> on thumbs
+        </li>
+        <li>Screen reader announcements for value changes</li>
+        <li>Proper focus management on thumb elements</li>
+        <li>Support for disabled states</li>
+        <li>
+          HTML form integration through
+          <code>ControlValueAccessor</code>
+          (<code>ngModel</code> / <code>formControlName</code>)
+        </li>
+        <li>Locale-aware value formatting via <code>format-options</code></li>
+      </ul>
+      <p class="av-doc-prose__description">
+        Associate a visible <code>av-label</code> or set <code>aria-label</code> on
+        <code>div[av-slider]</code> when no visible label is present.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Props for <code>div[av-slider]</code>.
+        <code>span[av-slider-output]</code>, <code>div[av-slider-track]</code>, and
+        <code>div[av-slider-fill]</code> project content / render the track and have no inputs.
+        Compose with shared <code>label[av-label]</code> when a visible label is needed.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+
+      <h3 class="av-doc-prose__subheading" id="api-thumb">av-slider-thumb</h3>
+      <app-doc-api-table [props]="thumbApiProps" />
+    </section>
+  </div>
+</app-doc-page>

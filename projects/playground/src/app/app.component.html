@@ -1,0 +1,141 @@
+<div class="av-playground">
+  <aside class="av-playground__sidebar bg-surface shadow-surface rounded-2xl p-6">
+    <h1 class="text-xl font-semibold text-foreground">Avesra Playground</h1>
+    <p class="mt-1 text-sm text-muted">Live component development sandbox.</p>
+
+    <section class="av-playground__theme mt-6">
+      <h2 class="text-sm font-medium text-muted">Theme</h2>
+
+      <div class="av-playground__swatches mt-3">
+        <span class="av-playground__swatch bg-accent" title="accent"></span>
+        <span class="av-playground__swatch bg-success" title="success"></span>
+        <span class="av-playground__swatch bg-warning" title="warning"></span>
+        <span class="av-playground__swatch bg-danger" title="danger"></span>
+        <span class="av-playground__swatch bg-default" title="default"></span>
+      </div>
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        <button av-button size="sm" variant="secondary" (click)="theme.setMode('light')">
+          Light
+        </button>
+        <button av-button size="sm" variant="secondary" (click)="theme.setMode('dark')">
+          Dark
+        </button>
+        <button av-button size="sm" variant="tertiary" (click)="theme.setMode('system')">
+          System
+        </button>
+        <button av-button size="sm" variant="outline" (click)="theme.toggle()">Toggle</button>
+      </div>
+
+      <div class="mt-3 flex flex-wrap gap-2">
+        <button av-button size="sm" variant="secondary" (click)="theme.setDesignTheme('default')">
+          Default
+        </button>
+      </div>
+
+      <p class="mt-4 text-xs text-muted">
+        Mode: <strong class="text-foreground">{{ theme.mode() }}</strong>
+        · Resolved: <strong class="text-foreground">{{ theme.colorScheme() }}</strong>
+        · Design: <strong class="text-foreground">{{ theme.designTheme() }}</strong>
+      </p>
+    </section>
+  </aside>
+
+  <main class="av-playground__canvas space-y-8 bg-surface shadow-surface rounded-2xl p-8">
+    <header class="space-y-2">
+      <h2 class="text-lg font-semibold text-foreground">Tailwind `dark:` demo</h2>
+      <p class="text-sm text-muted">
+        Use the theme controls on the left. These panels use raw
+        <code class="text-foreground">dark:</code> utilities — not Avesra token classes.
+      </p>
+    </header>
+
+    <section class="grid gap-4 md:grid-cols-2">
+      <article
+        class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-700 dark:bg-zinc-900 dark:shadow-zinc-950/40"
+      >
+        <p class="text-xs font-medium tracking-wide text-zinc-500 uppercase dark:text-zinc-400">
+          Card A
+        </p>
+        <h3 class="mt-2 text-base font-semibold text-zinc-900 dark:text-zinc-50">
+          bg-white → dark:bg-zinc-900
+        </h3>
+        <p class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+          Border, background, and text all flip when
+          <code class="text-zinc-800 dark:text-zinc-100">dark:</code> is active on
+          <code class="text-zinc-800 dark:text-zinc-100">&lt;html&gt;</code>.
+        </p>
+      </article>
+
+      <article
+        class="rounded-2xl border border-blue-200 bg-blue-50 p-6 dark:border-blue-900 dark:bg-blue-950/60"
+      >
+        <p class="text-xs font-medium tracking-wide text-blue-700 uppercase dark:text-blue-300">
+          Card B
+        </p>
+        <h3 class="mt-2 text-base font-semibold text-blue-950 dark:text-blue-50">
+          Colored surface
+        </h3>
+        <p class="mt-2 text-sm leading-relaxed text-blue-800 dark:text-blue-200">
+          <code class="text-blue-900 dark:text-blue-100">bg-blue-50 dark:bg-blue-950/60</code>
+        </p>
+      </article>
+    </section>
+
+    <section
+      class="rounded-2xl border border-dashed border-zinc-300 bg-zinc-50 p-6 dark:border-zinc-600 dark:bg-zinc-950"
+    >
+      <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Utilities mix</h3>
+
+      <div class="mt-4 flex flex-wrap items-center gap-3">
+        <span
+          class="rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-200"
+        >
+          dark:bg-emerald-900/50
+        </span>
+        <span
+          class="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-900 dark:bg-amber-900/40 dark:text-amber-100"
+        >
+          dark:bg-amber-900/40
+        </span>
+        <span class="text-sm text-zinc-500 line-through dark:text-emerald-300 dark:no-underline">
+          muted in light · emerald in dark
+        </span>
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <button av-button class="dark:ring-2 dark:ring-sky-400/60">Primary + dark ring</button>
+        <button av-button variant="secondary" class="dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100">
+          Secondary override
+        </button>
+        <button
+          av-button
+          variant="tertiary"
+          class="dark:hover:bg-zinc-800 dark:hover:text-white"
+        >
+          Tertiary hover
+        </button>
+      </div>
+    </section>
+
+    <section class="rounded-2xl border border-border bg-surface p-6 shadow-surface">
+      <h3 class="text-sm font-semibold text-foreground">Compare: Avesra tokens vs `dark:`</h3>
+      <div class="mt-4 grid gap-4 md:grid-cols-2">
+        <div class="rounded-xl bg-surface-secondary p-4">
+          <p class="text-xs text-muted uppercase">Avesra tokens</p>
+          <p class="mt-1 text-sm text-foreground">bg-surface-secondary · text-foreground</p>
+          <p class="mt-2 text-xs text-muted">Follows --av-* variables automatically.</p>
+        </div>
+        <div
+          class="rounded-xl bg-white p-4 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"
+        >
+          <p class="text-xs text-zinc-500 uppercase dark:text-zinc-400">Raw dark:</p>
+          <p class="mt-1 text-sm">bg-white dark:bg-zinc-800</p>
+          <p class="mt-2 text-xs text-zinc-600 dark:text-zinc-300">
+            Explicit Tailwind utilities per mode.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>

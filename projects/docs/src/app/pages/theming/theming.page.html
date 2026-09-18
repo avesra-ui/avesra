@@ -1,0 +1,385 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header id="overview">
+      <h1 class="av-doc-prose__title">Theming</h1>
+      <p class="av-doc-prose__description">
+        Design tokens in OKLCH, mapped to Tailwind utilities. One stylesheet controls every
+        component.
+      </p>
+    </header>
+
+    <p class="text-sm leading-7 text-muted">
+      An Avesra theme is a set of
+      <code>--av-*</code>
+      variables in
+      <code>&#64;avesra/styles</code>.
+      Each one is mapped to a Tailwind color through
+      <code>&#64;theme inline</code>,
+      so
+      <code>--av-accent</code>
+      becomes
+      <code>bg-accent</code>.
+      Redefining the variable under
+      <code>[data-av-theme="dark"]</code>
+      — or under any container class — retints every component underneath it, with no rebuild and
+      no per-component configuration.
+    </p>
+
+    <p class="text-sm leading-7 text-muted">There are three ways to get a theme:</p>
+    <ul class="av-doc-prose__list">
+      <li>
+        <strong class="text-foreground">Import the package.</strong>
+        Tailwind first, then
+        <code>&#64;avesra/styles</code>
+        — see
+        <a routerLink="/docs/installation">Installation</a>.
+      </li>
+      <li>
+        <strong class="text-foreground">Pick a preset.</strong>
+        <code>default</code>
+        is Avesra. Docs showcase presets (sky, lavender, …) load from
+        <code>projects/docs/src/themes/</code>.
+        Switch with
+        <code>setDesignTheme()</code>
+        or the docs picker.
+      </li>
+      <li>
+        <strong class="text-foreground">Override tokens.</strong>
+        Redefine
+        <code>--av-*</code>
+        in your stylesheet. The guide below shows the file, line by line.
+      </li>
+    </ul>
+
+    <section class="av-doc-prose__section" id="how-it-works">
+      <h2 class="av-doc-prose__heading">How it works</h2>
+      <p class="av-doc-prose__description">
+        This is the whole consumer file. Paste it into your global CSS and every component is
+        themed.
+      </p>
+      <app-doc-code-block [rawCode]="snippets.styles" lang="css" variant="anatomy" />
+      <app-doc-code-block [rawCode]="snippets.appConfig" lang="typescript" variant="anatomy" />
+
+      <h3 class="av-doc-prose__subheading">Line by line</h3>
+      <p class="av-doc-prose__description">
+        Six parts, in the order they matter. The last line of every entry says what breaks without
+        it.
+      </p>
+      <ol class="mt-2 flex flex-col gap-5">
+        @for (step of steps; track step.title; let index = $index) {
+          <li class="flex flex-col gap-2">
+            <p class="text-sm font-medium text-foreground">
+              {{ index + 1 }}.
+              <code>{{ step.code }}</code>
+            </p>
+            <p class="text-sm font-semibold text-foreground">{{ step.title }}</p>
+            <p class="text-sm leading-6 text-muted">{{ step.body }}</p>
+            <p class="text-sm leading-6 text-muted">
+              <strong class="font-medium text-foreground">Without it</strong>
+              — {{ step.without }}
+            </p>
+          </li>
+        }
+      </ol>
+
+      <p class="av-doc-prose__description">
+        Default Avesra values, light and dark. Only the values change — component classes stay the
+        same.
+      </p>
+      <app-doc-code-block [rawCode]="snippets.defaultTokens" lang="css" variant="anatomy" />
+      <app-doc-code-block [rawCode]="snippets.themeInline" lang="css" variant="anatomy" />
+
+      <div class="rounded-xl border border-border bg-surface p-5">
+        <p class="text-sm font-semibold text-foreground">Why OKLCH and not HSL or HEX?</p>
+        <p class="mt-2 text-sm leading-6 text-muted">
+          Lightness is perceptual: the same lightness looks equally light at any hue, so a palette
+          stays balanced when you shift it. Interpolation stays clean —
+          <code>color-mix()</code>
+          and opacity modifiers do not drift toward grey the way HSL does.
+        </p>
+      </div>
+    </section>
+
+    <section class="av-doc-prose__section" id="convention">
+      <h2 class="av-doc-prose__heading">Convention</h2>
+      <p class="av-doc-prose__description">
+        Tokens come in pairs: a surface and the text that sits on it. The background suffix is
+        dropped, so
+        <code>--av-accent</code>
+        is the surface and
+        <code>--av-accent-foreground</code>
+        is the text on top of it.
+      </p>
+      <app-doc-code-block [rawCode]="snippets.convention" lang="css" variant="import" />
+
+      <h3 class="av-doc-prose__subheading">Every pair, rendered</h3>
+      <p class="av-doc-prose__description">
+        These are real utilities on real elements — the contrast you see is the contrast you get.
+      </p>
+      <div class="grid gap-3 sm:grid-cols-2">
+        @for (pair of pairs; track pair.surface) {
+          <div class="overflow-hidden rounded-xl border border-border">
+            <div class="flex min-h-16 items-center justify-between gap-3 px-4 py-3 {{ pair.surfaceClass }}">
+              <span class="text-sm font-medium">Aa</span>
+              <code class="text-xs opacity-80">{{ pair.surface }}</code>
+            </div>
+            <div class="flex min-h-12 items-center justify-between gap-3 px-4 py-2 {{ pair.foregroundClass }}">
+              <span class="text-xs">Aa</span>
+              <code class="text-xs opacity-80">{{ pair.foreground }}</code>
+            </div>
+          </div>
+        }
+      </div>
+
+      <h3 class="av-doc-prose__subheading">Tokens or raw utility classes?</h3>
+      <p class="av-doc-prose__description">
+        Prefer tokens. They react to dark mode and to scoped overrides on their own:
+      </p>
+      <app-doc-code-block [rawCode]="snippets.tokenUsage" lang="html" variant="import" />
+      <p class="av-doc-prose__description">
+        Raw Tailwind colors work too, but you own every dark-mode variant by hand and lose scoped
+        theming:
+      </p>
+      <app-doc-code-block [rawCode]="snippets.rawUtilities" lang="html" variant="import" />
+    </section>
+
+    <section class="av-doc-prose__section" id="token-reference">
+      <h2 class="av-doc-prose__heading">Token reference</h2>
+      <p class="av-doc-prose__description">
+        Core tokens with their Default (Avesra) light values. Tailwind utilities map through
+        <code>&#64;theme inline</code>.
+      </p>
+
+      @for (group of tokenGroups; track group.title) {
+        <div>
+          <h3 class="av-doc-prose__subheading">{{ group.title }}</h3>
+          <div class="overflow-x-auto rounded-xl border border-border">
+            <table class="w-full min-w-[36rem] text-left text-sm">
+              <thead class="border-b border-border bg-default text-muted">
+                <tr>
+                  <th class="px-3 py-2 font-medium">Token</th>
+                  <th class="px-3 py-2 font-medium">Utility</th>
+                  <th class="px-3 py-2 font-medium">Used for</th>
+                  <th class="px-3 py-2 font-medium">Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of group.rows; track row.token) {
+                  <tr class="border-b border-border last:border-0">
+                    <td class="px-3 py-2"><code>{{ row.token }}</code></td>
+                    <td class="px-3 py-2"><code>{{ row.utility }}</code></td>
+                    <td class="px-3 py-2 text-muted">{{ row.meaning }}</td>
+                    <td class="px-3 py-2 text-muted">{{ row.value }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      }
+    </section>
+
+    <section class="av-doc-prose__section" id="radius">
+      <h2 class="av-doc-prose__heading">Radius &amp; scale</h2>
+      <p class="av-doc-prose__description">
+        <code>--av-radius</code>
+        is the single knob for corner rounding. The utilities below are derived from it, so
+        changing one value reshapes every component. Default Avesra is
+        <code>0.5rem</code>.
+      </p>
+      <div class="flex flex-wrap items-center gap-2">
+        <code class="text-sm text-muted">--av-radius:</code>
+        @for (option of radiusOptions; track option.value) {
+          <span
+            av-chip
+            size="sm"
+            [color]="previewRadius() === option.value ? 'accent' : 'default'"
+            [variant]="previewRadius() === option.value ? 'primary' : 'secondary'"
+            [label]="option.label"
+            (click)="setPreviewRadius(option.value)"
+          ></span>
+        }
+        <button
+          av-button
+          type="button"
+          size="sm"
+          variant="tertiary"
+          class="ms-auto"
+          (click)="copyRadiusDeclaration()"
+        >
+          {{ radiusCopied() ? 'Copied' : 'Copy declaration' }}
+        </button>
+      </div>
+      <div
+        class="mt-4 rounded-xl border border-border bg-background p-6"
+        [style.--av-radius]="previewRadius()"
+      >
+        <div class="flex flex-wrap items-center gap-4">
+          <div class="size-10 bg-foreground rounded-sm"></div>
+          <div class="size-10 bg-foreground rounded-md"></div>
+          <div class="size-10 bg-foreground rounded-lg"></div>
+          <div class="size-10 bg-foreground rounded-xl"></div>
+          <button av-button type="button">Button</button>
+          <div
+            class="flex h-20 min-w-40 items-start rounded-lg border border-border bg-surface px-3 py-2"
+          >
+            <span class="text-xs text-muted">Card</span>
+          </div>
+        </div>
+      </div>
+      <div class="overflow-x-auto rounded-xl border border-border">
+        <table class="w-full min-w-[28rem] text-left text-sm">
+          <thead class="border-b border-border bg-default text-muted">
+            <tr>
+              <th class="px-3 py-2 font-medium">Utility</th>
+              <th class="px-3 py-2 font-medium">Definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of radiusRows; track row.utility) {
+              <tr class="border-b border-border last:border-0">
+                <td class="px-3 py-2"><code>{{ row.utility }}</code></td>
+                <td class="px-3 py-2 text-muted"><code>{{ row.definition }}</code></td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="av-doc-prose__section" id="design-presets">
+      <h2 class="av-doc-prose__heading">Design presets</h2>
+      <p class="av-doc-prose__description">
+        Presets change accent, surfaces, and radius through
+        <code>data-av-design-theme</code>.
+        Built-in Avesra tokens ship with the
+        <code>default</code>
+        preset only; the docs site loads additional showcase presets from
+        <code>projects/docs/src/themes/</code>.
+        The picker in the header uses the same
+        <code>AvThemeService</code>.
+      </p>
+      <div class="flex flex-wrap gap-2">
+        @for (preset of presets; track preset.id) {
+          <span
+            av-chip
+            size="sm"
+            [color]="theme.designTheme() === preset.id ? 'accent' : 'default'"
+            [variant]="theme.designTheme() === preset.id ? 'primary' : 'secondary'"
+            [label]="preset.label"
+            (click)="setPreset(preset.id)"
+          ></span>
+        }
+      </div>
+      <p class="text-sm text-muted">
+        Active:
+        <strong class="font-medium text-foreground">{{ theme.designTheme() }}</strong>
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="dark-mode">
+      <h2 class="av-doc-prose__heading">Dark mode</h2>
+      <p class="av-doc-prose__description">
+        Dark mode is the
+        <code>[data-av-theme="dark"]</code>
+        /
+        <code>.av-dark</code>
+        block and nothing else. No component knows which mode is active: they all read the same
+        token names, and the values change underneath them.
+      </p>
+      <p class="av-doc-prose__description">
+        Two pieces make it work —
+        <code>dark:</code>
+        utilities (bound to
+        <code>.dark</code>
+        /
+        <code>[data-av-theme="dark"]</code>
+        by
+        <code>&#64;avesra/styles</code>
+        ), token overrides under the same selectors, and
+        <code>AvThemeService</code>
+        puts them on
+        <code>&lt;html&gt;</code>
+        and persists the choice.
+      </p>
+      <app-doc-code-block [rawCode]="snippets.service" lang="typescript" variant="anatomy" />
+      <app-component-preview [demo]="demos.modes" />
+    </section>
+
+    <section class="av-doc-prose__section" id="customizing">
+      <h2 class="av-doc-prose__heading">Customizing</h2>
+      <p class="av-doc-prose__description">
+        Three things you are likely to want: a new color, a token overridden for one part of the
+        app, and a theme that follows a route.
+      </p>
+
+      <h3 class="av-doc-prose__subheading">Adding a new color</h3>
+      <p class="av-doc-prose__description">
+        Declare the raw value, override it under dark, then map it — the same three steps every
+        built-in token goes through.
+      </p>
+      <app-doc-code-block [rawCode]="snippets.addColor" lang="css" variant="anatomy" />
+
+      <h3 class="av-doc-prose__subheading">Overriding tokens in one scope</h3>
+      <p class="av-doc-prose__description">
+        Because
+        <code>&#64;theme inline</code>
+        emits
+        <code>var(--av-accent)</code>,
+        any container can redefine a token for its subtree.
+      </p>
+      <app-doc-code-block [rawCode]="snippets.scope" lang="css" variant="anatomy" />
+      <app-doc-code-block [rawCode]="snippets.scopeUsage" lang="html" variant="import" />
+
+      <h3 class="av-doc-prose__subheading">A theme per route</h3>
+      <p class="av-doc-prose__description">
+        Put the override class on a layout host and everything rendered through its outlet
+        inherits it.
+      </p>
+      <app-doc-code-block [rawCode]="snippets.routeTheme" lang="typescript" variant="anatomy" />
+
+      <h3 class="av-doc-prose__subheading">Other color formats</h3>
+      <p class="av-doc-prose__description">
+        The raw tokens hold plain CSS colors, so RGB, HSL, and HEX all work. Keep the
+        <code>&#64;theme inline</code>
+        mapping as it is.
+      </p>
+      <app-doc-code-block [rawCode]="snippets.colorFormats" lang="css" variant="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="troubleshooting">
+      <h2 class="av-doc-prose__heading">Troubleshooting</h2>
+      <p class="av-doc-prose__description">
+        Every entry below is a real failure mode of this setup, with the line that causes it.
+      </p>
+      <div class="flex flex-col gap-4">
+        @for (issue of issues; track issue.title) {
+          <div class="rounded-xl border border-border bg-surface p-5">
+            <p class="text-sm font-semibold text-foreground">{{ issue.title }}</p>
+            <p class="mt-2 text-sm leading-6 text-muted">
+              <strong class="font-medium text-foreground">Cause</strong>
+              — {{ issue.cause }}
+            </p>
+            <p class="mt-1 text-sm leading-6 text-muted">
+              <strong class="font-medium text-foreground">Fix</strong>
+              — {{ issue.fix }}
+            </p>
+          </div>
+        }
+      </div>
+
+      <div class="flex justify-end">
+        <button
+          av-button
+          type="button"
+          size="sm"
+          variant="secondary"
+          routerLink="/docs/installation"
+        >
+          Next: Installation
+          <app-icon icon="solar:alt-arrow-right-linear" size="16" />
+        </button>
+      </div>
+    </section>
+  </div>
+</app-doc-page>

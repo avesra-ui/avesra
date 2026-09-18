@@ -1,0 +1,18 @@
+<section class="av-component-preview">
+  @if (title()) {
+    <p class="av-component-preview__title">{{ title() }}</p>
+  }
+
+  <div class="av-component-preview__frame">
+    <div class="av-component-preview__sandbox">
+      <ng-container *ngComponentOutlet="demoComponent()" />
+    </div>
+
+    <div class="av-component-preview__code">
+      <app-doc-code-block
+        [rawCode]="demoSource()"
+        [lang]="demoLang()"
+      />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,130 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Meter</h1>
+      <p class="av-doc-prose__description">
+        A meter represents a quantity within a known range, or a fractional value.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="meter" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the Meter parts and compose them with attribute selectors on
+        <code>&lt;div&gt;</code>, <code>&lt;span&gt;</code>, and <code>&lt;label&gt;</code> hosts.
+        Project <code>av-label</code>, <code>av-meter-output</code>,
+        <code>av-meter-track</code>, and <code>av-meter-fill</code> inside
+        <code>div[av-meter]</code>.
+      </p>
+      <app-doc-snippet component="meter" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="sizes">
+      <h2 class="av-doc-prose__heading">Sizes</h2>
+      <app-component-preview [demo]="demos.sizes" />
+    </section>
+
+    <section class="av-doc-prose__section" id="colors">
+      <h2 class="av-doc-prose__heading">Colors</h2>
+      <app-component-preview [demo]="demos.colors" />
+    </section>
+
+    <section class="av-doc-prose__section" id="without-label">
+      <h2 class="av-doc-prose__heading">Without Label</h2>
+      <p class="av-doc-prose__description">
+        When no visible label is needed, set <code>aria-label</code> on
+        <code>div[av-meter]</code> for accessibility.
+      </p>
+      <app-component-preview [demo]="demos.withoutLabel" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-value">
+      <h2 class="av-doc-prose__heading">Custom Value Scale</h2>
+      <p class="av-doc-prose__description">
+        Use <code>min</code>, <code>max</code>, and <code>format-options</code> to customize the
+        value range and display format.
+      </p>
+      <app-component-preview [demo]="demos.customValue" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on individual Meter parts — for example
+        <code>av-meter-track</code> and <code>av-meter-fill</code>.
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Meter classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The Meter component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base &amp; Element Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-meter</code> — Base container (grid layout)</li>
+        <li><code>.av-meter__output</code> — Value text display</li>
+        <li><code>.av-meter__track</code> — Track background</li>
+        <li><code>.av-meter__fill</code> — Filled portion of the track</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Size Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-meter--sm</code> — Small size variant (thinner track)</li>
+        <li><code>.av-meter--md</code> — Medium size variant (default)</li>
+        <li><code>.av-meter--lg</code> — Large size variant (thicker track)</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Color Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-meter--default</code> — Default color variant</li>
+        <li><code>.av-meter--accent</code> — Accent color variant</li>
+        <li><code>.av-meter--success</code> — Success color variant</li>
+        <li><code>.av-meter--warning</code> — Warning color variant</li>
+        <li><code>.av-meter--danger</code> — Danger color variant</li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Props for <code>div[av-meter]</code>.
+        <code>span[av-meter-output]</code>, <code>div[av-meter-track]</code>, and
+        <code>div[av-meter-fill]</code> project content / render the bar and have no inputs.
+        Compose with shared <code>label[av-label]</code> when a visible label is needed.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

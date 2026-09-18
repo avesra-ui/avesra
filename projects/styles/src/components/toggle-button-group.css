@@ -1,0 +1,95 @@
+/* av-toggle-button-group — groups multiple toggle buttons into a unified control */
+
+.av-toggle-button-group {
+  @apply inline-flex h-auto w-fit items-center justify-center gap-0;
+}
+
+.av-toggle-button-group--horizontal {
+  @apply flex-row;
+}
+
+.av-toggle-button-group--vertical {
+  @apply flex-col;
+}
+
+.av-toggle-button-group--full-width {
+  @apply w-full;
+}
+
+.av-toggle-button-group .av-toggle-button {
+  @apply rounded-none;
+}
+
+.av-toggle-button-group--horizontal .av-toggle-button:first-child {
+  @apply rounded-s-3xl;
+}
+
+.av-toggle-button-group--horizontal .av-toggle-button:last-child {
+  @apply rounded-e-3xl;
+}
+
+.av-toggle-button-group--horizontal .av-toggle-button:first-child:last-child {
+  @apply rounded-3xl;
+}
+
+.av-toggle-button-group--vertical .av-toggle-button:first-child {
+  @apply rounded-t-3xl;
+}
+
+.av-toggle-button-group--vertical .av-toggle-button:last-child {
+  @apply rounded-b-3xl;
+}
+
+.av-toggle-button-group--vertical .av-toggle-button:first-child:last-child {
+  @apply rounded-3xl;
+}
+
+.av-toggle-button-group .av-toggle-button:active,
+.av-toggle-button-group .av-toggle-button[data-pressed="true"] {
+  transform: none;
+}
+
+.av-toggle-button-group .av-toggle-button:focus-visible:not(:focus),
+.av-toggle-button-group .av-toggle-button[data-focus-visible="true"] {
+  --tw-ring-offset-width: 0px;
+  @apply ring-inset;
+}
+
+.av-toggle-button-group--full-width .av-toggle-button {
+  @apply flex-1;
+}
+
+.av-toggle-button-group__separator {
+  @apply rounded-sm bg-current opacity-15;
+  position: absolute;
+  pointer-events: none;
+
+  transition: opacity 150ms var(--ease-smooth);
+  @apply av-motion-reduce:transition-none;
+
+  .av-toggle-button-group--horizontal & {
+    left: -1px;
+    top: 25%;
+    width: 1px;
+    height: 50%;
+  }
+
+  .av-toggle-button-group--vertical & {
+    left: 25%;
+    top: -1px;
+    width: 50%;
+    height: 1px;
+  }
+}
+
+.av-toggle-button-group--detached {
+  @apply gap-1;
+}
+
+.av-toggle-button-group--detached .av-toggle-button {
+  @apply rounded-3xl;
+}
+
+.av-toggle-button-group--detached .av-toggle-button-group__separator {
+  display: none;
+}

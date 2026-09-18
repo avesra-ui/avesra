@@ -1,0 +1,100 @@
+<div class="av-home-showcase" [ngStyle]="accentStyle()">
+  <av-tabs
+    class="av-home-showcase__tabs"
+    [selectedKey]="selectedTab()"
+    (selectedKeyChange)="onTabChange($event)"
+  >
+    <div class="av-home-showcase__chrome">
+      <div class="av-tabs__list-container av-home-showcase__tablist">
+        <div av-tabs-list aria-label="Showcase views">
+          <span av-tabs-indicator></span>
+          @for (tab of tabs; track tab.id) {
+            <button
+              av-tabs-tab
+              class="whitespace-nowrap"
+              [id]="tab.id"
+              [disabled]="tab.disabled ?? false"
+            >
+              {{ tab.label }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="av-home-showcase__actions">
+        <div class="av-home-showcase__accents">
+          <div
+            class="av-home-showcase__swatches"
+            role="listbox"
+            aria-label="Color swatches"
+            aria-orientation="horizontal"
+          >
+            @for (accent of accents; track accent.id) {
+              <button
+                type="button"
+                class="av-home-showcase__swatch-item"
+                role="option"
+                [attr.aria-selected]="selectedAccent()?.id === accent.id"
+                [attr.data-selected]="selectedAccent()?.id === accent.id ? 'true' : null"
+                [style.--av-swatch-current]="accent.value"
+                [attr.aria-label]="accent.label"
+                (click)="selectAccent(accent)"
+              >
+                <span
+                  class="av-home-showcase__swatch"
+                  aria-hidden="true"
+                  [style.background-color]="accent.value"
+                ></span>
+                <span class="av-home-showcase__swatch-indicator" data-light-color="true" aria-hidden="true">
+                  <svg
+                    fill="none"
+                    viewBox="0 0 12 12"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="2.5 6 5 8.5 9.5 3" />
+                  </svg>
+                </span>
+              </button>
+            }
+          </div>
+
+          <!-- <a
+            av-button
+            variant="ghost"
+            size="sm"
+            icon-only
+            routerLink="/docs/theming"
+            class="av-home-showcase__themes"
+            aria-label="Open in theme builder"
+            avTooltip="Open in theme builder"
+          >
+            <app-icon icon="solar:palette-linear" size="16" />
+          </a> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="av-home-showcase__panel">
+      <div class="av-home-showcase__body">
+        <div av-tabs-panel id="components">
+          <app-home-components-panel />
+        </div>
+        <div av-tabs-panel id="dashboard">
+          <app-home-dashboard-panel />
+        </div>
+        <div av-tabs-panel id="mail">
+          <app-home-mail-panel />
+        </div>
+        <div av-tabs-panel id="chat">
+          <app-home-chat-panel />
+        </div>
+        <div av-tabs-panel id="finances">
+          <app-home-finances-panel />
+        </div>
+      </div>
+    </div>
+  </av-tabs>
+</div>

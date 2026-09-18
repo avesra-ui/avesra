@@ -1,0 +1,14 @@
+/* av-error-message component styles */
+
+.av-error-message {
+  @apply h-auto text-xs wrap-break-word text-danger;
+
+  /**
+   * Transitions
+   * CRITICAL: av-motion-reduce must be AFTER transition for correct override specificity
+   */
+  transition:
+    opacity 150ms var(--ease-out),
+    height 350ms var(--ease-smooth);
+  @apply av-motion-reduce:transition-none;
+}

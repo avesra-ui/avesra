@@ -1,0 +1,12 @@
+/* Docs-only design presets — showcase palettes for the documentation site */
+
+@import "./sky/index.css" layer(theme);
+@import "./lavender/index.css" layer(theme);
+@import "./mint/index.css" layer(theme);
+@import "./netflix/index.css" layer(theme);
+@import "./uber/index.css" layer(theme);
+@import "./spotify/index.css" layer(theme);
+@import "./coinbase/index.css" layer(theme);
+@import "./airbnb/index.css" layer(theme);
+@import "./discord/index.css" layer(theme);
+@import "./rabbit/index.css" layer(theme);

@@ -1,0 +1,13 @@
+/* av-switch-group — layout container for multiple switches */
+
+.av-switch-group {
+  @apply flex gap-4;
+}
+
+.av-switch-group--horizontal {
+  @apply flex-row flex-wrap;
+}
+
+.av-switch-group--vertical {
+  @apply flex-col;
+}

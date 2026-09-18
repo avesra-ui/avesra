@@ -1,0 +1,2 @@
+/* Sky design preset - overrides default tokens when data-av-design-theme="sky" */
+@import "./variables.css" layer(theme);

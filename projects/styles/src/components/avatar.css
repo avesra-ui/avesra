@@ -1,0 +1,85 @@
+/* av-avatar — user avatar with image and fallback */
+
+.av-avatar {
+  @apply relative flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-3xl bg-default;
+}
+
+.av-avatar__fallback {
+  @apply flex size-full items-center justify-center bg-default text-sm font-medium;
+}
+
+.av-avatar__image {
+  @apply absolute inset-0 aspect-square size-full object-cover;
+
+  /**
+   * Transitions
+   */
+  @apply opacity-0 transition-opacity duration-250 motion-reduce:transition-none;
+
+  &[data-loaded="true"] {
+    @apply opacity-100;
+  }
+}
+
+/* Size modifiers */
+.av-avatar--sm {
+  @apply size-8 rounded-2xl;
+}
+
+.av-avatar--md {
+  /* No styles as this is the default size */
+}
+
+.av-avatar--lg {
+  @apply size-12 rounded-3xl;
+
+  .av-avatar__fallback {
+    @apply text-base;
+  }
+}
+
+/* Color modifiers for fallback */
+.av-avatar__fallback--accent {
+  @apply text-accent-soft-foreground;
+}
+
+.av-avatar__fallback--default {
+  @apply text-default-soft-foreground;
+}
+
+.av-avatar__fallback--success {
+  @apply text-success-soft-foreground;
+}
+
+.av-avatar__fallback--warning {
+  @apply text-warning-soft-foreground;
+}
+
+.av-avatar__fallback--danger {
+  @apply text-danger-soft-foreground;
+}
+
+/* Variant modifiers */
+.av-avatar--soft {
+  @apply bg-transparent;
+}
+
+.av-avatar--soft .av-avatar__fallback--accent {
+  @apply bg-accent-soft text-accent-soft-foreground;
+}
+
+.av-avatar--soft .av-avatar__fallback--success {
+  @apply bg-success-soft text-success-soft-foreground;
+}
+
+.av-avatar--soft .av-avatar__fallback--warning {
+  @apply bg-warning-soft text-warning-soft-foreground;
+}
+
+.av-avatar--soft .av-avatar__fallback--default {
+  @apply bg-default-soft text-default-soft-foreground;
+}
+
+.av-avatar--soft .av-avatar__fallback--danger {
+  @apply bg-danger-soft text-danger-soft-foreground;
+}

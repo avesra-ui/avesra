@@ -1,0 +1,228 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Switch</h1>
+      <p class="av-doc-prose__description">A toggle switch component for boolean states</p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="switch" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Compose Switch with attribute selectors on
+        <code>av-switch</code>, <code>av-switch-control</code>, <code>av-switch-thumb</code>, and
+        <code>av-switch-content</code>. Optional
+        <code>av-switch-icon</code>, <code>av-description</code>, and layout via
+        <code>av-switch-group</code>.
+      </p>
+      <app-doc-snippet component="switch" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="sizes">
+      <h2 class="av-doc-prose__heading">Sizes</h2>
+      <app-component-preview [demo]="demos.sizes" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-icons">
+      <h2 class="av-doc-prose__heading">With Icons</h2>
+      <p class="av-doc-prose__description">
+        Project icons into <code>av-switch-icon</code> inside the thumb. Bind
+        <code>[(selected)]</code> to swap icons by state.
+      </p>
+      <app-component-preview [demo]="demos.withIcons" />
+    </section>
+
+    <section class="av-doc-prose__section" id="disabled">
+      <h2 class="av-doc-prose__heading">Disabled</h2>
+      <app-component-preview [demo]="demos.disabled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="without-label">
+      <h2 class="av-doc-prose__heading">Without Label</h2>
+      <p class="av-doc-prose__description">
+        Omit label text and pass <code>aria-label</code> on <code>av-switch</code> for an accessible
+        name.
+      </p>
+      <app-component-preview [demo]="demos.withoutLabel" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-description">
+      <h2 class="av-doc-prose__heading">With Description</h2>
+      <p class="av-doc-prose__description">
+        Add <code>av-description</code> inside <code>av-switch-content</code> for field-level help
+        text.
+      </p>
+      <app-component-preview [demo]="demos.withDescription" />
+    </section>
+
+    <section class="av-doc-prose__section" id="default-selected">
+      <h2 class="av-doc-prose__heading">Default Selected</h2>
+      <app-component-preview [demo]="demos.defaultSelected" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled">
+      <h2 class="av-doc-prose__heading">Controlled</h2>
+      <p class="av-doc-prose__description">
+        Bind <code>[(selected)]</code> for two-way control over the on/off state.
+      </p>
+      <app-component-preview [demo]="demos.controlled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="label-position">
+      <h2 class="av-doc-prose__heading">Label Position</h2>
+      <p class="av-doc-prose__description">
+        Reorder <code>av-switch-control</code> and <code>av-switch-content</code> to place the label
+        before or after the track.
+      </p>
+      <app-component-preview [demo]="demos.labelPosition" />
+    </section>
+
+    <section class="av-doc-prose__section" id="group">
+      <h2 class="av-doc-prose__heading">Group</h2>
+      <p class="av-doc-prose__description">
+        Use <code>av-switch-group</code> to lay out multiple switches (vertical by default).
+      </p>
+      <app-component-preview [demo]="demos.group" />
+    </section>
+
+    <section class="av-doc-prose__section" id="group-horizontal">
+      <h2 class="av-doc-prose__heading">Group Horizontal</h2>
+      <p class="av-doc-prose__description">
+        Set <code>orientation="horizontal"</code> on <code>av-switch-group</code>.
+      </p>
+      <app-component-preview [demo]="demos.groupHorizontal" />
+    </section>
+
+    <section class="av-doc-prose__section" id="form-integration">
+      <h2 class="av-doc-prose__heading">Form Integration</h2>
+      <p class="av-doc-prose__description">
+        Use <code>name</code> and <code>value</code> for native form submission. Switch also
+        implements <code>ControlValueAccessor</code> for reactive forms via
+        <code>formControlName</code>.
+      </p>
+      <app-component-preview [demo]="demos.form" />
+    </section>
+
+    <section class="av-doc-prose__section" id="render-props">
+      <h2 class="av-doc-prose__heading">Render Props</h2>
+      <p class="av-doc-prose__description">
+        Angular has no React-style render props. Bind <code>[(selected)]</code> and interpolate
+        state in the template instead.
+      </p>
+      <app-component-preview [demo]="demos.renderProps" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-styles">
+      <h2 class="av-doc-prose__heading">Custom Styles</h2>
+      <app-component-preview [demo]="demos.customStyles" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on <code>av-switch</code>, <code>av-switch-control</code>,
+        <code>av-switch-thumb</code>, and <code>av-switch-group</code>. Use
+        <code>group</code> / <code>group-data-[selected=true]:</code> for selected-state utilities
+        (see Custom Styles above), or customize the group layout:
+      </p>
+      <app-doc-snippet [source]="tailwindGroupExample" lang="html" section="anatomy" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Switch classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+
+      <h4 class="av-doc-prose__subheading">Switch Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-switch</code> — Base switch container</li>
+        <li><code>.av-switch__content</code> — Label and description container</li>
+        <li><code>.av-switch__control</code> — Switch control track</li>
+        <li><code>.av-switch__thumb</code> — Thumb that moves</li>
+        <li><code>.av-switch__icon</code> — Optional icon inside the thumb</li>
+        <li><code>.av-switch__input</code> — Visually hidden native input</li>
+        <li><code>.av-switch--sm</code> — Small size variant</li>
+        <li><code>.av-switch--md</code> — Medium size variant (default)</li>
+        <li><code>.av-switch--lg</code> — Large size variant</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">SwitchGroup Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-switch-group</code> — Switch group container</li>
+        <li><code>.av-switch-group--horizontal</code> — Horizontal layout</li>
+        <li><code>.av-switch-group--vertical</code> — Vertical layout (default)</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">
+        The switch supports both CSS pseudo-classes and data attributes for flexibility:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Selected</strong>: <code>[data-selected="true"]</code> or
+          <code>[aria-checked="true"]</code> (thumb position and background color change)
+        </li>
+        <li>
+          <strong>Hover</strong>: <code>:hover</code> or <code>[data-hovered="true"]</code>
+        </li>
+        <li>
+          <strong>Focus</strong>: <code>:focus-visible</code> or
+          <code>[data-focus-visible="true"]</code>
+        </li>
+        <li>
+          <strong>Disabled</strong>: <code>[data-disabled="true"]</code> or
+          <code>[aria-disabled="true"]</code>
+        </li>
+        <li>
+          <strong>Pressed</strong>: <code>:active</code> or <code>[data-pressed="true"]</code>
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+
+      <h3 class="av-doc-prose__subheading">Switch</h3>
+      <p class="av-doc-prose__description">
+        Props for <code>div[av-switch]</code>. Implements <code>ControlValueAccessor</code> for
+        Angular forms.
+        <code>span[av-switch-control]</code>, <code>span[av-switch-thumb]</code>,
+        <code>span[av-switch-icon]</code>, and <code>span[av-switch-content]</code> project content
+        and have no inputs.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+
+      <h3 class="av-doc-prose__subheading">SwitchGroup</h3>
+      <p class="av-doc-prose__description">Props for <code>av-switch-group</code>.</p>
+      <app-doc-api-table [props]="switchGroupApiProps" />
+    </section>
+  </div>
+</app-doc-page>

@@ -1,0 +1,168 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">ButtonGroup</h1>
+      <p class="av-doc-prose__description">
+        Group related buttons together with consistent styling and spacing
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="button-group" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <app-doc-snippet component="button-group" section="anatomy" />
+      <p class="av-doc-prose__description">
+        <strong>ButtonGroup</strong> wraps multiple Button components together, applying consistent
+        styling, spacing, and automatic border radius handling. It uses context to pass
+        <code>size</code>, <code>variant</code>, and <code>disabled</code> to all child buttons.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="variants">
+      <h2 class="av-doc-prose__heading">Variants</h2>
+      <app-component-preview [demo]="demos.variants" />
+    </section>
+
+    <section class="av-doc-prose__section" id="sizes">
+      <h2 class="av-doc-prose__heading">Sizes</h2>
+      <app-component-preview [demo]="demos.sizes" />
+    </section>
+
+    <section class="av-doc-prose__section" id="orientation">
+      <h2 class="av-doc-prose__heading">Orientation</h2>
+      <p class="av-doc-prose__description">
+        Use the <code>orientation</code> prop to arrange buttons horizontally or vertically.
+      </p>
+      <app-component-preview [demo]="demos.orientation" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-icons">
+      <h2 class="av-doc-prose__heading">With Icons</h2>
+      <app-component-preview [demo]="demos.withIcons" />
+    </section>
+
+    <section class="av-doc-prose__section" id="full-width">
+      <h2 class="av-doc-prose__heading">Full Width</h2>
+      <app-component-preview [demo]="demos.fullWidth" />
+    </section>
+
+    <section class="av-doc-prose__section" id="disabled">
+      <h2 class="av-doc-prose__heading">Disabled State</h2>
+      <app-component-preview [demo]="demos.disabled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="without-separator">
+      <h2 class="av-doc-prose__heading">Without Separator</h2>
+      <p class="av-doc-prose__description">
+        Simply omit the <code>av-button-group-separator</code> element from your buttons.
+      </p>
+      <app-component-preview [demo]="demos.withoutSeparator" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on the group and child buttons to customize color, radius, and spacing.
+      </p>
+      <app-component-preview [demo]="demos.customStyles" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the ButtonGroup classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The ButtonGroup component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-button-group</code> — Base button group container</li>
+        <li><code>.av-button-group--full-width</code> — Full width modifier</li>
+        <li><code>.av-button-group--horizontal</code> — Horizontal layout</li>
+        <li><code>.av-button-group--vertical</code> — Vertical layout</li>
+        <li><code>.av-button-group__separator</code> — Separator element between buttons</li>
+      </ul>
+      <p class="av-doc-prose__description">
+        The ButtonGroup component automatically applies border radius to buttons:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>First button gets rounded left/start edge</li>
+        <li>Last button gets rounded right/end edge</li>
+        <li>Middle buttons have no border radius</li>
+        <li>Single button gets full border radius on all edges</li>
+      </ul>
+      <p class="av-doc-prose__description">
+        Add <code>av-button-group-separator</code> inside each Button (except the first) to show
+        dividers between buttons.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="notes">
+      <h2 class="av-doc-prose__heading">Note</h2>
+      <ul class="av-doc-prose__list">
+        <li>
+          ButtonGroup uses context to pass <code>size</code>, <code>variant</code>, and
+          <code>disabled</code> to all child Button components
+        </li>
+        <li>
+          <strong>Only direct child buttons receive the ButtonGroup props</strong> — Buttons nested
+          inside other components (like Modal, Dropdown, etc.) will not inherit the group's props
+          even if they are descendants of the ButtonGroup
+        </li>
+        <li>
+          Individual Button components can override the group's <code>disabled</code> prop by
+          setting <code>[disabled]="false"</code>
+        </li>
+        <li>The component automatically handles border radius between buttons</li>
+        <li>
+          Add <code>av-button-group-separator</code> inside each Button (except the first) to show
+          dividers between buttons
+        </li>
+        <li>
+          Buttons in a group have their active/pressed scale transform removed for a more cohesive
+          appearance
+        </li>
+        <li>
+          When the group represents a single choice, consider
+          <a routerLink="/docs/components/toggle-button-group">Toggle Button Group</a> instead
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API Reference</h2>
+      <p class="av-doc-prose__description">
+        Compound API across <code>av-button-group</code>, child <code>button[av-button]</code>, and
+        optional <code>av-button-group-separator</code>.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

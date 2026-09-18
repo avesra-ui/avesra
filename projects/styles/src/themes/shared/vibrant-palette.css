@@ -1,0 +1,17 @@
+@layer theme {
+  /* Vibrant palette — more saturated soft foregrounds, less contrast */
+  [data-av-vibrant-palette="true"]:not(.av-dark):not([data-av-theme="dark"]) {
+    --av-accent-soft-foreground: color-mix(in oklab, var(--av-accent) 92%, var(--av-foreground) 8%);
+    --av-danger-soft-foreground: color-mix(in oklab, var(--av-danger) 92%, var(--av-foreground) 8%);
+    --av-warning-soft-foreground: color-mix(in oklab, var(--av-warning) 92%, var(--av-foreground) 8%);
+    --av-success-soft-foreground: color-mix(in oklab, var(--av-success) 92%, var(--av-foreground) 8%);
+  }
+
+  [data-av-vibrant-palette="true"].av-dark,
+  [data-av-vibrant-palette="true"][data-av-theme="dark"] {
+    --av-accent-soft-foreground: color-mix(in oklab, var(--av-accent) 92%, var(--av-foreground) 8%);
+    --av-danger-soft-foreground: color-mix(in oklab, var(--av-danger) 92%, var(--av-foreground) 8%);
+    --av-warning-soft-foreground: color-mix(in oklab, var(--av-warning) 92%, var(--av-foreground) 8%);
+    --av-success-soft-foreground: color-mix(in oklab, var(--av-success) 92%, var(--av-foreground) 8%);
+  }
+}

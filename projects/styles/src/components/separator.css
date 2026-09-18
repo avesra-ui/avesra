@@ -1,0 +1,79 @@
+/* av-separator — divider line */
+
+/* Base separator with default horizontal orientation */
+.av-separator {
+  @apply shrink-0 rounded-sm border-t-0 border-b-0 bg-separator;
+
+  /* Default size - horizontal orientation */
+  @apply h-px w-full;
+}
+
+/* Orientation variants */
+.av-separator--horizontal {
+  @apply h-px w-full;
+}
+
+.av-separator--vertical {
+  @apply h-auto min-h-2 w-px self-stretch;
+}
+
+/* Color variants */
+.av-separator--default {
+  @apply bg-separator;
+}
+
+.av-separator--secondary {
+  @apply bg-separator-secondary;
+}
+
+.av-separator--tertiary {
+  @apply bg-separator-tertiary;
+}
+
+.av-separator__container {
+  @apply flex items-center gap-3;
+}
+
+.av-separator__container--horizontal {
+  @apply w-full flex-row;
+}
+
+.av-separator__container--vertical {
+  @apply h-full flex-col justify-center;
+}
+
+.av-separator__line {
+  @apply shrink-0 grow;
+}
+
+.av-separator__line--horizontal {
+  @apply h-px;
+}
+
+.av-separator__line--vertical {
+  @apply w-px;
+}
+
+.av-separator__line--default {
+  @apply bg-separator;
+}
+
+.av-separator__line--secondary {
+  @apply bg-separator-secondary;
+}
+
+.av-separator__line--tertiary {
+  @apply bg-separator-tertiary;
+}
+
+.av-separator__content {
+  @apply inline-flex items-center justify-center text-center whitespace-nowrap text-muted;
+}
+
+.av-separator__content--horizontal {
+  @apply text-center;
+}
+
+.av-separator__content--vertical {
+  @apply text-center;
+}

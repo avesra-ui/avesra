@@ -1,0 +1,117 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Checkbox Group</h1>
+      <p class="av-doc-prose__description">Group of checkboxes with shared value, validation, and variant styling.</p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="checkbox-group" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the CheckboxGroup components and compose the parts with
+        <code>av-checkbox-group</code>, <code>av-checkbox</code>,
+        <code>av-checkbox-control</code>, <code>av-checkbox-indicator</code>, and
+        <code>av-checkbox-content</code>.
+      </p>
+      <app-doc-snippet component="checkbox-group" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="in-surface">
+      <h2 class="av-doc-prose__heading">In Surface</h2>
+      <p class="av-doc-prose__description">
+        When used inside a <code>av-surface</code> component, use
+        <code>variant="secondary"</code> to apply the lower emphasis variant suitable for surface
+        backgrounds.
+      </p>
+      <app-component-preview [demo]="demos.onSurface" />
+    </section>
+
+    <section class="av-doc-prose__section" id="disabled">
+      <h2 class="av-doc-prose__heading">Disabled</h2>
+      <app-component-preview [demo]="demos.disabled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="indeterminate">
+      <h2 class="av-doc-prose__heading">Indeterminate</h2>
+      <app-component-preview [demo]="demos.indeterminate" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled">
+      <h2 class="av-doc-prose__heading">Controlled</h2>
+      <app-component-preview [demo]="demos.controlled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="validation">
+      <h2 class="av-doc-prose__heading">Validation</h2>
+      <app-component-preview [demo]="demos.validation" />
+    </section>
+
+    <section class="av-doc-prose__section" id="features-and-addons">
+      <h2 class="av-doc-prose__heading">Features and Add-ons Example</h2>
+      <app-component-preview [demo]="demos.featuresAndAddOns" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-custom-indicator">
+      <h2 class="av-doc-prose__heading">With Custom Indicator</h2>
+      <app-component-preview [demo]="demos.withCustomIndicator" />
+    </section>
+
+    <section class="av-doc-prose__section" id="reactive-form">
+      <h2 class="av-doc-prose__heading">Reactive form</h2>
+      <p class="av-doc-prose__description">
+        Integrate with Angular reactive forms using <code>[formControl]</code> or
+        <code>formControlName</code> on <code>av-checkbox-group</code>.
+      </p>
+      <app-component-preview [demo]="demos.reactiveForm" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">
+        Avesra uses BEM-style classes for predictable customization.
+      </p>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-checkbox-group</code> — Group layout container</li>
+        <li><code>.av-checkbox-group--primary</code> — Primary visual variant</li>
+        <li><code>.av-checkbox-group--secondary</code> — Secondary visual variant (inherited by children)</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">
+        Group-level <code>disabled</code> and <code>invalid</code> props cascade to child checkboxes.
+        Individual checkbox states use the same selectors documented on the Checkbox page.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="accessibility">
+      <h2 class="av-doc-prose__heading">Accessibility</h2>
+      <p class="av-doc-prose__description">
+        Checkbox Group renders a <code>role="group"</code> container and provides:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>Group labeling via <code>av-label</code> with <code>aria-labelledby</code></li>
+        <li>Supplementary text via <code>av-description</code> linked with <code>aria-describedby</code></li>
+        <li>Each child checkbox retains independent <code>aria-checked</code> state</li>
+        <li>Group-level <code>aria-invalid</code> when validation fails</li>
+        <li>Keyboard navigation between checkboxes via Tab</li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

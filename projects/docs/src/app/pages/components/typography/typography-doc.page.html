@@ -1,0 +1,129 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Typography</h1>
+      <p class="av-doc-prose__description">
+        Semantic typography for headings, body copy, and inline code. Apply type tokens on the host
+        element you choose — attribute selectors and convenience primitives.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-doc-snippet component="typography" />
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <app-doc-snippet component="typography" section="anatomy" />
+      <p class="av-doc-prose__description">
+        <strong>Typography</strong> styles the host element you attach it to. Use
+        <code>av-typography</code> with an explicit <code>type</code>, or reach for primitives —
+        <code>av-typography-heading</code>, <code>av-typography-paragraph</code>,
+        <code>av-typography-code</code>, and <code>av-typography-prose</code> — when the markup is
+        already semantic.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="examples">
+      <h2 class="av-doc-prose__heading">Examples</h2>
+
+      <h3 class="av-doc-prose__subheading" id="basic">Default</h3>
+      <p class="av-doc-prose__description">
+        Headings, body, muted secondary copy, and inline code on semantic host tags.
+      </p>
+      <app-component-preview [demo]="demos.basic" />
+
+      <h3 class="av-doc-prose__subheading" id="primitives">Primitives</h3>
+      <p class="av-doc-prose__description">
+        Convenience wrappers infer heading level from the host tag and map paragraph
+        <code>size</code> to body tokens.
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>av-typography-heading</code> — infers level from <code>h1</code>–<code>h6</code> (or
+          optional <code>level</code>)
+        </li>
+        <li>
+          <code>av-typography-paragraph</code> — maps <code>size="base" | "sm" | "xs"</code> to body
+          styles
+        </li>
+        <li><code>av-typography-code</code> — inline code treatment</li>
+        <li>
+          <code>av-typography-prose</code> — styles rich nested HTML without per-child directives
+        </li>
+      </ul>
+      <app-component-preview [demo]="demos.primitives" />
+
+      <h3 class="av-doc-prose__subheading" id="prose">Prose</h3>
+      <p class="av-doc-prose__description">
+        Wrap authored content where markup is already semantic; nested headings, paragraphs, and
+        inline <code>code</code> receive default typography rhythm.
+      </p>
+      <app-component-preview [demo]="demos.prose" />
+
+      <h3 class="av-doc-prose__subheading" id="typography-scale">Typography Scale</h3>
+      <p class="av-doc-prose__description">
+        Full type scale from <code>h1</code> through <code>body-xs</code> and <code>code</code>.
+      </p>
+      <app-component-preview [demo]="demos.typographyScale" />
+
+      <h3 class="av-doc-prose__subheading" id="custom-styles">Custom Styles</h3>
+      <p class="av-doc-prose__description">
+        Pass Tailwind utility classes on the host alongside typography tokens for one-off layouts.
+      </p>
+      <app-component-preview [demo]="demos.customStyles" />
+    </section>
+
+    <section class="av-doc-prose__section" id="customization">
+      <h2 class="av-doc-prose__heading">Customization</h2>
+
+      <h3 class="av-doc-prose__subheading" id="global-css">Global CSS</h3>
+      <p class="av-doc-prose__description">
+        To customize Typography classes, use the
+        <code>&#64;layer components</code> directive.
+        <a av-link href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes">
+          Learn more
+        </a>.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling Reference</h2>
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a av-link href="https://getbem.com/">BEM</a>
+        methodology so variants and states are reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-typography</code> — Base typography primitive</li>
+        <li><code>.av-typography-prose</code> — Rich prose container</li>
+        <li><code>.av-typography--h1</code> through <code>.av-typography--h6</code> — Heading scale</li>
+        <li>
+          <code>.av-typography--body</code>, <code>--body-sm</code>, <code>--body-xs</code> — Body
+          sizes
+        </li>
+        <li><code>.av-typography--code</code> — Inline code</li>
+        <li>
+          <code>.av-typography--align-start</code>, <code>--align-center</code>,
+          <code>--align-end</code>, <code>--align-justify</code> — Alignment
+        </li>
+        <li><code>.av-typography--color-default</code>, <code>--color-muted</code> — Foreground color</li>
+        <li>
+          <code>.av-typography--weight-normal</code>, <code>--weight-medium</code>,
+          <code>--weight-semibold</code>, <code>--weight-bold</code> — Weight overrides
+        </li>
+        <li><code>.av-typography--truncate</code> — Single-line ellipsis</li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API Reference</h2>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

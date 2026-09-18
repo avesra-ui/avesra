@@ -1,0 +1,144 @@
+/* av-badge — small informational badges for labels, statuses, and categories */
+
+.av-badge {
+  @apply inline-flex shrink-0 items-center justify-center gap-0.5 font-medium;
+
+  /* Default size (matches --md) */
+  @apply min-h-7 min-w-7 rounded-3xl text-xs leading-[1.34];
+
+  --av-badge-bg: var(--av-default);
+  --av-badge-fg: var(--av-default-foreground);
+  --av-badge-border: var(--av-background);
+
+  background-color: var(--av-badge-bg);
+  color: var(--av-badge-fg);
+  border: 1px solid var(--av-badge-border);
+}
+
+.av-badge__label {
+  @apply px-0.5;
+}
+
+.av-badge-anchor {
+  @apply relative inline-flex shrink-0;
+}
+
+/* Size variants */
+.av-badge--lg {
+  @apply min-h-8 min-w-8 rounded-2xl text-sm leading-[1.43];
+}
+
+.av-badge--md {
+  /* No styles as this is the default size */
+}
+
+.av-badge--sm {
+  @apply min-h-4 min-w-4 rounded-xl text-[10px] leading-[1.34];
+}
+
+/* Color variants — set foreground color */
+.av-badge--accent {
+  --av-badge-fg: var(--av-accent-soft-foreground);
+}
+
+.av-badge--default {
+  --av-badge-fg: var(--av-default-foreground);
+}
+
+.av-badge--success {
+  --av-badge-fg: var(--av-success-soft-foreground);
+}
+
+.av-badge--warning {
+  --av-badge-fg: var(--av-warning-soft-foreground);
+}
+
+.av-badge--danger {
+  --av-badge-fg: var(--av-danger-soft-foreground);
+}
+
+/* Variant styles */
+.av-badge--primary {
+  /* Solid background — compound variants below handle bg/fg per color */
+}
+
+.av-badge--secondary {
+  /* Default background with colored text — base behavior */
+}
+
+.av-badge--soft {
+  /* Soft/muted background — compound variants below handle bg/fg per color */
+}
+
+/* Placement variants */
+.av-badge--top-right {
+  @apply absolute top-0 right-0;
+  transform: translate(25%, -25%);
+}
+
+.av-badge--top-left {
+  @apply absolute top-0 left-0;
+  transform: translate(-25%, -25%);
+}
+
+.av-badge--bottom-right {
+  @apply absolute right-0 bottom-0;
+  transform: translate(25%, 25%);
+}
+
+.av-badge--bottom-left {
+  @apply absolute bottom-0 left-0;
+  transform: translate(-25%, 25%);
+}
+
+/* Compound variants — Primary (solid background) */
+.av-badge--primary.av-badge--accent {
+  --av-badge-bg: var(--av-accent);
+  --av-badge-fg: var(--av-accent-foreground);
+}
+
+.av-badge--primary.av-badge--default {
+  --av-badge-bg: var(--av-default);
+  --av-badge-fg: var(--av-default-foreground);
+}
+
+.av-badge--primary.av-badge--success {
+  --av-badge-bg: var(--av-success);
+  --av-badge-fg: var(--av-success-foreground);
+}
+
+.av-badge--primary.av-badge--warning {
+  --av-badge-bg: var(--av-warning);
+  --av-badge-fg: var(--av-warning-foreground);
+}
+
+.av-badge--primary.av-badge--danger {
+  --av-badge-bg: var(--av-danger);
+  --av-badge-fg: var(--av-danger-foreground);
+}
+
+/* Compound variants — Soft (muted background) */
+.av-badge--soft.av-badge--accent {
+  --av-badge-bg: var(--av-accent-soft);
+  --av-badge-fg: var(--av-accent-soft-foreground);
+}
+
+.av-badge--soft.av-badge--default {
+  --av-badge-bg: var(--av-default-soft);
+  --av-badge-fg: var(--av-default-soft-foreground);
+}
+
+.av-badge--soft.av-badge--success {
+  --av-badge-bg: var(--av-success-soft);
+  --av-badge-fg: var(--av-success-soft-foreground);
+}
+
+.av-badge--soft.av-badge--warning {
+  --av-badge-bg: var(--av-warning-soft);
+  --av-badge-fg: var(--av-warning-soft-foreground);
+}
+
+.av-badge--soft.av-badge--danger {
+  --av-badge-bg: var(--av-danger-soft);
+  --av-badge-fg: var(--av-danger-soft-foreground);
+}

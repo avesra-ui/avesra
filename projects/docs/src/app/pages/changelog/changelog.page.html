@@ -1,0 +1,153 @@
+<app-doc-page [toc]="toc()">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Changelog</h1>
+      <p class="av-doc-prose__description">
+        New features, enhancements, and defect fixes in each Avesra release. Search by keyword or
+        filter by change type.
+      </p>
+    </header>
+
+    <div av-card>
+      <div av-input-group variant="secondary" full-width>
+        <div av-input-group-prefix>
+          <app-icon icon="solar:magnifer-linear" size="16" class="text-muted" />
+        </div>
+        <input
+          av-input-group-input
+          type="text"
+          placeholder="Search releases and components..."
+          aria-label="Search changelog"
+          [value]="query()"
+          (input)="onQueryInput($event)"
+        />
+        @if (query()) {
+          <div av-input-group-suffix>
+            <button
+              av-close-button
+              type="button"
+              aria-label="Clear search"
+              (click)="clearQuery()"
+            ></button>
+          </div>
+        }
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <span
+          av-chip
+          size="sm"
+          color="accent"
+          variant="soft"
+          label="Enhancements"
+          [ngClass]="filterChipClass('enhancement')"
+          [attr.aria-pressed]="isTypeActive('enhancement')"
+          [attr.aria-disabled]="isTypeDimmed('enhancement')"
+          (click)="toggleType('enhancement')"
+        ></span>
+        <span
+          av-chip
+          size="sm"
+          color="warning"
+          variant="soft"
+          label="Defect Fixes"
+          [ngClass]="filterChipClass('fix')"
+          [attr.aria-pressed]="isTypeActive('fix')"
+          [attr.aria-disabled]="isTypeDimmed('fix')"
+          (click)="toggleType('fix')"
+        ></span>
+
+        <p av-typography-paragraph size="xs" color="muted" class="ms-auto">
+          {{ statsLabel() }}
+        </p>
+      </div>
+    </div>
+
+    @if (filteredReleases().length === 0) {
+      <p av-typography-paragraph size="sm" color="muted">No matching releases.</p>
+    } @else {
+      <div class="relative">
+        @for (release of filteredReleases(); track release.id; let last = $last) {
+          <article
+            class="relative scroll-mt-[var(--docs-scroll-padding-top)] pb-12 pl-8"
+            [class.pb-0]="last"
+            [id]="release.id"
+          >
+            @if (!last) {
+              <span class="bg-border absolute bottom-0 left-[5px] top-3 w-px"></span>
+            }
+            <span
+              class="bg-foreground ring-background absolute left-0 top-2 z-10 size-2.5 rounded-full ring-4"
+            ></span>
+
+            <div class="flex flex-wrap items-center gap-2">
+              <h2 av-typography-heading>{{ release.version }}</h2>
+              @if (release.latest) {
+                <span av-chip size="sm" color="success" variant="primary" label="Latest"></span>
+              }
+              <p av-typography-paragraph size="sm" color="muted" class="ms-auto inline-flex items-center gap-1.5">
+                <app-icon icon="solar:calendar-linear" size="14" />
+                {{ release.dateLabel }}
+              </p>
+            </div>
+
+            @if (release.highlights.length > 0) {
+              <ul class="mt-5 flex flex-col gap-2.5">
+                @for (item of release.highlights; track item) {
+                  <li class="flex items-start gap-2.5">
+                    <app-icon
+                      icon="solar:check-circle-linear"
+                      size="16"
+                      class="mt-0.5 shrink-0 text-muted"
+                    />
+                    <span av-typography type="body-sm" color="muted">{{ item }}</span>
+                  </li>
+                }
+              </ul>
+            }
+
+            @if (release.enhancements.length > 0) {
+              <div class="mt-6">
+                <span
+                  av-chip
+                  size="sm"
+                  color="accent"
+                  variant="soft"
+                  [label]="'Enhancements (' + release.enhancements.length + ')'"
+                ></span>
+                <ul class="mt-3 flex flex-col gap-2.5">
+                  @for (change of release.enhancements; track change.scope + change.text) {
+                    <li class="flex flex-wrap items-baseline gap-2">
+                      <span av-chip size="sm" color="default" [label]="change.scope"></span>
+                      <span av-typography type="body-sm" color="muted">{{ change.text }}</span>
+                    </li>
+                  }
+                </ul>
+              </div>
+            }
+
+            @if (release.fixes.length > 0) {
+              <div class="mt-6">
+                <span
+                  av-chip
+                  size="sm"
+                  color="warning"
+                  variant="soft"
+                  [label]="'Defect Fixes (' + release.fixes.length + ')'"
+                ></span>
+                <ul class="mt-3 flex flex-col gap-2.5">
+                  @for (change of release.fixes; track change.scope + change.text) {
+                    <li class="flex flex-wrap items-baseline gap-2">
+                      <span av-chip size="sm" color="default" [label]="change.scope"></span>
+                      <span av-typography type="body-sm" color="muted">{{ change.text }}</span>
+                    </li>
+                  }
+                </ul>
+              </div>
+            }
+          </article>
+        }
+      </div>
+    }
+  </div>
+</app-doc-page>

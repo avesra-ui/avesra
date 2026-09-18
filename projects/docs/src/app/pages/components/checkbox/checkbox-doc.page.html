@@ -1,0 +1,182 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Checkbox</h1>
+      <p class="av-doc-prose__description">
+        Checkboxes allow users to select multiple items from a list of individual items, or to mark one
+        individual item as selected.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="checkbox" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the Checkbox components and compose the parts with
+        <code>av-checkbox</code>, <code>av-checkbox-control</code>,
+        <code>av-checkbox-indicator</code>, and <code>av-checkbox-content</code>.
+      </p>
+      <app-doc-snippet component="checkbox" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="variants">
+      <h2 class="av-doc-prose__heading">Variants</h2>
+      <p class="av-doc-prose__description">
+        Two visual styles — <code>primary</code> (default) and <code>secondary</code>.
+      </p>
+      <app-component-preview [demo]="demos.variants" />
+    </section>
+
+    <section class="av-doc-prose__section" id="disabled">
+      <h2 class="av-doc-prose__heading">Disabled</h2>
+      <app-component-preview [demo]="demos.disabled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="external-label">
+      <h2 class="av-doc-prose__heading">External Label</h2>
+      <p class="av-doc-prose__description">
+        Compose with <code>av-label</code> and matching <code>for</code> / <code>id</code> when the
+        label lives outside the checkbox.
+      </p>
+      <app-component-preview [demo]="demos.externalLabel" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-description">
+      <h2 class="av-doc-prose__heading">With Description</h2>
+      <p class="av-doc-prose__description">
+        Add <code>av-description</code> inside <code>av-checkbox-content</code> for supplementary
+        helper text.
+      </p>
+      <app-component-preview [demo]="demos.withDescription" />
+    </section>
+
+    <section class="av-doc-prose__section" id="default-selected">
+      <h2 class="av-doc-prose__heading">Default Selected</h2>
+      <p class="av-doc-prose__description">
+        Use <code>default-selected</code> for an initially checked uncontrolled checkbox.
+      </p>
+      <app-component-preview [demo]="demos.defaultSelected" />
+    </section>
+
+    <section class="av-doc-prose__section" id="invalid">
+      <h2 class="av-doc-prose__heading">Invalid</h2>
+      <p class="av-doc-prose__description">
+        Set <code>invalid</code> and pair with <code>av-field-error</code> to communicate validation
+        failures.
+      </p>
+      <app-component-preview [demo]="demos.invalid" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled">
+      <h2 class="av-doc-prose__heading">Controlled</h2>
+      <p class="av-doc-prose__description">
+        Bind <code>[(selected)]</code> for two-way control over the selected state.
+      </p>
+      <app-component-preview [demo]="demos.controlled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="indeterminate">
+      <h2 class="av-doc-prose__heading">Indeterminate</h2>
+      <p class="av-doc-prose__description">
+        Bind <code>indeterminate</code> for tri-state checkboxes, commonly used for “select all”
+        patterns.
+      </p>
+      <app-component-preview [demo]="demos.indeterminate" />
+    </section>
+
+    <section class="av-doc-prose__section" id="form-integration">
+      <h2 class="av-doc-prose__heading">Form Integration</h2>
+      <p class="av-doc-prose__description">
+        Integrate with Angular reactive forms using <code>formControlName</code> on
+        <code>av-checkbox</code>.
+      </p>
+      <app-component-preview [demo]="demos.reactiveForm" />
+    </section>
+
+    <section class="av-doc-prose__section" id="reactive-form-indeterminate">
+      <h2 class="av-doc-prose__heading">Reactive Form — Indeterminate</h2>
+      <p class="av-doc-prose__description">
+        Combine reactive forms with indeterminate state for select-all patterns.
+      </p>
+      <app-component-preview [demo]="demos.reactiveFormIndeterminate" />
+    </section>
+
+    <section class="av-doc-prose__section" id="validation">
+      <h2 class="av-doc-prose__heading">Validation</h2>
+      <p class="av-doc-prose__description">
+        Drive <code>invalid</code> from form control state and surface errors to the user.
+      </p>
+      <app-component-preview [demo]="demos.validation" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-indicator">
+      <h2 class="av-doc-prose__heading">Custom Indicator</h2>
+      <p class="av-doc-prose__description">
+        Project custom SVG content into <code>av-checkbox-indicator</code> to replace the default
+        checkmark.
+      </p>
+      <app-component-preview [demo]="demos.customIndicator" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">
+        Avesra uses BEM-style classes for predictable customization.
+      </p>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-checkbox</code> — Base checkbox layout</li>
+        <li><code>.av-checkbox--primary</code> — Primary visual variant</li>
+        <li><code>.av-checkbox--secondary</code> — Secondary visual variant</li>
+        <li><code>.av-checkbox__control</code> — Checkbox box</li>
+        <li><code>.av-checkbox__indicator</code> — Checkmark or indeterminate icon</li>
+        <li><code>.av-checkbox__content</code> — Label and description container</li>
+        <li><code>.av-checkbox__input</code> — Visually hidden native input</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">
+        Checkbox styles support both CSS pseudo-classes and data attributes:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li><strong>Hover:</strong> <code>:hover</code> or <code>[data-hovered="true"]</code></li>
+        <li><strong>Focus:</strong> <code>:focus-visible</code> or <code>[data-focus-visible="true"]</code></li>
+        <li><strong>Selected:</strong> <code>[data-selected="true"]</code> or <code>[aria-checked="true"]</code></li>
+        <li><strong>Indeterminate:</strong> <code>[data-indeterminate="true"]</code></li>
+        <li><strong>Pressed:</strong> <code>:active</code> or <code>[data-pressed="true"]</code></li>
+        <li><strong>Disabled:</strong> <code>:disabled</code>, <code>[data-disabled="true"]</code>, or <code>[aria-disabled="true"]</code></li>
+        <li><strong>Invalid:</strong> <code>[data-invalid="true"]</code> or <code>[aria-invalid="true"]</code></li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="accessibility">
+      <h2 class="av-doc-prose__heading">Accessibility</h2>
+      <p class="av-doc-prose__description">
+        Checkbox uses a visually hidden native <code>&lt;input type="checkbox"&gt;</code> for
+        semantics and provides:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li><code>aria-checked</code> reflecting checked, unchecked, and indeterminate states</li>
+        <li>Keyboard activation via Space when focused</li>
+        <li>Label association through adjacent <code>av-label</code> or <code>aria-label</code></li>
+        <li><code>aria-invalid</code> and <code>aria-describedby</code> for validation feedback</li>
+        <li>Disabled state communicated via <code>disabled</code> and <code>aria-disabled</code></li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

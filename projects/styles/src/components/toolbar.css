@@ -1,0 +1,29 @@
+/* av-toolbar — container for interactive controls with arrow key navigation */
+
+.av-toolbar {
+  @apply grid w-fit grid-flow-col items-center gap-2;
+
+  .av-separator--vertical {
+    @apply h-1/2 self-center;
+  }
+
+  .av-separator--horizontal {
+    @apply w-1/2 justify-center justify-self-center;
+  }
+}
+
+.av-toolbar--horizontal {
+  /* Default orientation — no extra styles */
+}
+
+.av-toolbar--vertical {
+  @apply grid-flow-row items-start justify-start;
+
+  .av-button-group {
+    @apply justify-start;
+  }
+}
+
+.av-toolbar--attached {
+  @apply rounded-3xl bg-surface p-1 shadow-overlay;
+}

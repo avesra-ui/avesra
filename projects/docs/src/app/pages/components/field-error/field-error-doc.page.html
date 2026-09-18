@@ -1,0 +1,90 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Field Error</h1>
+      <p class="av-doc-prose__description">
+        Displays validation error messages for form fields
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="field-error" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <p class="av-doc-prose__description">
+        The FieldError component displays validation error messages for form fields. Bind
+        <code>[visible]</code> to your invalid condition to show or hide it with a smooth
+        transition.
+      </p>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="basic-validation">
+      <h2 class="av-doc-prose__heading">Basic Validation</h2>
+      <p class="av-doc-prose__description">
+        Drive visibility from your own validation logic and mark the input
+        <code>[invalid]</code> when the field fails.
+      </p>
+      <app-component-preview [demo]="demos.basicValidation" />
+    </section>
+
+    <section class="av-doc-prose__section" id="dynamic-messages">
+      <h2 class="av-doc-prose__heading">Dynamic Messages</h2>
+      <p class="av-doc-prose__description">
+        Interpolate the error text so the message updates as the user types.
+      </p>
+      <app-component-preview [demo]="demos.dynamicMessages" />
+    </section>
+
+    <section class="av-doc-prose__section" id="multiple-errors">
+      <h2 class="av-doc-prose__heading">Multiple Error Messages</h2>
+      <p class="av-doc-prose__description">
+        Project multiple messages inside a single <code>av-field-error</code> when several rules
+        fail at once.
+      </p>
+      <app-component-preview [demo]="demos.multipleErrors" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">
+        Avesra uses BEM-style classes for predictable customization. Override them in
+        <code>&#64;layer components</code> or pass utility classes directly.
+      </p>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-field-error</code> — Base error styles with danger color</li>
+        <li><code>[data-visible="true"]</code> — Visible state with height and opacity transition</li>
+      </ul>
+      <p class="av-doc-prose__description">
+        Inside checkbox, switch, and radio items, field error styles are overridden to stack
+        below the label like description text without collapsible height animation.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="accessibility">
+      <h2 class="av-doc-prose__heading">Accessibility</h2>
+      <p class="av-doc-prose__description">
+        Field Error ensures validation feedback is accessible by:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>Using <code>role="alert"</code> and <code>aria-live="polite"</code> for screen reader announcement</li>
+        <li>Controlling visibility via the <code>visible</code> input — bind it to your invalid condition</li>
+        <li>Showing and hiding visually with <code>[data-visible="true"]</code></li>
+        <li>
+          Optionally associating the error with a control yourself using an <code>id</code> on the
+          error and <code>aria-describedby</code> on the input
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

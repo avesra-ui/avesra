@@ -1,0 +1,92 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Alert</h1>
+      <p class="av-doc-prose__description">
+        Display important messages and notifications to users with status indicators
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="alert" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <app-doc-snippet component="alert" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="customization">
+      <h2 class="av-doc-prose__heading">Customization</h2>
+
+      <h3 class="av-doc-prose__subheading" id="tailwind-css">Tailwind CSS</h3>
+      <app-component-preview [demo]="demos.customStyles" />
+
+      <h3 class="av-doc-prose__subheading" id="global-css">Global CSS</h3>
+      <p class="av-doc-prose__description">
+        To customize the Alert component classes, you can use the
+        <code>&#64;layer components</code> directive.
+        <a av-link href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes">
+          Learn more
+        </a>.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling-reference">
+      <h2 class="av-doc-prose__heading">Styling Reference</h2>
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a av-link href="https://getbem.com/">BEM</a>
+        methodology to ensure component variants and states are reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">
+        The Alert component uses these CSS classes:
+      </p>
+
+      <h4 class="av-doc-prose__subheading" id="base-classes">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-alert</code> — Base alert container</li>
+        <li><code>.av-alert__indicator</code> — Icon/indicator container</li>
+        <li><code>.av-alert__content</code> — Content wrapper for title and description</li>
+        <li><code>.av-alert__title</code> — Alert title text</li>
+        <li><code>.av-alert__description</code> — Alert description text</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading" id="status-variant-classes">Status Variant Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-alert--default</code> — Default gray status</li>
+        <li><code>.av-alert--accent</code> — Accent blue status</li>
+        <li><code>.av-alert--success</code> — Success green status</li>
+        <li><code>.av-alert--warning</code> — Warning yellow/orange status</li>
+        <li><code>.av-alert--danger</code> — Danger red status</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">
+        The Alert component is primarily informational and doesn't have interactive states on the
+        base component. However, it can contain interactive elements like buttons or close buttons.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API Reference</h2>
+      <p class="av-doc-prose__description">
+        See also
+        <a av-link routerLink="/docs/components/toast">Toast</a>
+        and
+        <a av-link routerLink="/docs/components/spinner">Spinner</a>
+        for related feedback patterns.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

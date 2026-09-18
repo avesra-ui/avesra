@@ -1,0 +1,137 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Progress Circle</h1>
+      <p class="av-doc-prose__description">
+        A circular progress indicator that shows determinate or indeterminate progress.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="progress-circle" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the Progress Circle parts and compose them with attribute selectors on
+        <code>&lt;div&gt;</code>, <code>&lt;svg&gt;</code>, and <code>&lt;circle&gt;</code> hosts.
+        Project <code>av-progress-circle-track</code>,
+        <code>av-progress-circle-track-circle</code>, and
+        <code>av-progress-circle-fill-circle</code> inside
+        <code>div[av-progress-circle]</code>. Pair with shared
+        <code>label[av-label]</code> when a visible label is needed.
+      </p>
+      <app-doc-snippet component="progress-circle" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="sizes">
+      <h2 class="av-doc-prose__heading">Sizes</h2>
+      <app-component-preview [demo]="demos.sizes" />
+    </section>
+
+    <section class="av-doc-prose__section" id="colors">
+      <h2 class="av-doc-prose__heading">Colors</h2>
+      <app-component-preview [demo]="demos.colors" />
+    </section>
+
+    <section class="av-doc-prose__section" id="indeterminate">
+      <h2 class="av-doc-prose__heading">Indeterminate</h2>
+      <p class="av-doc-prose__description">
+        Use <code>is-indeterminate</code> when progress cannot be determined.
+      </p>
+      <app-component-preview [demo]="demos.indeterminate" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-label">
+      <h2 class="av-doc-prose__heading">With Label</h2>
+      <app-component-preview [demo]="demos.withLabel" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-svg">
+      <h2 class="av-doc-prose__heading">Custom SVG Props</h2>
+      <p class="av-doc-prose__description">
+        Since each part is a composable component, you can override SVG attributes like
+        <code>stroke-width</code>, <code>r</code>, <code>cx</code>, <code>cy</code>, and
+        <code>viewBox</code> directly.
+      </p>
+      <app-component-preview [demo]="demos.customSvg" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on individual Progress Circle parts — for example
+        <code>av-progress-circle-fill-circle</code>.
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Progress Circle classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The Progress Circle component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base &amp; Element Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-progress-circle</code> — Base container</li>
+        <li><code>.av-progress-circle__track</code> — SVG element</li>
+        <li><code>.av-progress-circle__track-circle</code> — Background circle</li>
+        <li><code>.av-progress-circle__fill-circle</code> — Progress arc</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Size Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-progress-circle--sm</code> — Small size variant</li>
+        <li><code>.av-progress-circle--md</code> — Medium size variant (default)</li>
+        <li><code>.av-progress-circle--lg</code> — Large size variant</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Color Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-progress-circle--default</code> — Default color variant</li>
+        <li><code>.av-progress-circle--accent</code> — Accent color variant</li>
+        <li><code>.av-progress-circle--success</code> — Success color variant</li>
+        <li><code>.av-progress-circle--warning</code> — Warning color variant</li>
+        <li><code>.av-progress-circle--danger</code> — Danger color variant</li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Props for <code>div[av-progress-circle]</code>. Track and circle parts also accept SVG
+        overrides (<code>viewBox</code>, <code>cx</code>, <code>cy</code>, <code>r</code>,
+        <code>stroke-width</code>). Compose with shared <code>label[av-label]</code> when a visible
+        label is needed.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

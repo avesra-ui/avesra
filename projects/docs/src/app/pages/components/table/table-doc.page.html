@@ -1,0 +1,230 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Table</h1>
+      <p class="av-doc-prose__description">
+        Tables display structured data in rows and columns with support for sorting, selection,
+        column resizing, and infinite scrolling.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="table" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Compose Table with attribute selectors on
+        <code>av-table</code>, <code>av-table-scroll-container</code>,
+        <code>av-table-content</code>, <code>av-table-header</code>,
+        <code>av-table-column</code>, <code>av-table-body</code>,
+        <code>av-table-row</code>, and <code>av-table-cell</code>. Optional
+        <code>av-table-footer</code>, <code>av-table-resizable-container</code>,
+        <code>av-table-column-resizer</code>, <code>av-table-load-more</code>, and
+        <code>av-table-load-more-content</code>.
+      </p>
+      <app-doc-snippet component="table" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="secondary-variant">
+      <h2 class="av-doc-prose__heading">Secondary Variant</h2>
+      <p class="av-doc-prose__description">
+        Set <code>variant="secondary"</code> on <code>av-table</code> for a flat surface with
+        standalone rounded headers.
+      </p>
+      <app-component-preview [demo]="demos.secondaryVariant" />
+    </section>
+
+    <section class="av-doc-prose__section" id="async-loading">
+      <h2 class="av-doc-prose__heading">Async Loading</h2>
+      <p class="av-doc-prose__description">
+        Use <code>av-table-load-more</code> with <code>av-table-load-more-content</code> for a
+        load-more sentinel row. Trigger loading from a button, scroll observer, or other app
+        logic — the parts are presentational.
+      </p>
+      <app-component-preview [demo]="demos.asyncLoading" />
+    </section>
+
+    <section class="av-doc-prose__section" id="sorting">
+      <h2 class="av-doc-prose__heading">Sorting</h2>
+      <p class="av-doc-prose__description">
+        Mark sortable columns with <code>allows-sorting</code> on
+        <code>av-table-column</code>. Avesra Table is a presentational compound — manage sort
+        state in your component (e.g. a signal), bind
+        <code>[attr.aria-sort]</code>, and re-order rows yourself. There is no built-in
+        <code>SortableColumnHeader</code>; render a chevron from your sort direction.
+      </p>
+      <app-component-preview [demo]="demos.sorting" />
+    </section>
+
+    <section class="av-doc-prose__section" id="selection">
+      <h2 class="av-doc-prose__heading">Selection</h2>
+      <p class="av-doc-prose__description">
+        Compose row selection with <code>av-checkbox</code> in a selection column and bind
+        <code>[selected]</code> on <code>av-table-row</code>. Selection state lives in your
+        app — there is no <code>selectionMode</code> on <code>av-table-content</code>.
+      </p>
+      <app-component-preview [demo]="demos.selection" />
+    </section>
+
+    <section class="av-doc-prose__section" id="pagination">
+      <h2 class="av-doc-prose__heading">Pagination</h2>
+      <p class="av-doc-prose__description">
+        Use <code>av-table-footer</code> to place <code>av-pagination</code> below the table.
+        Slice the row data in your component based on the current page.
+      </p>
+      <app-component-preview [demo]="demos.pagination" />
+    </section>
+
+    <section class="av-doc-prose__section" id="column-resizing">
+      <h2 class="av-doc-prose__heading">Column Resizing</h2>
+      <p class="av-doc-prose__description">
+        Wrap the table in <code>av-table-resizable-container</code> and add
+        <code>av-table-column-resizer</code> inside each resizable
+        <code>av-table-column</code>. The resizer provides the drag-handle styling; wire
+        resize behavior in your app if needed.
+      </p>
+      <app-component-preview [demo]="demos.columnResizing" />
+    </section>
+
+    <section class="av-doc-prose__section" id="empty-state">
+      <h2 class="av-doc-prose__heading">Empty State</h2>
+      <p class="av-doc-prose__description">
+        There is no <code>renderEmptyState</code> prop. When the data array is empty, render a
+        placeholder row (or any markup) inside <code>av-table-body</code> with
+        <code>&#64;if</code>.
+      </p>
+      <app-component-preview [demo]="demos.emptyState" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-cells">
+      <h2 class="av-doc-prose__heading">Custom Cells</h2>
+      <p class="av-doc-prose__description">
+        Project any content into <code>av-table-cell</code> — avatars, chips, buttons, and more.
+      </p>
+      <app-component-preview [demo]="demos.customCells" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">You can customize individual Table parts:</p>
+      <app-doc-snippet [source]="tailwindExample" lang="html" section="anatomy" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Table component classes, use the
+        <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The Table component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>.av-table-root</code> — Root container (named
+          <code>av-table-root</code> instead of <code>av-table</code> because
+          <code>table</code> is a built-in Tailwind CSS utility)
+        </li>
+        <li><code>.av-table__scroll-container</code> — Horizontal scroll wrapper</li>
+        <li><code>.av-table__content</code> — The <code>&lt;table&gt;</code> element</li>
+        <li><code>.av-table__header</code> — Header row (<code>&lt;thead&gt;</code>)</li>
+        <li><code>.av-table__column</code> — Column header cell (<code>&lt;th&gt;</code>)</li>
+        <li><code>.av-table__body</code> — Body section (<code>&lt;tbody&gt;</code>)</li>
+        <li><code>.av-table__row</code> — Row element (<code>&lt;tr&gt;</code>)</li>
+        <li><code>.av-table__cell</code> — Data cell (<code>&lt;td&gt;</code>)</li>
+        <li><code>.av-table__footer</code> — Footer container (outside the table)</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Advanced Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-table__column-resizer</code> — Drag handle for column resizing</li>
+        <li><code>.av-table__resizable-container</code> — Wrapper enabling column resizing</li>
+        <li><code>.av-table__load-more</code> — Sentinel row for infinite scrolling</li>
+        <li>
+          <code>.av-table__load-more-content</code> — Styled container for the loading indicator
+        </li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Variant Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>.av-table-root--primary</code> — Gray background container with card-style body
+          (default)
+        </li>
+        <li>
+          <code>.av-table-root--secondary</code> — No background, standalone rounded headers
+        </li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">
+        The Table supports both CSS pseudo-classes and data attributes for flexibility:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Hover</strong>: <code>:hover</code> or
+          <code>[data-hovered="true"]</code> (row background change)
+        </li>
+        <li>
+          <strong>Selected</strong>: <code>[data-selected="true"]</code> (row highlight)
+        </li>
+        <li>
+          <strong>Focus</strong>: <code>:focus-visible</code> or
+          <code>[data-focus-visible="true"]</code> (inset focus ring on rows)
+        </li>
+        <li>
+          <strong>Disabled</strong>: <code>[data-disabled="true"]</code> or
+          <code>[aria-disabled="true"]</code> (reduced opacity)
+        </li>
+        <li>
+          <strong>Sortable</strong>: <code>[data-allows-sorting="true"]</code> (interactive
+          cursor on columns)
+        </li>
+        <li>
+          <strong>Dragging</strong>: <code>[data-dragging="true"]</code> (reduced opacity)
+        </li>
+        <li>
+          <strong>Drop Target</strong>: <code>[data-drop-target="true"]</code> (accent
+          background)
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Props for <code>div[av-table]</code>, <code>th[av-table-column]</code>, and
+        <code>tr[av-table-row]</code>. Scroll container, content, header, body, cell, footer,
+        resizable container, column resizer, load-more, and load-more-content project content
+        and have no inputs.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

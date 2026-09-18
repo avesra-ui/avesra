@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@import "../../styles/src/index.css";
+
+@source "./**/*.{html,ts}";
+@source "../../angular/src/**/*.{html,ts}";
+
+@theme inline {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  @apply bg-background text-foreground font-sans antialiased;
+}

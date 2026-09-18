@@ -1,0 +1,139 @@
+/* av-input-otp component styles */
+
+.av-input-otp {
+  @apply relative flex items-center gap-2;
+
+  /* No opacity here — slots already apply av-status-disabled (0.5).
+   * Root opacity-50 would stack to ~0.25 because data-disabled is on this host. */
+  &[data-disabled='true'] {
+    @apply cursor-not-allowed;
+  }
+}
+
+.av-input-otp__container {
+  @apply pointer-events-none relative z-0 flex items-center gap-2;
+}
+
+.av-input-otp__input {
+  @apply absolute inset-0 z-10 h-full w-full opacity-0;
+  caret-color: transparent;
+  color: transparent;
+}
+
+.av-input-otp__group {
+  @apply flex items-center gap-2;
+}
+
+.av-input-otp__slot {
+  @apply relative flex h-10 w-9.5 flex-1 items-center justify-center;
+  @apply rounded-field border bg-field text-sm font-semibold text-field-foreground shadow-field outline-none;
+
+  border-width: var(--av-field-border-width, var(--av-border-width));
+  border-color: var(--av-field-border, var(--av-border));
+
+  transition:
+    background-color 150ms var(--ease-smooth),
+    border-color 150ms var(--ease-smooth),
+    box-shadow 150ms var(--ease-out);
+  @apply av-motion-reduce:transition-none;
+
+  @media (hover: hover) {
+    &:hover,
+    &[data-hovered='true'] {
+      @apply bg-field-hover;
+      border-color: var(--av-field-border-hover);
+    }
+  }
+
+  &[data-active='true'] {
+    @apply z-10 bg-field-focus av-status-focused-field;
+  }
+
+  &[data-filled='true'] {
+    @apply bg-field-focus;
+  }
+
+  &[data-disabled='true'] {
+    @apply av-status-disabled;
+  }
+
+  &[data-invalid='true'] {
+    @apply av-status-invalid-field;
+    background-color: var(--av-field-focus);
+  }
+}
+
+.av-input-otp__slot-value {
+  @apply text-lg leading-6 tracking-[-0.27px];
+
+  animation: av-input-otp-slot-value-in 250ms var(--ease-smooth) both;
+  transform-origin: bottom center;
+  @apply av-motion-reduce:animate-none;
+}
+
+.av-input-otp__slot-placeholder {
+  @apply text-lg leading-6 tracking-[-0.27px] text-field-placeholder opacity-50;
+}
+
+.av-input-otp__caret {
+  @apply absolute h-4 w-[2px] animate-caret-blink rounded-sm bg-field-placeholder;
+}
+
+.av-input-otp__separator {
+  @apply h-[2px] w-[6px] shrink-0 rounded-sm bg-separator;
+}
+
+.av-input-otp--primary {
+  /* Default styles */
+}
+
+.av-input-otp--secondary .av-input-otp__slot {
+  @apply shadow-none;
+  background-color: var(--av-input-otp-slot-bg);
+
+  --av-input-otp-slot-bg: var(--av-default);
+  --av-input-otp-slot-bg-hover: var(--av-default-hover);
+  --av-input-otp-slot-bg-focus: var(--av-default);
+
+  @media (hover: hover) {
+    &:hover,
+    &[data-hovered='true'] {
+      background-color: var(--av-input-otp-slot-bg-hover);
+    }
+  }
+
+  &[data-active='true'],
+  &[data-filled='true'] {
+    background-color: var(--av-input-otp-slot-bg-focus);
+  }
+}
+
+@keyframes av-input-otp-slot-value-in {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.8);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* No-JS fallback — visible single input when scripts are disabled */
+noscript .av-input-otp__container {
+  @apply hidden;
+}
+
+noscript .av-input-otp__input {
+  @apply pointer-events-auto relative z-0 opacity-100;
+  caret-color: var(--av-foreground);
+  color: var(--av-foreground);
+  letter-spacing: 0.25em;
+  text-align: center;
+  border-width: var(--av-field-border-width, var(--av-border-width));
+  border-color: var(--av-field-border, var(--av-border));
+  border-style: solid;
+  border-radius: var(--av-field-radius, calc(var(--av-radius) * 1.5));
+  background-color: var(--av-field-background, var(--av-default));
+}

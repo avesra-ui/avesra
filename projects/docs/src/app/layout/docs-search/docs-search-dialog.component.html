@@ -1,0 +1,74 @@
+<av-modal [(open)]="open" backdrop="blur" placement="center" scroll="inside" size="lg">
+  <ng-template avModalContent>
+    <div av-modal-dialog class="av-docs-search-dialog" aria-label="Search documentation">
+      <div class="av-docs-search-dialog__body">
+        <div av-input-group variant="secondary" full-width class="av-docs-search-dialog__field">
+          <div av-input-group-prefix>
+            <app-icon icon="solar:magnifer-linear" size="16" class="text-muted" />
+          </div>
+          <input
+            av-input-group-input
+            appDocsSearchAutofocus
+            type="text"
+            placeholder="Search documentation..."
+            autocomplete="off"
+            autocorrect="off"
+            spellcheck="false"
+            role="combobox"
+            aria-autocomplete="list"
+            aria-expanded="true"
+            aria-controls="docs-search-list"
+            aria-label="Search documentation"
+            [attr.aria-activedescendant]="activeOptionId()"
+            [value]="query()"
+            (input)="onQueryInput($event)"
+            (keydown)="onInputKeydown($event)"
+          />
+        </div>
+
+        <div
+          id="docs-search-list"
+          class="av-docs-search-dialog__list no-scrollbar"
+          role="listbox"
+          aria-label="Search results"
+        >
+          @if (empty()) {
+            <p class="av-docs-search-dialog__empty">No results found.</p>
+          } @else {
+            @for (group of groups(); track group.title; let last = $last; let gi = $index) {
+              <div class="av-docs-search-dialog__group">
+                <p class="av-docs-search-dialog__group-title">{{ group.title }}</p>
+                @for (item of group.items; track item.id; let ii = $index) {
+                  <button
+                    type="button"
+                    role="option"
+                    class="av-docs-search-dialog__item"
+                    [id]="optionId(gi, ii)"
+                    [attr.aria-selected]="isActive(gi, ii)"
+                    [attr.data-active]="isActive(gi, ii)"
+                    (mousedown)="$event.preventDefault()"
+                    (mouseenter)="setActive(gi, ii)"
+                    (click)="goTo(item)"
+                  >
+                    <app-icon [icon]="item.icon" size="16" class="text-muted" />
+                    <span>{{ item.label }}</span>
+                  </button>
+                }
+              </div>
+              @if (!last) {
+                <hr av-separator class="av-docs-search-dialog__divider" />
+              }
+            }
+          }
+        </div>
+      </div>
+
+      <div class="av-docs-search-dialog__footer">
+        <kbd av-kbd>
+          <abbr av-kbd-abbr key-value="enter"></abbr>
+        </kbd>
+        <span>Go to Page</span>
+      </div>
+    </div>
+  </ng-template>
+</av-modal>

@@ -1,0 +1,383 @@
+/* Base tabs component (av-* tokens / utilities) */
+.av-tabs {
+  @apply flex gap-2;
+
+  /* Orientation styles */
+  &[data-orientation="horizontal"] {
+    @apply flex-col;
+  }
+
+  &[data-orientation="vertical"] {
+    @apply flex-row;
+  }
+}
+
+/* Tab list container */
+.av-tabs__list-container {
+  @apply relative bg-default;
+
+  border-radius: calc(var(--av-radius) * 2.5);
+
+  /* Vertical scroller fills the container height so overflow detection
+     engages when the wrapper height is constrained (e.g. h-[240px]) */
+  > .av-tabs__list-container__scroller[data-orientation="vertical"] {
+    @apply h-full;
+  }
+
+  /* Overflow chevron buttons */
+  > .av-tabs__list-container__scroll-prev,
+  > .av-tabs__list-container__scroll-next {
+    @apply absolute z-2 hidden size-4 cursor-(--av-cursor-interactive) items-center justify-center rounded-full border-0 bg-transparent p-0 text-foreground outline-none;
+
+    /**
+     * Transitions
+     * CRITICAL: motion-reduce must be AFTER transition for correct override specificity
+     */
+    transition: opacity 150ms var(--ease-smooth);
+    @apply av-motion-reduce:transition-none;
+
+    @media (hover: hover) {
+      &:hover {
+        @apply opacity-70;
+      }
+    }
+
+    &:focus-visible {
+      @apply av-status-focused;
+    }
+  }
+
+  /* Chevron position - horizontal orientation */
+  &:has([data-orientation="horizontal"]) {
+    > .av-tabs__list-container__scroll-prev {
+      @apply start-1 top-1/2 -translate-y-1/2;
+    }
+
+    > .av-tabs__list-container__scroll-next {
+      @apply end-1 top-1/2 -translate-y-1/2;
+    }
+
+    > .av-tabs__list-container__scroll-prev,
+    > .av-tabs__list-container__scroll-next {
+      @apply rtl:rotate-180;
+    }
+  }
+
+  /* Chevron position - vertical orientation */
+  &:has([data-orientation="vertical"]) {
+    > .av-tabs__list-container__scroll-prev {
+      @apply top-1 left-1/2 -translate-x-1/2;
+    }
+
+    > .av-tabs__list-container__scroll-next {
+      @apply bottom-1 left-1/2 -translate-x-1/2;
+    }
+  }
+
+  /* Show chevrons only when scroller reports scrolling is possible */
+  &:has(
+      > :is(
+        [data-left-scroll="true"],
+        [data-left-right-scroll="true"],
+        [data-top-scroll="true"],
+        [data-top-bottom-scroll="true"]
+      )
+    )
+    > .av-tabs__list-container__scroll-prev {
+    @apply inline-flex;
+  }
+
+  &:has(
+      > :is(
+        [data-right-scroll="true"],
+        [data-left-right-scroll="true"],
+        [data-bottom-scroll="true"],
+        [data-top-bottom-scroll="true"]
+      )
+    )
+    > .av-tabs__list-container__scroll-next {
+    @apply inline-flex;
+  }
+}
+
+/* Scroller with fade edges (scoped into tabs for Angular) */
+.av-tabs__list-container__scroller {
+  --av-tabs-scroll-shadow-size: 64px;
+  --av-tabs-scroll-shadow-scrollbar-size: 0px;
+
+  @apply relative av-scrollbar-none;
+
+  &[data-orientation="horizontal"] {
+    @apply overflow-x-auto overflow-y-clip;
+  }
+
+  &[data-orientation="vertical"] {
+    @apply overflow-y-auto overflow-x-clip;
+  }
+
+  &[data-orientation="horizontal"]:where(
+    [data-left-scroll="true"],
+    [data-right-scroll="true"],
+    [data-left-right-scroll="true"]
+  ) {
+    mask-image: linear-gradient(var(--av-tabs-scroll-linear-gradient)), linear-gradient(#000, #000);
+    mask-position:
+      left top,
+      left bottom;
+    mask-repeat: no-repeat;
+    mask-size:
+      100% calc(100% - var(--av-tabs-scroll-shadow-scrollbar-size)),
+      100% var(--av-tabs-scroll-shadow-scrollbar-size);
+    -webkit-mask-image: linear-gradient(var(--av-tabs-scroll-linear-gradient)),
+      linear-gradient(#000, #000);
+    -webkit-mask-position:
+      left top,
+      left bottom;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size:
+      100% calc(100% - var(--av-tabs-scroll-shadow-scrollbar-size)),
+      100% var(--av-tabs-scroll-shadow-scrollbar-size);
+  }
+
+  &[data-orientation="horizontal"][data-left-scroll="true"] {
+    --av-tabs-scroll-linear-gradient: 270deg,
+      #000 calc(100% - var(--av-tabs-scroll-shadow-size)), transparent;
+  }
+
+  &[data-orientation="horizontal"][data-right-scroll="true"] {
+    --av-tabs-scroll-linear-gradient: 90deg,
+      #000 calc(100% - var(--av-tabs-scroll-shadow-size)), transparent;
+  }
+
+  &[data-orientation="horizontal"][data-left-right-scroll="true"] {
+    --av-tabs-scroll-linear-gradient:
+      to right, #000, #000, transparent 0, #000 var(--av-tabs-scroll-shadow-size),
+      #000 calc(100% - var(--av-tabs-scroll-shadow-size)), transparent;
+  }
+
+  &[data-orientation="vertical"]:where(
+    [data-top-scroll="true"],
+    [data-bottom-scroll="true"],
+    [data-top-bottom-scroll="true"]
+  ) {
+    mask-image: linear-gradient(var(--av-tabs-scroll-linear-gradient)), linear-gradient(#000, #000);
+    mask-position:
+      left top,
+      right top;
+    mask-repeat: no-repeat;
+    mask-size:
+      calc(100% - var(--av-tabs-scroll-shadow-scrollbar-size)) 100%,
+      var(--av-tabs-scroll-shadow-scrollbar-size) 100%;
+    -webkit-mask-image: linear-gradient(var(--av-tabs-scroll-linear-gradient)),
+      linear-gradient(#000, #000);
+    -webkit-mask-position:
+      left top,
+      right top;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size:
+      calc(100% - var(--av-tabs-scroll-shadow-scrollbar-size)) 100%,
+      var(--av-tabs-scroll-shadow-scrollbar-size) 100%;
+  }
+
+  &[data-orientation="vertical"][data-top-scroll="true"] {
+    --av-tabs-scroll-linear-gradient: 0deg,
+      #000 calc(100% - var(--av-tabs-scroll-shadow-size)), transparent;
+  }
+
+  &[data-orientation="vertical"][data-bottom-scroll="true"] {
+    --av-tabs-scroll-linear-gradient: 180deg,
+      #000 calc(100% - var(--av-tabs-scroll-shadow-size)), transparent;
+  }
+
+  &[data-orientation="vertical"][data-top-bottom-scroll="true"] {
+    --av-tabs-scroll-linear-gradient:
+      #000, #000, transparent 0, #000 var(--av-tabs-scroll-shadow-size),
+      #000 calc(100% - var(--av-tabs-scroll-shadow-size)), transparent;
+  }
+}
+
+/* Tab list */
+.av-tabs__list {
+  @apply relative inline-flex p-1;
+
+  /* Keep Material sibling ink-bar (z-index: -1) inside this stacking context */
+  isolation: isolate;
+
+  /* Horizontal orientation - grow with content so scroller can detect overflow */
+  &[data-orientation="horizontal"] {
+    @apply w-max min-w-full flex-row;
+  }
+
+  /* Vertical orientation */
+  &[data-orientation="vertical"] {
+    @apply flex-col gap-1;
+
+    .av-tabs__tab {
+      @apply min-w-20;
+    }
+  }
+}
+
+/* Individual tab */
+.av-tabs__tab {
+  @apply relative flex h-8 w-full items-center justify-center rounded-3xl px-4 text-center text-sm font-medium text-muted outline-none av-no-highlight;
+
+  z-index: 1;
+  cursor: var(--av-cursor-interactive);
+
+  /**
+   * Transitions
+   * CRITICAL: motion-reduce must be AFTER transition for correct override specificity
+   */
+  transition:
+    color 150ms var(--ease-smooth),
+    background-color 150ms var(--ease-smooth),
+    box-shadow 150ms var(--ease-out),
+    opacity 150ms var(--ease-smooth);
+  @apply av-motion-reduce:transition-none;
+
+  /* Selected state */
+  &[data-selected="true"] {
+    @apply text-segment-foreground;
+
+    /* Hide separator on the selected tab and the one following it */
+    .av-tabs__separator,
+    & + .av-tabs__tab .av-tabs__separator {
+      @apply opacity-0;
+    }
+  }
+
+  /* Disabled state */
+  &:disabled,
+  &[data-disabled="true"],
+  &[aria-disabled="true"] {
+    @apply av-status-disabled;
+  }
+
+  /* Hover states - both approaches for compatibility */
+  @media (hover: hover) {
+    &:not([data-selected="true"]):not([data-disabled="true"]):hover,
+    &[data-hovered="true"]:not([data-selected="true"]):not([data-disabled="true"]) {
+      @apply opacity-70;
+    }
+  }
+
+  /* Focus states - comprehensive fallback */
+  &:focus-visible:not(:focus),
+  &[data-focus-visible="true"] {
+    @apply av-status-focused;
+  }
+}
+
+/* Tab separator */
+.av-tabs__separator {
+  @apply pointer-events-none absolute rounded-sm bg-muted/25;
+
+  /**
+   * Transitions
+   * CRITICAL: motion-reduce must be AFTER transition for correct override specificity
+   */
+  transition: opacity 150ms var(--ease-smooth);
+  @apply av-motion-reduce:transition-none;
+
+  /* Horizontal tabs - vertical separator */
+  .av-tabs__list[data-orientation="horizontal"] & {
+    @apply start-0 top-1/4 h-1/2 w-px;
+  }
+
+  /* Vertical tabs - horizontal separator */
+  .av-tabs__list[data-orientation="vertical"] & {
+    @apply start-[5%] top-0 h-px w-[90%];
+  }
+}
+
+/* Tab panel */
+.av-tabs__panel {
+  @apply w-full p-2 outline-none;
+
+  /* Exiting animations */
+  &[data-exiting="true"] {
+    @apply absolute start-0 top-0 w-full;
+  }
+
+  /* Orientation spacing */
+  &[data-orientation="horizontal"] {
+    @apply mt-4;
+  }
+
+  &[data-orientation="vertical"] {
+    @apply ms-4;
+  }
+}
+
+/* Tab indicator — geometry from AvTabsInkBar */
+.av-tabs__indicator {
+  @apply absolute start-0 top-0 size-full rounded-3xl bg-segment shadow-surface;
+
+  z-index: -1;
+  pointer-events: none;
+
+  /**
+   * Transitions
+   * CRITICAL: motion-reduce must be AFTER transition for correct override specificity
+   */
+  transition-duration: 250ms;
+  transition-property: translate, width, height;
+  transition-timing-function: var(--ease-out-fluid);
+  @apply av-motion-reduce:transition-none;
+}
+
+/* ==========================================================================
+   Secondary Variant
+   ========================================================================== */
+
+.av-tabs--secondary {
+  /* Container - flat, no pill. Underline on container (not list) so it stays
+     stable when the inner list scrolls horizontally inside the scroller. */
+  > .av-tabs__list-container {
+    @apply rounded-none bg-transparent;
+
+    /* Tab list - remove padding */
+    .av-tabs__list {
+      @apply p-0;
+    }
+
+    /* Hide separators in secondary variant */
+    .av-tabs__separator {
+      @apply hidden;
+    }
+
+    /* Tab - adjust for secondary variant */
+    .av-tabs__tab {
+      @apply rounded-none;
+
+      /* Selected state - use text-foreground */
+      &[data-selected="true"] {
+        @apply text-foreground;
+      }
+    }
+
+    /* Tab indicator - line style */
+    .av-tabs__indicator {
+      @apply rounded-none bg-accent shadow-none;
+    }
+  }
+
+  /* Horizontal orientation - bottom border + bottom line indicator */
+  &[data-orientation="horizontal"] > .av-tabs__list-container {
+    @apply border-b border-border;
+
+    .av-tabs__indicator {
+      @apply top-auto bottom-0 h-0.5;
+    }
+  }
+
+  /* Vertical orientation - start border + start line indicator */
+  &[data-orientation="vertical"] > .av-tabs__list-container {
+    @apply border-s border-border;
+
+    .av-tabs__indicator {
+      @apply start-0 top-0 h-full w-0.5;
+    }
+  }
+}

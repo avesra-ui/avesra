@@ -1,0 +1,23 @@
+@let item = component();
+@let badge = statusLabel(item.status);
+
+<div
+  class="av-component-gallery-card"
+  [routerLink]="item.path"
+  role="link"
+  tabindex="0"
+>
+  <div class="av-component-gallery-card__preview">
+    <div class="av-component-gallery-card__placeholder" aria-hidden="true"></div>
+    @if (item.status === 'documented') {
+      <app-component-gallery-preview [slug]="item.slug" />
+    }
+  </div>
+
+  <div class="av-component-gallery-card__title">
+    <span class="av-component-gallery-card__label">{{ item.label }}</span>
+    @if (badge) {
+      <span class="av-component-gallery-card__badge">{{ badge }}</span>
+    }
+  </div>
+</div>

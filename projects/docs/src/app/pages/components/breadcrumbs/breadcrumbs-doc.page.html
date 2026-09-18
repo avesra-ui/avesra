@@ -1,0 +1,145 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Breadcrumbs</h1>
+      <p class="av-doc-prose__description">
+        Navigation breadcrumbs showing the current page's location within a hierarchy
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="breadcrumbs" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <app-doc-snippet component="breadcrumbs" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="navigation-levels">
+      <h2 class="av-doc-prose__heading">Navigation Levels</h2>
+      <app-component-preview [demo]="demos.level2" />
+      <app-component-preview [demo]="demos.level3" />
+    </section>
+
+    <section class="av-doc-prose__section" id="disabled">
+      <h2 class="av-doc-prose__heading">Disabled State</h2>
+      <app-component-preview [demo]="demos.disabled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-separator">
+      <h2 class="av-doc-prose__heading">Custom Separator</h2>
+      <app-component-preview [demo]="demos.customSeparator" />
+    </section>
+
+    <section class="av-doc-prose__section" id="render-function">
+      <h2 class="av-doc-prose__heading">Render Function</h2>
+      <p class="av-doc-prose__description">
+        In Angular, customize the host elements directly with attributes and classes — no render
+        prop needed. Here <code>data-custom</code> is set on the root and each item.
+      </p>
+      <app-component-preview [demo]="demos.customRenderFunction" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on the breadcrumbs host and items to customize layout, color, and
+        decoration.
+      </p>
+      <app-component-preview [demo]="demos.customStyles" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Breadcrumbs classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The Breadcrumbs component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-breadcrumbs</code> — Base breadcrumbs container</li>
+        <li><code>.av-breadcrumbs__list</code> — Ordered list wrapper</li>
+        <li><code>.av-breadcrumbs__item</code> — Individual breadcrumb item wrapper</li>
+        <li><code>.av-breadcrumbs__link</code> — Breadcrumb link element</li>
+        <li><code>.av-breadcrumbs__separator</code> — Separator icon between items</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">State Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>.av-breadcrumbs__link[data-current="true"]</code> — Current page indicator (not a
+          link)
+        </li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">
+        The component supports both CSS pseudo-classes and data attributes for flexibility:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Current:</strong> <code>[data-current="true"]</code> on link (indicates current
+          page)
+        </li>
+        <li><strong>Hover:</strong> Link elements support standard hover states</li>
+        <li>
+          <strong>Disabled:</strong> <code>disabled</code> input disables all links
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="accessibility">
+      <h2 class="av-doc-prose__heading">Accessibility</h2>
+      <p class="av-doc-prose__description">
+        Breadcrumbs renders a <code>nav</code> landmark with <code>aria-label="Breadcrumbs"</code>
+        and provides:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>Proper ARIA attributes for navigation landmarks</li>
+        <li>Current page indication via <code>aria-current="page"</code></li>
+        <li>Keyboard navigation support</li>
+        <li>Screen reader context for the trail</li>
+      </ul>
+      <p class="av-doc-prose__description">
+        The last breadcrumb item (without <code>href</code>) automatically becomes the current page
+        indicator.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API Reference</h2>
+      <p class="av-doc-prose__description">
+        Compound API across <code>av-breadcrumbs</code> and <code>li[av-breadcrumbs-item]</code>.
+        Optional <code>svg[av-breadcrumbs-separator]</code> (or any markup) can be provided via the
+        <code>separator</code> template.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

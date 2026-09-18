@@ -1,0 +1,85 @@
+/* av-progress-circle — circular progress indicator */
+
+.av-progress-circle {
+  @apply inline-flex items-center justify-center;
+
+  --av-progress-circle-stroke: var(--av-accent);
+  --av-progress-circle-track-stroke: var(--av-default);
+
+  .av-progress-circle__track {
+    @apply size-7;
+  }
+
+  .av-progress-circle__track-circle {
+    stroke: var(--av-progress-circle-track-stroke);
+  }
+
+  .av-progress-circle__fill-circle {
+    stroke: var(--av-progress-circle-stroke);
+
+    /**
+     * CRITICAL: av-motion-reduce must be AFTER transition for correct override specificity
+     */
+    transition: stroke-dashoffset 300ms var(--ease-out);
+    @apply av-motion-reduce:transition-none;
+  }
+
+  &:not([aria-valuenow]) {
+    .av-progress-circle__track {
+      animation: av-progress-circle-spin 1s linear infinite;
+
+      @apply av-motion-reduce:animate-none;
+    }
+  }
+
+  &:disabled,
+  &[data-disabled="true"],
+  &[aria-disabled="true"] {
+    @apply av-status-disabled;
+  }
+}
+
+@keyframes av-progress-circle-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.av-progress-circle--sm {
+  .av-progress-circle__track {
+    @apply size-5;
+  }
+}
+
+.av-progress-circle--md {
+  /* No styles as this is the default size */
+}
+
+.av-progress-circle--lg {
+  .av-progress-circle__track {
+    @apply size-9;
+  }
+}
+
+.av-progress-circle--default {
+  --av-progress-circle-stroke: var(--av-default-foreground);
+}
+
+.av-progress-circle--accent {
+  --av-progress-circle-stroke: var(--av-accent);
+}
+
+.av-progress-circle--success {
+  --av-progress-circle-stroke: var(--av-success);
+}
+
+.av-progress-circle--warning {
+  --av-progress-circle-stroke: var(--av-warning);
+}
+
+.av-progress-circle--danger {
+  --av-progress-circle-stroke: var(--av-danger);
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@avesra/angular",
+  "version": "0.0.1",
+  "description": "Avesra UI components for Angular",
+  "peerDependencies": {
+    "@angular/common": "^19.2.0",
+    "@angular/core": "^19.2.0",
+    "@avesra/styles": ">=0.0.1"
+  },
+  "dependencies": {
+    "@angular/cdk": "^19.2.0",
+    "@internationalized/date": "^3.12.2",
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

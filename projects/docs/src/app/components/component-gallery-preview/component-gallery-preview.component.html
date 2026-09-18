@@ -1,0 +1,738 @@
+@switch (slug()) {
+  @case ('button') {
+    <button av-button>Click me</button>
+  }
+  @case ('button-group') {
+    <av-button-group>
+      <button av-button>First</button>
+      <button av-button>
+        <span av-button-group-separator></span>
+        Second
+      </button>
+      <button av-button>
+        <span av-button-group-separator></span>
+        Third
+      </button>
+    </av-button-group>
+  }
+  @case ('close-button') {
+    <button av-close-button aria-label="Close"></button>
+  }
+  @case ('toggle-button') {
+    <button av-toggle-button [selected]="true">
+      <app-icon icon="solar:heart-bold" size="16" />
+      Like
+    </button>
+  }
+  @case ('toggle-button-group') {
+    <av-toggle-button-group selection-mode="multiple" [default-selected-keys]="['bold']">
+      <button av-toggle-button icon-only value="bold" aria-label="Bold">
+        <app-icon icon="solar:text-bold-linear" size="16" />
+      </button>
+      <button av-toggle-button icon-only value="italic" aria-label="Italic">
+        <span av-toggle-button-group-separator></span>
+        <app-icon icon="solar:text-italic-linear" size="16" />
+      </button>
+      <button av-toggle-button icon-only value="underline" aria-label="Underline">
+        <span av-toggle-button-group-separator></span>
+        <app-icon icon="solar:text-underline-linear" size="16" />
+      </button>
+    </av-toggle-button-group>
+  }
+  @case ('link') {
+    <a av-link href="#">
+      Call to action
+      <span av-link-icon></span>
+    </a>
+  }
+  @case ('label') {
+    <div class="flex w-56 flex-col gap-1">
+      <label av-label for="gallery-label">Name</label>
+      <input av-input id="gallery-label" placeholder="Enter your name" type="text" />
+    </div>
+  }
+  @case ('description') {
+    <div class="flex w-56 flex-col gap-1">
+      <label av-label for="gallery-description">Email</label>
+      <input
+        av-input
+        id="gallery-description"
+        placeholder="you@example.com"
+        type="email"
+      />
+      <p av-description>We'll never share your email with anyone else.</p>
+    </div>
+  }
+  @case ('field-error') {
+    <div class="flex w-56 flex-col gap-1">
+      <label av-label for="gallery-field-error">Username</label>
+      <input av-input id="gallery-field-error" placeholder="Enter username" invalid value="jr" />
+      <p av-field-error visible>Username must be at least 3 characters</p>
+    </div>
+  }
+  @case ('error-message') {
+    <av-tag-group class="w-56" selection-mode="multiple">
+      <label av-label>Required Categories</label>
+      <div av-tag-group-list>
+        <div av-tag value="news">News</div>
+        <div av-tag value="travel">Travel</div>
+        <div av-tag value="gaming">Gaming</div>
+      </div>
+      <p av-description>Select at least one category</p>
+      <p av-error-message>Please select at least one category</p>
+    </av-tag-group>
+  }
+  @case ('form') {
+    <form av-form class="flex w-56 flex-col gap-3" aria-label="Sign in">
+      <div class="flex flex-col gap-1">
+        <label av-label for="gallery-form-email">Email</label>
+        <input
+          av-input
+          full-width
+          id="gallery-form-email"
+          placeholder="john@example.com"
+          type="email"
+        />
+      </div>
+      <button av-button type="button">Sign in</button>
+    </form>
+  }
+  @case ('fieldset') {
+    <fieldset av-fieldset class="w-56">
+      <legend av-fieldset-legend>Profile Settings</legend>
+      <p av-description>Update your profile information.</p>
+      <div av-fieldset-group>
+        <div class="flex flex-col gap-1">
+          <label av-label for="gallery-fieldset-name">Name</label>
+          <input av-input full-width id="gallery-fieldset-name" placeholder="John Doe" />
+        </div>
+      </div>
+    </fieldset>
+  }
+  @case ('input') {
+    <input av-input class="w-56" placeholder="Enter your name" type="text" aria-label="Name" />
+  }
+  @case ('time-field') {
+    <div av-time-field class="w-56" name="time" [value]="previewTime">
+      <label av-label>Time</label>
+      <div av-date-input-group>
+        <div av-date-input-group-input></div>
+      </div>
+    </div>
+  }
+  @case ('textarea') {
+    <div class="flex w-56 flex-col gap-1">
+      <label av-label for="gallery-textarea">Description</label>
+      <textarea
+        av-textarea
+        id="gallery-textarea"
+        placeholder="Describe your product"
+        rows="3"
+      ></textarea>
+    </div>
+  }
+  @case ('input-group') {
+    <div class="flex w-56 flex-col gap-1">
+      <label av-label for="gallery-input-group">Email address</label>
+      <div av-input-group>
+        <div av-input-group-prefix>
+          <app-icon icon="solar:letter-linear" size="16" class="text-muted" />
+        </div>
+        <input
+          av-input-group-input
+          id="gallery-input-group"
+          placeholder="name@email.com"
+          type="email"
+        />
+      </div>
+    </div>
+  }
+  @case ('input-otp') {
+    <div class="flex flex-col gap-2">
+      <label av-label>Verify account</label>
+      <div av-input-otp [maxLength]="6" [value]="otpValue">
+        <div av-input-otp-group>
+          <div av-input-otp-slot [index]="0"></div>
+          <div av-input-otp-slot [index]="1"></div>
+          <div av-input-otp-slot [index]="2"></div>
+        </div>
+        <div av-input-otp-separator></div>
+        <div av-input-otp-group>
+          <div av-input-otp-slot [index]="3"></div>
+          <div av-input-otp-slot [index]="4"></div>
+          <div av-input-otp-slot [index]="5"></div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('checkbox') {
+    <div av-checkbox default-selected name="gallery-terms">
+      <span av-checkbox-control>
+        <span av-checkbox-indicator></span>
+      </span>
+      <span av-checkbox-content>Accept terms</span>
+    </div>
+  }
+  @case ('checkbox-group') {
+    <av-checkbox-group name="interests" [default-value]="['coding']">
+      <label av-label>Select your interests</label>
+      <div av-checkbox value="coding">
+        <span av-checkbox-control>
+          <span av-checkbox-indicator></span>
+        </span>
+        <span av-checkbox-content>Coding</span>
+      </div>
+      <div av-checkbox value="design">
+        <span av-checkbox-control>
+          <span av-checkbox-indicator></span>
+        </span>
+        <span av-checkbox-content>Design</span>
+      </div>
+      <div av-checkbox value="writing">
+        <span av-checkbox-control>
+          <span av-checkbox-indicator></span>
+        </span>
+        <span av-checkbox-content>Writing</span>
+      </div>
+    </av-checkbox-group>
+  }
+  @case ('radio-group') {
+    <av-radio-group default-value="premium" name="plan">
+      <label av-label>Plan selection</label>
+      <div av-radio value="basic">
+        <span av-radio-control>
+          <span av-radio-indicator></span>
+        </span>
+        <span av-radio-content>Basic Plan</span>
+      </div>
+      <div av-radio value="premium">
+        <span av-radio-control>
+          <span av-radio-indicator></span>
+        </span>
+        <span av-radio-content>Premium Plan</span>
+      </div>
+      <div av-radio value="business">
+        <span av-radio-control>
+          <span av-radio-indicator></span>
+        </span>
+        <span av-radio-content>Business Plan</span>
+      </div>
+    </av-radio-group>
+  }
+  @case ('switch') {
+    <div av-switch default-selected>
+      <span av-switch-control>
+        <span av-switch-thumb></span>
+      </span>
+      <span av-switch-content>Enable notifications</span>
+    </div>
+  }
+  @case ('slider') {
+    <div class="w-56" av-slider [default-value]="30">
+      <label av-label>Volume</label>
+      <span av-slider-output></span>
+      <div av-slider-track>
+        <div av-slider-fill></div>
+        <div av-slider-thumb></div>
+      </div>
+    </div>
+  }
+  @case ('typography') {
+    <div class="flex max-w-56 flex-col gap-2">
+      <h3 av-typography type="h3">Build better interfaces</h3>
+      <p av-typography color="muted" type="body-sm">
+        Typography that stays semantic and composable by default.
+      </p>
+    </div>
+  }
+  @case ('avatar') {
+    <div class="flex items-center gap-3">
+      <span av-avatar>
+        <img av-avatar-image alt="John Doe" [src]="avatarMan" />
+        <span av-avatar-fallback>JD</span>
+      </span>
+      <span av-avatar>
+        <img av-avatar-image alt="Blue" [src]="avatarBoy" />
+        <span av-avatar-fallback>B</span>
+      </span>
+      <span av-avatar>
+        <span av-avatar-fallback>JR</span>
+      </span>
+    </div>
+  }
+  @case ('badge') {
+    <span av-badge-anchor>
+      <span av-avatar>
+        <img av-avatar-image alt="JD" [src]="badgeGradient" />
+        <span av-avatar-fallback>JD</span>
+      </span>
+      <span av-badge color="danger" size="sm" label="5"></span>
+    </span>
+  }
+  @case ('chip') {
+    <div class="flex flex-wrap items-center justify-center gap-2">
+      <span av-chip label="Default"></span>
+      <span av-chip color="accent" label="Accent"></span>
+      <span av-chip color="success" label="Success"></span>
+    </div>
+  }
+  @case ('tag-group') {
+    <av-tag-group selection-mode="single" aria-label="Tags" [default-selected-keys]="['news']">
+      <div av-tag-group-list>
+        <div av-tag value="news">News</div>
+        <div av-tag value="travel">Travel</div>
+        <div av-tag value="gaming">Gaming</div>
+      </div>
+    </av-tag-group>
+  }
+  @case ('kbd') {
+    <div class="flex items-center gap-3">
+      <kbd av-kbd>
+        <abbr av-kbd-abbr key-value="command"></abbr>
+        <span av-kbd-content>K</span>
+      </kbd>
+      <kbd av-kbd>
+        <abbr av-kbd-abbr key-value="shift"></abbr>
+        <span av-kbd-content>P</span>
+      </kbd>
+    </div>
+  }
+  @case ('skeleton') {
+    <div class="w-52 space-y-4 rounded-lg p-1">
+      <div av-skeleton class="h-20 rounded-lg"></div>
+      <div class="space-y-2">
+        <div av-skeleton class="h-3 w-3/5 rounded-lg"></div>
+        <div av-skeleton class="h-3 w-4/5 rounded-lg"></div>
+      </div>
+    </div>
+  }
+  @case ('progress-circle') {
+    <div av-progress-circle aria-label="Loading" [value]="60">
+      <svg av-progress-circle-track>
+        <circle av-progress-circle-track-circle></circle>
+        <circle av-progress-circle-fill-circle></circle>
+      </svg>
+    </div>
+  }
+  @case ('progress-bar') {
+    <div class="w-56" av-progress-bar [value]="60">
+      <label av-label>Loading</label>
+      <span av-progress-bar-output></span>
+      <div av-progress-bar-track>
+        <div av-progress-bar-fill></div>
+      </div>
+    </div>
+  }
+  @case ('meter') {
+    <div class="w-56" av-meter [value]="60">
+      <label av-label>Storage</label>
+      <span av-meter-output></span>
+      <div av-meter-track>
+        <div av-meter-fill></div>
+      </div>
+    </div>
+  }
+  @case ('table') {
+    <div class="w-64">
+      <div av-table>
+        <div av-table-scroll-container>
+          <table av-table-content aria-label="Team members">
+            <thead av-table-header>
+              <tr>
+                <th av-table-column>Name</th>
+                <th av-table-column>Role</th>
+              </tr>
+            </thead>
+            <tbody av-table-body>
+              <tr av-table-row>
+                <td av-table-cell>Kate Moore</td>
+                <td av-table-cell>CEO</td>
+              </tr>
+              <tr av-table-row>
+                <td av-table-cell>John Smith</td>
+                <td av-table-cell>CTO</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('card') {
+    <div av-card class="w-56">
+      <span role="img" aria-label="Dollar sign icon">
+        <app-icon icon="solar:dollar-linear" size="20" class="text-foreground" />
+      </span>
+      <div av-card-header>
+        <h3 av-card-title>Become a Creator</h3>
+        <p av-card-description>Sign up today and start earning from your audience.</p>
+      </div>
+    </div>
+  }
+  @case ('surface') {
+    <div av-surface class="flex w-52 flex-col gap-2 rounded-3xl p-4">
+      <h3 class="text-sm font-semibold text-foreground">Surface Content</h3>
+      <p class="text-xs text-muted">Default surface with token-backed styling.</p>
+    </div>
+  }
+  @case ('separator') {
+    <div class="w-52">
+      <div class="space-y-1">
+        <h4 class="text-sm font-medium text-foreground">Avesra</h4>
+        <p class="text-xs text-muted">Modern Angular UI library.</p>
+      </div>
+      <hr av-separator class="my-3" />
+      <div class="flex h-5 items-center gap-3 text-xs">
+        <span>Blog</span>
+        <div av-separator orientation="vertical"></div>
+        <span>Docs</span>
+      </div>
+    </div>
+  }
+  @case ('toolbar') {
+    <av-toolbar aria-label="Text formatting">
+      <av-toggle-button-group selection-mode="multiple" [default-selected-keys]="['bold']">
+        <button av-toggle-button value="bold" icon-only aria-label="Bold">B</button>
+        <button av-toggle-button value="italic" icon-only aria-label="Italic">
+          <span av-toggle-button-group-separator></span>
+          I
+        </button>
+      </av-toggle-button-group>
+      <hr av-separator />
+      <av-button-group>
+        <button av-button variant="secondary" icon-only aria-label="Copy">C</button>
+        <button av-button variant="secondary" icon-only aria-label="Cut">
+          <span av-button-group-separator></span>
+          X
+        </button>
+      </av-button-group>
+    </av-toolbar>
+  }
+  @case ('modal') {
+    <div class="av-modal__dialog av-modal__dialog--sm av-component-gallery-preview__snapshot">
+      <div class="av-modal__header">
+        <div class="av-modal__icon bg-default text-foreground">
+          <app-icon icon="solar:pen-new-square-linear" size="16" />
+        </div>
+        <h2 class="av-modal__heading">Create project</h2>
+      </div>
+      <div class="av-modal__body">
+        <p>Create a new project. Add details next to get started.</p>
+      </div>
+      <div class="av-modal__footer">
+        <button av-button size="sm" variant="secondary">Cancel</button>
+        <button av-button size="sm">Create</button>
+      </div>
+    </div>
+  }
+  @case ('drawer') {
+    <div class="av-drawer__dialog av-component-gallery-preview__snapshot av-component-gallery-preview__snapshot--drawer rounded-3xl">
+      <div class="av-drawer__header">
+        <h2 class="av-drawer__heading">Customize theme</h2>
+      </div>
+      <div class="av-drawer__body">
+        <p class="mb-3">Customize your theme tokens with custom colors, font family, and radius.</p>
+        <av-radio-group class="mb-3" default-value="blue" name="gallery-accent">
+          <label av-label>Accent</label>
+          <div av-radio value="blue">
+            <span av-radio-control>
+              <span av-radio-indicator></span>
+            </span>
+            <span av-radio-content>Blue</span>
+          </div>
+        </av-radio-group>
+        <div av-select class="w-full" placeholder="Aa Inter">
+          <label av-label>Font Family</label>
+          <button av-select-trigger>
+            <span av-select-value></span>
+            <span av-select-indicator></span>
+          </button>
+          <av-select-popover>
+            <div av-list-box>
+              <div av-list-box-item id="inter" textValue="Aa Inter">
+                Aa Inter
+                <span av-list-box-item-indicator></span>
+              </div>
+            </div>
+          </av-select-popover>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('alert-dialog') {
+    <div
+      class="av-alert-dialog__dialog av-alert-dialog__dialog--sm av-component-gallery-preview__snapshot"
+    >
+      <button av-close-button class="av-alert-dialog__close-trigger" aria-label="Close"></button>
+      <div class="av-alert-dialog__header">
+        <div class="av-alert-dialog__icon av-alert-dialog__icon--danger">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path
+              fill="currentColor"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M8 13.5a5.5 5.5 0 1 0 0-11a5.5 5.5 0 0 0 0 11M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14m1-4.5a1 1 0 1 1-2 0a1 1 0 0 1 2 0M8.75 5a.75.75 0 0 0-1.5 0v2.5a.75.75 0 0 0 1.5 0z"
+            />
+          </svg>
+        </div>
+        <h2 class="av-alert-dialog__heading">Delete product</h2>
+      </div>
+      <div class="av-alert-dialog__body">
+        <p>Are you sure you want to delete this product? This action cannot be undone.</p>
+      </div>
+      <div class="av-alert-dialog__footer">
+        <button av-button class="flex-1" size="sm" variant="secondary">Cancel</button>
+        <button av-button class="flex-1" size="sm" variant="danger">Delete</button>
+      </div>
+    </div>
+  }
+  @case ('popover') {
+    <div class="flex flex-col items-center gap-2">
+      <button av-button>Click me</button>
+      <div class="av-popover">
+        <div av-popover-dialog class="max-w-56">
+          <h2 av-popover-heading>Popover Title</h2>
+          <p class="mt-2 text-sm text-muted">
+            This is the popover content. You can put any content here.
+          </p>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('tooltip') {
+    <div class="av-component-gallery-preview__tooltip">Content goes here</div>
+  }
+  @case ('toast') {
+    <div
+      class="av-toast av-toast--accent av-component-gallery-preview__toast"
+      data-front="true"
+      data-frontmost="true"
+    >
+      <div class="av-toast__indicator" data-slot="toast-indicator">
+        <svg
+          data-slot="toast-default-icon"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+        >
+          <path
+            fill="currentColor"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M8 13.5a5.5 5.5 0 1 0 0-11a5.5 5.5 0 0 0 0 11M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14m1-9.5a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-.25 3a.75.75 0 0 0-1.5 0V11a.75.75 0 0 0 1.5 0z"
+          />
+        </svg>
+      </div>
+      <div class="av-toast__content" data-slot="toast-content">
+        <div class="av-toast__title" data-slot="toast-title">You have 2 credits left</div>
+        <div class="av-toast__description" data-slot="toast-description">
+          Upgrade for more credits
+        </div>
+      </div>
+      <div class="av-toast__action">
+        <button av-button size="sm">Upgrade</button>
+      </div>
+    </div>
+  }
+  @case ('alert') {
+    <div av-alert class="w-full" status="accent">
+      <div av-alert-indicator></div>
+      <div av-alert-content>
+        <p av-alert-title>Update available</p>
+        <span av-alert-description>Refresh to get the latest features.</span>
+      </div>
+    </div>
+  }
+  @case ('spinner') {
+    <div class="flex items-center gap-4">
+      <span av-spinner size="sm"></span>
+      <span av-spinner></span>
+      <span av-spinner size="lg"></span>
+    </div>
+  }
+  @case ('dropdown') {
+    <div class="flex flex-col items-center gap-2">
+      <button av-button variant="secondary">Actions</button>
+      <div class="av-popover av-component-gallery-preview__menu">
+        <div class="av-dropdown__menu">
+          <div class="av-menu-item" data-slot="menu-item">
+            <label av-label>New file</label>
+          </div>
+          <div class="av-menu-item" data-slot="menu-item">
+            <label av-label>Copy link</label>
+          </div>
+          <div class="av-menu-item av-menu-item--danger" data-slot="menu-item">
+            <label av-label>Delete file</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('list-box') {
+    <div av-surface class="w-52 rounded-3xl shadow-surface">
+      <div
+        av-list-box
+        aria-label="Users"
+        selection-mode="single"
+        [selectedKeys]="listSelected"
+        class="w-full"
+      >
+        @for (user of listUsers; track user.id) {
+          <div av-list-box-item [id]="user.id" [textValue]="user.name">
+            <span av-avatar size="sm">
+              <img av-avatar-image [alt]="user.name" [src]="user.avatar" />
+              <span av-avatar-fallback>{{ user.fallback }}</span>
+            </span>
+            <div class="flex flex-col">
+              <label av-label>{{ user.name }}</label>
+              <p av-description>{{ user.email }}</p>
+            </div>
+            <span av-list-box-item-indicator></span>
+          </div>
+        }
+      </div>
+    </div>
+  }
+  @case ('select') {
+    <div av-select class="w-52" placeholder="Select one">
+      <label av-label>State</label>
+      <button av-select-trigger>
+        <span av-select-value></span>
+        <span av-select-indicator></span>
+      </button>
+      <av-select-popover>
+        <div av-list-box>
+          <div av-list-box-item id="california" textValue="California">
+            California
+            <span av-list-box-item-indicator></span>
+          </div>
+        </div>
+      </av-select-popover>
+    </div>
+  }
+  @case ('tabs') {
+    <av-tabs class="w-max" default-selected-key="overview">
+      <div av-tabs-list-container>
+        <div av-tabs-list aria-label="Options">
+          <span av-tabs-indicator></span>
+          <button av-tabs-tab id="overview">Overview</button>
+          <button av-tabs-tab id="analytics">
+            <span av-tabs-separator></span>
+            Analytics
+          </button>
+          <button av-tabs-tab id="reports">
+            <span av-tabs-separator></span>
+            Reports
+          </button>
+        </div>
+      </div>
+    </av-tabs>
+  }
+  @case ('pagination') {
+    <av-pagination class="justify-center">
+      <ul av-pagination-content>
+        <li av-pagination-item>
+          <button av-pagination-prev>
+            <span av-pagination-prev-icon></span>
+          </button>
+        </li>
+        <li av-pagination-item>
+          <button av-pagination-link>1</button>
+        </li>
+        <li av-pagination-item>
+          <button av-pagination-link active>2</button>
+        </li>
+        <li av-pagination-item>
+          <button av-pagination-link>3</button>
+        </li>
+        <li av-pagination-item>
+          <button av-pagination-next>
+            <span av-pagination-next-icon></span>
+          </button>
+        </li>
+      </ul>
+    </av-pagination>
+  }
+  @case ('breadcrumbs') {
+    <av-breadcrumbs>
+      <li av-breadcrumbs-item href="#">Home</li>
+      <li av-breadcrumbs-item href="#">Products</li>
+      <li av-breadcrumbs-item>Laptop</li>
+    </av-breadcrumbs>
+  }
+  @case ('accordion') {
+    <av-accordion class="w-56" [expandedKeys]="accordionExpanded">
+      <av-accordion-item id="faq-0">
+        <h3 av-accordion-heading>
+          <button av-accordion-trigger>
+            How do I place an order?
+            <svg av-accordion-indicator></svg>
+          </button>
+        </h3>
+        <div av-accordion-panel>
+          <div av-accordion-body>Add items to your cart and proceed to checkout.</div>
+        </div>
+      </av-accordion-item>
+      <av-accordion-item id="faq-1">
+        <h3 av-accordion-heading>
+          <button av-accordion-trigger>
+            Can I cancel my order?
+            <svg av-accordion-indicator></svg>
+          </button>
+        </h3>
+        <div av-accordion-panel>
+          <div av-accordion-body>Yes, before the order is shipped.</div>
+        </div>
+      </av-accordion-item>
+    </av-accordion>
+  }
+  @case ('disclosure') {
+    <av-disclosure class="w-56" default-expanded>
+      <h3 av-disclosure-heading class="block">
+        <button av-button type="button" av-disclosure-trigger variant="secondary">
+          <app-icon icon="solar:qr-code-linear" size="16" />
+          Preview on phone
+          <svg av-disclosure-indicator></svg>
+        </button>
+      </h3>
+      <div av-disclosure-content>
+        <div av-disclosure-body>
+          <p class="text-sm text-muted">Scan the QR code to open the docs.</p>
+        </div>
+      </div>
+    </av-disclosure>
+  }
+  @case ('disclosure-group') {
+    <av-disclosure-group class="w-56" [expandedKeys]="disclosureExpanded">
+      <av-disclosure id="preview" aria-label="Preview on your phone">
+        <h3 av-disclosure-heading>
+          <button av-button type="button" av-disclosure-trigger variant="secondary" full-width>
+            Preview on phone
+            <svg av-disclosure-indicator></svg>
+          </button>
+        </h3>
+        <div av-disclosure-content>
+          <div av-disclosure-body>
+            <p class="text-sm text-muted">Open the docs on your phone.</p>
+          </div>
+        </div>
+      </av-disclosure>
+      <av-disclosure id="share" aria-label="Share">
+        <h3 av-disclosure-heading>
+          <button av-button type="button" av-disclosure-trigger variant="tertiary" full-width>
+            Share
+            <svg av-disclosure-indicator></svg>
+          </button>
+        </h3>
+        <div av-disclosure-content>
+          <div av-disclosure-body>
+            <p class="text-sm text-muted">Copy a link to this page.</p>
+          </div>
+        </div>
+      </av-disclosure>
+    </av-disclosure-group>
+  }
+}

@@ -1,0 +1,67 @@
+/* av-alert — status feedback surface */
+
+.av-alert {
+  @apply flex w-full flex-row items-start justify-start gap-4 bg-surface px-4 py-3 shadow-surface;
+  border-radius: min(32px, var(--radius-3xl));
+}
+
+.av-alert__content {
+  @apply flex h-full grow flex-col items-start;
+}
+
+.av-alert__indicator {
+  @apply flex items-center justify-center p-1 select-none;
+
+  [data-slot="alert-default-icon"] {
+    @apply box-content size-4;
+  }
+}
+
+.av-alert__title {
+  @apply text-sm leading-6 font-medium;
+}
+
+.av-alert__description {
+  @apply text-sm text-muted;
+}
+
+/* Status modifiers — color indicator + title only */
+.av-alert--default .av-alert__indicator {
+  @apply text-foreground;
+}
+
+.av-alert--default .av-alert__title {
+  @apply text-foreground;
+}
+
+.av-alert--accent .av-alert__indicator {
+  @apply text-accent-soft-foreground;
+}
+
+.av-alert--accent .av-alert__title {
+  @apply text-accent-soft-foreground;
+}
+
+.av-alert--success .av-alert__indicator {
+  @apply text-success-soft-foreground;
+}
+
+.av-alert--success .av-alert__title {
+  @apply text-success-soft-foreground;
+}
+
+.av-alert--warning .av-alert__indicator {
+  @apply text-warning-soft-foreground;
+}
+
+.av-alert--warning .av-alert__title {
+  @apply text-warning-soft-foreground;
+}
+
+.av-alert--danger .av-alert__indicator {
+  @apply text-danger-soft-foreground;
+}
+
+.av-alert--danger .av-alert__title {
+  @apply text-danger-soft-foreground;
+}

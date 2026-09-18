@@ -1,0 +1,74 @@
+<figure
+  class="av-doc-code-block"
+  [class.av-doc-code-block--collapsed]="isCollapsed()"
+  [class.av-doc-code-block--import]="variant() === 'import'"
+  [class.av-doc-code-block--anatomy]="variant() === 'anatomy'"
+>
+  @if (isInlineSnippet()) {
+    <div
+      class="av-doc-code-block__import-scroll"
+      [class.av-doc-code-block__import-scroll--multiline]="
+        variant() === 'anatomy' || variant() === 'import'
+      "
+      tabindex="0"
+      role="region"
+    >
+      <div class="av-doc-code-block__content" [innerHTML]="safeHighlightedHtml()"></div>
+    </div>
+    <button
+      av-button
+      size="sm"
+      variant="ghost"
+      icon-only
+      class="av-doc-code-block__copy"
+      type="button"
+      [attr.aria-label]="copied() ? 'Copied' : 'Copy code'"
+      (click)="copyCode()"
+    >
+      @if (copied()) {
+        <app-icon icon="solar:check-circle-linear" size="16" />
+      } @else {
+        <app-icon icon="solar:copy-linear" size="16" />
+      }
+    </button>
+  } @else {
+    <div class="av-doc-code-block__actions">
+      <button
+        av-button
+        size="sm"
+        variant="ghost"
+        icon-only
+        class="av-doc-code-block__copy"
+        type="button"
+        [attr.aria-label]="copied() ? 'Copied' : 'Copy code'"
+        (click)="copyCode()"
+      >
+        @if (copied()) {
+          <app-icon icon="solar:check-circle-linear" size="16" />
+        } @else {
+          <app-icon icon="solar:copy-linear" size="16" />
+        }
+      </button>
+    </div>
+
+    <div class="av-doc-code-block__body" [class.av-doc-code-block__body--collapsed]="isCollapsed()">
+      <div class="av-doc-code-block__scroll" tabindex="0" role="region">
+        <div
+          class="av-doc-code-block__content av-doc-code-block--line-numbers"
+          [innerHTML]="safeHighlightedHtml()"
+        ></div>
+      </div>
+    </div>
+
+    <button
+      av-button
+      size="sm"
+      variant="tertiary"
+      class="av-doc-code-block__toggle"
+      type="button"
+      (click)="toggleCollapsed()"
+    >
+      {{ isCollapsed() ? 'Expand code' : 'Collapse code' }}
+    </button>
+  }
+</figure>

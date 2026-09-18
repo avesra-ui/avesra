@@ -1,0 +1,167 @@
+/* =============================================================================
+ * Typography — Avesra tokens (av- prefix)
+ * ============================================================================= */
+
+.av-typography {
+  @apply text-foreground;
+}
+
+.av-typography-prose {
+  @apply text-foreground;
+}
+
+.av-typography-prose h1 {
+  @apply text-4xl font-semibold tracking-tight;
+}
+
+.av-typography-prose h2 {
+  @apply text-3xl font-semibold tracking-tight;
+}
+
+.av-typography-prose h3 {
+  @apply text-2xl font-semibold tracking-tight;
+}
+
+.av-typography-prose h4 {
+  @apply text-xl font-semibold tracking-tight;
+}
+
+.av-typography-prose h5 {
+  @apply text-lg font-semibold tracking-tight;
+}
+
+.av-typography-prose h6 {
+  @apply text-base font-semibold tracking-tight;
+}
+
+.av-typography-prose p {
+  @apply text-base leading-7;
+}
+
+.av-typography-prose code {
+  @apply rounded-md bg-default px-1.5 py-0.5 font-mono text-sm text-foreground;
+}
+
+.av-typography-prose a {
+  @apply font-medium text-link underline underline-offset-4;
+}
+
+.av-typography-prose blockquote {
+  @apply mt-4 border-s-4 border-border ps-4 text-muted italic;
+}
+
+.av-typography-prose ul {
+  @apply my-4 list-disc space-y-2 ps-6;
+}
+
+.av-typography-prose ol {
+  @apply my-4 list-decimal space-y-2 ps-6;
+}
+
+.av-typography-prose li {
+  @apply text-base leading-7;
+}
+
+.av-typography-prose hr {
+  @apply my-8 border-separator;
+}
+
+.av-typography-prose pre {
+  @apply my-4 overflow-x-auto rounded-xl bg-default p-4 font-mono text-sm leading-relaxed;
+}
+
+.av-typography-prose strong {
+  @apply font-semibold text-foreground;
+}
+
+.av-typography-prose em {
+  @apply italic;
+}
+
+.av-typography-prose img {
+  @apply my-4 rounded-xl;
+}
+
+.av-typography--h1 {
+  @apply text-4xl font-semibold tracking-tight;
+}
+
+.av-typography--h2 {
+  @apply text-3xl font-semibold tracking-tight;
+}
+
+.av-typography--h3 {
+  @apply text-2xl font-semibold tracking-tight;
+}
+
+.av-typography--h4 {
+  @apply text-xl font-semibold tracking-tight;
+}
+
+.av-typography--h5 {
+  @apply text-lg font-semibold tracking-tight;
+}
+
+.av-typography--h6 {
+  @apply text-base font-semibold tracking-tight;
+}
+
+.av-typography--body {
+  @apply text-base leading-7;
+}
+
+.av-typography--body-sm {
+  @apply text-sm leading-6;
+}
+
+.av-typography--body-xs {
+  @apply text-xs leading-5;
+}
+
+.av-typography--code {
+  @apply rounded-md bg-default px-1.5 py-0.5 font-mono text-sm text-foreground;
+}
+
+.av-typography--align-start {
+  @apply text-start;
+}
+
+.av-typography--align-center {
+  @apply text-center;
+}
+
+.av-typography--align-end {
+  @apply text-end;
+}
+
+.av-typography--align-justify {
+  @apply text-justify;
+}
+
+.av-typography--color-default {
+  @apply text-foreground;
+}
+
+.av-typography--color-muted {
+  @apply text-muted;
+}
+
+.av-typography--truncate {
+  @apply block truncate;
+}
+
+.av-typography--weight-normal {
+  @apply font-normal;
+}
+
+.av-typography--weight-medium {
+  @apply font-medium;
+}
+
+.av-typography--weight-semibold {
+  @apply font-semibold;
+}
+
+.av-typography--weight-bold {
+  @apply font-bold;
+}

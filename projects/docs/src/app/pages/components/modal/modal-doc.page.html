@@ -1,0 +1,264 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Modal</h1>
+      <p class="av-doc-prose__description">
+        Dialog overlay for focused user interactions and important content.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="modal" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Declare the trigger and an <code>ng-template avModalContent</code> inside
+        <code>av-modal</code>. The overlay content is rendered into a CDK overlay only while the
+        modal is open. Optional pieces include <code>av-modal-close-trigger</code> and
+        <code>av-modal-icon</code>.
+      </p>
+      <app-doc-snippet component="modal" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="placement">
+      <h2 class="av-doc-prose__heading">Placement</h2>
+      <p class="av-doc-prose__description">
+        Set <code>placement</code> on <code>av-modal</code> —
+        <code>auto</code>, <code>top</code>, <code>center</code>, or <code>bottom</code>.
+      </p>
+      <app-component-preview [demo]="demos.placements" />
+    </section>
+
+    <section class="av-doc-prose__section" id="backdrop-variants">
+      <h2 class="av-doc-prose__heading">Backdrop Variants</h2>
+      <p class="av-doc-prose__description">
+        Choose a backdrop style with <code>backdrop</code> on <code>av-modal</code>:
+        <code>opaque</code> (default), <code>blur</code>, or <code>transparent</code>.
+      </p>
+      <app-component-preview [demo]="demos.backdropVariants" />
+    </section>
+
+    <section class="av-doc-prose__section" id="sizes">
+      <h2 class="av-doc-prose__heading">Sizes</h2>
+      <p class="av-doc-prose__description">
+        Pass <code>size</code> to <code>av-modal</code> —
+        <code>xs</code>, <code>sm</code>, <code>md</code>, <code>lg</code>, <code>cover</code>, or
+        <code>full</code>. Individual dialogs can override it with <code>size</code> on
+        <code>div[av-modal-dialog]</code>.
+      </p>
+      <app-component-preview [demo]="demos.sizes" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-backdrop">
+      <h2 class="av-doc-prose__heading">Custom Backdrop</h2>
+      <p class="av-doc-prose__description">
+        Combine the <code>backdrop</code> variant with utility classes passed through
+        <code>backdrop-class</code> for gradients and other overlays.
+      </p>
+      <app-component-preview [demo]="demos.customBackdrop" />
+    </section>
+
+    <section class="av-doc-prose__section" id="dismiss-behavior">
+      <h2 class="av-doc-prose__heading">Dismiss Behavior</h2>
+      <p class="av-doc-prose__description">
+        Set <code>[dismissable]="false"</code> to prevent backdrop dismissal, and
+        <code>keyboard-dismiss-disabled</code> to disable Escape. Both live on
+        <code>av-modal</code>.
+      </p>
+      <app-component-preview [demo]="demos.dismissBehavior" />
+    </section>
+
+    <section class="av-doc-prose__section" id="close-methods">
+      <h2 class="av-doc-prose__heading">Close Methods</h2>
+      <p class="av-doc-prose__description">
+        Close with <code>av-modal-close</code> on buttons, or set <code>[(open)]</code> to
+        <code>false</code> when you need custom logic first.
+      </p>
+      <app-component-preview [demo]="demos.closeMethods" />
+    </section>
+
+    <section class="av-doc-prose__section" id="programmatic">
+      <h2 class="av-doc-prose__heading">Programmatic</h2>
+      <p class="av-doc-prose__description">
+        Use <code>AvModalService.open()</code> to mount any component as a modal without declaring
+        overlay markup. Pass <code>data</code> through the config, read it with
+        <code>AV_MODAL_DATA</code>, and receive the close result from <code>afterClosed()</code>.
+      </p>
+      <app-component-preview [demo]="demos.service" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-animations">
+      <h2 class="av-doc-prose__heading">Custom Animations</h2>
+      <p class="av-doc-prose__description">
+        Override enter/exit motion with Tailwind animation utilities passed through
+        <code>backdrop-class</code> and <code>container-class</code> using
+        <code>data-[entering]</code> / <code>data-[exiting]</code> selectors.
+      </p>
+      <app-component-preview [demo]="demos.customAnimations" />
+    </section>
+
+    <section class="av-doc-prose__section" id="scroll-behavior">
+      <h2 class="av-doc-prose__heading">Scroll Behavior</h2>
+      <p class="av-doc-prose__description">
+        Use <code>scroll="inside"</code> (default) on <code>av-modal</code> to scroll only the body,
+        or <code>scroll="outside"</code> to scroll the entire dialog within the viewport.
+      </p>
+      <app-component-preview [demo]="demos.scrollBehavior" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled">
+      <h2 class="av-doc-prose__heading">Controlled State</h2>
+      <p class="av-doc-prose__description">
+        Bind <code>[(open)]</code> on <code>av-modal</code> to drive visibility from outside the
+        overlay tree — open, close, and toggle programmatically.
+      </p>
+      <app-component-preview [demo]="demos.controlled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-form">
+      <h2 class="av-doc-prose__heading">With Form</h2>
+      <p class="av-doc-prose__description">
+        Place form fields inside <code>av-modal-body</code> and wire submit actions in
+        <code>av-modal-footer</code>. Focus remains trapped while the modal is open.
+      </p>
+      <app-component-preview [demo]="demos.withForm" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-trigger">
+      <h2 class="av-doc-prose__heading">Custom Trigger</h2>
+      <p class="av-doc-prose__description">
+        Apply <code>av-modal-trigger</code> to any focusable element — cards, links, or icon buttons
+        — instead of a plain button.
+      </p>
+      <app-component-preview [demo]="demos.customTrigger" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Style the overlay chrome with <code>backdrop-class</code> and <code>container-class</code>
+        on <code>av-modal</code>, and pass utility classes directly on
+        <code>div[av-modal-dialog]</code> and the other part hosts.
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Modal classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The Modal component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-modal__trigger</code> — Trigger element that opens the modal</li>
+        <li><code>.av-modal__backdrop</code> — Overlay backdrop behind the modal</li>
+        <li><code>.av-modal__container</code> — Positioning wrapper with placement support</li>
+        <li><code>.av-modal__dialog</code> — Modal content container</li>
+        <li><code>.av-modal__header</code> — Header section for titles and icons</li>
+        <li><code>.av-modal__heading</code> — Dialog title</li>
+        <li><code>.av-modal__icon</code> — Optional header icon</li>
+        <li><code>.av-modal__body</code> — Main content area</li>
+        <li><code>.av-modal__footer</code> — Footer section for actions</li>
+        <li><code>.av-modal__close-trigger</code> — Close button element</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Backdrop Variants</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-modal__backdrop--opaque</code> — Opaque colored backdrop (default)</li>
+        <li><code>.av-modal__backdrop--blur</code> — Blurred backdrop with glass effect</li>
+        <li><code>.av-modal__backdrop--transparent</code> — Transparent backdrop (no overlay)</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Scroll Variants</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-modal__container--scroll-outside</code> — Enables scrolling the entire modal</li>
+        <li><code>.av-modal__dialog--scroll-inside</code> — Constrains modal height for body scrolling</li>
+        <li><code>.av-modal__body--scroll-inside</code> — Makes only the body scrollable</li>
+        <li><code>.av-modal__body--scroll-outside</code> — Allows full-page scrolling</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">The component supports these interactive states:</p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Focus:</strong> <code>:focus-visible</code> or
+          <code>[data-focus-visible="true"]</code> — Applied to trigger, dialog, and close button
+        </li>
+        <li>
+          <strong>Hover:</strong> <code>:hover</code> or <code>[data-hovered="true"]</code> —
+          Applied to close button on hover
+        </li>
+        <li>
+          <strong>Active:</strong> <code>:active</code> or <code>[data-pressed="true"]</code> —
+          Applied to close button when pressed
+        </li>
+        <li><strong>Entering:</strong> <code>[data-entering]</code> — During opening animation</li>
+        <li><strong>Exiting:</strong> <code>[data-exiting]</code> — During closing animation</li>
+        <li>
+          <strong>Placement:</strong> <code>[data-placement="*"]</code> — Modal position
+          (<code>auto</code>, <code>top</code>, <code>center</code>, <code>bottom</code>)
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API Reference</h2>
+      <p class="av-doc-prose__description">
+        Overlay configuration lives on <code>av-modal</code>; the dialog and its child parts are
+        composed inside <code>ng-template avModalContent</code>. Close actions use
+        <code>av-modal-close</code> on interactive elements.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+
+    <section class="av-doc-prose__section" id="accessibility">
+      <h2 class="av-doc-prose__heading">Accessibility</h2>
+      <p class="av-doc-prose__description">
+        Implements the
+        <a
+          href="https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >WAI-ARIA Dialog pattern</a
+        >:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li><strong>Focus trap:</strong> Focus locked within the modal</li>
+        <li>
+          <strong>Keyboard:</strong> <kbd>Escape</kbd> closes (when enabled), <kbd>Tab</kbd> cycles
+          elements
+        </li>
+        <li><strong>Screen readers:</strong> Proper ARIA attributes on the dialog</li>
+        <li><strong>Scroll lock:</strong> Body scroll disabled when open</li>
+      </ul>
+    </section>
+  </div>
+</app-doc-page>

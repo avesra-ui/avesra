@@ -1,0 +1,73 @@
+:host {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow: hidden;
+  pointer-events: none !important;
+  user-select: none;
+}
+
+:host *,
+:host *::before,
+:host *::after {
+  pointer-events: none !important;
+}
+
+:host(.av-component-gallery-preview--md) {
+  transform: scale(0.82);
+  transform-origin: center;
+}
+
+.av-component-gallery-preview__toast {
+  position: relative;
+  inset: auto;
+  width: min(20.5rem, 100%);
+  align-items: center;
+}
+
+.av-component-gallery-preview__tooltip {
+  max-width: 11rem;
+  padding: 0.5rem 0.625rem;
+  border-radius: min(32px, var(--radius-xl));
+  background: var(--av-overlay);
+  box-shadow: var(--shadow-overlay);
+  color: var(--av-overlay-foreground, var(--av-foreground));
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+.av-component-gallery-preview__snapshot {
+  position: relative;
+  width: min(15.25rem, 100%);
+  padding: 1rem;
+}
+
+.av-component-gallery-preview__snapshot--drawer {
+  width: min(13.75rem, 100%);
+}
+
+.av-component-gallery-preview__snapshot .av-modal__icon,
+.av-component-gallery-preview__snapshot .av-alert-dialog__icon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.av-component-gallery-preview__snapshot .av-modal__footer,
+.av-component-gallery-preview__snapshot .av-alert-dialog__footer {
+  width: 100%;
+}
+
+.av-component-gallery-preview__snapshot .av-modal__body,
+.av-component-gallery-preview__snapshot .av-alert-dialog__body,
+.av-component-gallery-preview__snapshot .av-drawer__body {
+  flex: none;
+  overflow: visible;
+}
+
+.av-component-gallery-preview__menu {
+  min-width: 10.5rem;
+}

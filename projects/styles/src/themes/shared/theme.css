@@ -1,0 +1,149 @@
+@theme inline {
+  --color-background: var(--av-background);
+  --color-foreground: var(--av-foreground);
+
+  --color-surface: var(--av-surface);
+  --color-surface-foreground: var(--av-surface-foreground);
+  --color-surface-hover: var(--av-surface-hover);
+
+  --color-surface-secondary: var(--av-surface-secondary);
+  --color-surface-secondary-foreground: var(--av-surface-secondary-foreground);
+
+  --color-surface-tertiary: var(--av-surface-tertiary);
+  --color-surface-tertiary-foreground: var(--av-surface-tertiary-foreground);
+
+  --color-overlay: var(--av-overlay);
+  --color-overlay-foreground: var(--av-overlay-foreground);
+
+  --color-muted: var(--av-muted);
+
+  --color-accent: var(--av-accent);
+  --color-accent-foreground: var(--av-accent-foreground);
+
+  --color-segment: var(--av-segment);
+  --color-segment-foreground: var(--av-segment-foreground);
+
+  --color-border: var(--av-border);
+  --color-separator: var(--av-separator);
+  --color-focus: var(--av-focus);
+  --color-link: var(--av-link);
+
+  --color-default: var(--av-default);
+  --color-default-foreground: var(--av-default-foreground);
+
+  --color-success: var(--av-success);
+  --color-success-foreground: var(--av-success-foreground);
+
+  --color-warning: var(--av-warning);
+  --color-warning-foreground: var(--av-warning-foreground);
+
+  --color-danger: var(--av-danger);
+  --color-danger-foreground: var(--av-danger-foreground);
+
+  --color-backdrop: var(--av-backdrop);
+
+  --shadow-surface: var(--av-surface-shadow);
+  --shadow-overlay: var(--av-overlay-shadow);
+  --shadow-field: var(--av-field-shadow);
+
+  --color-field: var(--av-field-background, var(--av-default));
+  --color-field-hover: var(--av-field-hover);
+  --color-field-foreground: var(--av-field-foreground, var(--av-foreground));
+  --color-field-placeholder: var(--av-field-placeholder, var(--av-muted));
+  --color-field-border: var(--av-field-border, var(--av-border));
+  --radius-field: var(--av-field-radius, calc(var(--av-radius) * 1.5));
+  --border-width-field: var(--av-field-border-width, var(--av-border-width));
+
+  --color-background-secondary: var(--av-background-secondary);
+  --color-background-tertiary: var(--av-background-tertiary);
+  --color-background-inverse: var(--av-background-inverse);
+
+  --color-default-hover: var(--av-default-hover);
+  --color-accent-hover: var(--av-accent-hover);
+  --color-success-hover: var(--av-success-hover);
+  --color-warning-hover: var(--av-warning-hover);
+  --color-danger-hover: var(--av-danger-hover);
+
+  --color-field-focus: var(--av-field-focus);
+  --color-field-border-hover: var(--av-field-border-hover);
+  --color-field-border-focus: var(--av-field-border-focus);
+
+  --color-default-soft: var(--av-default-soft);
+  --color-default-soft-foreground: var(--av-default-soft-foreground);
+  --color-default-soft-hover: var(--av-default-soft-hover);
+
+  --color-accent-soft: var(--av-accent-soft);
+  --color-accent-soft-foreground: var(--av-accent-soft-foreground);
+  --color-accent-soft-hover: var(--av-accent-soft-hover);
+
+  --color-danger-soft: var(--av-danger-soft);
+  --color-danger-soft-foreground: var(--av-danger-soft-foreground);
+  --color-danger-soft-hover: var(--av-danger-soft-hover);
+
+  --color-warning-soft: var(--av-warning-soft);
+  --color-warning-soft-foreground: var(--av-warning-soft-foreground);
+  --color-warning-soft-hover: var(--av-warning-soft-hover);
+
+  --color-success-soft: var(--av-success-soft);
+  --color-success-soft-foreground: var(--av-success-soft-foreground);
+  --color-success-soft-hover: var(--av-success-soft-hover);
+
+  --color-separator-secondary: var(--av-separator-secondary);
+  --color-separator-tertiary: var(--av-separator-tertiary);
+
+  --color-border-secondary: var(--av-border-secondary);
+  --color-border-tertiary: var(--av-border-tertiary);
+
+  --radius-xs: calc(var(--av-radius) * 0.25);
+  --radius-sm: calc(var(--av-radius) * 0.5);
+  --radius-md: calc(var(--av-radius) * 0.75);
+  --radius-lg: calc(var(--av-radius) * 1);
+  --radius-xl: calc(var(--av-radius) * 1.5);
+  --radius-2xl: calc(var(--av-radius) * 2);
+  --radius-3xl: calc(var(--av-radius) * 3);
+  --radius-4xl: calc(var(--av-radius) * 4);
+
+  --ease-smooth: ease;
+  --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  --ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+  --ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  --ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-out-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
+  --ease-out-fluid: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+  --ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
+  --ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  --ease-linear: linear;
+
+  --animate-spin-fast: spin 0.75s linear infinite;
+  --animate-skeleton: skeleton 2s linear infinite;
+  --animate-caret-blink: caret-blink 1.2s ease-out infinite;
+
+  @keyframes skeleton {
+    100% {
+      transform: translateX(200%);
+    }
+  }
+
+  @keyframes caret-blink {
+    0%,
+    70%,
+    100% {
+      opacity: 1;
+    }
+    20%,
+    50% {
+      opacity: 0;
+    }
+  }
+}

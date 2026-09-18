@@ -1,0 +1,98 @@
+<av-popover>
+  <button
+    av-button
+    size="sm"
+    variant="tertiary"
+    class="av-docs-theme-picker__trigger"
+    av-popover-trigger
+    type="button"
+    aria-label="Design theme"
+  >
+    <span class="av-docs-theme-picker__trigger-content">
+      @if (showActiveSwatch()) {
+        <span av-avatar size="sm" class="av-docs-theme-picker__trigger-avatar" aria-hidden="true">
+          <span
+            av-avatar-fallback
+            class="av-docs-theme-picker__avatar-fallback"
+            [class]="activeTheme().swatchClass"
+          ></span>
+        </span>
+        <span class="av-docs-theme-picker__trigger-label">{{ activeTheme().label }}</span>
+      } @else {
+        <app-icon
+          icon="solar:palette-linear"
+          size="14"
+          class="av-docs-theme-picker__trigger-icon"
+        />
+        <span class="av-docs-theme-picker__trigger-label">Theme</span>
+      }
+    </span>
+  </button>
+
+  <av-popover-content placement="bottom">
+    <av-popover-arrow />
+    <div av-popover-dialog class="av-docs-theme-picker__dialog">
+      <div
+        av-list-box
+        aria-label="Design theme"
+        selection-mode="single"
+        class="av-docs-theme-picker__grid"
+        [selectedKeys]="selectedThemeKeys()"
+        (selectedKeysChange)="onThemeSelect($event)"
+      >
+        @for (item of themes; track item.id) {
+          <div
+            av-list-box-item
+            class="av-docs-theme-picker__item"
+            [id]="item.id"
+            [textValue]="item.label"
+          >
+            <span class="av-docs-theme-picker__avatar-shell">
+              <span av-avatar size="md" class="av-docs-theme-picker__avatar" aria-hidden="true">
+                <span
+                  av-avatar-fallback
+                  class="av-docs-theme-picker__avatar-fallback"
+                  [class]="item.swatchClass"
+                ></span>
+              </span>
+            </span>
+            <span class="av-docs-theme-picker__label">{{ item.label }}</span>
+          </div>
+        }
+      </div>
+
+      <div class="av-docs-theme-picker__vibrant">
+        <div class="av-docs-theme-picker__vibrant-text">
+          <label av-label class="av-docs-theme-picker__vibrant-label">Vibrant palette</label>
+          <p av-description class="av-docs-theme-picker__vibrant-description">More saturated, less contrast</p>
+        </div>
+        <div
+          av-switch
+          [selected]="theme.vibrantPalette()"
+          (selectedChange)="onVibrantChange($event)"
+        >
+          <span av-switch-content>
+            <span av-switch-control>
+              <span av-switch-thumb></span>
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <button
+        av-button
+        variant="outline"
+        size="sm"
+        full-width
+        type="button"
+        class="av-docs-theme-picker__edit"
+        routerLink="/docs/theming"
+      >
+        <span class="av-docs-theme-picker__edit-content">
+          <app-icon icon="solar:palette-linear" size="16" />
+          Edit theme
+        </span>
+      </button>
+    </div>
+  </av-popover-content>
+</av-popover>

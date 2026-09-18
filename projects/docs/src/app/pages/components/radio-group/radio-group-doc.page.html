@@ -1,0 +1,212 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Radio Group</h1>
+      <p class="av-doc-prose__description">
+        Radio group for selecting a single option from a list.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="radio-group" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the RadioGroup parts and compose them with attribute selectors.
+        Compose with shared <code>av-label</code>, <code>av-description</code>, and
+        <code>av-field-error</code> for group chrome and validation.
+      </p>
+      <app-doc-snippet component="radio-group" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="horizontal-orientation">
+      <h2 class="av-doc-prose__heading">Horizontal Orientation</h2>
+      <p class="av-doc-prose__description">
+        Set <code>orientation="horizontal"</code> to lay out radio options in a row.
+      </p>
+      <app-component-preview [demo]="demos.horizontal" />
+    </section>
+
+    <section class="av-doc-prose__section" id="variants">
+      <h2 class="av-doc-prose__heading">Variants</h2>
+      <p class="av-doc-prose__description">
+        The RadioGroup component supports two visual variants:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>primary</code> (default) — Standard styling with default background, suitable for
+          most use cases
+        </li>
+        <li>
+          <code>secondary</code> — Lower emphasis variant, suitable for use in Surface components
+        </li>
+      </ul>
+      <app-component-preview [demo]="demos.variants" />
+    </section>
+
+    <section class="av-doc-prose__section" id="in-surface">
+      <h2 class="av-doc-prose__heading">In Surface</h2>
+      <p class="av-doc-prose__description">
+        When used inside a <code>av-surface</code> component, use
+        <code>variant="secondary"</code> to apply the lower emphasis variant suitable for surface
+        backgrounds.
+      </p>
+      <app-component-preview [demo]="demos.onSurface" />
+    </section>
+
+    <section class="av-doc-prose__section" id="disabled">
+      <h2 class="av-doc-prose__heading">Disabled</h2>
+      <app-component-preview [demo]="demos.disabled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled">
+      <h2 class="av-doc-prose__heading">Controlled</h2>
+      <p class="av-doc-prose__description">
+        Bind the selected value with <code>[(value)]</code> for fully controlled usage.
+      </p>
+      <app-component-preview [demo]="demos.controlled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="uncontrolled">
+      <h2 class="av-doc-prose__heading">Uncontrolled</h2>
+      <p class="av-doc-prose__description">
+        Combine <code>default-value</code> with <code>(valueChange)</code> when you only need to
+        react to updates.
+      </p>
+      <app-component-preview [demo]="demos.uncontrolled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="validation">
+      <h2 class="av-doc-prose__heading">Validation</h2>
+      <app-component-preview [demo]="demos.validation" />
+    </section>
+
+    <section class="av-doc-prose__section" id="delivery-and-payment">
+      <h2 class="av-doc-prose__heading">Delivery &amp; Payment</h2>
+      <app-component-preview [demo]="demos.deliveryAndPayment" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-indicator">
+      <h2 class="av-doc-prose__heading">Custom Indicator</h2>
+      <app-component-preview [demo]="demos.customIndicator" />
+    </section>
+
+    <section class="av-doc-prose__section" id="reactive-form">
+      <h2 class="av-doc-prose__heading">Reactive form</h2>
+      <p class="av-doc-prose__description">
+        Integrate with Angular reactive forms using <code>[formControl]</code> or
+        <code>formControlName</code> on <code>av-radio-group</code>.
+      </p>
+      <app-component-preview [demo]="demos.reactiveForm" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on <code>av-radio-group</code>, <code>av-radio</code>, and part hosts
+        such as <code>av-radio-control</code>.
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the RadioGroup classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The RadioGroup component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base &amp; Element Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-radio-group</code> — Base radio group container</li>
+        <li><code>.av-radio</code> — Individual radio item</li>
+        <li><code>.av-radio__content</code> — Content wrapper for label and description</li>
+        <li><code>.av-radio__control</code> — Radio control (circular button)</li>
+        <li><code>.av-radio__indicator</code> — Radio indicator (inner dot)</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Modifier Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-radio-group--primary</code> — Primary visual variant</li>
+        <li><code>.av-radio-group--secondary</code> — Secondary visual variant (inherited by children)</li>
+        <li><code>.av-radio-group--vertical</code> — Vertical layout (default)</li>
+        <li><code>.av-radio-group--horizontal</code> — Horizontal layout</li>
+        <li><code>.av-radio--primary</code> / <code>.av-radio--secondary</code> — Per-radio variants</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">
+        The radio supports both CSS pseudo-classes and data attributes for flexibility:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Selected</strong>: <code>[aria-checked="true"]</code> or
+          <code>[data-selected="true"]</code> (indicator appears)
+        </li>
+        <li>
+          <strong>Hover</strong>: <code>:hover</code> or <code>[data-hovered="true"]</code>
+        </li>
+        <li>
+          <strong>Focus</strong>: <code>:focus-visible</code> or
+          <code>[data-focus-visible="true"]</code>
+        </li>
+        <li>
+          <strong>Pressed</strong>: <code>:active</code> or <code>[data-pressed="true"]</code>
+        </li>
+        <li>
+          <strong>Disabled</strong>: <code>:disabled</code>, <code>[data-disabled="true"]</code>, or
+          <code>[aria-disabled="true"]</code>
+        </li>
+        <li>
+          <strong>Invalid</strong>: <code>[data-invalid="true"]</code> or
+          <code>[aria-invalid="true"]</code>
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+
+      <h3 class="av-doc-prose__subheading">RadioGroup</h3>
+      <p class="av-doc-prose__description">
+        Props for <code>av-radio-group</code>. Implements
+        <code>ControlValueAccessor</code> for Angular forms.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+
+      <h3 class="av-doc-prose__subheading">Radio</h3>
+      <p class="av-doc-prose__description">
+        Props for <code>div[av-radio]</code>.
+        <code>span[av-radio-control]</code>, <code>span[av-radio-indicator]</code>, and
+        <code>span[av-radio-content]</code> project content and have no inputs.
+      </p>
+      <app-doc-api-table [props]="radioApiProps" />
+    </section>
+  </div>
+</app-doc-page>

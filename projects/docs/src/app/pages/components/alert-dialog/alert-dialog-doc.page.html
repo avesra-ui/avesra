@@ -1,0 +1,201 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Alert Dialog</h1>
+      <p class="av-doc-prose__description">
+        Modal dialog for critical confirmations requiring user attention and explicit action
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="alert-dialog" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <app-doc-snippet component="alert-dialog" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="examples">
+      <h2 class="av-doc-prose__heading">Examples</h2>
+
+      <h3 class="av-doc-prose__subheading" id="statuses">Statuses</h3>
+      <app-component-preview [demo]="demos.statuses" />
+
+      <h3 class="av-doc-prose__subheading" id="placements">Placements</h3>
+      <app-component-preview [demo]="demos.placements" />
+
+      <h3 class="av-doc-prose__subheading" id="sizes">Sizes</h3>
+      <app-component-preview [demo]="demos.sizes" />
+
+      <h3 class="av-doc-prose__subheading" id="controlled-state">Controlled State</h3>
+      <app-component-preview [demo]="demos.controlled" />
+
+      <h3 class="av-doc-prose__subheading" id="custom-icon">Custom Icon</h3>
+      <app-component-preview [demo]="demos.customIcon" />
+
+      <h3 class="av-doc-prose__subheading" id="custom-trigger">Custom Trigger</h3>
+      <app-component-preview [demo]="demos.customTrigger" />
+
+      <h3 class="av-doc-prose__subheading" id="backdrop-variants">Backdrop Variants</h3>
+      <app-component-preview [demo]="demos.backdropVariants" />
+
+      <h3 class="av-doc-prose__subheading" id="custom-backdrop">Custom Backdrop</h3>
+      <app-component-preview [demo]="demos.customBackdrop" />
+
+      <h3 class="av-doc-prose__subheading" id="dismiss-behavior">Dismiss Behavior</h3>
+      <app-component-preview [demo]="demos.dismissBehavior" />
+
+      <h3 class="av-doc-prose__subheading" id="close-methods">Close Methods</h3>
+      <app-component-preview [demo]="demos.closeMethods" />
+
+      <h3 class="av-doc-prose__subheading" id="programmatic">Programmatic</h3>
+      <p class="av-doc-prose__description">
+        Use <code>AvAlertDialogService</code> to open confirmation dialogs imperatively without
+        declaring overlay markup in your template.
+      </p>
+      <app-component-preview [demo]="demos.service" />
+
+      <h3 class="av-doc-prose__subheading" id="custom-animations">Custom Animations</h3>
+      <app-component-preview [demo]="demos.customAnimations" />
+
+      <h3 class="av-doc-prose__subheading" id="scroll-behavior">Scroll Behavior</h3>
+      <app-component-preview [demo]="demos.scrollBehavior" />
+
+      <h3 class="av-doc-prose__subheading" id="stacked-footer-actions">Stacked Footer Actions</h3>
+      <app-component-preview [demo]="demos.stackedFooterActions" />
+    </section>
+
+    <section class="av-doc-prose__section" id="customization">
+      <h2 class="av-doc-prose__heading">Customization</h2>
+
+      <h3 class="av-doc-prose__subheading" id="tailwind-css">Tailwind CSS</h3>
+      <app-component-preview [demo]="demos.customStyles" />
+
+      <h3 class="av-doc-prose__subheading" id="global-css">Global CSS</h3>
+      <p class="av-doc-prose__description">
+        To customize the Alert Dialog component classes, you can use the
+        <code>&#64;layer components</code> directive.
+        <a av-link href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes">
+          Learn more
+        </a>.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling-reference">
+      <h2 class="av-doc-prose__heading">Styling Reference</h2>
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a av-link href="https://getbem.com/">BEM</a>
+        methodology to ensure component variants and states are reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">
+        The Alert Dialog component uses these CSS classes:
+      </p>
+
+      <h4 class="av-doc-prose__subheading" id="base-classes">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-alert-dialog__trigger</code> — Trigger element that opens the alert dialog</li>
+        <li><code>.av-alert-dialog__backdrop</code> — Overlay backdrop behind the dialog</li>
+        <li><code>.av-alert-dialog__container</code> — Positioning wrapper with placement support</li>
+        <li><code>.av-alert-dialog__dialog</code> — Dialog content container</li>
+        <li><code>.av-alert-dialog__header</code> — Header section for icon and title</li>
+        <li><code>.av-alert-dialog__heading</code> — Heading text styles</li>
+        <li><code>.av-alert-dialog__body</code> — Main content area</li>
+        <li><code>.av-alert-dialog__footer</code> — Footer section for actions</li>
+        <li><code>.av-alert-dialog__icon</code> — Icon container with status colors</li>
+        <li><code>.av-alert-dialog__close-trigger</code> — Close button element</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading" id="backdrop-variant-classes">Backdrop Variants</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-alert-dialog__backdrop--opaque</code> — Opaque colored backdrop (default)</li>
+        <li><code>.av-alert-dialog__backdrop--blur</code> — Blurred backdrop with glass effect</li>
+        <li><code>.av-alert-dialog__backdrop--transparent</code> — Transparent backdrop (no overlay)</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading" id="status-variant-classes">Status Variants (Icon)</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-alert-dialog__icon--default</code> — Default gray status</li>
+        <li><code>.av-alert-dialog__icon--accent</code> — Accent blue status</li>
+        <li><code>.av-alert-dialog__icon--success</code> — Success green status</li>
+        <li><code>.av-alert-dialog__icon--warning</code> — Warning orange status</li>
+        <li><code>.av-alert-dialog__icon--danger</code> — Danger red status</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">The component supports these interactive states:</p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Focus:</strong> <code>:focus-visible</code> or
+          <code>[data-focus-visible="true"]</code> — Applied to trigger, dialog, and close button
+        </li>
+        <li>
+          <strong>Hover:</strong> <code>:hover</code> or <code>[data-hovered="true"]</code> —
+          Applied to close button on hover
+        </li>
+        <li>
+          <strong>Active:</strong> <code>:active</code> or <code>[data-pressed="true"]</code> —
+          Applied to close button when pressed
+        </li>
+        <li>
+          <strong>Entering:</strong> <code>[data-entering]</code> — Applied during dialog opening
+          animation
+        </li>
+        <li>
+          <strong>Exiting:</strong> <code>[data-exiting]</code> — Applied during dialog closing
+          animation
+        </li>
+        <li>
+          <strong>Placement:</strong> <code>[data-placement="*"]</code> — Applied based on dialog
+          position (auto, top, center, bottom)
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="accessibility">
+      <h2 class="av-doc-prose__heading">Accessibility</h2>
+      <p class="av-doc-prose__description">
+        Implements
+        <a
+          av-link
+          href="https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/"
+        >
+          WAI-ARIA AlertDialog pattern
+        </a>:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li><strong>Focus trap:</strong> Focus locked within alert dialog</li>
+        <li><strong>Keyboard:</strong> <kbd>ESC</kbd> closes (when enabled), <kbd>Tab</kbd> cycles elements</li>
+        <li>
+          <strong>Screen readers:</strong> Proper ARIA attributes with
+          <code>role="alertdialog"</code>
+        </li>
+        <li><strong>Scroll lock:</strong> Body scroll disabled when open</li>
+        <li>
+          <strong>Required action:</strong> Defaults to requiring explicit user action (no
+          backdrop/ESC dismiss)
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API Reference</h2>
+      <p class="av-doc-prose__description">
+        See also
+        <a av-link routerLink="/docs/components/modal">Modal</a>
+        for general-purpose overlays.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

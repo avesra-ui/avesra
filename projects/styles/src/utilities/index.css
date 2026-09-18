@@ -1,0 +1,75 @@
+@utility av-focus-ring {
+  @apply ring-2 ring-focus ring-offset-0 ring-offset-background outline-none;
+  --tw-ring-offset-width: var(--av-ring-offset-width);
+}
+
+@utility av-focus-field-ring {
+  @apply ring-2 ring-focus ring-offset-0 outline-none;
+  --tw-ring-offset-width: 0px;
+}
+
+@utility av-invalid-field-ring {
+  @apply outline-1 outline-danger outline-solid;
+  --tw-ring-offset-width: 3px;
+
+  &:focus,
+  &:focus-visible,
+  &[data-focused="true"],
+  &[data-focus-visible="true"],
+  &:focus-within,
+  &[data-focus-within="true"] {
+    @apply ring-2 ring-danger ring-offset-0;
+    --tw-ring-offset-width: 0px;
+  }
+}
+
+@utility av-no-highlight {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@utility av-status-focused {
+  @apply av-focus-ring;
+}
+
+@utility av-status-focused-field {
+  @apply av-focus-field-ring;
+}
+
+@utility av-status-invalid-field {
+  @apply av-invalid-field-ring;
+}
+
+@utility av-status-disabled {
+  opacity: var(--av-disabled-opacity);
+  cursor: var(--av-cursor-disabled);
+  pointer-events: none;
+}
+
+@utility av-status-pending {
+  @apply pointer-events-none;
+}
+
+@utility av-scrollbar {
+  scrollbar-width: var(--av-scrollbar-width);
+  scrollbar-color: var(--av-scrollbar-color);
+  scrollbar-gutter: var(--av-scrollbar-gutter);
+}
+
+@utility av-scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--av-scrollbar-thumb) var(--av-scrollbar-track);
+  scrollbar-gutter: auto;
+}
+
+@utility av-scrollbar-default {
+  scrollbar-width: auto;
+  scrollbar-color: auto;
+  scrollbar-gutter: auto;
+}
+
+@utility av-scrollbar-none {
+  scrollbar-width: none;
+  scrollbar-color: auto;
+  scrollbar-gutter: auto;
+  -ms-overflow-style: none;
+}

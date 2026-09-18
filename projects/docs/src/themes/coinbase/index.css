@@ -1,0 +1,2 @@
+/* Coinbase design preset - overrides default tokens when data-av-design-theme="coinbase" */
+@import "./variables.css" layer(theme);

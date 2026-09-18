@@ -1,0 +1,5 @@
+/* av-form component styles — unstyled wrapper; layout via utility classes */
+
+.av-form {
+  /* Intentionally empty — Form is a semantic wrapper with no default layout */
+}

@@ -1,0 +1,208 @@
+/* av-input-group component styles */
+
+.av-input-group {
+  @apply inline-flex min-h-9 items-center rounded-field border bg-field text-sm text-field-foreground shadow-field outline-none;
+  border-width: var(--av-field-border-width, var(--av-border-width));
+  border-color: var(--av-field-border, var(--av-border));
+
+  /* When textarea is present, align items to start and allow height to grow */
+  &:has([data-slot="input-group-textarea"]) {
+    @apply items-start;
+    height: auto;
+  }
+
+  /**
+   * Transitions
+   * CRITICAL: av-motion-reduce must be AFTER transition for correct override specificity
+   */
+  transition:
+    background-color 150ms var(--ease-smooth),
+    border-color 150ms var(--ease-smooth),
+    box-shadow 150ms var(--ease-out);
+  @apply av-motion-reduce:transition-none;
+
+  /* Hover state */
+  @media (hover: hover) {
+    &:hover:not(:focus-within),
+    &[data-hovered="true"]:not([data-focus-within="true"]) {
+      @apply bg-field-hover;
+      border-color: var(--av-field-border-hover);
+    }
+  }
+
+  /* Focus within state - only when input/textarea is focused */
+  &:has([data-slot="input-group-input"]:focus),
+  &:has([data-slot="input-group-textarea"]:focus) {
+    @apply av-status-focused-field;
+    border-color: var(--av-field-border-focus);
+    background-color: var(--av-field-focus);
+  }
+
+  /* Invalid state */
+  &[data-invalid="true"] {
+    @apply av-status-invalid-field;
+    background-color: var(--av-field-focus);
+    border-color: var(--av-danger);
+  }
+
+  /* Disabled state */
+  &[data-disabled="true"],
+  &[aria-disabled="true"] {
+    @apply av-status-disabled;
+  }
+
+  /**
+   * Browser autofill state.
+   * The user-agent paints `:-webkit-autofill`/`:autofill` on the inner <input>
+   * element only, inside its content box. Because the inner input has its
+   * border-radius stripped on whichever side touches a prefix/suffix, the
+   * autofill highlight ends up as a sharp-cornered rectangle and the
+   * prefix/suffix slots receive no highlight at all. Lift the highlight
+   * onto the group so the rounded shell + prefix + suffix all share it.
+   */
+  &:has([data-slot="input-group-input"]:-webkit-autofill),
+  &:has([data-slot="input-group-input"]:autofill) {
+    background-color: var(--av-field-focus);
+    border-color: var(--av-field-border-focus);
+  }
+}
+
+.av-input-group__input {
+  @apply flex-1 rounded-none border-0 bg-transparent px-3 py-2 text-base shadow-none outline-none placeholder:text-field-placeholder sm:text-sm;
+
+  /* Remove border radius on left side when prefix is present */
+  .av-input-group:has([data-slot="input-group-prefix"]) & {
+    @apply rounded-l-none pl-0;
+  }
+
+  /* Remove border radius on right side when suffix is present */
+  .av-input-group:has([data-slot="input-group-suffix"]) & {
+    @apply rounded-r-none pr-0;
+  }
+
+  /* Focus state - handled by group */
+  &:focus,
+  &:focus-visible {
+    @apply outline-none;
+  }
+
+  /**
+   * Neutralize the browser's per-input autofill paint so the inner <input>
+   * doesn't draw a sharp-cornered yellow rectangle. The unified highlight
+   * is applied to `.av-input-group` above. Preserve the autofilled text and
+   * caret colors, and pin the background-color transition so the inset
+   * box-shadow trick doesn't flicker on state changes.
+   */
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active,
+  &:autofill {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset;
+    box-shadow: 0 0 0 1000px transparent inset;
+    -webkit-text-fill-color: var(--av-field-foreground, var(--av-foreground));
+    caret-color: var(--av-field-foreground, var(--av-foreground));
+    transition: background-color 9999s ease-in-out 0s;
+  }
+}
+
+/* TextArea within InputGroup - uses same base class as input but with textarea-specific styles */
+.av-input-group__input[data-slot="input-group-textarea"] {
+  min-height: 38px;
+  resize: vertical;
+}
+
+.av-input-group__prefix {
+  @apply flex h-full items-center justify-center rounded-l-field rounded-r-none bg-transparent px-3 text-field-placeholder;
+  border-width: var(--av-field-border-width, var(--av-border-width));
+  border-color: var(--av-field-border, var(--av-border));
+  border-style: solid;
+  border-right-color: var(--av-field-border, var(--av-border));
+  border-left: none;
+  border-top: none;
+  border-bottom: none;
+
+  /* Align to top when textarea is present */
+  .av-input-group:has([data-slot="input-group-textarea"]) & {
+    @apply items-start;
+    padding-top: 0.5rem;
+  }
+
+  /**
+   * Transitions
+   * CRITICAL: av-motion-reduce must be AFTER transition for correct override specificity
+   */
+  transition:
+    background-color 150ms var(--ease-smooth),
+    border-color 150ms var(--ease-smooth);
+  @apply av-motion-reduce:transition-none;
+}
+
+.av-input-group__suffix {
+  @apply flex h-full items-center justify-center rounded-l-none rounded-r-field bg-transparent px-3 text-field-placeholder;
+  border-width: var(--av-field-border-width, var(--av-border-width));
+  border-color: var(--av-field-border, var(--av-border));
+  border-style: solid;
+  border-left-color: var(--av-field-border, var(--av-border));
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+
+  /* Align to top when textarea is present */
+  .av-input-group:has([data-slot="input-group-textarea"]) & {
+    @apply items-start;
+    padding-top: 0.5rem;
+  }
+
+  /**
+   * Transitions
+   * CRITICAL: av-motion-reduce must be AFTER transition for correct override specificity
+   */
+  transition:
+    background-color 150ms var(--ease-smooth),
+    border-color 150ms var(--ease-smooth);
+  @apply av-motion-reduce:transition-none;
+}
+
+/* Variant property definitions */
+.av-input-group--primary {
+  /* Default styles */
+}
+
+.av-input-group--secondary {
+  @apply shadow-none;
+  background-color: var(--av-input-group-bg);
+
+  --av-input-group-bg: var(--av-default);
+  --av-input-group-bg-hover: var(--av-default-hover);
+  --av-input-group-bg-focus: var(--av-default);
+
+  @media (hover: hover) {
+    &:hover:not(:focus-within),
+    &[data-hovered="true"]:not([data-focus-within="true"]) {
+      background-color: var(--av-input-group-bg-hover);
+    }
+  }
+
+  &:has([data-slot="input-group-input"]:focus),
+  &:has([data-slot="input-group-textarea"]:focus) {
+    background-color: var(--av-input-group-bg-focus);
+  }
+
+  /* Invalid state */
+  &[data-invalid="true"] {
+    @apply av-status-invalid-field;
+    border-color: var(--av-danger);
+    background-color: var(--av-input-group-bg-focus);
+  }
+
+  [data-slot="input-group-input"],
+  [data-slot="input-group-textarea"] {
+    @apply bg-transparent;
+  }
+}
+
+/* Full width modifier */
+.av-input-group--full-width {
+  @apply w-full;
+}

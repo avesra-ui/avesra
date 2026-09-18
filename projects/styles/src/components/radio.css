@@ -1,0 +1,162 @@
+/* av-radio — single selection control */
+
+.av-radio {
+  @apply relative flex items-start gap-3 outline-none av-no-highlight;
+
+  cursor: var(--av-cursor-interactive);
+
+  &:not(:has([data-slot="description"])) {
+    @apply items-center;
+  }
+
+  &:has([data-slot="description"]) {
+    @apply items-start;
+  }
+
+  [data-slot="label"] {
+    @apply select-none;
+  }
+
+  [data-slot="description"] {
+    @apply text-wrap select-none;
+  }
+
+  &:disabled,
+  &[data-disabled="true"],
+  &[aria-disabled="true"] {
+    @apply av-status-disabled;
+  }
+}
+
+.av-radio__input {
+  @apply sr-only;
+}
+
+.av-radio__control {
+  @apply relative mt-[3px] inline-flex size-4 shrink-0 items-center justify-center rounded-lg border border-field-border bg-field shadow-field outline-none av-no-highlight;
+
+  border-width: var(--border-width-field);
+
+  transition:
+    background-color 200ms var(--ease-out),
+    border-color 200ms var(--ease-out),
+    transform 100ms var(--ease-out);
+  @apply av-motion-reduce:transition-none;
+
+  cursor: var(--av-cursor-interactive);
+
+  .av-radio:has([data-slot="description"]) & {
+    @apply mt-0.5;
+  }
+
+  .av-radio:focus-visible &,
+  .av-radio[data-focus-visible="true"] & {
+    @apply av-status-focused-field;
+  }
+
+  .av-radio:hover &,
+  .av-radio[data-hovered="true"] & {
+    @apply border-field-border-hover;
+  }
+
+  .av-radio:hover:not([aria-checked="true"]):not([data-selected="true"]) &,
+  .av-radio[data-hovered="true"]:not([aria-checked="true"]):not([data-selected="true"]) & {
+    .av-radio__indicator:empty::before {
+      @apply bg-field-hover;
+    }
+  }
+
+  .av-radio:active &,
+  .av-radio[data-pressed="true"] & {
+    @apply scale-95;
+  }
+
+  .av-radio[aria-checked="true"] &,
+  .av-radio[data-selected="true"] & {
+    @apply border-transparent bg-accent;
+  }
+
+  .av-radio:active[data-selected="true"] &,
+  .av-radio[data-pressed="true"][data-selected="true"] & {
+    @apply bg-accent-hover;
+  }
+
+  .av-radio[data-invalid="true"] &,
+  .av-radio[aria-invalid="true"] & {
+    @apply av-status-invalid-field;
+  }
+
+  .av-radio[data-invalid="true"][aria-checked="true"] &,
+  .av-radio[data-invalid="true"][data-selected="true"] &,
+  .av-radio[aria-invalid="true"][aria-checked="true"] &,
+  .av-radio[aria-invalid="true"][data-selected="true"] & {
+    @apply av-status-invalid-field;
+  }
+}
+
+.av-radio__indicator {
+  @apply absolute inset-0 flex items-center justify-center;
+
+  pointer-events: none;
+}
+
+.av-radio__indicator:empty::before {
+  content: "";
+  @apply rounded-lg bg-field;
+
+  width: 100%;
+  height: 100%;
+  scale: 1;
+
+  transition:
+    scale 200ms var(--ease-out),
+    background-color 200ms var(--ease-out);
+  @apply av-motion-reduce:transition-none;
+}
+
+.av-radio[aria-checked="true"] .av-radio__indicator:empty::before,
+.av-radio[data-selected="true"] .av-radio__indicator:empty::before {
+  @apply bg-accent-foreground;
+  scale: 0.4286;
+}
+
+.av-radio[data-selected="true"][data-pressed="true"] .av-radio__indicator:empty::before {
+  scale: 0.5714;
+}
+
+.av-radio__content {
+  @apply flex flex-col gap-0;
+}
+
+.av-radio--primary {
+  /* Default variant */
+}
+
+.av-radio--secondary .av-radio__control {
+  @apply shadow-none;
+  background-color: var(--av-radio-control-bg);
+
+  --av-radio-control-bg: var(--av-default);
+  --av-radio-control-bg-hover: var(--av-default-hover);
+
+  .av-radio:hover &,
+  .av-radio[data-hovered="true"] & {
+    @apply border-field-border-hover;
+  }
+}
+
+.av-radio--secondary:not([aria-checked="true"]):not([data-selected="true"]) .av-radio__control {
+  background-color: var(--av-radio-control-bg);
+}
+
+.av-radio--secondary:not([aria-checked="true"]):not([data-selected="true"])
+  .av-radio__indicator:empty::before {
+  background-color: var(--av-radio-control-bg);
+}
+
+.av-radio--secondary:hover:not([aria-checked="true"]):not([data-selected="true"])
+  .av-radio__indicator:empty::before,
+.av-radio--secondary[data-hovered="true"]:not([aria-checked="true"]):not([data-selected="true"])
+  .av-radio__indicator:empty::before {
+  background-color: var(--av-radio-control-bg-hover);
+}

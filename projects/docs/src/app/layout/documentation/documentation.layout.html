@@ -1,0 +1,16 @@
+<app-docs-header />
+
+<div class="layout-content mx-auto flex w-full max-w-[1728px] px-3.5 pt-7 lg:px-7 xl:px-14">
+  <app-docs-sidebar
+    class="layout-sidebar sticky start-0 top-[calc(var(--sticky-offset-top)+1.75rem)] hidden h-[calc(100vh-var(--sticky-offset-top)-4.375rem)] select-none overflow-hidden p-0 transition-transform duration-500 ease-[cubic-bezier(.32,.72,0,1)] flex-[0_0_220px] me-14 flex-col lg:flex"
+  />
+  <div class="av-docs-shell flex min-w-0 flex-1 items-start">
+    <section class="min-w-0 w-full">
+      <router-outlet />
+    </section>
+    <app-docs-toc-rail />
+  </div>
+</div>
+
+<app-docs-footer />
+<app-docs-search-dialog />

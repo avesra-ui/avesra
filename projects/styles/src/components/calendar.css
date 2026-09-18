@@ -1,0 +1,317 @@
+/* =============================================================================
+ * Calendar — Avesra tokens (av- prefix)
+ * BEM: av-calendar, av-calendar__element, av-calendar--modifier
+ * ============================================================================= */
+
+.av-calendar {
+  @apply relative w-[15.75rem] max-w-[15.75rem];
+
+  container-type: inline-size;
+}
+
+.av-calendar:has(.av-calendar-year-picker__year-grid) {
+  position: relative;
+}
+
+/* Week view */
+.av-calendar--week-view {
+  .av-calendar__cell {
+    @apply aspect-square size-auto w-full place-self-center;
+  }
+}
+
+/* Day view */
+.av-calendar--day-view {
+  .av-calendar__cell {
+    @apply aspect-square size-auto w-full place-self-center;
+  }
+
+  .av-calendar__grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .av-calendar__grid-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    @apply w-full;
+  }
+
+  .av-calendar__grid-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    @apply mt-1 w-full;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * Header
+ * -------------------------------------------------------------------------- */
+.av-calendar__header {
+  @apply flex items-center justify-between px-0.5 pb-4;
+
+  &:has(.av-calendar-year-picker__trigger[data-open='true']) {
+    .av-calendar__nav-button {
+      @apply pointer-events-none opacity-0;
+    }
+  }
+}
+
+.av-calendar__heading {
+  @apply flex-1 text-sm font-medium;
+}
+
+.av-calendar__nav-button {
+  @apply flex size-6 items-center justify-center rounded-2xl text-accent-soft-foreground av-no-highlight;
+
+  will-change: scale;
+  transition:
+    transform 250ms var(--av-ease-out, ease-out),
+    background-color 100ms var(--av-ease-out, ease-out),
+    box-shadow 100ms var(--av-ease-out, ease-out),
+    opacity 150ms var(--av-ease-out, ease-out);
+  @apply transform-gpu motion-reduce:transition-none;
+
+  cursor: var(--av-cursor-interactive);
+
+  @media (hover: hover) {
+    &:hover,
+    &[data-hovered='true'] {
+      @apply bg-default text-accent-soft-foreground;
+    }
+  }
+
+  &:active,
+  &[data-pressed='true'] {
+    transform: scale(0.95);
+  }
+
+  &:focus-visible,
+  &[data-focus-visible='true'] {
+    @apply av-status-focused;
+  }
+
+  &:disabled,
+  &[data-disabled='true'] {
+    @apply av-status-disabled;
+  }
+}
+
+.av-calendar__nav-button-icon {
+  @apply size-4 rtl:rotate-180;
+}
+
+/* -----------------------------------------------------------------------------
+ * Grid
+ * -------------------------------------------------------------------------- */
+.av-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  @apply w-full;
+
+  &[aria-readonly='true'] {
+    .av-calendar__cell {
+      @apply pointer-events-none;
+    }
+  }
+}
+
+.av-calendar__grid-header {
+  display: contents;
+}
+
+.av-calendar__grid-body {
+  display: contents;
+}
+
+.av-calendar__grid-row {
+  display: contents;
+}
+
+.av-calendar__header-cell {
+  @apply flex items-center justify-center pb-2 text-xs font-medium text-muted;
+}
+
+/* -----------------------------------------------------------------------------
+ * Cells
+ * -------------------------------------------------------------------------- */
+.av-calendar__cell {
+  @apply relative flex aspect-square size-full items-center justify-center rounded-3xl text-center text-sm font-medium outline-none av-no-highlight;
+
+  will-change: scale;
+  transition:
+    transform 250ms var(--av-ease-out, ease-out),
+    box-shadow 100ms var(--av-ease-out, ease-out);
+  @apply transform-gpu motion-reduce:transition-none;
+
+  cursor: var(--av-cursor-interactive);
+
+  &:focus-visible,
+  &[data-focus-visible='true'] {
+    @apply av-status-focused;
+  }
+
+  &[data-today='true'] {
+    @apply bg-accent-soft text-accent-soft-foreground;
+
+    @media (hover: hover) {
+      &:hover:not([data-selected='true']),
+      &[data-hovered='true']:not([data-selected='true']) {
+        @apply bg-accent-soft-hover;
+      }
+    }
+  }
+
+  &[data-selected='true'] {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  &:active,
+  &[data-pressed='true'] {
+    @apply bg-default;
+    transform: scale(0.95);
+
+    &[data-selected='true'] {
+      @apply bg-accent-hover;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover:not([data-selected='true']),
+    &[data-hovered='true']:not([data-selected='true']) {
+      @apply bg-default;
+    }
+  }
+
+  &[data-outside-month='true'] {
+    @apply text-muted opacity-50;
+  }
+
+  &[data-selected='true'][data-outside-month='true'] {
+    @apply bg-default;
+  }
+
+  &[data-unavailable='true'] {
+    @apply av-status-disabled;
+  }
+
+  &:disabled:not([data-outside-month='true']),
+  &[data-disabled='true']:not([data-outside-month='true']) {
+    @apply av-status-disabled;
+
+    text-decoration: line-through;
+  }
+}
+
+.av-calendar__cell-indicator {
+  @apply absolute bottom-1 left-1/2 size-[3px] -translate-x-1/2 rounded-xs bg-muted;
+
+  [data-selected='true'] > & {
+    @apply bg-accent-foreground;
+  }
+}
+
+/* Day grid fade when year picker opens */
+.av-calendar:has(.av-calendar-year-picker__year-grid) > [data-slot='calendar-grid'] {
+  will-change: opacity;
+  transition:
+    opacity 150ms var(--av-ease-out, ease-out),
+    visibility 0ms linear;
+  @apply motion-reduce:transition-none;
+}
+
+.av-calendar:has(.av-calendar-year-picker__year-grid[data-open='true'])
+  > [data-slot='calendar-grid'] {
+  @apply pointer-events-none opacity-0;
+  visibility: hidden;
+  transition:
+    opacity 150ms var(--av-ease-out, ease-out),
+    visibility 0ms linear 150ms;
+  @apply motion-reduce:transition-none;
+}
+
+/* -----------------------------------------------------------------------------
+ * Year picker
+ * -------------------------------------------------------------------------- */
+.av-calendar-year-picker__trigger {
+  @apply flex flex-1 items-center justify-start gap-1 rounded-lg outline-none;
+
+  cursor: var(--av-cursor-interactive);
+  touch-action: manipulation;
+
+  &:focus-visible {
+    @apply av-status-focused;
+  }
+}
+
+.av-calendar-year-picker__trigger-heading {
+  @apply text-sm font-medium;
+
+  transition: color 150ms var(--av-ease-out, ease-out);
+  @apply motion-reduce:transition-none;
+}
+
+.av-calendar-year-picker__trigger-indicator {
+  @apply text-xs text-accent-soft-foreground rtl:[transform:rotate(180deg)];
+
+  transition: transform 150ms var(--av-ease-out, ease-out);
+  @apply motion-reduce:transition-none;
+}
+
+.av-calendar-year-picker__trigger[data-open='true'] .av-calendar-year-picker__trigger-indicator {
+  transform: rotate(90deg);
+}
+
+.av-calendar-year-picker__trigger[data-open='true'] .av-calendar-year-picker__trigger-heading {
+  @apply text-accent-soft-foreground;
+}
+
+.av-calendar-year-picker__year-grid {
+  @apply pointer-events-none absolute start-0 end-0 grid content-start gap-1 overflow-y-auto p-1 opacity-0;
+  grid-template-columns: repeat(3, 1fr);
+
+  will-change: opacity;
+}
+
+.av-calendar-year-picker__year-grid[data-open='true'] {
+  @apply pointer-events-auto opacity-100;
+
+  transition: opacity 200ms var(--av-ease-out, ease-out) 50ms;
+  @apply motion-reduce:transition-none;
+}
+
+.av-calendar-year-picker__year-cell {
+  @apply relative inline-flex h-8 items-center justify-center rounded-3xl px-2.5 text-sm font-medium outline-none select-none av-no-highlight;
+  touch-action: manipulation;
+
+  transition:
+    color 100ms var(--av-ease-smooth, ease),
+    scale 100ms var(--av-ease-smooth, ease),
+    opacity 100ms var(--av-ease-smooth, ease),
+    background-color 100ms var(--av-ease-smooth, ease),
+    box-shadow 100ms var(--av-ease-out, ease-out);
+  @apply origin-center transform-gpu motion-reduce:transition-none;
+
+  cursor: var(--av-cursor-interactive);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:is(:hover, [data-hovered='true']):not([data-selected='true']) {
+      @apply bg-default text-default-foreground;
+    }
+  }
+
+  &[data-selected='true'],
+  &[aria-selected='true'] {
+    @apply bg-accent text-accent-foreground;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:is(:hover, [data-hovered='true']) {
+        @apply bg-accent-hover;
+      }
+    }
+  }
+
+  &:focus-visible {
+    @apply av-status-focused;
+  }
+}

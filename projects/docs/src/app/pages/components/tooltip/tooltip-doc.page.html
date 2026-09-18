@@ -1,0 +1,212 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Tooltip</h1>
+      <p class="av-doc-prose__description">
+        Displays informative text when users hover over or focus on an element. Apply the
+        <code>avTooltip</code> directive to any host — no compound wrapper required. See also
+        <a routerLink="/docs/components/popover">Popover</a> for interactive anchored panels.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="tooltip" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Tooltip is a directive-only API. The overlay (panel, text, and arrow) is created at runtime
+        — no Trigger / Content / Arrow markup in your template.
+      </p>
+      <app-doc-snippet component="tooltip" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="placement">
+      <h2 class="av-doc-prose__heading">Placement</h2>
+      <p class="av-doc-prose__description">
+        Use <code>tooltip-position</code> for the preferred side —
+        <code>top</code> (default), <code>bottom</code>, <code>left</code>, or
+        <code>right</code>. The directive flips when the preferred side would overflow the
+        viewport.
+      </p>
+      <app-component-preview [demo]="demos.placement" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-arrow">
+      <h2 class="av-doc-prose__heading">With Arrow</h2>
+      <p class="av-doc-prose__description">
+        Avesra always renders an arrow on the overlay
+        (<code>[data-slot="overlay-arrow"]</code>). There is no <code>showArrow</code> toggle —
+        placement rotates the arrow automatically.
+      </p>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-triggers">
+      <h2 class="av-doc-prose__heading">Custom Triggers</h2>
+      <p class="av-doc-prose__description">
+        Attach <code>avTooltip</code> to any hoverable or focusable element — icon buttons, avatars,
+        chips, or custom hosts. Provide <code>aria-label</code> when the trigger has no visible
+        text.
+      </p>
+      <app-component-preview [demo]="demos.customTrigger" />
+    </section>
+
+    <section class="av-doc-prose__section" id="events">
+      <h2 class="av-doc-prose__heading">Events</h2>
+      <p class="av-doc-prose__description">
+        Control how the tooltip opens with <code>tooltip-event</code>:
+        <code>hover</code> (default), <code>focus</code>, or <code>both</code>.
+      </p>
+      <app-component-preview [demo]="demos.events" />
+    </section>
+
+    <section class="av-doc-prose__section" id="delays">
+      <h2 class="av-doc-prose__heading">Delays</h2>
+      <p class="av-doc-prose__description">
+        Tune timing with <code>show-delay</code> (default 700&nbsp;ms) and
+        <code>hide-delay</code> (default 0&nbsp;ms).
+      </p>
+      <app-component-preview [demo]="demos.delays" />
+    </section>
+
+    <section class="av-doc-prose__section" id="auto-hide">
+      <h2 class="av-doc-prose__heading">Auto Hide</h2>
+      <p class="av-doc-prose__description">
+        When <code>auto-hide</code> is <code>true</code> (default), the tooltip dismisses when the
+        pointer leaves the trigger. Set <code>[auto-hide]="false"</code> to keep it open while
+        hovering the panel.
+      </p>
+      <app-component-preview [demo]="demos.autoHide" />
+    </section>
+
+    <section class="av-doc-prose__section" id="hide-on-escape">
+      <h2 class="av-doc-prose__heading">Hide on Escape</h2>
+      <p class="av-doc-prose__description">
+        Pressing <kbd>Escape</kbd> dismisses a visible tooltip by default. Set
+        <code>[hide-on-escape]="false"</code> to disable that behavior.
+      </p>
+      <app-component-preview [demo]="demos.hideOnEscape" />
+    </section>
+
+    <section class="av-doc-prose__section" id="position-offset">
+      <h2 class="av-doc-prose__heading">Position Offset</h2>
+      <p class="av-doc-prose__description">
+        Nudge placement with <code>position-top</code> and <code>position-left</code> after the base
+        alignment calculation.
+      </p>
+      <app-component-preview [demo]="demos.positionOffset" />
+    </section>
+
+    <section class="av-doc-prose__section" id="template-content">
+      <h2 class="av-doc-prose__heading">Template Content</h2>
+      <p class="av-doc-prose__description">
+        Bind <code>[avTooltip]</code> to an <code>ng-template</code> for formatted or multi-line
+        content.
+      </p>
+      <app-component-preview [demo]="demos.templateContent" />
+    </section>
+
+    <section class="av-doc-prose__section" id="dynamic-content">
+      <h2 class="av-doc-prose__heading">Dynamic Content</h2>
+      <p class="av-doc-prose__description">
+        Tooltip text can be driven by component state — the overlay reflects the latest content on
+        the next show cycle.
+      </p>
+      <app-component-preview [demo]="demos.dynamicContent" />
+    </section>
+
+    <section class="av-doc-prose__section" id="long-text">
+      <h2 class="av-doc-prose__heading">Long Text</h2>
+      <p class="av-doc-prose__description">
+        Long labels wrap within the panel's <code>max-w-xs</code> constraint.
+      </p>
+      <app-component-preview [demo]="demos.longText" />
+    </section>
+
+    <section class="av-doc-prose__section" id="disabled">
+      <h2 class="av-doc-prose__heading">Disabled</h2>
+      <p class="av-doc-prose__description">
+        Set <code>[tooltip-disabled]="true"</code> to suppress the tooltip without removing the
+        directive.
+      </p>
+      <app-component-preview [demo]="demos.disabled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="viewport-flip">
+      <h2 class="av-doc-prose__heading">Viewport Flip</h2>
+      <p class="av-doc-prose__description">
+        When the preferred position would clip outside the viewport, the tooltip tries fallback
+        sides automatically.
+      </p>
+      <app-component-preview [demo]="demos.viewportFlip" />
+    </section>
+
+    <section class="av-doc-prose__section" id="customization">
+      <h2 class="av-doc-prose__heading">Customization</h2>
+
+      <h3 class="av-doc-prose__subheading" id="tailwind-css">Tailwind CSS</h3>
+      <p class="av-doc-prose__description">
+        Style the trigger host with utilities. Overlay appearance is customized via Global CSS on
+        <code>.av-tooltip</code> (there is no content component <code>className</code>).
+      </p>
+      <app-component-preview [demo]="demos.customStyles" />
+
+      <h3 class="av-doc-prose__subheading" id="global-css">Global CSS</h3>
+      <p class="av-doc-prose__description">
+        To customize Tooltip classes, use the <code>&#64;layer components</code> directive.
+      </p>
+      <app-doc-snippet [source]="globalCssExample" lang="css" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling Reference</h2>
+      <p class="av-doc-prose__description">
+        Avesra follows the BEM methodology so variants and states stay reusable and easy to
+        customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <h4 class="av-doc-prose__subheading">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-tooltip</code> — Base tooltip overlay with animations</li>
+        <li><code>.av-tooltip__text</code> — Content wrapper above the arrow</li>
+        <li><code>[data-slot="overlay-arrow"]</code> — Arrow SVG</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Entering</strong>: <code>[data-entering]</code> — applied during appearance
+        </li>
+        <li>
+          <strong>Exiting</strong>: <code>[data-exiting]</code> — applied during disappearance
+        </li>
+        <li>
+          <strong>Placement</strong>: <code>[data-placement="*"]</code> — drives arrow rotation and
+          slide direction
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API Reference</h2>
+      <p class="av-doc-prose__description">
+        All options are inputs on the <code>[avTooltip]</code> directive host. The overlay is not a
+        separate Angular component — there are no Trigger / Content / Arrow APIs.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+      <p class="av-doc-prose__description">
+        Prefer concise labels; use Popover when content requires interaction. While visible, the
+        trigger receives <code>aria-describedby</code> pointing at the tooltip.
+      </p>
+    </section>
+  </div>
+</app-doc-page>

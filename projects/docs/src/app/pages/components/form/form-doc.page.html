@@ -1,0 +1,156 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Form</h1>
+      <p class="av-doc-prose__description">
+        Wrapper component for form validation and submission handling. Apply
+        <code>av-form</code> to a native <code>&lt;form&gt;</code> element.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="form" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <p class="av-doc-prose__description">
+        Compose fields with <code>av-label</code>, <code>av-input</code>,
+        <code>av-description</code>, and <code>av-field-error</code>. Handle submit with the native
+        <code>(submit)</code> event and set <code>aria-label</code> or
+        <code>aria-labelledby</code> for accessibility.
+      </p>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the Form parts and compose them with attribute selectors on native elements.
+      </p>
+      <app-doc-snippet component="form" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on the host <code>&lt;form&gt;</code> and child field elements, or
+        override BEM classes in <code>&#64;layer components</code>.
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">
+        Form is a semantic wrapper with no default layout. Use these selectors for hooks:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-form</code> — Root form element</li>
+        <li><code>[data-slot="form"]</code> — Slot attribute on the host</li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Form wraps a native <code>&lt;form&gt;</code> and provides validation behavior plus shared
+        error context for descendant fields.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+
+      <h3 class="av-doc-prose__subheading" id="form-validation">Form Validation</h3>
+      <p class="av-doc-prose__description">Form integrates with HTML and Avesra field validation:</p>
+      <ul class="av-doc-prose__list">
+        <li>
+          Use built-in HTML5 validation attributes (<code>required</code>,
+          <code>minlength</code>, <code>pattern</code>, etc.)
+        </li>
+        <li>
+          Drive custom validation with signals and bind <code>[invalid]</code> on inputs
+        </li>
+        <li>Display errors with <code>av-field-error</code></li>
+        <li>Handle submission after validation with the native <code>(submit)</code> event</li>
+        <li>
+          Provide server-side errors via the <code>validationErrors</code> input, keyed by field
+          name
+        </li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading" id="validation-behavior">Validation Behavior</h4>
+      <p class="av-doc-prose__description">
+        The <code>validationBehavior</code> input controls how validation is displayed:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong><code>native</code></strong> (default) — Uses native HTML validation and blocks
+          form submission on errors. The first invalid field is focused automatically.
+        </li>
+        <li>
+          <strong><code>aria</code></strong> — Uses ARIA attributes for validation, displays
+          errors in realtime as the user types, and does not block submission.
+        </li>
+      </ul>
+      <p class="av-doc-prose__description">
+        Set <code>novalidate</code> to disable native browser validation UI when you want full
+        control via ARIA and <code>av-field-error</code>.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="form-submission">Form Submission</h3>
+      <p class="av-doc-prose__description">Forms can be submitted in several ways:</p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Traditional submission</strong> — Set the <code>action</code> and
+          <code>method</code> inputs to submit to a URL
+        </li>
+        <li>
+          <strong>JavaScript handling</strong> — Use the <code>(submit)</code> event to process
+          form data
+        </li>
+        <li>
+          <strong>FormData API</strong> — Access form data with <code>FormData</code> in your
+          submit handler
+        </li>
+      </ul>
+      <p class="av-doc-prose__description">Example with FormData:</p>
+      <app-doc-snippet [source]="submitExample" lang="typescript" section="anatomy" />
+
+      <h3 class="av-doc-prose__subheading" id="integration">Integration with Form Fields</h3>
+      <p class="av-doc-prose__description">
+        Form works with Avesra form field components and shared primitives:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li><strong>Input / Textarea</strong> — Text inputs with labels and validation</li>
+        <li><strong>Checkbox / Checkbox Group</strong> — Boolean and multi-select controls</li>
+        <li><strong>Radio / Radio Group</strong> — Single selection from multiple options</li>
+        <li><strong>Switch / Switch Group</strong> — Toggle controls</li>
+        <li><strong>Select</strong> — Collapsible option lists</li>
+        <li><strong>Fieldset</strong> — Grouped fields with legend and actions</li>
+        <li><strong>Button</strong> — Submit and reset actions</li>
+      </ul>
+      <p class="av-doc-prose__description">
+        Compose with shared <code>av-label</code>, <code>av-description</code>, and
+        <code>av-field-error</code>. Field components pick up Form context for validation behavior
+        and server errors when placed inside <code>av-form</code>.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="accessibility">Accessibility</h3>
+      <p class="av-doc-prose__description">
+        Form uses a native <code>&lt;form&gt;</code> element and provides:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>Native <code>&lt;form&gt;</code> element semantics</li>
+        <li>
+          Form landmark creation with <code>aria-label</code> or <code>aria-labelledby</code>
+        </li>
+        <li>Automatic focus management on the first invalid field during native validation</li>
+        <li>
+          ARIA validation attributes when using <code>validationBehavior="aria"</code>
+        </li>
+      </ul>
+    </section>
+  </div>
+</app-doc-page>

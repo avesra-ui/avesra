@@ -1,0 +1,101 @@
+/* av-menu-item component styles */
+
+.av-menu-item {
+  @apply relative flex min-h-9 w-full items-center justify-start gap-3 rounded-2xl px-2 py-1.5 outline-none av-no-highlight;
+
+  transition:
+    transform 250ms var(--ease-smooth),
+    box-shadow 150ms var(--ease-out);
+  @apply av-motion-reduce:transition-none;
+
+  cursor: var(--av-cursor-interactive);
+
+  [data-slot="label"] {
+    @apply pointer-events-none w-fit select-none;
+  }
+
+  [data-slot="description"] {
+    @apply pointer-events-none text-wrap select-none;
+  }
+
+  [data-slot="submenu-indicator"] svg {
+    @apply size-3.5;
+  }
+
+  &:has(.av-menu-item__indicator) {
+    @apply ps-7;
+  }
+
+  &:focus-visible:not(:focus),
+  &[data-focus-visible="true"] {
+    @apply av-status-focused;
+  }
+
+  &:active,
+  &[data-pressed="true"] {
+    transform: scale(0.98);
+  }
+
+  @media (hover: hover) {
+    &:hover,
+    &[data-hovered="true"] {
+      @apply bg-default;
+    }
+  }
+
+  &[aria-checked="true"],
+  &[aria-selected="true"],
+  &[data-selected="true"] {
+    [data-slot="menu-item-indicator--checkmark"] {
+      transition: stroke-dashoffset 100ms linear;
+      @apply av-motion-reduce:transition-none;
+    }
+
+    [data-slot="menu-item-indicator--dot"] {
+      @apply scale-100 opacity-100;
+    }
+  }
+
+  &[data-disabled="true"] {
+    @apply av-status-disabled;
+  }
+}
+
+.av-menu-item__indicator {
+  @apply absolute top-1/2 start-2 flex size-4 shrink-0 -translate-y-1/2 items-center justify-center text-muted;
+  @apply transition duration-250 av-motion-reduce:transition-none;
+
+  [data-slot="menu-item-indicator--checkmark"] {
+    @apply size-2.5;
+
+    .av-menu-item[data-selection-mode="multiple"] & {
+      @apply transition-all duration-300 av-motion-reduce:transition-none;
+    }
+  }
+
+  [data-slot="menu-item-indicator--dot"] {
+    @apply size-2 scale-70 opacity-0;
+
+    .av-menu-item[data-selection-mode="multiple"] & {
+      @apply transition-all duration-250 av-motion-reduce:transition-none;
+    }
+  }
+}
+
+.av-menu-item__indicator--submenu {
+  @apply text-muted;
+
+  svg {
+    @apply size-3;
+  }
+}
+
+.av-menu-item--danger {
+  .av-menu-item__indicator {
+    @apply text-danger;
+  }
+
+  [data-slot="label"] {
+    @apply text-danger;
+  }
+}

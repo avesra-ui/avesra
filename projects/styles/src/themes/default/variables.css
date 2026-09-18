@@ -1,0 +1,336 @@
+@layer base {
+  :root,
+  .av-light,
+  [data-av-theme="light"] {
+    color-scheme: light;
+
+    /* Layout tokens */
+    --av-spacing: 0.25rem;
+    --av-border-width: 1px;
+    --av-field-border-width: 0px;
+    --av-disabled-opacity: 0.5;
+    --av-ring-offset-width: 2px;
+    --av-cursor-interactive: pointer;
+    --av-cursor-disabled: not-allowed;
+    --av-radius: 0.5rem;
+    --av-field-radius: calc(var(--av-radius) * 1.5);
+
+    /* Foundation */
+    --av-eclipse: oklch(0.205 0 0);
+    --av-snow: oklch(1 0 0);
+    --av-white: oklch(1 0 0);
+    --av-black: oklch(0.205 0 0);
+
+    /* Canvas */
+    --av-background: oklch(0.985 0 0);
+    --av-foreground: oklch(0.205 0 0);
+
+    /* Surfaces */
+    --av-surface: oklch(1 0 0);
+    --av-surface-foreground: var(--av-foreground);
+
+    --av-surface-secondary: oklch(0.968 0 0);
+    --av-surface-secondary-foreground: var(--av-foreground);
+
+    --av-surface-tertiary: oklch(0.945 0 0);
+    --av-surface-tertiary-foreground: var(--av-foreground);
+
+    /* Overlay */
+    --av-overlay: oklch(1 0 0);
+    --av-overlay-foreground: var(--av-foreground);
+
+    /* Text */
+    --av-muted: oklch(0.545 0 0);
+
+    /* Scrollbar */
+    --av-scrollbar-thumb: color-mix(in oklch, var(--av-foreground) 16%, transparent);
+    --av-scrollbar-track: transparent;
+    --av-scrollbar-gutter: auto;
+    --av-scrollbar-width: thin;
+    --av-scrollbar-color: var(--av-scrollbar-thumb) var(--av-scrollbar-track);
+
+    /* Neutral action */
+    --av-default: oklch(0.955 0 0);
+    --av-default-foreground: oklch(0.245 0 0);
+
+    /* Brand */
+    --av-accent: oklch(0.585 0.205 255);
+    --av-accent-foreground: var(--av-white);
+
+    /* Fields */
+    --av-field-background: oklch(1 0 0);
+    --av-field-foreground: var(--av-foreground);
+    --av-field-placeholder: var(--av-muted);
+    --av-field-border: oklch(0.895 0 0);
+
+    /* Semantic */
+    --av-success: oklch(0.69 0.17 151);
+    --av-success-foreground: oklch(0.19 0.025 151);
+
+    --av-warning: oklch(0.79 0.155 75);
+    --av-warning-foreground: oklch(0.235 0.04 65);
+
+    --av-danger: oklch(0.625 0.225 25);
+    --av-danger-foreground: var(--av-white);
+
+    /* Segmented controls */
+    --av-segment: oklch(1 0 0);
+    --av-segment-foreground: var(--av-foreground);
+
+    /* Structure */
+    --av-border: oklch(0.905 0 0);
+    --av-separator: oklch(0.925 0 0);
+
+    /* Interactive */
+    --av-focus: var(--av-accent);
+    --av-link: var(--av-accent);
+    --av-backdrop: rgba(0, 0, 0, 0.5);
+
+    /* Shadows */
+    --av-surface-shadow:
+      0 1px 2px rgb(0 0 0 / 0.04),
+      0 2px 8px rgb(0 0 0 / 0.035);
+
+    --av-overlay-shadow:
+      0 8px 24px rgb(0 0 0 / 0.08),
+      0 2px 8px rgb(0 0 0 / 0.04);
+
+    --av-field-shadow: 0 1px 2px rgb(0 0 0 / 0.025);
+
+    /* Derived surfaces */
+    --av-surface-hover: color-mix(in oklab, var(--av-surface) 94%, var(--av-surface-foreground) 6%);
+
+    --av-background-secondary: color-mix(in oklab, var(--av-background) 96%, var(--av-foreground) 4%);
+
+    --av-background-tertiary: color-mix(in oklab, var(--av-background) 92%, var(--av-foreground) 8%);
+
+    --av-background-inverse: var(--av-foreground);
+
+    /* Default */
+    --av-default-hover: color-mix(in oklab, var(--av-default) 94%, var(--av-default-foreground) 6%);
+
+    /* Accent */
+    --av-accent-hover: color-mix(in oklab, var(--av-accent) 88%, black 12%);
+
+    /* Semantic hover */
+    --av-success-hover: color-mix(in oklab, var(--av-success) 90%, black 10%);
+
+    --av-warning-hover: color-mix(in oklab, var(--av-warning) 90%, black 10%);
+
+    --av-danger-hover: color-mix(in oklab, var(--av-danger) 90%, black 10%);
+
+    /* Fields */
+    --av-field-hover: color-mix(in oklab, var(--av-field-background) 96%, var(--av-field-foreground) 4%);
+
+    --av-field-focus: var(--av-field-background);
+
+    --av-field-border-hover: color-mix(in oklab, var(--av-field-border) 82%, var(--av-field-foreground) 18%);
+
+    --av-field-border-focus: color-mix(in oklab, var(--av-accent) 65%, var(--av-field-border) 35%);
+
+    /* Soft — default */
+    --av-default-soft: color-mix(in oklab, var(--av-default) 55%, transparent);
+
+    --av-default-soft-foreground: var(--av-default-foreground);
+
+    --av-default-soft-hover: color-mix(in oklab, var(--av-default) 75%, transparent);
+
+    /* Soft — accent */
+    --av-accent-soft: color-mix(in oklab, var(--av-accent) 12%, transparent);
+
+    --av-accent-soft-foreground: color-mix(in oklab, var(--av-accent) 82%, var(--av-foreground) 18%);
+
+    --av-accent-soft-hover: color-mix(in oklab, var(--av-accent) 17%, transparent);
+
+    /* Soft — danger */
+    --av-danger-soft: color-mix(in oklab, var(--av-danger) 11%, transparent);
+
+    --av-danger-soft-foreground: color-mix(in oklab, var(--av-danger) 75%, var(--av-foreground) 25%);
+
+    --av-danger-soft-hover: color-mix(in oklab, var(--av-danger) 16%, transparent);
+
+    /* Soft — warning */
+    --av-warning-soft: color-mix(in oklab, var(--av-warning) 15%, transparent);
+
+    --av-warning-soft-foreground: color-mix(in oklab, var(--av-warning) 65%, var(--av-foreground) 55%);
+
+    --av-warning-soft-hover: color-mix(in oklab, var(--av-warning) 21%, transparent);
+
+    /* Soft — success */
+    --av-success-soft: color-mix(in oklab, var(--av-success) 12%, transparent);
+
+    --av-success-soft-foreground: color-mix(in oklab, var(--av-success) 72%, var(--av-foreground) 28%);
+
+    --av-success-soft-hover: color-mix(in oklab, var(--av-success) 17%, transparent);
+
+    /* Structural hierarchy */
+    --av-separator-secondary: color-mix(in oklab, var(--av-surface) 86%, var(--av-surface-foreground) 14%);
+
+    --av-separator-tertiary: color-mix(in oklab, var(--av-surface) 82%, var(--av-surface-foreground) 18%);
+
+    --av-border-secondary: color-mix(in oklab, var(--av-surface) 79%, var(--av-surface-foreground) 21%);
+
+    --av-border-tertiary: color-mix(in oklab, var(--av-surface) 70%, var(--av-surface-foreground) 30%);
+
+    --av-skeleton-animation: shimmer;
+  }
+
+  .av-dark,
+  [data-av-theme="dark"] {
+    color-scheme: dark;
+
+    /* Foundation */
+    --av-eclipse: oklch(0.17 0 0);
+    --av-snow: oklch(0.985 0 0);
+    --av-white: oklch(1 0 0);
+    --av-black: oklch(0.145 0 0);
+
+    /* Canvas */
+    --av-background: oklch(0.145 0 0);
+    --av-foreground: oklch(0.955 0 0);
+
+    /* Surfaces */
+    --av-surface: oklch(0.205 0 0);
+    --av-surface-foreground: var(--av-foreground);
+
+    --av-surface-secondary: oklch(0.235 0 0);
+    --av-surface-secondary-foreground: var(--av-foreground);
+
+    --av-surface-tertiary: oklch(0.265 0 0);
+    --av-surface-tertiary-foreground: var(--av-foreground);
+
+    /* Overlay */
+    --av-overlay: oklch(0.215 0 0);
+    --av-overlay-foreground: var(--av-foreground);
+
+    /* Text */
+    --av-muted: oklch(0.68 0 0);
+
+    /* Scrollbar */
+    --av-scrollbar-thumb: color-mix(in oklch, var(--av-foreground) 18%, transparent);
+    --av-scrollbar-color: var(--av-scrollbar-thumb) var(--av-scrollbar-track);
+
+    /* Neutral action */
+    --av-default: oklch(0.27 0 0);
+    --av-default-foreground: oklch(0.955 0 0);
+
+    /* Brand */
+    --av-accent: oklch(0.64 0.195 255);
+    --av-accent-foreground: var(--av-white);
+
+    /* Fields */
+    --av-field-background: oklch(0.215 0 0);
+    --av-field-foreground: var(--av-foreground);
+    --av-field-placeholder: var(--av-muted);
+    --av-field-border: oklch(0.31 0 0);
+
+    /* Semantic */
+    --av-success: oklch(0.72 0.17 151);
+    --av-success-foreground: oklch(0.17 0.025 151);
+
+    --av-warning: oklch(0.82 0.145 77);
+    --av-warning-foreground: oklch(0.19 0.035 70);
+
+    --av-danger: oklch(0.64 0.205 25);
+    --av-danger-foreground: var(--av-white);
+
+    /* Segmented controls */
+    --av-segment: oklch(0.31 0 0);
+    --av-segment-foreground: var(--av-foreground);
+
+    /* Structure */
+    --av-border: oklch(0.295 0 0);
+    --av-separator: oklch(0.255 0 0);
+
+    /* Interactive */
+    --av-focus: var(--av-accent);
+    --av-link: oklch(0.72 0.15 252);
+    --av-backdrop: rgba(0, 0, 0, 0.6);
+
+    /* Shadows */
+    --av-surface-shadow:
+      0 0 0 1px rgb(255 255 255 / 0.025) inset,
+      0 2px 8px rgb(0 0 0 / 0.18);
+
+    --av-overlay-shadow:
+      0 0 0 1px rgb(255 255 255 / 0.055) inset,
+      0 12px 32px rgb(0 0 0 / 0.35);
+
+    --av-field-shadow: 0 0 0 1px rgb(255 255 255 / 0.015) inset;
+
+    /* Derived surfaces */
+    --av-surface-hover: color-mix(in oklab, var(--av-surface) 91%, var(--av-surface-foreground) 9%);
+
+    --av-background-secondary: color-mix(in oklab, var(--av-background) 94%, var(--av-foreground) 6%);
+
+    --av-background-tertiary: color-mix(in oklab, var(--av-background) 90%, var(--av-foreground) 10%);
+
+    --av-background-inverse: var(--av-foreground);
+
+    /* Default */
+    --av-default-hover: color-mix(in oklab, var(--av-default) 91%, var(--av-default-foreground) 9%);
+
+    /* Accent */
+    --av-accent-hover: color-mix(in oklab, var(--av-accent) 90%, white 10%);
+
+    /* Semantic hover */
+    --av-success-hover: color-mix(in oklab, var(--av-success) 90%, white 10%);
+
+    --av-warning-hover: color-mix(in oklab, var(--av-warning) 90%, white 10%);
+
+    --av-danger-hover: color-mix(in oklab, var(--av-danger) 90%, white 10%);
+
+    /* Fields */
+    --av-field-hover: color-mix(in oklab, var(--av-field-background) 92%, var(--av-field-foreground) 8%);
+
+    --av-field-focus: var(--av-field-background);
+
+    --av-field-border-hover: color-mix(in oklab, var(--av-field-border) 75%, var(--av-field-foreground) 25%);
+
+    --av-field-border-focus: color-mix(in oklab, var(--av-accent) 72%, var(--av-field-border) 28%);
+
+    /* Soft — default */
+    --av-default-soft: color-mix(in oklab, var(--av-default) 55%, transparent);
+
+    --av-default-soft-foreground: var(--av-default-foreground);
+
+    --av-default-soft-hover: color-mix(in oklab, var(--av-default) 72%, transparent);
+
+    /* Soft — accent */
+    --av-accent-soft: color-mix(in oklab, var(--av-accent) 14%, transparent);
+
+    --av-accent-soft-foreground: color-mix(in oklab, var(--av-accent) 76%, var(--av-foreground) 24%);
+
+    --av-accent-soft-hover: color-mix(in oklab, var(--av-accent) 20%, transparent);
+
+    /* Soft — danger */
+    --av-danger-soft: color-mix(in oklab, var(--av-danger) 14%, transparent);
+
+    --av-danger-soft-foreground: color-mix(in oklab, var(--av-danger) 76%, var(--av-foreground) 24%);
+
+    --av-danger-soft-hover: color-mix(in oklab, var(--av-danger) 20%, transparent);
+
+    /* Soft — warning */
+    --av-warning-soft: color-mix(in oklab, var(--av-warning) 13%, transparent);
+
+    --av-warning-soft-foreground: color-mix(in oklab, var(--av-warning) 75%, var(--av-foreground) 25%);
+
+    --av-warning-soft-hover: color-mix(in oklab, var(--av-warning) 18%, transparent);
+
+    /* Soft — success */
+    --av-success-soft: color-mix(in oklab, var(--av-success) 13%, transparent);
+
+    --av-success-soft-foreground: color-mix(in oklab, var(--av-success) 75%, var(--av-foreground) 25%);
+
+    --av-success-soft-hover: color-mix(in oklab, var(--av-success) 18%, transparent);
+
+    /* Structural hierarchy */
+    --av-separator-secondary: color-mix(in oklab, var(--av-surface) 85%, var(--av-surface-foreground) 15%);
+
+    --av-separator-tertiary: color-mix(in oklab, var(--av-surface) 81%, var(--av-surface-foreground) 19%);
+
+    --av-border-secondary: color-mix(in oklab, var(--av-surface) 77%, var(--av-surface-foreground) 23%);
+
+    --av-border-tertiary: color-mix(in oklab, var(--av-surface) 68%, var(--av-surface-foreground) 32%);
+  }
+}

@@ -1,0 +1,138 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Accordion</h1>
+      <p class="av-doc-prose__description">
+        A collapsible content panel for organizing information in a compact space
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="accordion" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <app-doc-snippet component="accordion" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="examples">
+      <h2 class="av-doc-prose__heading">Examples</h2>
+
+      <h3 class="av-doc-prose__subheading" id="surface">Surface</h3>
+      <app-component-preview [demo]="demos.surface" />
+
+      <h3 class="av-doc-prose__subheading" id="without-separator">Without Separator</h3>
+      <app-component-preview [demo]="demos.withoutSeparator" />
+
+      <h3 class="av-doc-prose__subheading" id="multiple-expanded">Multiple Expanded</h3>
+      <app-component-preview [demo]="demos.multiple" />
+
+      <h3 class="av-doc-prose__subheading" id="disabled-state">Disabled State</h3>
+      <app-component-preview [demo]="demos.disabled" />
+
+      <h3 class="av-doc-prose__subheading" id="controlled">Controlled</h3>
+      <app-component-preview [demo]="demos.controlled" />
+
+      <h3 class="av-doc-prose__subheading" id="custom-indicator">Custom Indicator</h3>
+      <app-component-preview [demo]="demos.customIndicator" />
+
+      <h3 class="av-doc-prose__subheading" id="faq-layout">FAQ Layout</h3>
+      <app-component-preview [demo]="demos.customFaq" />
+    </section>
+
+    <section class="av-doc-prose__section" id="customization">
+      <h2 class="av-doc-prose__heading">Customization</h2>
+
+      <h3 class="av-doc-prose__subheading" id="tailwind-css">Tailwind CSS</h3>
+      <app-component-preview [demo]="demos.customStyles" />
+
+      <h3 class="av-doc-prose__subheading" id="global-css">Global CSS</h3>
+      <p class="av-doc-prose__description">
+        To customize the Accordion component classes, you can use the
+        <code>&#64;layer components</code> directive.
+        <a av-link href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes">
+          Learn more
+        </a>.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling-reference">
+      <h2 class="av-doc-prose__heading">Styling Reference</h2>
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a av-link href="https://getbem.com/">BEM</a>
+        methodology to ensure component variants and states are reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">
+        The Accordion component uses these CSS classes:
+      </p>
+
+      <h4 class="av-doc-prose__subheading" id="base-classes">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-accordion</code> — Base accordion container</li>
+        <li><code>.av-accordion__body</code> — Content body container</li>
+        <li><code>.av-accordion__heading</code> — Heading wrapper</li>
+        <li><code>.av-accordion__indicator</code> — Expand/collapse indicator icon</li>
+        <li><code>.av-accordion__item</code> — Individual accordion item</li>
+        <li><code>.av-accordion__panel</code> — Collapsible panel container</li>
+        <li><code>.av-accordion__trigger</code> — Clickable trigger button</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading" id="variant-classes">Variant Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-accordion--surface</code> — Surface variant with raised background</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading" id="state-classes">State Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>.av-accordion__trigger[aria-expanded="true"]</code> — Expanded state
+        </li>
+        <li>
+          <code>.av-accordion__panel[aria-hidden="false"]</code> — Panel visible state
+        </li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">
+        The component supports both CSS pseudo-classes and data attributes for flexibility:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Hover:</strong> <code>:hover</code> or
+          <code>[data-hovered="true"]</code> on trigger
+        </li>
+        <li>
+          <strong>Focus:</strong> <code>:focus-visible</code> or
+          <code>[data-focus-visible="true"]</code> on trigger
+        </li>
+        <li>
+          <strong>Disabled:</strong> <code>:disabled</code> or
+          <code>[aria-disabled="true"]</code> on trigger
+        </li>
+        <li>
+          <strong>Expanded:</strong> <code>[aria-expanded="true"]</code> on trigger
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API Reference</h2>
+      <p class="av-doc-prose__description">
+        See also <a routerLink="/docs/components/disclosure">Disclosure</a> for single-section
+        collapsible content.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

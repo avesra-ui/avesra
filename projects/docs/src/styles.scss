@@ -1,0 +1,65 @@
+@import "tailwindcss";
+@import "../../styles/src/index.css";
+@import "./themes/index.css";
+
+@source "./**/*.{html,ts}";
+@source "../../angular/src/**/*.{html,ts}";
+
+@theme inline {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+}
+
+
+:root {
+  --news-height: 0rem;
+  --topbar-height: 3.5rem;
+  --sticky-offset-top: calc(var(--news-height) + var(--topbar-height) + 1px);
+  --docs-scroll-padding-top: calc(var(--sticky-offset-top) + 1.25rem);
+}
+
+html,
+body {
+  scroll-padding-top: var(--docs-scroll-padding-top);
+}
+
+body {
+  @apply bg-background text-foreground font-sans antialiased;
+}
+
+/* Shiki dual-theme support (github-light / github-dark) */
+.shiki,
+.shiki span {
+  color: var(--shiki-light);
+  background-color: transparent;
+  font-style: var(--shiki-light-font-style);
+  font-weight: var(--shiki-light-font-weight);
+  text-decoration: var(--shiki-light-text-decoration);
+}
+
+html:is(.dark, .av-dark, [data-av-theme='dark']) .shiki,
+html:is(.dark, .av-dark, [data-av-theme='dark']) .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: transparent !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+.app-icon,
+iconify-icon {
+  display: block;
+  vertical-align: middle;
+}

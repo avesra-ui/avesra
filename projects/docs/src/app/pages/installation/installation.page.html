@@ -1,0 +1,176 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header id="overview">
+      <h1 class="av-doc-prose__title">Installation</h1>
+      <p class="av-doc-prose__description">
+        Install and configure Avesra for Angular.
+      </p>
+    </header>
+
+    <p class="text-sm leading-7 text-muted">
+      Avesra is two packages:
+      <code>&#64;avesra/angular</code>
+      for components and
+      <code>&#64;avesra/styles</code>
+      for tokens and CSS. Tailwind CSS v4 is the styling engine — do not add Sass or Less for
+      library styles.
+    </p>
+
+    <div class="relative">
+      <article class="relative pb-10 pl-12" id="create-project">
+        <span
+          class="bg-border absolute bottom-0 left-[17px] top-9 w-px"
+          aria-hidden="true"
+        ></span>
+        <span
+          class="absolute left-0 top-0 z-10 flex size-9 items-center justify-center rounded-full bg-default text-sm font-semibold text-foreground ring-[3px] ring-background"
+        >
+          1
+        </span>
+        <section class="space-y-4 pt-1">
+          <h2 class="av-doc-prose__heading">Create project</h2>
+          <p class="text-sm leading-6 text-muted">
+            Start the Angular CLI and create an application that uses CSS as the default stylesheet.
+            Skip this step if you already have an Angular 19 app.
+          </p>
+          <p class="text-xs font-medium text-muted">Terminal</p>
+          <app-doc-code-block [rawCode]="snippets.createProject" lang="bash" variant="anatomy" />
+        </section>
+      </article>
+
+      <article class="relative pb-10 pl-12" id="add-dependencies">
+        <span
+          class="bg-border absolute bottom-0 left-[17px] top-9 w-px"
+          aria-hidden="true"
+        ></span>
+        <span
+          class="absolute left-0 top-0 z-10 flex size-9 items-center justify-center rounded-full bg-default text-sm font-semibold text-foreground ring-[3px] ring-background"
+        >
+          2
+        </span>
+        <section class="space-y-4 pt-1">
+          <h2 class="av-doc-prose__heading">Add dependencies</h2>
+          <p class="text-sm leading-6 text-muted">
+            Install the component library, the theme package, and the Tailwind v4 PostCSS pipeline.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            @for (manager of packageManagers; track manager.id) {
+              <span
+                av-chip
+                size="sm"
+                [color]="packageManager() === manager.id ? 'accent' : 'default'"
+                [variant]="packageManager() === manager.id ? 'primary' : 'secondary'"
+                [label]="manager.label"
+                (click)="selectPackageManager(manager.id)"
+              ></span>
+            }
+          </div>
+          <app-doc-code-block [rawCode]="packageCommand()" lang="bash" variant="anatomy" />
+        </section>
+      </article>
+
+      <article class="relative pb-10 pl-12" id="configure-tailwind">
+        <span
+          class="bg-border absolute bottom-0 left-[17px] top-9 w-px"
+          aria-hidden="true"
+        ></span>
+        <span
+          class="absolute left-0 top-0 z-10 flex size-9 items-center justify-center rounded-full bg-default text-sm font-semibold text-foreground ring-[3px] ring-background"
+        >
+          3
+        </span>
+        <section class="space-y-4 pt-1">
+          <h2 class="av-doc-prose__heading">Configure the Tailwind pipeline</h2>
+          <p class="text-sm leading-6 text-muted">
+            Create a
+            <code>.postcssrc.json</code>
+            at the root of your project. Angular picks this file up automatically.
+          </p>
+          <p class="text-xs font-medium text-muted">.postcssrc.json</p>
+          <app-doc-code-block [rawCode]="snippets.postcss" lang="json" variant="anatomy" />
+        </section>
+      </article>
+
+      <article class="relative pb-10 pl-12" id="configure-styles">
+        <span
+          class="bg-border absolute bottom-0 left-[17px] top-9 w-px"
+          aria-hidden="true"
+        ></span>
+        <span
+          class="absolute left-0 top-0 z-10 flex size-9 items-center justify-center rounded-full bg-default text-sm font-semibold text-foreground ring-[3px] ring-background"
+        >
+          4
+        </span>
+        <section class="space-y-4 pt-1">
+          <h2 class="av-doc-prose__heading">Configure styles</h2>
+          <p class="text-sm leading-6 text-muted">
+            Add the following to
+            <code>src/styles.css</code>.
+            Tailwind first, then Avesra. Tokens and component CSS live in
+            <code>&#64;avesra/styles</code>
+            — see the
+            <a routerLink="/docs/theming">theming section</a>.
+          </p>
+          <p class="text-xs font-medium text-muted">styles.css</p>
+          <app-doc-code-block [rawCode]="snippets.styles" lang="css" variant="anatomy" />
+        </section>
+      </article>
+
+      <article class="relative pb-10 pl-12" id="register-provider">
+        <span
+          class="bg-border absolute bottom-0 left-[17px] top-9 w-px"
+          aria-hidden="true"
+        ></span>
+        <span
+          class="absolute left-0 top-0 z-10 flex size-9 items-center justify-center rounded-full bg-default text-sm font-semibold text-foreground ring-[3px] ring-background"
+        >
+          5
+        </span>
+        <section class="space-y-4 pt-1">
+          <h2 class="av-doc-prose__heading">Register the theme provider</h2>
+          <p class="text-sm leading-6 text-muted">
+            Add
+            <code>provideAvesraTheme()</code>
+            to the providers of
+            <code>src/app/app.config.ts</code>
+            so light, dark, and design presets apply on
+            <code>&lt;html&gt;</code>.
+          </p>
+          <p class="text-xs font-medium text-muted">app.config.ts</p>
+          <app-doc-code-block [rawCode]="snippets.appConfig" lang="typescript" variant="anatomy" />
+        </section>
+      </article>
+
+      <article class="relative pl-12" id="thats-it">
+        <span
+          class="absolute left-0 top-0 z-10 flex size-9 items-center justify-center rounded-full bg-default text-sm font-semibold text-foreground ring-[3px] ring-background"
+        >
+          6
+        </span>
+        <section class="space-y-4 pt-1">
+          <h2 class="av-doc-prose__heading">That's it</h2>
+          <p class="text-sm leading-6 text-muted">
+            Import a component from
+            <code>&#64;avesra/angular</code>
+            and compose it in your template.
+          </p>
+          <p class="text-xs font-medium text-muted">app.ts</p>
+          <app-doc-code-block [rawCode]="snippets.usage" lang="typescript" variant="anatomy" />
+        </section>
+      </article>
+    </div>
+
+    <div class="flex justify-end">
+      <button
+        av-button
+        type="button"
+        size="sm"
+        variant="secondary"
+        routerLink="/docs/components"
+      >
+        Browse components
+        <app-icon icon="solar:alt-arrow-right-linear" size="16" />
+      </button>
+    </div>
+  </div>
+</app-doc-page>

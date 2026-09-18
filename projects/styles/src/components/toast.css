@@ -1,0 +1,308 @@
+/* av-toast component styles */
+
+.av-toast-region {
+  @apply pointer-events-none fixed z-50 outline-none;
+  @apply w-[calc(100vw-2rem)] sm:w-auto sm:min-w-(--av-toast-width);
+
+  display: block;
+}
+
+.av-toast-region--bottom {
+  @apply bottom-4 left-1/2 -translate-x-1/2;
+}
+
+.av-toast-region--bottom-start {
+  @apply bottom-4 start-4;
+}
+
+.av-toast-region--bottom-end {
+  @apply end-4 bottom-4;
+}
+
+.av-toast-region--top {
+  @apply top-4 left-1/2 -translate-x-1/2;
+}
+
+.av-toast-region--top-start {
+  @apply top-4 start-4;
+}
+
+.av-toast-region--top-end {
+  @apply top-4 end-4;
+}
+
+.av-toast-region:focus-visible {
+  @apply outline-2 outline-offset-2 outline-focus;
+}
+
+.av-toast {
+  --lift-amount: calc(var(--av-toast-lift, -1) * var(--av-gap));
+  --swipe-amount: 0px;
+
+  position: absolute;
+  inset-inline: 0;
+  z-index: var(--z-index, 1);
+  touch-action: none;
+
+  @apply pointer-events-auto flex flex-row items-start justify-start gap-1.5 bg-surface px-4 py-3 shadow-overlay;
+  border-radius: min(32px, var(--radius-3xl));
+
+  transform: translateY(calc(var(--av-toast-lift, -1) * var(--offset, 0px)))
+    translateY(var(--swipe-amount));
+  transition:
+    transform 400ms var(--ease-smooth),
+    height 400ms var(--ease-smooth),
+    opacity 400ms var(--ease-smooth);
+  @apply av-motion-reduce:transition-none;
+}
+
+.av-toast--bottom,
+.av-toast--bottom-start,
+.av-toast--bottom-end {
+  bottom: 0;
+  --av-toast-lift: -1;
+}
+
+.av-toast--top,
+.av-toast--top-start,
+.av-toast--top-end {
+  top: 0;
+  --av-toast-lift: 1;
+}
+
+/* Ghost gap — keeps hover expand alive between stacked toasts */
+.av-toast::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  width: 100%;
+  height: calc(var(--av-gap) + 1px);
+  pointer-events: auto;
+}
+
+.av-toast--bottom::after,
+.av-toast--bottom-start::after,
+.av-toast--bottom-end::after {
+  bottom: 100%;
+}
+
+.av-toast--top::after,
+.av-toast--top-start::after,
+.av-toast--top-end::after {
+  top: 100%;
+}
+
+/* Collapsed stack: peek behind the front toast */
+.av-toast[data-expanded='false'][data-front='false'] {
+  @apply pointer-events-none;
+
+  height: var(--front-toast-height, var(--front-height));
+  overflow: hidden;
+  transform: translateY(calc(var(--lift-amount) * var(--toasts-before, 0)))
+    scale(calc(1 - var(--toasts-before, 0) * var(--av-scale-factor, 0.05)));
+
+  .av-toast__close-button {
+    @apply pointer-events-none opacity-0;
+    outline: none;
+  }
+}
+
+.av-toast[data-expanded='false'][data-front='false'] > * {
+  opacity: 0;
+  transition: opacity 400ms var(--ease-smooth);
+  @apply av-motion-reduce:transition-none;
+}
+
+/* Expanded stack: full height + cumulative offset */
+.av-toast[data-expanded='true'] {
+  height: var(--initial-height, auto);
+  transform: translateY(calc(var(--av-toast-lift, -1) * var(--offset, 0px)))
+    translateY(var(--swipe-amount));
+}
+
+.av-toast[data-expanded='true'] > * {
+  opacity: 1;
+  transition: opacity 400ms var(--ease-smooth);
+  @apply av-motion-reduce:transition-none;
+}
+
+.av-toast[data-expanded='true'][data-front='false'] {
+  @apply pointer-events-auto;
+  overflow: visible;
+}
+
+.av-toast[data-hidden='true'],
+.av-toast[data-visible='false'] {
+  @apply pointer-events-none flex opacity-0;
+}
+
+.av-toast[data-swiping='true'] {
+  transition: none;
+}
+
+.av-toast[data-swipe-out='true'] {
+  opacity: 0;
+  transition:
+    transform 200ms var(--ease-smooth),
+    opacity 200ms var(--ease-smooth);
+  @apply av-motion-reduce:transition-none;
+}
+
+.av-toast:focus-visible {
+  @apply outline-2 outline-offset-2 outline-focus;
+}
+
+.av-toast[data-entering='true'] {
+  animation-duration: 350ms;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+  @apply av-motion-reduce:animate-none;
+}
+
+.av-toast[data-exiting='true'],
+.av-toast[data-removed='true'] {
+  animation-duration: 350ms;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  @apply av-motion-reduce:animate-none;
+}
+
+.av-toast--bottom[data-entering='true'],
+.av-toast--bottom-start[data-entering='true'],
+.av-toast--bottom-end[data-entering='true'] {
+  animation-name: av-toast-slide-bottom-in;
+}
+
+.av-toast--bottom[data-exiting='true'],
+.av-toast--bottom-start[data-exiting='true'],
+.av-toast--bottom-end[data-exiting='true'],
+.av-toast--bottom[data-removed='true'],
+.av-toast--bottom-start[data-removed='true'],
+.av-toast--bottom-end[data-removed='true'] {
+  animation-name: av-toast-slide-bottom-out;
+}
+
+.av-toast--top[data-entering='true'],
+.av-toast--top-start[data-entering='true'],
+.av-toast--top-end[data-entering='true'] {
+  animation-name: av-toast-slide-top-in;
+}
+
+.av-toast--top[data-exiting='true'],
+.av-toast--top-start[data-exiting='true'],
+.av-toast--top-end[data-exiting='true'],
+.av-toast--top[data-removed='true'],
+.av-toast--top-start[data-removed='true'],
+.av-toast--top-end[data-removed='true'] {
+  animation-name: av-toast-slide-top-out;
+}
+
+.av-toast__content {
+  @apply flex h-full grow flex-col items-start self-center;
+}
+
+.av-toast__indicator {
+  @apply flex shrink-0 items-center justify-center p-1 text-overlay-foreground select-none;
+
+  [data-slot='toast-default-icon'] {
+    @apply box-content size-4;
+  }
+
+  [data-slot='spinner'] {
+    @apply size-4;
+  }
+
+  [data-slot='spinner-icon'] {
+    @apply size-4;
+  }
+}
+
+.av-toast__title {
+  @apply text-sm leading-5 font-medium text-overlay-foreground;
+}
+
+.av-toast__description {
+  @apply text-sm text-muted;
+}
+
+.av-toast__close-button {
+  @apply pointer-events-none absolute -top-1 -end-1 inline-flex size-5 items-center justify-center rounded-xl border-border bg-default opacity-0 sm:border sm:bg-overlay;
+  transition: opacity 150ms var(--ease-smooth);
+  @apply av-motion-reduce:transition-none;
+
+  [data-slot='close-button-icon'] {
+    @apply size-3.5 sm:size-3;
+  }
+
+  @media (hover: hover) {
+    &:hover,
+    &[data-hovered='true'] {
+      @apply bg-default;
+    }
+  }
+}
+
+.av-toast[data-front='true']:hover .av-toast__close-button,
+.av-toast[data-expanded='true']:hover .av-toast__close-button {
+  @apply pointer-events-auto opacity-100;
+}
+
+.av-toast__action {
+  @apply mt-2 sm:mt-0;
+}
+
+.av-toast--accent .av-toast__title {
+  @apply text-accent-soft-foreground;
+}
+
+.av-toast--success .av-toast__title {
+  @apply text-success-soft-foreground;
+}
+
+.av-toast--success .av-toast__indicator {
+  @apply text-success-soft-foreground;
+}
+
+.av-toast--warning .av-toast__title {
+  @apply text-warning-soft-foreground;
+}
+
+.av-toast--warning .av-toast__indicator {
+  @apply text-warning-soft-foreground;
+}
+
+.av-toast--danger .av-toast__title {
+  @apply text-danger-soft-foreground;
+}
+
+.av-toast--danger .av-toast__indicator {
+  @apply text-danger-soft-foreground;
+}
+
+@keyframes av-toast-slide-bottom-in {
+  from {
+    translate: 0 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes av-toast-slide-bottom-out {
+  to {
+    translate: 0 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes av-toast-slide-top-in {
+  from {
+    translate: 0 -100%;
+    opacity: 0;
+  }
+}
+
+@keyframes av-toast-slide-top-out {
+  to {
+    translate: 0 -100%;
+    opacity: 0;
+  }
+}

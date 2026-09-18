@@ -1,0 +1,49 @@
+/* av-skeleton — loading placeholder */
+
+.av-skeleton {
+  @apply pointer-events-none relative overflow-hidden rounded-sm bg-surface-tertiary/70;
+}
+
+/* Animation types */
+.av-skeleton--shimmer {
+  &::after {
+    @apply absolute inset-0 -translate-x-full animate-skeleton bg-linear-to-r from-transparent via-surface-tertiary to-transparent content-[''];
+  }
+
+  /* When applied to a parent container with multiple skeletons */
+  &:has(.av-skeleton) {
+    &::after {
+      content: none;
+    }
+
+    /* Single synchronized shimmer that passes over all children */
+    &::before {
+      @apply absolute inset-0 -translate-x-full animate-skeleton content-[''];
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.5) 50%,
+        transparent 100%
+      );
+      z-index: 10;
+      pointer-events: none;
+      /* Use mix-blend-mode to only show over skeleton elements */
+      mix-blend-mode: overlay;
+    }
+
+    /* Ensure children don't have their own shimmer */
+    & .av-skeleton {
+      &::after {
+        content: none;
+      }
+    }
+  }
+}
+
+.av-skeleton--pulse {
+  @apply animate-pulse;
+}
+
+.av-skeleton--none {
+  /* No animation */
+}

@@ -1,0 +1,160 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">TimeField</h1>
+      <p class="av-doc-prose__description">
+        Segmented time input with label, description, and validation, using
+        <code>&#64;internationalized/date</code>. Reuses
+        <code>av-date-input-group</code>.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-doc-snippet component="time-field" />
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <app-doc-snippet component="time-field" section="anatomy" />
+      <p class="av-doc-prose__description">
+        <strong>TimeField</strong> combines label, segmented time input, description, and error into
+        one accessible field. Compose shared
+        <code>av-label</code>, <code>av-description</code>, and <code>av-field-error</code> parts;
+        the input auto-renders locale-ordered time segments via
+        <code>av-date-input-group</code>.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="examples">
+      <h2 class="av-doc-prose__heading">Examples</h2>
+
+      <h3 class="av-doc-prose__subheading" id="with-icons">With Icons</h3>
+      <p class="av-doc-prose__description">
+        Add prefix or suffix icons to enhance the time field.
+      </p>
+      <app-component-preview [demo]="demos.withPrefixIcon" />
+      <app-component-preview [demo]="demos.withSuffixIcon" />
+      <app-component-preview [demo]="demos.withPrefixAndSuffix" />
+
+      <h3 class="av-doc-prose__subheading" id="variants">Variants</h3>
+      <p class="av-doc-prose__description">
+        The date input group supports two visual variants:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>primary</code> (default) — standard styling with shadow, suitable for most use cases
+        </li>
+        <li>
+          <code>secondary</code> — lower emphasis without shadow, suitable inside Surface
+        </li>
+      </ul>
+      <app-component-preview [demo]="demos.variants" />
+
+      <h3 class="av-doc-prose__subheading" id="on-surface">In Surface</h3>
+      <p class="av-doc-prose__description">
+        When used inside a Surface component, use
+        <code>variant="secondary"</code> on
+        <code>av-date-input-group</code> to apply the lower emphasis variant suitable for surface
+        backgrounds.
+      </p>
+      <app-component-preview [demo]="demos.onSurface" />
+
+      <h3 class="av-doc-prose__subheading" id="with-description">With Description</h3>
+      <app-component-preview [demo]="demos.withDescription" />
+
+      <h3 class="av-doc-prose__subheading" id="required">Required Field</h3>
+      <app-component-preview [demo]="demos.required" />
+
+      <h3 class="av-doc-prose__subheading" id="disabled">Disabled State</h3>
+      <app-component-preview [demo]="demos.disabled" />
+
+      <h3 class="av-doc-prose__subheading" id="full-width">Full Width</h3>
+      <app-component-preview [demo]="demos.fullWidth" />
+
+      <h3 class="av-doc-prose__subheading" id="hour-cycle">Hour Cycle</h3>
+      <p class="av-doc-prose__description">
+        Force a 12- or 24-hour clock with <code>hour-cycle</code>. The 24-hour field omits the AM/PM
+        segment.
+      </p>
+      <app-component-preview [demo]="demos.hourCycle" />
+
+      <h3 class="av-doc-prose__subheading" id="validation">Validation</h3>
+      <p class="av-doc-prose__description">
+        Use <code>invalid</code> together with <code>av-field-error</code> to surface validation
+        messages.
+      </p>
+      <app-component-preview [demo]="demos.invalid" />
+
+      <h3 class="av-doc-prose__subheading" id="controlled">Controlled</h3>
+      <p class="av-doc-prose__description">
+        Control the value to synchronize with other components or state management.
+      </p>
+      <app-component-preview [demo]="demos.controlled" />
+
+      <h3 class="av-doc-prose__subheading" id="form-example">Form Example</h3>
+      <p class="av-doc-prose__description">
+        Complete form example with validation and submission handling.
+      </p>
+      <app-component-preview [demo]="demos.formExample" />
+
+      <h3 class="av-doc-prose__subheading" id="with-validation">With Validation</h3>
+      <p class="av-doc-prose__description">
+        TimeField supports validation with <code>min-value</code>, <code>max-value</code>, and custom
+        invalid state.
+      </p>
+      <app-component-preview [demo]="demos.withValidation" />
+    </section>
+
+    <section class="av-doc-prose__section" id="customization">
+      <h2 class="av-doc-prose__heading">Customization</h2>
+
+      <h3 class="av-doc-prose__subheading" id="custom-styles">Tailwind CSS</h3>
+      <app-component-preview [demo]="demos.customStyles" />
+
+      <h3 class="av-doc-prose__subheading" id="global-css">Global CSS</h3>
+      <p class="av-doc-prose__description">
+        To customize the TimeField component classes, you can use the
+        <code>&#64;layer components</code> directive.
+        <a av-link href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes">
+          Learn more
+        </a>.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling Reference</h2>
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a av-link href="https://getbem.com/">BEM</a>
+        methodology so variants and states are reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-time-field</code> — Root container</li>
+        <li><code>.av-time-field--full-width</code> — Full width modifier</li>
+        <li><code>.av-date-input-group</code> — Input group shell (shared with DateField)</li>
+        <li><code>.av-date-input-group--primary</code> / <code>--secondary</code> — Variants</li>
+        <li><code>.av-date-input-group__input</code> — Segment row</li>
+        <li><code>.av-date-input-group__segment</code> — Editable / literal segment</li>
+        <li><code>.av-date-input-group__prefix</code> / <code>__suffix</code> — Affixes</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <ul class="av-doc-prose__list">
+        <li><code>[data-invalid="true"]</code> — Hides description when invalid</li>
+        <li><code>[data-required="true"]</code> — Required field</li>
+        <li><code>[data-disabled="true"]</code> — Disabled</li>
+        <li><code>[data-focus-within="true"]</code> — Focus inside segments</li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API Reference</h2>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

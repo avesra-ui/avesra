@@ -1,0 +1,146 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Kbd</h1>
+      <p class="av-doc-prose__description">
+        Display keyboard shortcuts and key combinations. Apply
+        <code>av-kbd</code> to a <code>&lt;kbd&gt;</code> host with
+        <code>av-kbd-abbr</code> and <code>av-kbd-content</code> children.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="kbd" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the Kbd parts and compose them with attribute selectors on
+        <code>&lt;kbd&gt;</code>, <code>&lt;abbr&gt;</code>, and <code>&lt;span&gt;</code> hosts.
+      </p>
+      <app-doc-snippet component="kbd" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="variants">
+      <h2 class="av-doc-prose__heading">Variants</h2>
+      <p class="av-doc-prose__description">
+        Set <code>variant</code> on <code>av-kbd</code>. Default and
+        <code>light</code> are shown side by side.
+      </p>
+      <app-component-preview [demo]="demos.variants" />
+    </section>
+
+    <section class="av-doc-prose__section" id="navigation-keys">
+      <h2 class="av-doc-prose__heading">Navigation Keys</h2>
+      <app-component-preview [demo]="demos.navigationKeys" />
+    </section>
+
+    <section class="av-doc-prose__section" id="inline-usage">
+      <h2 class="av-doc-prose__heading">Inline Usage</h2>
+      <app-component-preview [demo]="demos.inlineUsage" />
+    </section>
+
+    <section class="av-doc-prose__section" id="instructional-text">
+      <h2 class="av-doc-prose__heading">Instructional Text</h2>
+      <app-component-preview [demo]="demos.instructionalText" />
+    </section>
+
+    <section class="av-doc-prose__section" id="special-keys">
+      <h2 class="av-doc-prose__heading">Special Keys</h2>
+      <app-component-preview [demo]="demos.specialKeys" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on the <code>av-kbd</code> host (and optionally on abbr/content
+        hosts).
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Kbd classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The Kbd component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>.av-kbd</code> — Base keyboard key styles with background, border, and spacing
+        </li>
+        <li><code>.av-kbd__abbr</code> — Abbreviation element for modifier keys</li>
+        <li><code>.av-kbd__content</code> — Content wrapper for key text</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Variant Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-kbd--light</code> — Transparent background (light variant)</li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Props for <code>kbd[av-kbd]</code> and <code>abbr[av-kbd-abbr]</code>.
+        <code>span[av-kbd-content]</code> projects children and has no inputs. The
+        <code>title</code> on abbr is set automatically from <code>key-value</code>.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+
+      <h3 class="av-doc-prose__subheading" id="key-values">Key Values</h3>
+      <p class="av-doc-prose__description">
+        Available values for the <code>key-value</code> input on
+        <code>av-kbd-abbr</code> (<code>AvKbdKey</code>):
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Modifier Keys:</strong>
+          <code>command</code>, <code>shift</code>, <code>ctrl</code>, <code>option</code>,
+          <code>alt</code>, <code>win</code>
+        </li>
+        <li>
+          <strong>Special Keys:</strong>
+          <code>enter</code>, <code>delete</code>, <code>escape</code>, <code>tab</code>,
+          <code>space</code>, <code>capslock</code>, <code>help</code>
+        </li>
+        <li>
+          <strong>Navigation Keys:</strong>
+          <code>up</code>, <code>down</code>, <code>left</code>, <code>right</code>,
+          <code>pageup</code>, <code>pagedown</code>, <code>home</code>, <code>end</code>
+        </li>
+        <li>
+          <strong>Function Keys:</strong>
+          <code>fn</code>
+        </li>
+      </ul>
+    </section>
+  </div>
+</app-doc-page>

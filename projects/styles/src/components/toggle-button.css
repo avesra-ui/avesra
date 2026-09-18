@@ -1,0 +1,125 @@
+/* av-toggle-button — interactive toggle control for on/off states */
+
+.av-toggle-button {
+  @apply relative isolate inline-flex h-10 w-fit origin-center items-center justify-center gap-2 rounded-3xl px-4 text-sm font-medium whitespace-nowrap outline-none select-none av-no-highlight md:h-9;
+
+  /**
+   * Transitions
+   * CRITICAL: av-motion-reduce must be AFTER transition for correct override specificity
+   */
+  transition:
+    transform 250ms var(--ease-smooth),
+    background-color 100ms var(--ease-out),
+    box-shadow 100ms var(--ease-out);
+  @apply transform-gpu av-motion-reduce:transition-none;
+
+  cursor: var(--av-cursor-interactive);
+
+  --av-toggle-button-bg: var(--av-default);
+  --av-toggle-button-bg-hover: var(--av-default-hover);
+  --av-toggle-button-bg-pressed: var(--av-default-hover);
+  --av-toggle-button-fg: currentColor;
+
+  --av-toggle-button-bg-selected: var(--av-accent-soft);
+  --av-toggle-button-bg-selected-hover: var(--av-accent-soft-hover);
+  --av-toggle-button-bg-selected-pressed: var(--av-accent-soft-hover);
+  --av-toggle-button-fg-selected: var(--av-accent-soft-foreground);
+
+  background-color: var(--av-toggle-button-bg);
+  color: var(--av-toggle-button-fg);
+
+  &:focus-visible:not(:focus),
+  &[data-focus-visible="true"] {
+    @apply av-status-focused;
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    @apply av-status-disabled;
+  }
+
+  @media (hover: hover) {
+    &:hover,
+    &[data-hovered="true"] {
+      background-color: var(--av-toggle-button-bg-hover);
+    }
+  }
+
+  &:active,
+  &[data-pressed="true"] {
+    background-color: var(--av-toggle-button-bg-pressed);
+    transform: scale(0.97);
+  }
+
+  &[data-selected="true"] {
+    background-color: var(--av-toggle-button-bg-selected);
+    color: var(--av-toggle-button-fg-selected);
+
+    @media (hover: hover) {
+      &:hover,
+      &[data-hovered="true"] {
+        background-color: var(--av-toggle-button-bg-selected-hover);
+      }
+    }
+
+    &:active,
+    &[data-pressed="true"] {
+      background-color: var(--av-toggle-button-bg-selected-pressed);
+    }
+  }
+
+  & svg {
+    @apply pointer-events-none -mx-0.5 my-0.5 size-5 shrink-0 self-center sm:my-1 sm:size-4;
+  }
+}
+
+.av-toggle-button--sm {
+  @apply h-9 px-3 md:h-8;
+
+  & svg {
+    @apply size-4;
+  }
+
+  &:active,
+  &[data-pressed="true"] {
+    transform: scale(0.98);
+  }
+}
+
+.av-toggle-button--md {
+  /* default size */
+}
+
+.av-toggle-button--lg {
+  @apply h-11 text-base md:h-10;
+
+  &:active,
+  &[data-pressed="true"] {
+    transform: scale(0.96);
+  }
+}
+
+.av-toggle-button--default {
+  --av-toggle-button-bg: var(--av-default);
+  --av-toggle-button-bg-hover: var(--av-default-hover);
+  --av-toggle-button-bg-pressed: var(--av-default-hover);
+}
+
+.av-toggle-button--ghost {
+  --av-toggle-button-bg: transparent;
+  --av-toggle-button-bg-hover: var(--av-default);
+  --av-toggle-button-bg-pressed: var(--av-default);
+  --av-toggle-button-fg: var(--av-default-foreground);
+}
+
+.av-toggle-button--icon-only {
+  @apply w-10 p-0 md:w-9;
+}
+
+.av-toggle-button--icon-only.av-toggle-button--sm {
+  @apply w-9 md:w-8;
+}
+
+.av-toggle-button--icon-only.av-toggle-button--lg {
+  @apply w-11 md:w-10;
+}

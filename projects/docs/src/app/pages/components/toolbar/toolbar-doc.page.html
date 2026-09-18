@@ -1,0 +1,102 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Toolbar</h1>
+      <p class="av-doc-prose__description">
+        A container for interactive controls with toolbar semantics
+        (<code>role="toolbar"</code>).
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="toolbar" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <p class="av-doc-prose__description">
+        Wrap controls in <code>av-toolbar</code> and always provide <code>aria-label</code> when
+        there is no visible label.
+      </p>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Separate control groups with <code>av-separator</code>. Toolbar sets separator orientation
+        automatically based on toolbar layout.
+      </p>
+      <app-doc-snippet component="toolbar" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="vertical">
+      <h2 class="av-doc-prose__heading">Vertical</h2>
+      <p class="av-doc-prose__description">
+        Set <code>orientation="vertical"</code> for a stacked control column.
+      </p>
+      <app-component-preview [demo]="demos.vertical" />
+    </section>
+
+    <section class="av-doc-prose__section" id="attached">
+      <h2 class="av-doc-prose__heading">Attached</h2>
+      <p class="av-doc-prose__description">
+        Set <code>attached</code> for a surface background with full rounding — ideal for floating
+        toolbars over content.
+      </p>
+      <app-component-preview [demo]="demos.attached" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-button-group">
+      <h2 class="av-doc-prose__heading">With ButtonGroup</h2>
+      <p class="av-doc-prose__description">
+        Compose toolbars with
+        <a routerLink="/docs/components/button-group">ButtonGroup</a> for related actions.
+      </p>
+      <app-component-preview [demo]="demos.withButtonGroups" />
+    </section>
+
+    <section class="av-doc-prose__section" id="customization">
+      <h2 class="av-doc-prose__heading">Customization</h2>
+
+      <h3 class="av-doc-prose__subheading" id="tailwind-css">Tailwind CSS</h3>
+      <app-component-preview [demo]="demos.customStyles" />
+
+      <h3 class="av-doc-prose__subheading" id="global-css">Global CSS</h3>
+      <p class="av-doc-prose__description">
+        To customize Toolbar classes, use the <code>&#64;layer components</code> directive.
+      </p>
+      <app-doc-snippet [source]="globalCssExample" lang="css" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling Reference</h2>
+      <p class="av-doc-prose__description">
+        Avesra follows the BEM methodology so variants and states stay reusable and easy to
+        customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-toolbar</code> — Base container</li>
+        <li><code>.av-toolbar--horizontal</code> — Horizontal orientation (default)</li>
+        <li><code>.av-toolbar--vertical</code> — Vertical orientation</li>
+        <li>
+          <code>.av-toolbar--attached</code> — Attached variant with surface background and full
+          rounding
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API Reference</h2>
+      <p class="av-doc-prose__description">
+        Props for <code>av-toolbar</code>. Child controls use their own component APIs. Always set
+        <code>aria-label</code> (or <code>aria-labelledby</code> on the host) when there is no
+        visible label.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

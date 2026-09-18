@@ -1,0 +1,244 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Input OTP</h1>
+      <p class="av-doc-prose__description">
+        A one-time password input component for verification codes and secure authentication.
+        Apply <code>av-input-otp</code> to a container <code>&lt;div&gt;</code> with slot children.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="input-otp" />
+      <p class="av-doc-prose__description">
+        Compose with <code>av-label</code>, <code>av-description</code>, and
+        <code>av-field-error</code>. For form-level validation and submission, see
+        <a routerLink="/docs/components/form">Form</a>.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the Input OTP parts and compose them with attribute selectors on
+        <code>&lt;div&gt;</code> hosts.
+      </p>
+      <app-doc-snippet component="input-otp" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Input OTP uses a single hidden native input overlaid on visual slot elements. Each slot
+        requires a unique zero-based <code>[index]</code>.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="variants">
+      <h2 class="av-doc-prose__heading">Variants</h2>
+      <p class="av-doc-prose__description">The Input OTP component supports two visual variants:</p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong><code>primary</code></strong> (default) — Standard styling with shadow, suitable
+          for most use cases
+        </li>
+        <li>
+          <strong><code>secondary</code></strong> — Lower emphasis variant without shadow,
+          suitable for use in Surface components
+        </li>
+      </ul>
+      <app-component-preview [demo]="demos.variants" />
+    </section>
+
+    <section class="av-doc-prose__section" id="in-surface">
+      <h2 class="av-doc-prose__heading">In Surface</h2>
+      <p class="av-doc-prose__description">
+        When used inside a
+        <a routerLink="/docs/components/surface">Surface</a>
+        component, use <code>variant="secondary"</code> to apply the lower emphasis variant
+        suitable for surface backgrounds.
+      </p>
+      <app-component-preview [demo]="demos.onSurface" />
+    </section>
+
+    <section class="av-doc-prose__section" id="disabled-state">
+      <h2 class="av-doc-prose__heading">Disabled State</h2>
+      <p class="av-doc-prose__description">
+        Set <code>disabled</code> on the root to prevent input and apply disabled styling to
+        slots. Pair with a disabled <code>av-label</code> when the whole field is inactive.
+      </p>
+      <app-component-preview [demo]="demos.disabled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="four-digits">
+      <h2 class="av-doc-prose__heading">Four Digits</h2>
+      <app-component-preview [demo]="demos.fourDigits" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled">
+      <h2 class="av-doc-prose__heading">Controlled</h2>
+      <p class="av-doc-prose__description">
+        Control the value with <code>[(value)]</code> to synchronize with state, clear the input,
+        or implement custom validation. For Angular forms, bind with
+        <code>[(ngModel)]</code> (<code>FormsModule</code>) or
+        <code>formControlName</code> / <code>[formControl]</code>
+        (<code>ReactiveFormsModule</code>) — Input OTP implements
+        <code>ControlValueAccessor</code>.
+      </p>
+      <app-component-preview [demo]="demos.controlled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="on-complete">
+      <h2 class="av-doc-prose__heading">On Complete</h2>
+      <p class="av-doc-prose__description">
+        Use the <code>(complete)</code> output to trigger actions when all slots are filled.
+      </p>
+      <app-component-preview [demo]="demos.onComplete" />
+    </section>
+
+    <section class="av-doc-prose__section" id="form-example">
+      <h2 class="av-doc-prose__heading">Form Example</h2>
+      <p class="av-doc-prose__description">
+        A complete two-factor authentication form with validation and submission.
+      </p>
+      <app-component-preview [demo]="demos.formExample" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-pattern">
+      <h2 class="av-doc-prose__heading">With Pattern</h2>
+      <p class="av-doc-prose__description">
+        Use the <code>pattern</code> input to restrict characters. Avesra exports common patterns
+        like <code>AV_REGEXP_ONLY_CHARS</code> and <code>AV_REGEXP_ONLY_DIGITS</code>.
+      </p>
+      <app-component-preview [demo]="demos.withPattern" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-validation">
+      <h2 class="av-doc-prose__heading">With Validation</h2>
+      <p class="av-doc-prose__description">
+        Use <code>invalid</code> together with <code>av-field-error</code> to surface errors.
+      </p>
+      <app-component-preview [demo]="demos.withValidation" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on the root, groups, slots, and separator. Use
+        <code>container-class</code> for the inner layout container.
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Input OTP classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The Input OTP component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-input-otp</code> — Base container</li>
+        <li><code>.av-input-otp__container</code> — Inner slot layout container</li>
+        <li><code>.av-input-otp__group</code> — Group of slots</li>
+        <li><code>.av-input-otp__slot</code> — Individual input slot</li>
+        <li><code>.av-input-otp__slot-value</code> — The character inside a slot</li>
+        <li><code>.av-input-otp__caret</code> — Blinking caret indicator</li>
+        <li><code>.av-input-otp__separator</code> — Visual separator between groups</li>
+        <li><code>.av-input-otp__input</code> — Hidden native input overlay</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">State Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>.av-input-otp__slot[data-active="true"]</code> — Currently active slot
+        </li>
+        <li>
+          <code>.av-input-otp__slot[data-filled="true"]</code> — Slot with a character
+        </li>
+        <li>
+          <code>.av-input-otp__slot[data-disabled="true"]</code> — Disabled slot
+        </li>
+        <li>
+          <code>.av-input-otp__slot[data-invalid="true"]</code> — Invalid slot
+        </li>
+        <li>
+          <code>.av-input-otp[data-disabled="true"]</code> — Disabled root
+        </li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">
+        The component supports both CSS pseudo-classes and data attributes:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Hover:</strong> <code>:hover</code> or <code>[data-hovered="true"]</code> on
+          slot
+        </li>
+        <li>
+          <strong>Active:</strong> <code>[data-active="true"]</code> on slot (currently focused)
+        </li>
+        <li>
+          <strong>Filled:</strong> <code>[data-filled="true"]</code> on slot (contains a
+          character)
+        </li>
+        <li>
+          <strong>Disabled:</strong> <code>[data-disabled="true"]</code> on root and slots
+        </li>
+        <li><strong>Invalid:</strong> <code>[data-invalid="true"]</code> on slots</li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Root props for <code>div[av-input-otp]</code>. Group, slot, and separator are composed as
+        sibling attribute hosts. Slots require a zero-based <code>[index]</code>. Compose with
+        <code>av-label</code>, <code>av-description</code>, and <code>av-field-error</code> for
+        field chrome.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+
+      <h3 class="av-doc-prose__subheading" id="exported-patterns">Exported Patterns</h3>
+      <p class="av-doc-prose__description">
+        Avesra exports common regex patterns for the <code>pattern</code> input:
+      </p>
+      <app-doc-snippet [source]="exportedPatternsExample" lang="typescript" section="anatomy" />
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong><code>AV_REGEXP_ONLY_DIGITS</code></strong> — Only numeric characters (0-9)
+        </li>
+        <li>
+          <strong><code>AV_REGEXP_ONLY_CHARS</code></strong> — Only alphabetic characters (a-z,
+          A-Z)
+        </li>
+        <li>
+          <strong><code>AV_REGEXP_ONLY_DIGITS_AND_CHARS</code></strong> — Alphanumeric characters
+          (0-9, a-z, A-Z)
+        </li>
+      </ul>
+    </section>
+  </div>
+</app-doc-page>

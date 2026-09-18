@@ -1,0 +1,84 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Disclosure</h1>
+      <p class="av-doc-prose__description">
+        A collapsible section with a heading, trigger, and animated content panel. Use standalone for
+        a single expandable region, or nest inside
+        <a routerLink="/docs/components/disclosure-group">Disclosure Group</a> for coordinated
+        expansion.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="disclosure" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the Disclosure parts and compose them with attribute selectors.
+      </p>
+      <app-doc-snippet component="disclosure" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+      <p class="av-doc-prose__description">
+        Pass utility classes on host elements, or override BEM classes in
+        <code>&#64;layer components</code>.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Style the trigger button and pass classes on
+        <code>av-disclosure-body</code> (applied to the inner body wrapper).
+      </p>
+      <app-component-preview [demo]="demos.customStyles" />
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-disclosure</code> — Root container</li>
+        <li><code>.av-disclosure__heading</code> — Heading wrapper</li>
+        <li><code>.av-disclosure__trigger</code> — Trigger control (when not composed with <code>av-button</code>)</li>
+        <li><code>.av-disclosure__indicator</code> — Chevron indicator</li>
+        <li><code>.av-disclosure__content</code> — Animated content wrapper</li>
+        <li><code>.av-disclosure__body</code> — Inner content padding</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <ul class="av-doc-prose__list">
+        <li><strong>Expanded:</strong> <code>[data-expanded="true"]</code> on content and indicator</li>
+        <li><strong>Focus:</strong> <code>:focus-visible</code> on trigger</li>
+        <li><strong>Disabled:</strong> <code>[aria-disabled="true"]</code> on trigger</li>
+        <li><strong>Hidden:</strong> <code>aria-hidden="true"</code> on collapsed content</li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="accessibility">
+      <h2 class="av-doc-prose__heading">Accessibility</h2>
+      <p class="av-doc-prose__description">
+        Triggers expose <code>aria-expanded</code> and <code>aria-controls</code>. Collapsed content
+        is marked <code>aria-hidden</code> and uses <code>role="region"</code> when visible. Provide
+        a visible heading inside <code>av-disclosure-heading</code> for context.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Compound API across disclosure root, heading, trigger directive, content, indicator, and body
+        parts. Set <code>id</code> when using inside a disclosure group.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

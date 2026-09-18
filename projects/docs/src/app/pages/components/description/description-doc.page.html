@@ -1,0 +1,54 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Description</h1>
+      <p class="av-doc-prose__description">
+        Supplementary helper text for form fields and other components. Apply
+        <code>av-description</code> to a native <code>&lt;p&gt;</code> element below the
+        associated control.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="description" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <app-doc-snippet component="description" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-form-fields">
+      <h2 class="av-doc-prose__heading">With Form Fields</h2>
+      <p class="av-doc-prose__description">
+        Pair <code>av-description</code> with <code>av-label</code> and <code>av-input</code>. Link
+        them with matching <code>id</code> / <code>aria-describedby</code> for accessibility.
+      </p>
+      <app-component-preview [demo]="demos.withFormFields" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">
+        Avesra uses BEM-style classes for predictable customization. Override them in
+        <code>&#64;layer components</code> or pass utility classes directly.
+      </p>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-description</code> — Base description styles with muted text color</li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

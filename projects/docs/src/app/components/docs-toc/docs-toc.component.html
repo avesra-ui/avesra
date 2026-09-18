@@ -1,0 +1,43 @@
+@if (items().length > 0) {
+  <aside class="av-docs-toc" aria-labelledby="docs-toc-title">
+    <header class="av-docs-toc__header">
+      <h2 class="av-docs-toc__title" id="docs-toc-title">
+        <app-icon class="av-docs-toc__title-icon" icon="solar:document-text-linear" size="16" />
+        <span>On this page</span>
+      </h2>
+    </header>
+
+    <div class="av-docs-toc__scroll">
+      <div class="av-docs-toc__track">
+        <div
+          class="av-docs-toc__thumb"
+          [class.av-docs-toc__thumb--hidden]="!thumbVisible()"
+          [style.top.px]="thumbTop()"
+          [style.height.px]="thumbHeight()"
+        ></div>
+
+        <ul class="av-docs-toc__list">
+          @for (item of items(); track item.id) {
+            <li>
+              <a
+                class="av-docs-toc__link"
+                [routerLink]="linkFor(item.id)"
+                replaceUrl
+                (click)="onTocClick($event, item.id)"
+                [attr.data-depth]="item.depth ?? 1"
+                [attr.data-active]="isActive(item.id) ? 'true' : null"
+                [attr.data-toc-id]="item.id"
+              >
+                {{ item.title }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="av-docs-toc__newsletter">
+      <app-docs-toc-newsletter />
+    </div>
+  </aside>
+}

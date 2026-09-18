@@ -1,0 +1,162 @@
+/* av-date-input-group — segmented date input chrome */
+
+.av-date-input-group {
+  @apply inline-flex h-9 items-center overflow-hidden rounded-field border bg-field text-sm text-field-foreground shadow-field outline-none;
+  border-width: var(--av-field-border-width, var(--av-border-width));
+  border-color: var(--av-field-border, var(--av-border));
+
+  transition:
+    background-color 150ms var(--ease-smooth),
+    border-color 150ms var(--ease-smooth),
+    box-shadow 150ms var(--ease-out);
+  @apply av-motion-reduce:transition-none;
+
+  @media (hover: hover) {
+    &:hover:not(:focus-within),
+    &[data-hovered='true']:not([data-focus-within='true']) {
+      @apply bg-field-hover;
+      border-color: var(--av-field-border-hover);
+    }
+  }
+
+  &:focus-within:not(
+      :has(
+        [data-slot='date-picker-trigger']:focus,
+        [data-slot='date-picker-trigger'][data-focused='true'],
+        [data-slot='date-range-picker-trigger']:focus,
+        [data-slot='date-range-picker-trigger'][data-focused='true']
+      )
+    ),
+  &[data-focus-within='true']:not(
+      :has(
+        [data-slot='date-picker-trigger']:focus,
+        [data-slot='date-picker-trigger'][data-focused='true'],
+        [data-slot='date-range-picker-trigger']:focus,
+        [data-slot='date-range-picker-trigger'][data-focused='true']
+      )
+    ) {
+    @apply av-status-focused-field;
+  }
+
+  &[data-invalid='true'] {
+    @apply av-status-invalid-field;
+    background-color: var(--av-field-focus);
+    border-color: var(--av-danger);
+  }
+
+  &[data-disabled='true'],
+  &[aria-disabled='true'] {
+    @apply av-status-disabled;
+  }
+}
+
+.av-date-input-group__input {
+  @apply flex flex-1 cursor-text items-center gap-px rounded-none border-0 bg-transparent px-3 py-2 text-base shadow-none outline-none sm:text-sm;
+
+  .av-date-input-group:has([data-slot='date-input-group-prefix']) & {
+    @apply rounded-s-none ps-2;
+  }
+
+  .av-date-input-group:has([data-slot='date-input-group-suffix']) & {
+    @apply rounded-e-none pe-2;
+  }
+
+  .av-date-input-group:has(.av-date-range-picker__range-separator) & {
+    &[slot='start'] {
+      @apply flex-none pe-0;
+    }
+
+    &[slot='end'] {
+      @apply ps-0;
+    }
+  }
+
+  &:focus,
+  &:focus-visible {
+    @apply outline-none;
+  }
+}
+
+.av-date-input-group__input-container {
+  @apply flex flex-1 items-center;
+  width: fit-content;
+  overflow-x: auto;
+  overflow-y: clip;
+}
+
+.av-date-input-group__segment {
+  @apply inline-block rounded-md px-0.5 text-end text-nowrap outline-none;
+
+  &[data-type='literal'] {
+    @apply p-0 text-muted;
+  }
+
+  &[data-type='dayPeriod'] {
+    cursor: var(--av-cursor-interactive);
+  }
+
+  &[data-placeholder='true'] {
+    @apply text-field-placeholder;
+  }
+
+  &:focus,
+  &[data-focused='true'] {
+    @apply bg-accent-soft text-accent-soft-foreground;
+  }
+
+  &[data-disabled='true'] {
+    @apply opacity-50;
+  }
+
+  &[data-invalid='true'] {
+    @apply text-danger;
+
+    &:focus,
+    &[data-focused='true'] {
+      @apply bg-danger-soft text-danger-soft-foreground;
+    }
+  }
+}
+
+.av-date-input-group__prefix {
+  @apply pointer-events-none ms-3 me-0 flex shrink-0 items-center text-field-placeholder;
+}
+
+.av-date-input-group__suffix {
+  @apply pointer-events-none me-3 flex shrink-0 items-center text-field-placeholder;
+}
+
+.av-date-input-group--primary {
+  /* Default styles live on the base class (md-equivalent). */
+}
+
+.av-date-input-group--secondary {
+  @apply shadow-none;
+  background-color: var(--av-date-input-group-bg, var(--av-default));
+
+  --av-date-input-group-bg: var(--av-default);
+  --av-date-input-group-bg-hover: var(--av-default-hover);
+  --av-date-input-group-bg-focus: var(--av-default);
+
+  @media (hover: hover) {
+    &:hover:not(:focus-within),
+    &[data-hovered='true']:not([data-focus-within='true']) {
+      background-color: var(--av-date-input-group-bg-hover);
+    }
+  }
+
+  &:focus-within,
+  &[data-focus-within='true'] {
+    background-color: var(--av-date-input-group-bg-focus);
+  }
+
+  &[data-invalid='true'] {
+    @apply av-status-invalid-field;
+    border-color: var(--av-danger);
+    background-color: var(--av-date-input-group-bg-focus);
+  }
+}
+
+.av-date-input-group--full-width {
+  @apply w-full;
+}

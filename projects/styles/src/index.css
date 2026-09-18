@@ -1,0 +1,18 @@
+@layer theme, base, components, utilities;
+
+/* Avesra Design System — import after "tailwindcss" in your app styles */
+
+@import "tw-animate-css";
+
+/* components layer (not base): must beat Tailwind preflight's `border: 0 solid`
+   (currentColor). With @tailwindcss/postcss, preflight is often emitted after
+   this package, so a same-layer(base) override loses by source order. */
+@import "./base/base.css" layer(components);
+
+@import "./themes/default/index.css" layer(theme);
+@import "./themes/shared/vibrant-palette.css" layer(theme);
+
+@import "./components/index.css" layer(components);
+
+@import "./utilities/index.css";
+@import "./variants/index.css";

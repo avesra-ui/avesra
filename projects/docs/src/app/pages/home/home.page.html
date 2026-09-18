@@ -1,0 +1,45 @@
+<div class="av-home">
+  <section class="av-home__hero" aria-labelledby="av-home-title">
+    <div class="av-home__badge-row">
+      <a
+        class="av-home__badge"
+        routerLink="/docs/changelog"
+        aria-label="Latest release"
+      >
+        <app-icon icon="solar:magic-stick-3-bold" size="12" />
+        <span class="av-home__badge-label">Avesra Angular {{ version }}</span>
+      </a>
+    </div>
+
+    <h1 class="av-home__title" id="av-home-title">
+      Beautiful by default.
+      <span class="av-home__title-muted">Customizable by design.</span>
+    </h1>
+
+    <p class="av-home__lead">
+      An Angular UI library with design tokens, Tailwind CSS v4, and components that feel finished
+      out of the box.
+    </p>
+
+    <div class="av-home__cta">
+      <button av-button type="button" routerLink="/docs/introduction">Get started</button>
+      <button av-button type="button" variant="outline" routerLink="/docs/components">
+        View components
+      </button>
+    </div>
+
+    <a
+      class="av-home__github"
+      [href]="githubUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <app-icon icon="avesra:github" size="16" />
+      <span>Open source on GitHub</span>
+    </a>
+  </section>
+
+  <section class="av-home__showcase" aria-label="Component showcase">
+    <app-home-showcase />
+  </section>
+</div>

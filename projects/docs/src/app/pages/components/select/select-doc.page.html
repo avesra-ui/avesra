@@ -1,0 +1,355 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Select</h1>
+      <p class="av-doc-prose__description">
+        A select displays a collapsible list of options and allows a user to select one of them.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="select" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the Select parts and compose them with attribute selectors. Options live in an
+        independent
+        <a routerLink="/docs/components/list-box">List Box</a>
+        inside
+        <code>av-select-popover</code>
+        — List Box is not coupled to Select beyond composition.
+      </p>
+      <app-doc-snippet component="select" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="variants">
+      <h2 class="av-doc-prose__heading">Variants</h2>
+      <p class="av-doc-prose__description">The Select component supports two visual variants:</p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>primary</code>
+          (default) — Standard styling with shadow, suitable for most use cases
+        </li>
+        <li>
+          <code>secondary</code>
+          — Lower emphasis variant without shadow, suitable for use in Surface components
+        </li>
+      </ul>
+      <app-component-preview [demo]="demos.variants" />
+    </section>
+
+    <section class="av-doc-prose__section" id="full-width">
+      <h2 class="av-doc-prose__heading">Full Width</h2>
+      <app-component-preview [demo]="demos.fullWidth" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-description">
+      <h2 class="av-doc-prose__heading">With Description</h2>
+      <app-component-preview [demo]="demos.withDescription" />
+    </section>
+
+    <section class="av-doc-prose__section" id="required">
+      <h2 class="av-doc-prose__heading">Required</h2>
+      <p class="av-doc-prose__description">
+        Use
+        <code>ReactiveFormsModule</code>
+        with
+        <code>Validators.required</code>
+        ,
+        bind
+        <code>[invalid]</code>
+        from the control state, and show
+        <code>av-field-error</code>
+        when validation fails.
+      </p>
+      <app-component-preview [demo]="demos.required" />
+    </section>
+
+    <section class="av-doc-prose__section" id="disabled">
+      <h2 class="av-doc-prose__heading">Disabled</h2>
+      <app-component-preview [demo]="demos.disabled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-disabled-options">
+      <h2 class="av-doc-prose__heading">With Disabled Options</h2>
+      <p class="av-doc-prose__description">
+        Set
+        <code>disabled</code>
+        on an individual
+        <code>av-list-box-item</code>
+        to prevent selection. The item stays visible but is skipped by keyboard navigation.
+      </p>
+      <app-component-preview [demo]="demos.withDisabledOptions" />
+    </section>
+
+    <section class="av-doc-prose__section" id="multiple">
+      <h2 class="av-doc-prose__heading">Multiple Select</h2>
+      <p class="av-doc-prose__description">
+        Set
+        <code>selection-mode="multiple"</code>
+        on both
+        <code>av-select</code>
+        and the nested
+        <code>av-list-box</code>
+        so users can pick several options without closing the popover.
+      </p>
+      <app-component-preview [demo]="demos.multiple" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-sections">
+      <h2 class="av-doc-prose__heading">With Sections</h2>
+      <p class="av-doc-prose__description">
+        Group options with
+        <code>av-list-box-section</code>
+        and separate groups with
+        <code>av-separator</code>
+        .
+      </p>
+      <app-component-preview [demo]="demos.withSections" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled">
+      <h2 class="av-doc-prose__heading">Controlled</h2>
+      <p class="av-doc-prose__description">
+        Drive selection from outside with
+        <code>[(selectedKeys)]</code>
+        on
+        <code>av-select</code>
+        . Prefer this over
+        <code>ngModel</code>
+        when the parent owns the selected keys.
+      </p>
+      <app-component-preview [demo]="demos.controlled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled-multiple">
+      <h2 class="av-doc-prose__heading">Controlled Multiple</h2>
+      <app-component-preview [demo]="demos.controlledMultiple" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled-open-state">
+      <h2 class="av-doc-prose__heading">Controlled Open State</h2>
+      <p class="av-doc-prose__description">
+        Control the popover with
+        <code>[(open)]</code>
+        two-way binding.
+      </p>
+      <app-component-preview [demo]="demos.controlledOpenState" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-indicator">
+      <h2 class="av-doc-prose__heading">Custom Indicator</h2>
+      <p class="av-doc-prose__description">
+        Project custom content into
+        <code>av-select-indicator</code>
+        to replace the default chevron.
+      </p>
+      <app-component-preview [demo]="demos.customIndicator" />
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-value">
+      <h2 class="av-doc-prose__heading">Custom Value</h2>
+      <p class="av-doc-prose__description">
+        Project custom content into
+        <code>av-select-value</code>
+        to render a richer selected display. When nothing is selected, the placeholder is shown
+        automatically.
+      </p>
+      <app-component-preview [demo]="demos.customValue" />
+    </section>
+
+    <section class="av-doc-prose__section" id="in-surface">
+      <h2 class="av-doc-prose__heading">In Surface</h2>
+      <p class="av-doc-prose__description">
+        When used inside a
+        <a routerLink="/docs/components/surface">Surface</a>
+        component, use
+        <code>variant="secondary"</code>
+        to apply the lower emphasis variant suitable for surface backgrounds.
+      </p>
+      <app-component-preview [demo]="demos.inSurface" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on the Select hosts and nested List Box items.
+      </p>
+      <app-doc-snippet [source]="tailwindClassesExample" lang="html" section="anatomy" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Select classes, use the
+        <code>&#64;layer components</code>
+        directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The Select component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-select</code> — Base select container</li>
+        <li><code>.av-select__trigger</code> — The button that triggers the select</li>
+        <li><code>.av-select__value</code> — The displayed value or placeholder</li>
+        <li><code>.av-select__indicator</code> — The dropdown indicator icon</li>
+        <li><code>.av-select__popover</code> — The floating popover panel</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Variant Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-select--primary</code> — Primary variant with shadow (default)</li>
+        <li>
+          <code>.av-select--secondary</code>
+          — Secondary variant without shadow, suitable for use in surfaces
+        </li>
+        <li><code>.av-select--full-width</code> — Full width container</li>
+        <li><code>.av-select__trigger--full-width</code> — Full width trigger</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">State Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-select[data-invalid="true"]</code> — Invalid state</li>
+        <li><code>.av-select[data-disabled="true"]</code> — Disabled select state</li>
+        <li>
+          <code>.av-select__trigger[data-focus-visible="true"]</code>
+          — Focused trigger state
+        </li>
+        <li>
+          <code>.av-select__trigger[data-disabled="true"]</code>
+          — Disabled trigger state
+        </li>
+        <li>
+          <code>.av-select__value[data-placeholder="true"]</code>
+          — Placeholder state
+        </li>
+        <li>
+          <code>.av-select__indicator[data-open="true"]</code>
+          — Open indicator state
+        </li>
+        <li>
+          <code>.av-select__popover[data-entering="true"]</code>
+          /
+          <code>[data-exiting="true"]</code>
+          — Enter/exit animation
+        </li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">
+        The component supports both CSS pseudo-classes and data attributes:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Hover:</strong>
+          <code>:hover</code>
+          or
+          <code>[data-hovered="true"]</code>
+          on trigger
+        </li>
+        <li>
+          <strong>Focus:</strong>
+          <code>:focus-visible</code>
+          or
+          <code>[data-focus-visible="true"]</code>
+          on trigger
+        </li>
+        <li>
+          <strong>Disabled:</strong>
+          <code>:disabled</code>
+          or
+          <code>[data-disabled="true"]</code>
+          on select / trigger
+        </li>
+        <li>
+          <strong>Open:</strong>
+          <code>[data-open="true"]</code>
+          on indicator;
+          <code>aria-expanded</code>
+          on trigger
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="accessibility">
+      <h2 class="av-doc-prose__heading">Accessibility</h2>
+      <p class="av-doc-prose__description">
+        Select implements the ARIA combobox / listbox pattern via Angular CDK Overlay and provides:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          Trigger exposes
+          <code>role="combobox"</code>
+          ,
+          <code>aria-haspopup="listbox"</code>
+          , and
+          <code>aria-expanded</code>
+        </li>
+        <li>Full keyboard navigation (Enter/Space/Arrow keys to open, Escape to dismiss)</li>
+        <li>Screen reader–friendly selection via the nested List Box</li>
+        <li>Focus moves into the list on keyboard open and returns to the trigger on close</li>
+        <li>Support for disabled and invalid states</li>
+        <li>
+          HTML form integration through
+          <code>ControlValueAccessor</code>
+          (
+          <code>ngModel</code>
+          /
+          <code>formControlName</code>
+          )
+        </li>
+      </ul>
+      <p class="av-doc-prose__description">
+        Always pair the select with a visible
+        <code>av-label</code>
+        (or an accessible name) so assistive tech can identify the field.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Compound API across
+        <code>av-select</code>
+        ,
+        <code>av-select-trigger</code>
+        ,
+        <code>av-select-value</code>
+        ,
+        <code>av-select-indicator</code>
+        , and
+        <code>av-select-popover</code>
+        . Options are composed with the independent
+        <a routerLink="/docs/components/list-box">List Box</a>
+        API inside the popover — do not treat List Box as a Select sub-part.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

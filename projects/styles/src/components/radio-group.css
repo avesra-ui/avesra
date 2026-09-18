@@ -1,0 +1,51 @@
+/* av-radio-group — layout container for multiple radios */
+
+.av-radio-group {
+  @apply flex flex-col;
+}
+
+.av-radio-group--vertical {
+  [data-slot="radio"] {
+    @apply mt-4;
+  }
+
+  [data-slot="radio"]:first-child {
+    @apply mt-0;
+  }
+}
+
+.av-radio-group--horizontal {
+  @apply flex-row flex-wrap gap-4;
+
+  [data-slot="radio"] {
+    @apply mt-0;
+  }
+}
+
+.av-radio-group--primary {
+  /* Default variant */
+}
+
+.av-radio-group--secondary .av-radio__control {
+  @apply shadow-none;
+  background-color: var(--av-radio-control-bg);
+
+  --av-radio-control-bg: var(--av-default);
+  --av-radio-control-bg-hover: var(--av-default-hover);
+
+  .av-radio:hover &,
+  .av-radio[data-hovered="true"] & {
+    @apply border-field-border-hover;
+  }
+
+  .av-radio:not([aria-checked="true"]):not([data-selected="true"]) & .av-radio__indicator:empty::before {
+    background-color: var(--av-radio-control-bg);
+  }
+
+  .av-radio:hover:not([aria-checked="true"]):not([data-selected="true"]) &,
+  .av-radio[data-hovered="true"]:not([aria-checked="true"]):not([data-selected="true"]) & {
+    .av-radio__indicator:empty::before {
+      background-color: var(--av-radio-control-bg-hover);
+    }
+  }
+}

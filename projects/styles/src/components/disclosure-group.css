@@ -1,0 +1,8 @@
+/* av-disclosure-group component styles */
+
+.av-disclosure-group {
+  @apply w-full;
+
+  /* Performance optimization - contain layout changes */
+  contain: layout style;
+}

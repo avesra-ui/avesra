@@ -1,0 +1,2 @@
+/* Rabbit design preset - overrides default tokens when data-av-design-theme="rabbit" */
+@import "./variables.css" layer(theme);

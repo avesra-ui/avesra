@@ -1,0 +1,123 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Surface</h1>
+      <p class="av-doc-prose__description">
+        Container component that provides surface-level styling and context for child components
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="surface" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Apply <code>div[av-surface]</code> and set <code>variant</code> for prominence. Project any
+        content as children.
+      </p>
+      <app-doc-snippet component="surface" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="overview">
+      <h2 class="av-doc-prose__heading">Overview</h2>
+      <p class="av-doc-prose__description">
+        The Surface component is a semantic container that provides different levels of visual
+        prominence through variants.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="variants">Variants</h3>
+      <p class="av-doc-prose__description">
+        Surface comes in semantic variants that describe their prominence level:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li><code>default</code> — Standard surface appearance (bg-surface)</li>
+        <li><code>secondary</code> — Medium prominence (bg-surface-secondary)</li>
+        <li><code>tertiary</code> — Higher prominence (bg-surface-tertiary)</li>
+        <li><code>transparent</code> — No background, for overlays and custom surfaces</li>
+      </ul>
+      <app-component-preview [demo]="demos.variants" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage-with-form-components">
+      <h2 class="av-doc-prose__heading">Usage with Form Components</h2>
+      <p class="av-doc-prose__description">
+        When using form components inside a Surface, set
+        <code>variant="secondary"</code> on inputs and textareas to apply the lower emphasis variant
+        suitable for surface backgrounds.
+      </p>
+      <app-component-preview [demo]="demos.withFormComponents" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on the surface host — <code>div[av-surface]</code>.
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Surface classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The Surface component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-surface</code> — Base surface container</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Variant Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-surface--default</code> — Default surface variant (bg-surface)</li>
+        <li><code>.av-surface--secondary</code> — Secondary surface variant (bg-surface-secondary)</li>
+        <li><code>.av-surface--tertiary</code> — Tertiary surface variant (bg-surface-tertiary)</li>
+        <li><code>.av-surface--transparent</code> — Transparent surface (no background)</li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">Props for <code>div[av-surface]</code>.</p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+
+    <section class="av-doc-prose__section" id="context-api">
+      <h2 class="av-doc-prose__heading">Context API</h2>
+      <h3 class="av-doc-prose__subheading" id="surface-context">AvSurfaceContext</h3>
+      <p class="av-doc-prose__description">
+        Child components can inject <code>AvSurfaceContext</code> to read the current surface
+        variant. Prefer <code>&#123; optional: true &#125;</code> when the consumer may render outside a
+        surface.
+      </p>
+      <app-doc-snippet [source]="contextExample" lang="typescript" section="anatomy" />
+    </section>
+  </div>
+</app-doc-page>

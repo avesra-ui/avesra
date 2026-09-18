@@ -1,0 +1,101 @@
+<button
+  av-button
+  type="button"
+  variant="tertiary"
+  aria-label="Toggle Menu"
+  class="!h-auto !bg-transparent !p-0"
+  (click)="toggleMenu()"
+>
+  <span class="flex items-center justify-center gap-2.5 xl:hidden">
+    <span class="relative flex h-8 w-4 items-center justify-center">
+      <span class="relative size-4">
+        <span
+          [class]="
+            sidebarState()
+              ? 'bg-foreground absolute top-[0.4rem] left-0 block h-0.5 w-4 rotate-45 transition-all duration-100'
+              : 'bg-foreground absolute top-1 left-0 block h-0.5 w-4 transition-all duration-100'
+          "
+        ></span>
+        <span
+          [class]="
+            sidebarState()
+              ? 'bg-foreground absolute top-[0.4rem] left-0 block h-0.5 w-4 -rotate-45 transition-all duration-100'
+              : 'bg-foreground absolute top-2.5 left-0 block h-0.5 w-4 transition-all duration-100'
+          "
+        ></span>
+      </span>
+      <span class="sr-only">Toggle Menu</span>
+    </span>
+    <span class="flex h-8 items-center text-lg leading-none font-medium">Menu</span>
+  </span>
+</button>
+
+@if (sidebarState()) {
+  <div
+    [attr.data-state]="sidebarState() ? 'open' : 'closed'"
+    class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-40 bg-black/50 backdrop-blur-sm duration-200"
+    style="top: var(--header-height)"
+    (click)="closeMenu()"
+  ></div>
+
+  <div class="fixed left-0 z-50" style="top: var(--header-height); min-width: max-content; will-change: transform">
+    <div
+      [attr.data-side]="'bottom'"
+      [attr.data-align]="'start'"
+      [attr.data-state]="sidebarState() ? 'open' : 'closed'"
+      role="dialog"
+      class="text-popover-foreground bg-background/90 no-scrollbar z-50 overflow-y-auto rounded-none border-none p-0 shadow-none outline-hidden backdrop-blur duration-100"
+      style="width: 100vw; height: calc(100vh - var(--header-height))"
+      tabindex="-1"
+      (click)="$event.stopPropagation()"
+    >
+      <nav class="flex flex-col gap-12 overflow-auto px-6 py-6">
+        <div class="flex flex-col gap-4">
+          <div class="text-muted-foreground text-sm font-medium">Menu</div>
+          <div class="flex flex-col gap-3">
+            @for (item of mainMenu; track $index) {
+              <a
+                [routerLink]="item.path"
+                routerLinkActive="font-semibold"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="hover:text-foreground flex items-center gap-2 text-2xl font-medium capitalize transition-colors"
+                (click)="isAvailable(item.available)"
+              >
+                {{ item.name }}
+                @if (!item.available) {
+                  <span class="bg-default text-muted-foreground rounded-md px-1.5 py-0.5 text-xs"
+                    >soon</span
+                  >
+                }
+              </a>
+            }
+          </div>
+        </div>
+
+        @for (doc of sidebarPaths; track $index) {
+          <div class="flex flex-col gap-4">
+            <div class="text-muted-foreground text-sm font-medium">{{ doc.title }}</div>
+            <div class="flex flex-col gap-3">
+              @for (path of doc.data; track $index) {
+                <a
+                  [routerLink]="path.path"
+                  routerLinkActive="font-semibold"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  class="hover:text-foreground flex items-center gap-2 text-2xl font-medium capitalize transition-colors"
+                  (click)="isAvailable(path.available)"
+                >
+                  {{ path.name }}
+                  @if (!path.available) {
+                    <span class="bg-default text-muted-foreground rounded-md px-1.5 py-0.5 text-xs"
+                      >soon</span
+                    >
+                  }
+                </a>
+              }
+            </div>
+          </div>
+        }
+      </nav>
+    </div>
+  </div>
+}

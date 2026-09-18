@@ -1,0 +1,65 @@
+/* av-disclosure component styles */
+
+.av-disclosure {
+  @apply relative;
+}
+
+.av-disclosure__heading {
+  @apply flex;
+}
+
+.av-disclosure__trigger {
+  cursor: var(--av-cursor-interactive);
+  @apply inline-block av-no-highlight;
+
+  /* Focus state */
+  &:focus-visible:not(:focus),
+  &[data-focus-visible="true"] {
+    @apply av-status-focused;
+  }
+
+  /* Disabled state */
+  &:disabled,
+  &[aria-disabled="true"] {
+    @apply av-status-disabled;
+  }
+}
+
+.av-disclosure__indicator {
+  @apply ml-auto size-4 shrink-0 text-inherit;
+
+  /**
+   * Transitions
+   */
+  @apply transition duration-250 av-motion-reduce:transition-none;
+
+  /* Expanded state for indicator rotation */
+  &[data-expanded="true"] {
+    @apply -rotate-180;
+  }
+}
+
+.av-disclosure__content {
+  --av-disclosure-panel-height: 0px;
+  opacity: 0;
+  height: var(--av-disclosure-panel-height);
+  overflow: clip;
+
+  /**
+   * Transitions
+   * CRITICAL: motion-reduce must be AFTER transition for correct override specificity
+   */
+  transition:
+    height 200ms var(--ease-out-quad),
+    opacity 200ms var(--ease-out);
+  @apply av-motion-reduce:transition-none;
+
+  &[data-expanded="true"] {
+    will-change: height, opacity;
+    opacity: 1;
+  }
+}
+
+.av-disclosure__body {
+  @apply p-2;
+}

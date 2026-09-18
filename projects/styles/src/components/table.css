@@ -1,0 +1,262 @@
+/* av-table — data display component for structured tabular data */
+
+.av-table-root {
+  @apply relative grid w-full overflow-clip;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.av-table__scroll-container {
+  @apply overflow-x-auto av-scrollbar;
+  scrollbar-gutter: auto;
+}
+
+.av-table-root--primary {
+  @apply bg-surface-secondary px-1 pb-1;
+  border-radius: min(32px, calc(var(--av-radius) * 2.5));
+}
+
+.av-table-root--secondary {
+  /* No background, padding, or rounding on the root */
+}
+
+.av-table-root--secondary .av-table__header {
+  @apply border-b-0 bg-transparent;
+}
+
+.av-table-root--secondary .av-table__column {
+  @apply bg-surface-secondary;
+}
+
+.av-table-root--secondary .av-table__column:first-child {
+  border-start-start-radius: min(32px, var(--radius-2xl));
+  border-end-start-radius: min(32px, var(--radius-2xl));
+}
+
+.av-table-root--secondary .av-table__column:last-child {
+  border-start-end-radius: min(32px, var(--radius-2xl));
+  border-end-end-radius: min(32px, var(--radius-2xl));
+}
+
+.av-table-root--secondary .av-table__body {
+  @apply shadow-none;
+
+  & tr:first-child td:first-child,
+  & tr:first-child td:last-child,
+  & tr:last-child td:first-child,
+  & tr:last-child td:last-child {
+    @apply rounded-none;
+  }
+
+  &:not(tbody) {
+    @apply overflow-visible rounded-none;
+  }
+}
+
+.av-table-root--secondary .av-table__row {
+  .av-table__cell {
+    @apply border-b border-separator-tertiary/50 bg-transparent;
+  }
+
+  @media (hover: hover) {
+    &:hover .av-table__cell,
+    &[data-hovered="true"] .av-table__cell {
+      @apply bg-default/50;
+    }
+  }
+}
+
+.av-table__content {
+  @apply w-full border-separate border-spacing-0 text-sm;
+}
+
+.av-table-root--primary .av-table__content {
+  @apply overflow-clip;
+}
+
+.av-table__header {
+  @apply border-b border-separator/50 bg-surface-secondary;
+}
+
+.av-table__column {
+  @apply relative px-4 py-2.5 text-left text-xs font-medium text-muted;
+
+  &::after {
+    content: "";
+    @apply pointer-events-none absolute top-1/2 right-0 h-4 w-px -translate-y-1/2 rounded-sm bg-separator;
+  }
+
+  &:last-child:not(:only-child)::after {
+    content: none;
+  }
+
+  &[data-allows-sorting="true"] {
+    cursor: var(--av-cursor-interactive);
+  }
+
+  @media (hover: hover) {
+    &[data-allows-sorting="true"]:hover,
+    &[data-allows-sorting="true"][data-hovered="true"] {
+      @apply text-foreground;
+    }
+  }
+
+  &:focus-visible,
+  &[data-focus-visible="true"] {
+    @apply rounded-lg outline-none;
+    box-shadow: inset 0 0 0 2px var(--av-focus);
+  }
+}
+
+.av-table__body {
+  & tr:first-child td:first-child {
+    border-start-start-radius: min(32px, var(--radius-2xl));
+  }
+  & tr:first-child td:last-child {
+    border-start-end-radius: min(32px, var(--radius-2xl));
+  }
+  & tr:last-child td:first-child {
+    border-end-start-radius: min(32px, var(--radius-2xl));
+  }
+  & tr:last-child td:last-child {
+    border-end-end-radius: min(32px, var(--radius-2xl));
+  }
+
+  &:not(tbody) {
+    @apply relative h-full overflow-clip;
+    border-radius: min(32px, var(--radius-2xl));
+  }
+}
+
+.av-table__row {
+  @apply relative h-full border-b border-separator/50;
+
+  &:last-child {
+    @apply border-b-0;
+  }
+
+  @media (hover: hover) {
+    &:hover .av-table__cell,
+    &[data-hovered="true"] .av-table__cell {
+      @apply bg-surface/40;
+    }
+  }
+
+  &[data-selected="true"] .av-table__cell {
+    @apply bg-surface/10;
+  }
+
+  &[aria-disabled="true"],
+  &[data-disabled="true"] {
+    @apply av-status-disabled;
+  }
+
+  &:focus-visible,
+  &[data-focus-visible="true"] {
+    @apply outline-none;
+  }
+
+  &[data-dragging="true"] {
+    @apply opacity-50;
+  }
+
+  &[data-drop-target="true"] .av-table__cell {
+    @apply bg-accent-soft;
+  }
+}
+
+.av-table__cell {
+  @apply h-full border-b border-separator-tertiary/50 bg-surface px-4 py-3 align-middle text-sm text-foreground;
+
+  &:focus-visible,
+  &[data-focus-visible="true"] {
+    @apply rounded-lg outline-none;
+    box-shadow: inset 0 0 0 2px var(--av-focus);
+  }
+}
+
+.av-table__row:is(:focus-visible, [data-focus-visible="true"]) :is(.av-table__cell, .av-table__column) {
+  @apply shadow-none;
+}
+
+.av-table__row:is(:focus-visible, [data-focus-visible="true"])
+  > :is(.av-table__cell, .av-table__column):only-child,
+.av-table__row:is(:focus-visible, [data-focus-visible="true"])
+  > *:only-child
+  :is(.av-table__cell, .av-table__column) {
+  @apply rounded-lg shadow-[inset_0_0_0_2px_var(--av-focus)] outline-none;
+}
+
+.av-table__row:is(:focus-visible, [data-focus-visible="true"])
+  > :is(.av-table__cell, .av-table__column):first-child:not(:only-child),
+.av-table__row:is(:focus-visible, [data-focus-visible="true"])
+  > *:first-child:not(:only-child)
+  :is(.av-table__cell, .av-table__column) {
+  @apply rounded-l-lg shadow-[inset_2px_0_0_0_var(--av-focus),inset_0_2px_0_0_var(--av-focus),inset_0_-2px_0_0_var(--av-focus)] outline-none;
+}
+
+.av-table__row:is(:focus-visible, [data-focus-visible="true"])
+  > :is(.av-table__cell, .av-table__column):last-child:not(:only-child),
+.av-table__row:is(:focus-visible, [data-focus-visible="true"])
+  > *:last-child:not(:only-child)
+  :is(.av-table__cell, .av-table__column) {
+  @apply rounded-r-lg shadow-[inset_-2px_0_0_0_var(--av-focus),inset_0_2px_0_0_var(--av-focus),inset_0_-2px_0_0_var(--av-focus)] outline-none;
+}
+
+.av-table__row:is(:focus-visible, [data-focus-visible="true"])
+  > :is(.av-table__cell, .av-table__column):not(:first-child):not(:last-child):not(:only-child),
+.av-table__row:is(:focus-visible, [data-focus-visible="true"])
+  > *:not(:first-child):not(:last-child):not(:only-child)
+  :is(.av-table__cell, .av-table__column) {
+  @apply shadow-[inset_0_2px_0_0_var(--av-focus),inset_0_-2px_0_0_var(--av-focus)] outline-none;
+}
+
+.av-table__cell[data-tree-column] {
+  padding-inline-start: calc(1rem * var(--table-row-level, 1));
+}
+
+.av-table__footer {
+  @apply flex items-center px-4 py-2.5;
+}
+
+.av-table__resizable-container {
+  @apply relative overflow-auto av-scrollbar;
+  scrollbar-gutter: auto;
+}
+
+.av-table__column-resizer {
+  @apply absolute top-1/2 right-0 box-content h-4 w-px -translate-y-1/2 translate-x-1/2 cursor-col-resize touch-none rounded-sm bg-separator px-2;
+  @apply border-none bg-clip-content outline-none;
+
+  &[data-hovered="true"],
+  &:hover {
+    @apply h-full w-0.5 bg-accent;
+  }
+
+  &[data-resizing="true"] {
+    @apply h-full w-0.5 bg-accent;
+  }
+
+  &[data-focus-visible="true"],
+  &:focus-visible {
+    @apply h-full w-0.5 bg-focus;
+  }
+}
+
+.av-table__column:has(.av-table__column-resizer)::after {
+  content: none;
+}
+
+.av-table__load-more {
+  & td,
+  & [role="rowheader"] {
+    @apply py-3 text-center;
+
+    & > * {
+      @apply mx-auto;
+    }
+  }
+}
+
+.av-table__load-more-content {
+  @apply flex items-center justify-center gap-2 py-2;
+}

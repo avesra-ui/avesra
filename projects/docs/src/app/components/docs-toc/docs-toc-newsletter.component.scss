@@ -1,0 +1,37 @@
+.av-docs-toc-newsletter {
+  position: relative;
+  width: 100%;
+  padding-inline: 0.125rem;
+}
+
+.av-docs-toc-newsletter__inner {
+  position: relative;
+  width: 100%;
+}
+
+.av-docs-toc-newsletter__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  padding-inline: 0.125rem;
+}
+
+.av-docs-toc-newsletter__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem 0.5rem;
+  padding-bottom: 0.25rem;
+}
+
+.av-docs-toc-newsletter__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.004em;
+}
+
+.av-docs-toc-newsletter__form input[av-input] {
+  width: 100%;
+  box-sizing: border-box;
+}

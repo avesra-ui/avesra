@@ -1,0 +1,32 @@
+/* av-field-error component styles */
+
+.av-field-error {
+  @apply h-0 px-1 text-xs wrap-break-word text-danger opacity-0;
+
+  /**
+   * Transitions
+   * CRITICAL: av-motion-reduce must be AFTER transition for correct override specificity
+   */
+  transition:
+    opacity 150ms var(--ease-out),
+    height 350ms var(--ease-smooth);
+  @apply av-motion-reduce:transition-none;
+}
+
+.av-field-error[data-visible="true"] {
+  @apply h-auto opacity-100;
+}
+
+/*
+ * Toggle fields (checkbox/switch/radio): stack below the label like description.
+ * Disable collapsible height/opacity — those styles break flex-col content layout.
+ */
+.av-checkbox > .av-field-error,
+.av-checkbox > [data-slot="field-error"],
+.av-switch > .av-field-error,
+.av-switch > [data-slot="field-error"],
+.av-radio > .av-field-error,
+.av-radio > [data-slot="field-error"] {
+  @apply m-0 h-auto min-h-0 p-0 text-muted opacity-100;
+  transition: none;
+}

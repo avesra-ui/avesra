@@ -1,0 +1,288 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Input Group</h1>
+      <p class="av-doc-prose__description">
+        Group related input controls with prefix and suffix elements for enhanced form fields.
+        Apply <code>av-input-group</code> to a container <code>&lt;div&gt;</code>.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="input-group" />
+      <p class="av-doc-prose__description">
+        Compose with <code>av-label</code>, <code>av-description</code>, and
+        <code>av-field-error</code>. For form-level validation and submission, see
+        <a routerLink="/docs/components/form">Form</a>.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <app-doc-snippet component="input-group" section="anatomy" />
+      <p class="av-doc-prose__description">
+        <strong>Input Group</strong> wraps an input field with optional prefix and suffix
+        elements, creating a visually cohesive group. Add icons, text, buttons, or other
+        elements before or after the control. Use <code>av-input-group-input</code> on a native
+        <code>&lt;input&gt;</code> for single-line fields, or
+        <code>av-input-group-textarea</code> on a native <code>&lt;textarea&gt;</code> for
+        multiline text.
+      </p>
+    </section>
+
+    <section class="av-doc-prose__section" id="variants">
+      <h2 class="av-doc-prose__heading">Variants</h2>
+      <p class="av-doc-prose__description">The Input Group component supports two visual variants:</p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong><code>primary</code></strong> (default) — Standard styling with shadow, suitable
+          for most use cases
+        </li>
+        <li>
+          <strong><code>secondary</code></strong> — Lower emphasis variant without shadow,
+          suitable for use in Surface components
+        </li>
+      </ul>
+      <app-component-preview [demo]="demos.variants" />
+    </section>
+
+    <section class="av-doc-prose__section" id="in-surface">
+      <h2 class="av-doc-prose__heading">In Surface</h2>
+      <p class="av-doc-prose__description">
+        When used inside a
+        <a routerLink="/docs/components/surface">Surface</a>
+        component, use <code>variant="secondary"</code> to apply the lower emphasis variant
+        suitable for surface backgrounds.
+      </p>
+      <app-component-preview [demo]="demos.onSurface" />
+    </section>
+
+    <section class="av-doc-prose__section" id="loading-state">
+      <h2 class="av-doc-prose__heading">Loading State</h2>
+      <p class="av-doc-prose__description">
+        Show a loading spinner in the suffix to indicate processing.
+      </p>
+      <app-component-preview [demo]="demos.withLoadingSuffix" />
+    </section>
+
+    <section class="av-doc-prose__section" id="required-field">
+      <h2 class="av-doc-prose__heading">Required Field</h2>
+      <p class="av-doc-prose__description">
+        Mark the field as required with <code>required</code> on the label and the native
+        control. Pair with <code>av-description</code> for helper text.
+      </p>
+      <app-component-preview [demo]="demos.required" />
+    </section>
+
+    <section class="av-doc-prose__section" id="disabled-state">
+      <h2 class="av-doc-prose__heading">Disabled State</h2>
+      <p class="av-doc-prose__description">
+        Set <code>disabled</code> on the group to disable the control and style all parts
+        together. The inner input inherits disabled state from context.
+      </p>
+      <app-component-preview [demo]="demos.disabled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="full-width">
+      <h2 class="av-doc-prose__heading">Full Width</h2>
+      <p class="av-doc-prose__description">
+        Set <code>full-width</code> on the group to expand to the container width.
+      </p>
+      <app-component-preview [demo]="demos.fullWidth" />
+    </section>
+
+    <section class="av-doc-prose__section" id="text-prefix">
+      <h2 class="av-doc-prose__heading">Text Prefix</h2>
+      <p class="av-doc-prose__description">
+        Use text as a prefix, such as currency symbols or protocol prefixes.
+      </p>
+      <app-component-preview [demo]="demos.withTextPrefix" />
+    </section>
+
+    <section class="av-doc-prose__section" id="text-suffix">
+      <h2 class="av-doc-prose__heading">Text Suffix</h2>
+      <p class="av-doc-prose__description">
+        Use text as a suffix, such as domain extensions or units.
+      </p>
+      <app-component-preview [demo]="demos.withTextSuffix" />
+    </section>
+
+    <section class="av-doc-prose__section" id="icon-prefix-and-text-suffix">
+      <h2 class="av-doc-prose__heading">Icon Prefix and Text Suffix</h2>
+      <p class="av-doc-prose__description">Combine an icon prefix with a text suffix.</p>
+      <app-component-preview [demo]="demos.withIconPrefixAndTextSuffix" />
+    </section>
+
+    <section class="av-doc-prose__section" id="copy-button-suffix">
+      <h2 class="av-doc-prose__heading">Copy Button Suffix</h2>
+      <p class="av-doc-prose__description">
+        Add an interactive button in the suffix, such as a copy button.
+      </p>
+      <app-component-preview [demo]="demos.withCopySuffix" />
+    </section>
+
+    <section class="av-doc-prose__section" id="icon-prefix-and-copy-button">
+      <h2 class="av-doc-prose__heading">Icon Prefix and Copy Button</h2>
+      <p class="av-doc-prose__description">
+        Combine an icon prefix with an interactive button suffix.
+      </p>
+      <app-component-preview [demo]="demos.withIconPrefixAndCopySuffix" />
+    </section>
+
+    <section class="av-doc-prose__section" id="password-toggle">
+      <h2 class="av-doc-prose__heading">Password Toggle</h2>
+      <p class="av-doc-prose__description">
+        Use a button in the suffix to toggle password visibility.
+      </p>
+      <app-component-preview [demo]="demos.passwordWithToggle" />
+    </section>
+
+    <section class="av-doc-prose__section" id="keyboard-shortcut">
+      <h2 class="av-doc-prose__heading">Keyboard Shortcut</h2>
+      <p class="av-doc-prose__description">
+        Display keyboard shortcuts using the
+        <a routerLink="/docs/components/kbd">Kbd</a>
+        component.
+      </p>
+      <app-component-preview [demo]="demos.withKeyboardShortcut" />
+    </section>
+
+    <section class="av-doc-prose__section" id="badge-suffix">
+      <h2 class="av-doc-prose__heading">Badge Suffix</h2>
+      <p class="av-doc-prose__description">
+        Add a badge or chip in the suffix to show status or labels.
+      </p>
+      <app-component-preview [demo]="demos.withBadgeSuffix" />
+    </section>
+
+    <section class="av-doc-prose__section" id="validation">
+      <h2 class="av-doc-prose__heading">Validation</h2>
+      <p class="av-doc-prose__description">
+        Set <code>invalid</code> on the group (and optionally the label) to reflect an invalid
+        state. Show messages with <code>av-field-error</code>.
+      </p>
+      <app-component-preview [demo]="demos.invalid" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-prefix-icon">
+      <h2 class="av-doc-prose__heading">With Prefix Icon</h2>
+      <p class="av-doc-prose__description">Add an icon before the input field.</p>
+      <app-component-preview [demo]="demos.withPrefixIcon" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-suffix-icon">
+      <h2 class="av-doc-prose__heading">With Suffix Icon</h2>
+      <p class="av-doc-prose__description">Add an icon after the input field.</p>
+      <app-component-preview [demo]="demos.withSuffixIcon" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-prefix-and-suffix">
+      <h2 class="av-doc-prose__heading">With Prefix and Suffix</h2>
+      <p class="av-doc-prose__description">Combine both prefix and suffix elements.</p>
+      <app-component-preview [demo]="demos.withPrefixAndSuffix" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-textarea">
+      <h2 class="av-doc-prose__heading">With TextArea</h2>
+      <p class="av-doc-prose__description">
+        Use <code>textarea[av-input-group-textarea]</code> for multiline text inputs with prefix
+        and suffix elements. When a textarea is present, the container automatically adjusts its
+        height and aligns prefix/suffix elements to the top.
+      </p>
+      <app-component-preview [demo]="demos.withTextarea" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on the group host or on prefix, input, and suffix parts.
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Input Group uses BEM CSS classes that can be customized. Override the component classes
+        with <code>&#64;layer components</code> to match your design system.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>.av-input-group</code> — Root container with border, background, and flex layout.
+          Uses <code>min-h-9</code> for flexible height and <code>items-center</code> by default,
+          switching to <code>items-start</code> when a textarea is present.
+        </li>
+        <li>
+          <code>.av-input-group__input</code> — Input/textarea with transparent background and no
+          border. Also used as the base class for textarea elements.
+        </li>
+        <li>
+          <code>.av-input-group__prefix</code> — Prefix container. Aligns to top when used with
+          textarea.
+        </li>
+        <li>
+          <code>.av-input-group__suffix</code> — Suffix container. Aligns to top when used with
+          textarea.
+        </li>
+        <li>
+          <code>.av-input-group--primary</code> — Primary variant with shadow (default)
+        </li>
+        <li>
+          <code>.av-input-group--secondary</code> — Secondary variant without shadow, suitable for
+          use in surfaces
+        </li>
+        <li><code>.av-input-group--full-width</code> — Full-width layout</li>
+      </ul>
+      <p class="av-doc-prose__description">
+        When using <code>av-input-group-textarea</code>, the container switches from
+        <code>items-center</code> to <code>items-start</code> and uses <code>height: auto</code>.
+        Textarea-specific styles apply via the
+        <code>[data-slot="input-group-textarea"]</code> attribute selector.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Hover:</strong> <code>:hover</code> or <code>[data-hovered="true"]</code>
+        </li>
+        <li>
+          <strong>Focus Within:</strong> focus styles apply when the inner input/textarea is
+          focused (<code>:focus-within</code> / field focus tokens)
+        </li>
+        <li>
+          <strong>Invalid:</strong> <code>[data-invalid="true"]</code> (also syncs
+          <code>aria-invalid</code> on the control)
+        </li>
+        <li>
+          <strong>Disabled:</strong> <code>[data-disabled="true"]</code> or
+          <code>[aria-disabled="true"]</code>
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Root props for <code>div[av-input-group]</code>. The input and textarea parts accept
+        standard HTML attributes and implement <code>ControlValueAccessor</code> for
+        <code>[(ngModel)]</code> or reactive forms. Prefix and suffix are content projection
+        slots. Compose with <code>av-label</code>, <code>av-description</code>, and
+        <code>av-field-error</code> for field chrome.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

@@ -1,0 +1,274 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Link</h1>
+      <p class="av-doc-prose__description">
+        A styled anchor for navigation with built-in icon support. Apply
+        <code>av-link</code> to a native <code>&lt;a&gt;</code> and optionally
+        <code>av-link-icon</code> for the default arrow icon.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="link" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the Link parts and compose them with attribute selectors on
+        <code>&lt;a&gt;</code> and <code>&lt;span&gt;</code> hosts.
+      </p>
+      <app-doc-snippet component="link" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="icon-placement">
+      <h2 class="av-doc-prose__heading">Icon Placement</h2>
+      <p class="av-doc-prose__description">
+        Place <code>av-link-icon</code> before or after the link text. The default icon adds
+        automatic spacing when placed after the label.
+      </p>
+      <app-component-preview [demo]="demos.iconPlacement" />
+    </section>
+
+    <section class="av-doc-prose__section" id="text-decorations">
+      <h2 class="av-doc-prose__heading">Text Decorations with Tailwind CSS</h2>
+      <p class="av-doc-prose__description">
+        Link is underlined on hover by default. Use the <code>underline</code> input for the
+        common modes, or pass Tailwind text-decoration utilities to customize color, style,
+        thickness, and offset.
+      </p>
+      <app-component-preview [demo]="demos.underlineAndOffset" />
+
+      <p class="av-doc-prose__description"><strong>Underline line (<code>underline</code> input):</strong></p>
+      <ul class="av-doc-prose__list">
+        <li><code>always</code> — Always visible underline</li>
+        <li><code>none</code> — Remove underline (including hover)</li>
+        <li><code>hover</code> (default) — Underline appears on hover</li>
+      </ul>
+
+      <p class="av-doc-prose__description"><strong>Text decoration color:</strong></p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>decoration-accent</code>, <code>decoration-muted</code>, etc. — Set underline color
+          using theme colors
+        </li>
+        <li>
+          <code>decoration-muted/50</code> — Use opacity modifiers for semi-transparent underlines
+        </li>
+      </ul>
+
+      <p class="av-doc-prose__description"><strong>Text decoration style:</strong></p>
+      <ul class="av-doc-prose__list">
+        <li><code>decoration-solid</code> — Solid line (default)</li>
+        <li><code>decoration-double</code> — Double line</li>
+        <li><code>decoration-dotted</code> — Dotted line</li>
+        <li><code>decoration-dashed</code> — Dashed line</li>
+        <li><code>decoration-wavy</code> — Wavy line</li>
+      </ul>
+
+      <p class="av-doc-prose__description"><strong>Text decoration thickness:</strong></p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>decoration-1</code>, <code>decoration-2</code>, <code>decoration-4</code>, etc. —
+          Control underline thickness
+        </li>
+      </ul>
+
+      <p class="av-doc-prose__description"><strong>Underline offset:</strong></p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>underline-offset-1</code>, <code>underline-offset-2</code>,
+          <code>underline-offset-4</code>, etc. — Adjust spacing between text and underline
+        </li>
+      </ul>
+
+      <p class="av-doc-prose__description">
+        For more details, see the Tailwind CSS documentation:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <a
+            href="https://tailwindcss.com/docs/text-decoration-line"
+            target="_blank"
+            rel="noopener noreferrer"
+            >text-decoration-line</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://tailwindcss.com/docs/text-decoration-color"
+            target="_blank"
+            rel="noopener noreferrer"
+            >text-decoration-color</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://tailwindcss.com/docs/text-decoration-style"
+            target="_blank"
+            rel="noopener noreferrer"
+            >text-decoration-style</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://tailwindcss.com/docs/text-decoration-thickness"
+            target="_blank"
+            rel="noopener noreferrer"
+            >text-decoration-thickness</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://tailwindcss.com/docs/text-underline-offset"
+            target="_blank"
+            rel="noopener noreferrer"
+            >text-underline-offset</a
+          >
+        </li>
+      </ul>
+
+      <p class="av-doc-prose__description">Available BEM classes:</p>
+      <ul class="av-doc-prose__list">
+        <li>Base: <code>av-link</code></li>
+        <li>Icon: <code>av-link__icon</code></li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="custom-icon">
+      <h2 class="av-doc-prose__heading">Custom Icon</h2>
+      <p class="av-doc-prose__description">
+        Project a custom SVG (or other icon) inside <code>av-link-icon</code> to replace the
+        default arrow.
+      </p>
+      <app-component-preview [demo]="demos.customIcon" />
+    </section>
+
+    <section class="av-doc-prose__section" id="variants">
+      <h2 class="av-doc-prose__heading">Variants</h2>
+      <p class="av-doc-prose__description">
+        Set <code>variant</code> on <code>av-link</code> —
+        <code>primary</code> (default link color), <code>secondary</code> (foreground), or
+        <code>muted</code>.
+      </p>
+      <app-component-preview [demo]="demos.variants" />
+    </section>
+
+    <section class="av-doc-prose__section" id="external-links">
+      <h2 class="av-doc-prose__heading">External Links</h2>
+      <p class="av-doc-prose__description">
+        External URLs, <code>mailto:</code>, and <code>tel:</code> open in a new tab with
+        <code>rel="noopener noreferrer"</code> by default. Override with
+        <code>[external]</code>, <code>target</code>, or <code>rel</code>.
+      </p>
+      <app-component-preview [demo]="demos.externalLinks" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes on the host <code>&lt;a av-link&gt;</code> element.
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Link classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The Link component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-link</code> — Base link styles</li>
+        <li><code>.av-link__icon</code> — Link icon styles</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Variant Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-link--secondary</code> — Foreground text color</li>
+        <li><code>.av-link--muted</code> — Muted text color</li>
+        <li><code>.av-link--underline-always</code> — Always underlined</li>
+        <li><code>.av-link--underline-none</code> — No underline</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">
+        The component supports both CSS pseudo-classes and data attributes:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Focus:</strong> <code>:focus-visible</code> or
+          <code>[data-focus-visible="true"]</code>
+        </li>
+        <li>
+          <strong>Hover:</strong> <code>:hover</code> or <code>[data-hovered="true"]</code>
+        </li>
+        <li>
+          <strong>Pressed:</strong> <code>:active</code> or <code>[data-pressed="true"]</code>
+        </li>
+        <li>
+          <strong>Disabled:</strong> <code>[aria-disabled="true"]</code> or
+          <code>[data-disabled="true"]</code>
+        </li>
+        <li><strong>External:</strong> <code>[data-external="true"]</code></li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Props for <code>a[av-link]</code>. Content is projected as children.
+        <code>span[av-link-icon]</code> has no inputs — omit children for the default arrow, or
+        project a custom icon.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+
+      <h3 class="av-doc-prose__subheading" id="using-with-router">Using with Angular Router</h3>
+      <p class="av-doc-prose__description">
+        Compose <code>av-link</code> with <code>routerLink</code> on the same
+        <code>&lt;a&gt;</code> host:
+      </p>
+      <app-doc-snippet [source]="routerLinkExample" lang="typescript" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Or apply Link styles via <code>avLinkClasses</code> /
+        <code>avLinkIconClasses</code> when you need a plain router link without the directive:
+      </p>
+      <app-doc-snippet [source]="routerLinkVariantsExample" lang="typescript" section="anatomy" />
+
+      <h3 class="av-doc-prose__subheading" id="direct-class-application">
+        Direct Class Application
+      </h3>
+      <p class="av-doc-prose__description">
+        Since Avesra uses BEM classes, you can apply Link styles directly to any anchor:
+      </p>
+      <app-doc-snippet [source]="directClassExample" lang="html" section="anatomy" />
+    </section>
+  </div>
+</app-doc-page>

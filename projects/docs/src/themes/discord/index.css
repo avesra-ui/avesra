@@ -1,0 +1,2 @@
+/* Discord design preset — overrides default tokens when data-av-design-theme="discord" */
+@import "./variables.css" layer(theme);

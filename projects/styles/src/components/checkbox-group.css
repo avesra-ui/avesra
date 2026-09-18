@@ -1,0 +1,17 @@
+/* av-checkbox-group — layout container for multiple checkboxes */
+
+.av-checkbox-group {
+  @apply flex flex-col;
+
+  [data-slot="checkbox"] {
+    @apply mt-4;
+  }
+}
+
+.av-checkbox-group--primary {
+  /* Default variant */
+}
+
+.av-checkbox-group--secondary {
+  /* Secondary variant — inherited by child checkboxes via context */
+}

@@ -1,0 +1,5 @@
+/* av-list-box-section component styles */
+
+.av-list-box-section {
+  @apply flex flex-col items-start gap-0;
+}

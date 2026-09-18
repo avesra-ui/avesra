@@ -1,0 +1,188 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">ToggleButtonGroup</h1>
+      <p class="av-doc-prose__description">
+        Groups multiple ToggleButtons into a unified control, allowing users to select one or
+        multiple options.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="toggle-button-group" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Wrap <code>button[av-toggle-button]</code> elements in
+        <code>av-toggle-button-group</code>. Each button needs a unique <code>value</code>. Add
+        <code>span[av-toggle-button-group-separator]</code> inside each button except the first to
+        show dividers when attached.
+      </p>
+      <app-doc-snippet component="toggle-button-group" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="sizes">
+      <h2 class="av-doc-prose__heading">Sizes</h2>
+      <p class="av-doc-prose__description">
+        Set <code>size</code> on the group to propagate a shared size to all child toggle buttons.
+      </p>
+      <app-component-preview [demo]="demos.sizes" />
+    </section>
+
+    <section class="av-doc-prose__section" id="orientation">
+      <h2 class="av-doc-prose__heading">Orientation</h2>
+      <p class="av-doc-prose__description">
+        Use <code>orientation="horizontal"</code> (default) or <code>orientation="vertical"</code>
+        to change the layout direction.
+      </p>
+      <app-component-preview [demo]="demos.orientation" />
+    </section>
+
+    <section class="av-doc-prose__section" id="full-width">
+      <h2 class="av-doc-prose__heading">Full Width</h2>
+      <p class="av-doc-prose__description">
+        Use <code>full-width</code> to expand the group and distribute buttons evenly.
+      </p>
+      <app-component-preview [demo]="demos.fullWidth" />
+    </section>
+
+    <section class="av-doc-prose__section" id="disabled">
+      <h2 class="av-doc-prose__heading">Disabled</h2>
+      <p class="av-doc-prose__description">
+        Set <code>disabled</code> on the group to disable all child toggle buttons.
+      </p>
+      <app-component-preview [demo]="demos.disabled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="without-separator">
+      <h2 class="av-doc-prose__heading">Without Separator</h2>
+      <p class="av-doc-prose__description">
+        Simply omit <code>span[av-toggle-button-group-separator]</code> from your buttons.
+      </p>
+      <app-component-preview [demo]="demos.withoutSeparator" />
+    </section>
+
+    <section class="av-doc-prose__section" id="detached">
+      <h2 class="av-doc-prose__heading">Detached</h2>
+      <p class="av-doc-prose__description">
+        Use <code>[detached]="true"</code> to separate buttons with gaps instead of connecting
+        them.
+      </p>
+      <app-component-preview [demo]="demos.detached" />
+    </section>
+
+    <section class="av-doc-prose__section" id="selection-mode">
+      <h2 class="av-doc-prose__heading">Selection Mode</h2>
+      <p class="av-doc-prose__description">
+        Use <code>selection-mode="single"</code> for mutually exclusive choices or
+        <code>selection-mode="multiple"</code> for independent toggles.
+      </p>
+      <app-component-preview [demo]="demos.selectionMode" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled">
+      <h2 class="av-doc-prose__heading">Controlled</h2>
+      <p class="av-doc-prose__description">
+        Bind <code>[(selectedKeys)]</code> for two-way control over the selected button values.
+      </p>
+      <app-component-preview [demo]="demos.controlled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="disallow-empty-selection">
+      <h2 class="av-doc-prose__heading">Disallow Empty Selection</h2>
+      <p class="av-doc-prose__description">
+        Set <code>disallow-empty-selection</code> with <code>selection-mode="single"</code> to
+        ensure one option is always selected.
+      </p>
+      <app-component-preview [demo]="demos.disallowEmptySelection" />
+    </section>
+
+    <section class="av-doc-prose__section" id="customization">
+      <h2 class="av-doc-prose__heading">Customization</h2>
+
+      <h3 class="av-doc-prose__subheading" id="tailwind-css">Tailwind CSS</h3>
+      <app-component-preview [demo]="demos.customStyles" />
+
+      <h3 class="av-doc-prose__subheading" id="global-css">Global CSS</h3>
+      <p class="av-doc-prose__description">
+        To customize ToggleButtonGroup classes, use the <code>&#64;layer components</code>
+        directive.
+      </p>
+      <app-doc-snippet [source]="globalCssExample" lang="css" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling Reference</h2>
+      <p class="av-doc-prose__description">
+        Avesra follows the BEM methodology so variants and states stay reusable and easy to
+        customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+
+      <h4 class="av-doc-prose__subheading">Base &amp; Layout Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-toggle-button-group</code> — Base container styles</li>
+        <li><code>.av-toggle-button-group--horizontal</code> — Horizontal orientation</li>
+        <li><code>.av-toggle-button-group--vertical</code> — Vertical orientation</li>
+        <li><code>.av-toggle-button-group--full-width</code> — Full width modifier</li>
+        <li>
+          <code>.av-toggle-button-group__separator</code> — Separator between attached buttons
+        </li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Modifier Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>.av-toggle-button-group--detached</code> — Detached mode (separated buttons with
+          gaps)
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API Reference</h2>
+
+      <h3 class="av-doc-prose__subheading">ToggleButtonGroup</h3>
+      <app-doc-api-table [props]="apiProps" />
+
+      <h3 class="av-doc-prose__subheading">ToggleButtonGroup.Separator</h3>
+      <app-doc-api-table [props]="separatorProps" />
+    </section>
+
+    <section class="av-doc-prose__section" id="notes">
+      <h2 class="av-doc-prose__heading">Notes</h2>
+      <ul class="av-doc-prose__list">
+        <li>
+          The group uses context to pass <code>size</code> and <code>disabled</code> to child
+          <code>av-toggle-button</code> components
+        </li>
+        <li>
+          Each toggle button must have a unique <code>value</code> that corresponds to keys in
+          <code>selectedKeys</code> / <code>default-selected-keys</code>
+        </li>
+        <li>
+          Group <code>disabled</code> disables all children — an individual button can still set
+          its own <code>disabled</code>
+        </li>
+        <li>Attached mode automatically handles border radius between buttons</li>
+        <li>
+          Add <code>span[av-toggle-button-group-separator]</code> inside each button except the
+          first to show dividers
+        </li>
+        <li>
+          Use <code>disallow-empty-selection</code> with <code>selection-mode="single"</code> to
+          ensure one option is always selected
+        </li>
+      </ul>
+    </section>
+  </div>
+</app-doc-page>

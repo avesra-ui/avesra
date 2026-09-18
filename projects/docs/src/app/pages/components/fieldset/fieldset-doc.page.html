@@ -1,0 +1,83 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Fieldset</h1>
+      <p class="av-doc-prose__description">
+        Group related form controls with legends, descriptions, and actions
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="fieldset" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <p class="av-doc-prose__description">
+        Apply <code>av-fieldset</code> to a native <code>&lt;fieldset&gt;</code>. Compose
+        <code>av-fieldset-legend</code>, <code>av-fieldset-group</code>, and
+        <code>av-fieldset-actions</code> with shared form primitives like
+        <code>av-label</code>, <code>av-description</code>, and <code>av-field-error</code>.
+      </p>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the Fieldset parts and compose them with attribute selectors on native elements.
+      </p>
+      <app-doc-snippet component="fieldset" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="in-surface">
+      <h2 class="av-doc-prose__heading">In Surface</h2>
+      <p class="av-doc-prose__description">
+        When used inside a
+        <a routerLink="/docs/components/surface">Surface</a>
+        component, use <code>variant="secondary"</code> on form controls (Input, Textarea, etc.) to
+        apply the lower emphasis variant suitable for surface backgrounds.
+      </p>
+      <app-component-preview [demo]="demos.onSurface" />
+    </section>
+
+    <section class="av-doc-prose__section" id="disabled">
+      <h2 class="av-doc-prose__heading">Disabled</h2>
+      <p class="av-doc-prose__description">
+        Set the <code>disabled</code> attribute on the fieldset to disable descendant form
+        controls. The host also exposes <code>data-disabled="true"</code> for styling.
+      </p>
+      <app-component-preview [demo]="demos.disabled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+      <p class="av-doc-prose__description">
+        Pass utility classes on host elements, or override BEM classes in
+        <code>&#64;layer components</code>.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">
+        The Fieldset compound component exposes these CSS selectors:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-fieldset</code> — Root container</li>
+        <li><code>.av-fieldset__legend</code> — Legend element</li>
+        <li><code>.av-fieldset__field-group</code> — Wrapper for grouped fields</li>
+        <li><code>.av-fieldset__actions</code> — Action bar below the fields</li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API</h2>
+      <p class="av-doc-prose__description">
+        Fieldset root accepts a <code>disabled</code> input. Legend, group, and actions parts have
+        no Angular inputs — project content via <code>ng-content</code> and style with classes on
+        the host.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

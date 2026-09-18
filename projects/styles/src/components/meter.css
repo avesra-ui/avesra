@@ -1,0 +1,109 @@
+/* av-meter — quantity indicator within a known range */
+
+.av-meter {
+  @apply grid w-full gap-1;
+  grid-template-areas:
+    "label output"
+    "track track";
+  grid-template-columns: 1fr auto;
+
+  /* Default color tokens (accent) */
+  --av-meter-fill: var(--av-accent);
+
+  [data-slot="label"] {
+    @apply w-fit text-sm font-medium;
+
+    grid-area: label;
+  }
+
+  .av-meter__output {
+    @apply text-sm font-medium tabular-nums;
+
+    grid-area: output;
+  }
+
+  .av-meter__track {
+    @apply relative overflow-hidden rounded-sm bg-default;
+
+    grid-area: track;
+
+    /* Default height (matches --md) */
+    @apply h-2;
+  }
+
+  .av-meter__fill {
+    @apply absolute top-0 left-0 h-full rounded-sm;
+
+    background-color: var(--av-meter-fill);
+
+    /**
+     * Transitions
+     * CRITICAL: av-motion-reduce must be AFTER transition for correct override specificity
+     */
+    transition: width 300ms var(--ease-out);
+    @apply av-motion-reduce:transition-none;
+  }
+
+  /* Disabled state */
+  &:disabled,
+  &[data-disabled="true"],
+  &[aria-disabled="true"] {
+    @apply av-status-disabled;
+
+    [data-slot="label"] {
+      @apply opacity-100;
+    }
+  }
+}
+
+/* ==========================================================================
+   Size variants
+   ========================================================================== */
+
+.av-meter--sm {
+  .av-meter__track {
+    @apply h-1 rounded-xs;
+  }
+
+  .av-meter__fill {
+    @apply rounded-xs;
+  }
+}
+
+.av-meter--md {
+  /* No styles as this is the default size */
+}
+
+.av-meter--lg {
+  .av-meter__track {
+    @apply h-3 rounded-md;
+  }
+
+  .av-meter__fill {
+    @apply rounded-md;
+  }
+}
+
+/* ==========================================================================
+   Color variants
+   ========================================================================== */
+
+.av-meter--default {
+  --av-meter-fill: var(--av-default-foreground);
+}
+
+.av-meter--accent {
+  --av-meter-fill: var(--av-accent);
+}
+
+.av-meter--success {
+  --av-meter-fill: var(--av-success);
+}
+
+.av-meter--warning {
+  --av-meter-fill: var(--av-warning);
+}
+
+.av-meter--danger {
+  --av-meter-fill: var(--av-danger);
+}

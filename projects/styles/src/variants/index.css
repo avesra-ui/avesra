@@ -1,0 +1,90 @@
+@custom-variant av-motion-reduce {
+  &:is([data-av-reduce-motion="true"], [data-av-reduce-motion="true"] *) {
+    @slot;
+
+    &::before,
+    &::after {
+      @slot;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &:not(:is([data-av-reduce-motion="true"], [data-av-reduce-motion="true"] *)) {
+      @slot;
+
+      &::before,
+      &::after {
+        @slot;
+      }
+    }
+  }
+}
+
+@custom-variant av-motion-safe {
+  &:is([data-av-reduce-motion="false"], [data-av-reduce-motion="false"] *) {
+    @slot;
+
+    &::before,
+    &::after {
+      @slot;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    &:not(
+      :is(
+        [data-av-reduce-motion="true"],
+        [data-av-reduce-motion="true"] *,
+        [data-av-reduce-motion="false"],
+        [data-av-reduce-motion="false"] *
+      )
+    ) {
+      @slot;
+
+      &::before,
+      &::after {
+        @slot;
+      }
+    }
+  }
+}
+
+/*
+ * Standard Tailwind `dark:` — follows AvThemeService (`data-av-theme`, `.av-dark`),
+ * not `prefers-color-scheme` alone. Overrides Tailwind's default dark variant.
+ */
+@custom-variant dark {
+  &:is(
+    .dark,
+    .dark *,
+    .av-dark,
+    .av-dark *,
+    [data-av-theme="dark"],
+    [data-av-theme="dark"] *
+  ) {
+    @slot;
+
+    &::before,
+    &::after {
+      @slot;
+    }
+  }
+}
+
+@custom-variant av-dark {
+  &:is(
+    .dark,
+    .dark *,
+    .av-dark,
+    .av-dark *,
+    [data-av-theme="dark"],
+    [data-av-theme="dark"] *
+  ) {
+    @slot;
+
+    &::before,
+    &::after {
+      @slot;
+    }
+  }
+}

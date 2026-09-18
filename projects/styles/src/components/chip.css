@@ -1,0 +1,109 @@
+/* av-chip — small informational chips for labels, statuses, and categories */
+
+.av-chip {
+  @apply inline-flex shrink-0 items-center gap-0.5 rounded-2xl px-2 py-0.5 text-xs leading-5 font-medium;
+
+  --av-chip-bg: var(--av-default);
+  --av-chip-fg: currentColor;
+
+  background-color: var(--av-chip-bg);
+  color: var(--av-chip-fg);
+}
+
+.av-chip__label {
+  @apply px-0.5;
+}
+
+/* Color variants — set foreground color */
+.av-chip--accent {
+  --av-chip-fg: var(--av-accent-soft-foreground);
+}
+
+.av-chip--danger {
+  --av-chip-fg: var(--av-danger-soft-foreground);
+}
+
+.av-chip--default {
+  --av-chip-fg: var(--av-default-foreground);
+}
+
+.av-chip--success {
+  --av-chip-fg: var(--av-success-soft-foreground);
+}
+
+.av-chip--warning {
+  --av-chip-fg: var(--av-warning-soft-foreground);
+}
+
+/* Variant styles */
+.av-chip--primary {
+  /* Solid background — compound variants below handle bg/fg per color */
+}
+
+.av-chip--secondary {
+  /* Default background with colored text — base behavior */
+}
+
+.av-chip--tertiary {
+  --av-chip-bg: transparent;
+}
+
+/* Size variants */
+.av-chip--sm {
+  @apply px-1 py-0 text-xs;
+}
+
+.av-chip--md {
+  @apply text-xs;
+}
+
+.av-chip--lg {
+  @apply px-3 py-1 text-sm font-medium;
+}
+
+/* Compound variants — Primary (solid backgrounds) */
+.av-chip--primary.av-chip--accent {
+  --av-chip-bg: var(--av-accent);
+  --av-chip-fg: var(--av-accent-foreground);
+}
+
+.av-chip--primary.av-chip--success {
+  --av-chip-bg: var(--av-success);
+  --av-chip-fg: var(--av-success-foreground);
+}
+
+.av-chip--primary.av-chip--warning {
+  --av-chip-bg: var(--av-warning);
+  --av-chip-fg: var(--av-warning-foreground);
+}
+
+.av-chip--primary.av-chip--danger {
+  --av-chip-bg: var(--av-danger);
+  --av-chip-fg: var(--av-danger-foreground);
+}
+
+/* Compound variants — Soft (muted backgrounds) */
+.av-chip--accent.av-chip--soft {
+  --av-chip-bg: var(--av-accent-soft);
+  --av-chip-fg: var(--av-accent-soft-foreground);
+}
+
+.av-chip--success.av-chip--soft {
+  --av-chip-bg: var(--av-success-soft);
+  --av-chip-fg: var(--av-success-soft-foreground);
+}
+
+.av-chip--warning.av-chip--soft {
+  --av-chip-bg: var(--av-warning-soft);
+  --av-chip-fg: var(--av-warning-soft-foreground);
+}
+
+.av-chip--danger.av-chip--soft {
+  --av-chip-bg: var(--av-danger-soft);
+  --av-chip-fg: var(--av-danger-soft-foreground);
+}
+
+.av-chip--default.av-chip--soft {
+  --av-chip-bg: var(--av-default-soft);
+  --av-chip-fg: var(--av-default-soft-foreground);
+}

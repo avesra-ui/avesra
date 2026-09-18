@@ -1,0 +1,13 @@
+/* av-list-box component styles */
+
+.av-list-box {
+  @apply relative w-full overflow-clip p-1;
+
+  & > * + * {
+    @apply mt-1;
+  }
+
+  [data-slot="separator"][data-orientation="horizontal"] {
+    @apply ml-[3%] w-[94%];
+  }
+}

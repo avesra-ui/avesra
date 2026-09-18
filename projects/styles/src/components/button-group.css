@@ -1,0 +1,103 @@
+/* av-button-group — groups related buttons together */
+
+.av-button-group {
+  @apply inline-flex h-auto items-center justify-center gap-0;
+}
+
+.av-button-group--horizontal {
+  @apply flex-row;
+}
+
+.av-button-group--vertical {
+  @apply flex-col;
+}
+
+.av-button-group .av-button {
+  @apply rounded-none;
+}
+
+.av-button-group--horizontal .av-button:first-child {
+  @apply rounded-s-3xl;
+}
+
+.av-button-group--horizontal .av-button:last-child {
+  @apply rounded-e-3xl;
+}
+
+.av-button-group--horizontal .av-button:first-child:last-child {
+  @apply rounded-3xl;
+}
+
+.av-button-group--vertical .av-button:first-child {
+  @apply rounded-t-3xl;
+}
+
+.av-button-group--vertical .av-button:last-child {
+  @apply rounded-b-3xl;
+}
+
+.av-button-group--vertical .av-button:first-child:last-child {
+  @apply rounded-3xl;
+}
+
+.av-button-group .av-button:active,
+.av-button-group .av-button[data-pressed="true"] {
+  transform: none;
+}
+
+.av-button-group .av-button:focus-visible:not(:focus),
+.av-button-group .av-button[data-focus-visible="true"] {
+  --tw-ring-offset-width: 0px;
+  @apply ring-inset;
+}
+
+.av-button-group__separator {
+  @apply rounded-sm bg-current opacity-15;
+  position: absolute;
+  pointer-events: none;
+
+  transition: opacity 150ms var(--ease-smooth);
+  @apply av-motion-reduce:transition-none;
+
+  .av-button-group--horizontal & {
+    left: -1px;
+    top: 25%;
+    width: 1px;
+    height: 50%;
+  }
+
+  .av-button-group--vertical & {
+    left: 25%;
+    top: -1px;
+    width: 50%;
+    height: 1px;
+  }
+}
+
+.av-button-group--horizontal .av-button--outline:first-child {
+  @apply border-e-0;
+}
+
+.av-button-group--horizontal .av-button--outline:last-child {
+  @apply border-s-0;
+}
+
+.av-button-group--horizontal .av-button--outline:not(:first-child):not(:last-child) {
+  @apply border-x-0;
+}
+
+.av-button-group--vertical .av-button--outline:first-child {
+  @apply border-b-0;
+}
+
+.av-button-group--vertical .av-button--outline:last-child {
+  @apply border-t-0;
+}
+
+.av-button-group--vertical .av-button--outline:not(:first-child):not(:last-child) {
+  @apply border-y-0;
+}
+
+.av-button-group--full-width {
+  @apply w-full;
+}

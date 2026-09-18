@@ -1,0 +1,2 @@
+/* Mint design preset - overrides default tokens when data-av-design-theme="mint" */
+@import "./variables.css" layer(theme);

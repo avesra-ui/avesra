@@ -1,0 +1,162 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">ToggleButton</h1>
+      <p class="av-doc-prose__description">
+        An interactive toggle control for on/off or selected/unselected states. Use standalone with
+        <code>[(selected)]</code> or inside a
+        <a routerLink="/docs/components/toggle-button-group">ToggleButtonGroup</a> with a
+        <code>value</code> key.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="toggle-button" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Apply <code>av-toggle-button</code> to a native <code>&lt;button&gt;</code>. Content is
+        projected via <code>ng-content</code>.
+      </p>
+      <app-doc-snippet component="toggle-button" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="variants">
+      <h2 class="av-doc-prose__heading">Variants</h2>
+      <p class="av-doc-prose__description">
+        Two visual styles — <code>default</code> (filled) and <code>ghost</code> (transparent).
+      </p>
+      <app-component-preview [demo]="demos.variants" />
+    </section>
+
+    <section class="av-doc-prose__section" id="icon-only">
+      <h2 class="av-doc-prose__heading">Icon Only</h2>
+      <p class="av-doc-prose__description">
+        Set <code>icon-only</code> for a square layout and always provide an
+        <code>aria-label</code> for screen readers.
+      </p>
+      <app-component-preview [demo]="demos.iconOnly" />
+    </section>
+
+    <section class="av-doc-prose__section" id="sizes">
+      <h2 class="av-doc-prose__heading">Sizes</h2>
+      <p class="av-doc-prose__description">
+        Three sizes — <code>sm</code>, <code>md</code> (default), and <code>lg</code>. Size
+        inherits from the parent group when omitted.
+      </p>
+      <app-component-preview [demo]="demos.sizes" />
+    </section>
+
+    <section class="av-doc-prose__section" id="disabled">
+      <h2 class="av-doc-prose__heading">Disabled</h2>
+      <p class="av-doc-prose__description">
+        Set <code>disabled</code> to prevent interaction. Disabled state also inherits from a
+        parent toggle button group.
+      </p>
+      <app-component-preview [demo]="demos.disabled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="controlled">
+      <h2 class="av-doc-prose__heading">Controlled</h2>
+      <p class="av-doc-prose__description">
+        Bind <code>[(selected)]</code> for two-way control. Swap icon and label content based on
+        the selected state.
+      </p>
+      <app-component-preview [demo]="demos.controlled" />
+    </section>
+
+    <section class="av-doc-prose__section" id="customization">
+      <h2 class="av-doc-prose__heading">Customization</h2>
+
+      <h3 class="av-doc-prose__subheading" id="tailwind-css">Tailwind CSS</h3>
+      <p class="av-doc-prose__description">
+        Pass utility classes and CSS variables on the host to customize appearance — for example an
+        X.com-style like control.
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="global-css">Global CSS</h3>
+      <p class="av-doc-prose__description">
+        To customize ToggleButton classes, use the <code>&#64;layer components</code> directive.
+      </p>
+      <app-doc-snippet [source]="globalCssExample" lang="css" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling Reference</h2>
+      <p class="av-doc-prose__description">
+        Avesra follows the BEM methodology so variants and states stay reusable and easy to
+        customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+
+      <h4 class="av-doc-prose__subheading">Base &amp; Size Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-toggle-button</code> — Base toggle button styles</li>
+        <li><code>.av-toggle-button--sm</code> — Small size variant</li>
+        <li><code>.av-toggle-button--md</code> — Medium size variant (default)</li>
+        <li><code>.av-toggle-button--lg</code> — Large size variant</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Variant Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-toggle-button--default</code> — Default variant with filled background</li>
+        <li><code>.av-toggle-button--ghost</code> — Ghost variant with transparent background</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Modifier Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-toggle-button--icon-only</code> — Icon-only toggle button</li>
+        <li>
+          <code>.av-toggle-button--icon-only.av-toggle-button--sm</code> — Small icon-only
+        </li>
+        <li>
+          <code>.av-toggle-button--icon-only.av-toggle-button--lg</code> — Large icon-only
+        </li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">
+        The toggle button supports both CSS pseudo-classes and data attributes:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Selected</strong>: <code>[data-selected="true"]</code> (also
+          <code>[aria-pressed="true"]</code>)
+        </li>
+        <li><strong>Hover</strong>: <code>:hover</code> or <code>[data-hovered="true"]</code></li>
+        <li>
+          <strong>Active/Pressed</strong>: <code>:active</code> or
+          <code>[data-pressed="true"]</code>
+        </li>
+        <li>
+          <strong>Focus</strong>: <code>:focus-visible</code> or
+          <code>[data-focus-visible="true"]</code>
+        </li>
+        <li>
+          <strong>Disabled</strong>: <code>:disabled</code> or
+          <code>[aria-disabled="true"]</code>
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API Reference</h2>
+      <p class="av-doc-prose__description">
+        Props for <code>button[av-toggle-button]</code>. Implements toggle semantics via
+        <code>aria-pressed</code>. Outside a group, bind selection with
+        <code>[(selected)]</code>.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

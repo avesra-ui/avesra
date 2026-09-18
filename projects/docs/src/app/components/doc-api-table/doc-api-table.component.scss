@@ -1,0 +1,29 @@
+.av-doc-api-table__prop,
+.av-doc-api-table__type,
+.av-doc-api-table__default {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+}
+
+.av-doc-api-table__prop {
+  color: var(--av-accent);
+}
+
+.av-doc-api-table__type {
+  color: var(--av-muted);
+  white-space: nowrap;
+}
+
+.av-doc-api-table__default {
+  color: var(--av-foreground);
+}
+
+.av-doc-api-table__empty {
+  color: var(--av-muted);
+}
+
+@media (max-width: 768px) {
+  .av-doc-api-table__default-col {
+    display: none;
+  }
+}

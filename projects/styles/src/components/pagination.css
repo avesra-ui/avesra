@@ -1,0 +1,137 @@
+/* ==========================================================================
+   av-pagination - Page navigation component
+   ========================================================================== */
+
+/* Base styles */
+.av-pagination {
+  @apply flex w-full flex-col items-center justify-between gap-4 sm:flex-row;
+}
+
+/* Summary - left side info container */
+.av-pagination__summary {
+  @apply flex items-center gap-2 self-start text-sm text-muted sm:self-center;
+}
+
+/* Content - container for pagination items */
+.av-pagination__content {
+  @apply flex items-center gap-1 self-start sm:self-center;
+}
+
+/* Item - list item wrapper */
+.av-pagination__item {
+  @apply inline-flex;
+}
+
+/* Link - page number button (ghost button style) */
+.av-pagination__link {
+  @apply relative isolate inline-flex size-9 origin-center items-center justify-center rounded-3xl text-sm font-medium whitespace-nowrap outline-none select-none av-no-highlight md:size-8;
+
+  cursor: var(--av-cursor-interactive);
+
+  transition:
+    transform 250ms var(--ease-smooth),
+    background-color 100ms var(--ease-out),
+    box-shadow 100ms var(--ease-out);
+  @apply transform-gpu av-motion-reduce:transition-none;
+
+  --av-pagination-link-bg: transparent;
+  --av-pagination-link-bg-hover: var(--av-default-hover);
+  --av-pagination-link-bg-pressed: var(--av-default-hover);
+  --av-pagination-link-fg: var(--av-default-foreground);
+
+  background-color: var(--av-pagination-link-bg);
+  color: var(--av-pagination-link-fg);
+
+  &:focus-visible,
+  &[data-focus-visible="true"] {
+    @apply av-status-focused;
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    @apply av-status-disabled;
+  }
+
+  @media (hover: hover) {
+    &:hover,
+    &[data-hovered="true"] {
+      background-color: var(--av-pagination-link-bg-hover);
+    }
+  }
+
+  &:active,
+  &[data-pressed="true"] {
+    background-color: var(--av-pagination-link-bg-pressed);
+    transform: scale(0.97);
+  }
+
+  &[data-active="true"] {
+    --av-pagination-link-bg: var(--av-default);
+    --av-pagination-link-bg-hover: var(--av-default-hover);
+    --av-pagination-link-bg-pressed: var(--av-default-hover);
+  }
+}
+
+/* Ellipsis */
+.av-pagination__ellipsis {
+  @apply inline-flex size-9 items-center justify-center text-sm text-muted select-none md:size-8;
+}
+
+/* Navigation buttons (Previous / Next) */
+.av-pagination__link--nav {
+  @apply w-auto gap-1.5 px-2.5;
+}
+
+/* ==========================================================================
+   Size variants
+   ========================================================================== */
+
+.av-pagination--sm {
+  .av-pagination__link {
+    @apply size-8 text-xs md:size-7;
+
+    &:active,
+    &[data-pressed="true"] {
+      transform: scale(0.98);
+    }
+  }
+
+  .av-pagination__link--nav {
+    @apply w-auto px-2;
+  }
+
+  .av-pagination__ellipsis {
+    @apply size-8 text-xs md:size-7;
+  }
+
+  .av-pagination__summary {
+    @apply text-xs;
+  }
+}
+
+.av-pagination--md {
+  /* No styles as this is the default size */
+}
+
+.av-pagination--lg {
+  .av-pagination__link {
+    @apply size-10 text-base md:size-9;
+
+    &:active,
+    &[data-pressed="true"] {
+      transform: scale(0.96);
+    }
+  }
+
+  .av-pagination__link--nav {
+    @apply w-auto px-3;
+  }
+
+  .av-pagination__ellipsis {
+    @apply size-10 text-base md:size-9;
+  }
+
+  .av-pagination__summary {
+    @apply text-base;
+  }
+}

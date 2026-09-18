@@ -1,0 +1,137 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Tabs</h1>
+      <p class="av-doc-prose__description">
+        Tabs organize content into multiple sections and allow users to navigate between them.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="tabs" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the Tabs parts and compose them. Place a single
+        <code>span[av-tabs-indicator]</code> inside the list (Material ink-bar). Optional
+        <code>span[av-tabs-separator]</code> goes inside each tab except the first.
+      </p>
+      <app-doc-snippet component="tabs" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="vertical">
+      <h2 class="av-doc-prose__heading">Vertical</h2>
+      <app-component-preview [demo]="demos.vertical" />
+    </section>
+
+    <section class="av-doc-prose__section" id="overflow">
+      <h2 class="av-doc-prose__heading">Overflow</h2>
+      <p class="av-doc-prose__description">
+        When the tab list exceeds the available space,
+        <code>div[av-tabs-list-container]</code> automatically renders scroll chevrons and fading
+        edges so users can navigate the hidden tabs. This works the same way for both horizontal and
+        vertical orientations.
+      </p>
+      <app-component-preview [demo]="demos.overflow" />
+    </section>
+
+    <section class="av-doc-prose__section" id="disabled-tab">
+      <h2 class="av-doc-prose__heading">Disabled Tab</h2>
+      <app-component-preview [demo]="demos.disabledTab" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-separator">
+      <h2 class="av-doc-prose__heading">With Separator</h2>
+      <p class="av-doc-prose__description">
+        Add <code>&lt;span av-tabs-separator&gt;</code> inside each
+        <code>button[av-tabs-tab]</code> (except the first) to display separator lines between tabs.
+      </p>
+      <app-component-preview [demo]="demos.withSeparator" />
+    </section>
+
+    <section class="av-doc-prose__section" id="secondary">
+      <h2 class="av-doc-prose__heading">Secondary Variant</h2>
+      <app-component-preview [demo]="demos.secondary" />
+    </section>
+
+    <section class="av-doc-prose__section" id="secondary-vertical">
+      <h2 class="av-doc-prose__heading">Secondary Variant Vertical</h2>
+      <app-component-preview [demo]="demos.secondaryVertical" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <app-doc-snippet [source]="tailwindExample" lang="html" section="anatomy" />
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The Tabs component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-tabs</code> — Base tabs container</li>
+        <li><code>.av-tabs__list-container</code> — Tab list container wrapper</li>
+        <li>
+          <code>.av-tabs__list-container__scroller</code> — Scrollable wrapper around the tab list
+          (handles overflow and fading edges)
+        </li>
+        <li>
+          <code>.av-tabs__list-container__scroll-prev</code> — Scroll chevron for previous (left /
+          up)
+        </li>
+        <li>
+          <code>.av-tabs__list-container__scroll-next</code> — Scroll chevron for next (right /
+          down)
+        </li>
+        <li><code>.av-tabs__list</code> — Tab list container</li>
+        <li><code>.av-tabs__tab</code> — Individual tab button</li>
+        <li><code>.av-tabs__separator</code> — Separator between tabs</li>
+        <li><code>.av-tabs__panel</code> — Tab panel content</li>
+        <li><code>.av-tabs__indicator</code> — Tab indicator</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Orientation Attributes</h4>
+      <ul class="av-doc-prose__list">
+        <li>
+          <code>.av-tabs[data-orientation="horizontal"]</code> — Horizontal tab layout (default)
+        </li>
+        <li><code>.av-tabs[data-orientation="vertical"]</code> — Vertical tab layout</li>
+      </ul>
+
+      <h4 class="av-doc-prose__subheading">Variant Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-tabs--secondary</code> — Secondary variant with underline indicator</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">
+        The component supports both CSS pseudo-classes and data attributes:
+      </p>
+      <ul class="av-doc-prose__list">
+        <li><strong>Selected</strong>: <code>[aria-selected="true"]</code> or <code>[data-selected="true"]</code></li>
+        <li><strong>Hover</strong>: <code>:hover</code> or <code>[data-hovered="true"]</code></li>
+        <li>
+          <strong>Focus</strong>: <code>:focus-visible</code> or
+          <code>[data-focus-visible="true"]</code>
+        </li>
+        <li><strong>Disabled</strong>: <code>[aria-disabled="true"]</code></li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API Reference</h2>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>

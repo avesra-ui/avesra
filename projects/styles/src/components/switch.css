@@ -1,0 +1,168 @@
+/* av-switch — toggle control for boolean on/off states */
+
+.av-switch {
+  @apply inline-flex items-center gap-3 av-no-highlight;
+
+  cursor: var(--av-cursor-interactive);
+
+  --av-switch-control-bg: var(--av-default);
+  --av-switch-control-bg-hover: color-mix(in oklab, var(--av-switch-control-bg), transparent 20%);
+  --av-switch-control-bg-pressed: var(--av-switch-control-bg-hover);
+  --av-switch-control-bg-checked: var(--av-accent);
+  --av-switch-control-bg-checked-hover: var(--av-accent-hover);
+
+  &:disabled,
+  &[data-disabled="true"],
+  &[aria-disabled="true"] {
+    @apply av-status-disabled;
+
+    .av-switch__thumb {
+      @apply bg-default-foreground/20;
+    }
+  }
+
+  &:disabled[aria-checked="true"],
+  &:disabled[data-selected="true"],
+  &[data-disabled="true"][aria-checked="true"],
+  &[data-disabled="true"][data-selected="true"],
+  &[aria-disabled="true"][aria-checked="true"],
+  &[aria-disabled="true"][data-selected="true"] {
+    .av-switch__thumb {
+      opacity: 0.4;
+    }
+  }
+}
+
+.av-switch__input {
+  @apply sr-only;
+}
+
+.av-switch--sm {
+  /* Small size modifier */
+}
+
+.av-switch--md {
+  /* Medium size — default */
+}
+
+.av-switch--lg {
+  /* Large size modifier */
+}
+
+.av-switch__control {
+  @apply relative flex shrink-0 items-center overflow-hidden rounded-xl;
+  height: 1.25rem;
+  width: 2.5rem;
+
+  background-color: var(--av-switch-control-bg);
+
+  transition:
+    background-color 250ms var(--ease-smooth),
+    box-shadow 150ms var(--ease-out);
+  @apply av-motion-reduce:transition-none;
+
+  .av-switch:focus-visible &,
+  .av-switch[data-focus-visible="true"] & {
+    @apply av-status-focused;
+  }
+
+  .av-switch:hover &,
+  .av-switch[data-hovered="true"] & {
+    background-color: var(--av-switch-control-bg-hover);
+  }
+
+  .av-switch:active &,
+  .av-switch[data-pressed="true"] & {
+    background-color: var(--av-switch-control-bg-pressed);
+    @apply av-motion-reduce:transform-none;
+  }
+
+  .av-switch[aria-checked="true"] &,
+  .av-switch[data-selected="true"] & {
+    background-color: var(--av-switch-control-bg-checked);
+  }
+
+  .av-switch[aria-checked="true"]:hover &,
+  .av-switch[data-selected="true"]:hover &,
+  .av-switch[aria-checked="true"][data-hovered="true"] &,
+  .av-switch[data-selected="true"][data-hovered="true"] & {
+    background-color: var(--av-switch-control-bg-checked-hover);
+  }
+
+  .av-switch[aria-checked="true"]:active &,
+  .av-switch[data-selected="true"]:active &,
+  .av-switch[aria-checked="true"][data-pressed="true"] &,
+  .av-switch[data-selected="true"][data-pressed="true"] & {
+    background-color: var(--av-switch-control-bg-checked-hover);
+  }
+}
+
+.av-switch--sm .av-switch__control {
+  @apply rounded-lg;
+  height: 1rem;
+  width: 2rem;
+}
+
+.av-switch--md .av-switch__control {
+  /* Default size */
+}
+
+.av-switch--lg .av-switch__control {
+  height: 1.5rem;
+  width: 3rem;
+}
+
+.av-switch__thumb {
+  @apply ms-0.5 flex origin-center rounded-lg bg-white text-black;
+  height: 1rem;
+  width: 1.375rem;
+  box-shadow: var(--shadow-field);
+
+  transition:
+    margin 300ms var(--ease-out-fluid),
+    background-color 200ms var(--ease-out);
+  @apply av-motion-reduce:transition-none;
+
+  .av-switch[aria-checked="true"] &,
+  .av-switch[data-selected="true"] & {
+    @apply ms-[calc(100%-1.5rem)] bg-accent-foreground text-accent;
+    box-shadow:
+      0px 0px 5px 0px rgb(0 0 0 / 0.02),
+      0px 2px 10px 0px rgb(0 0 0 / 0.06),
+      0px 0px 1px 0px rgb(0 0 0 / 0.3);
+  }
+}
+
+.av-switch--sm .av-switch__thumb {
+  @apply rounded-md;
+  height: 0.75rem;
+  width: 1.03125rem;
+
+  .av-switch[aria-checked="true"] &,
+  .av-switch[data-selected="true"] & {
+    @apply ms-[calc(100%-1.15625rem)];
+  }
+}
+
+.av-switch--lg .av-switch__thumb {
+  @apply rounded-xl;
+  height: 1.25rem;
+  width: 1.71875rem;
+
+  .av-switch[aria-checked="true"] &,
+  .av-switch[data-selected="true"] & {
+    @apply ms-[calc(100%-1.84375rem)];
+  }
+}
+
+.av-switch__thumb > * {
+  @apply flex size-full items-center justify-center;
+}
+
+.av-switch__icon {
+  @apply flex size-full items-center justify-center;
+}
+
+.av-switch__content {
+  @apply flex flex-col gap-0;
+}

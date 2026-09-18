@@ -1,0 +1,204 @@
+<div class="mx-auto flex h-14 w-full max-w-[1728px] items-center gap-2 px-3.5 lg:px-7 xl:px-14">
+  <a class="flex items-center gap-1" routerLink="/">
+    <app-avesra-logo class="md:hidden" variant="mark" />
+    <app-avesra-logo class="max-md:hidden" />
+    <span av-chip size="sm" label="beta" color="accent"></span>
+  </a>
+
+  <div class="ml-auto flex min-w-0 flex-1 items-center justify-end gap-2">
+    <button
+      type="button"
+      class="bg-surface-secondary/50 text-muted hover:text-foreground my-auto inline-flex min-w-0 w-full max-w-sm flex-1 items-center gap-2 rounded-xl border border-border p-1.5 ps-2.5 text-sm transition-colors max-md:hidden"
+      aria-label="Open search"
+      (click)="openSearch()"
+    >
+      <app-icon icon="solar:magnifer-linear" size="16" />
+      Search
+    </button>
+
+    <button
+      av-button
+      type="button"
+      variant="tertiary"
+      size="sm"
+      icon-only
+      class="md:hidden"
+      aria-label="Open search"
+      (click)="openSearch()"
+    >
+      <app-icon icon="solar:magnifer-linear" size="16" />
+    </button>
+
+    <app-docs-theme-picker />
+
+    <button
+      av-button
+      type="button"
+      variant="tertiary"
+      size="sm"
+      icon-only
+      aria-label="GitHub repository"
+      (click)="openGithub()"
+    >
+      <app-icon icon="avesra:github" size="16" />
+    </button>
+
+    <av-drawer placement="left" [(open)]="navDrawerOpen">
+      <button
+        av-button
+        type="button"
+        variant="tertiary"
+        size="sm"
+        icon-only
+        class="lg:hidden"
+        av-drawer-trigger
+        aria-label="Open navigation"
+      >
+        <app-icon icon="solar:sidebar-minimalistic-linear" size="16" />
+      </button>
+
+      <ng-template avDrawerContent>
+        <div av-drawer-dialog class="p-4">
+          <div av-drawer-header>
+            <div class="flex items-center justify-between gap-2">
+              <a class="flex min-w-0 items-center" routerLink="/" (click)="closeNavDrawer()">
+                <app-avesra-logo />
+              </a>
+
+              <div
+                class="inline-flex items-center rounded-full bg-default p-1"
+                role="group"
+                aria-label="Color mode"
+              >
+                <button
+                  type="button"
+                  class="size-6.5 rounded-full p-1.5 text-muted transition-colors"
+                  [class.bg-overlay]="theme.mode() === 'light'"
+                  [class.text-foreground]="theme.mode() === 'light'"
+                  aria-label="Light mode"
+                  (click)="theme.setMode('light')"
+                >
+                  <app-icon icon="solar:sun-bold-duotone" size="14" />
+                </button>
+                <button
+                  type="button"
+                  class="size-6.5 rounded-full p-1.5 text-muted transition-colors"
+                  [class.bg-overlay]="theme.mode() === 'dark'"
+                  [class.text-foreground]="theme.mode() === 'dark'"
+                  aria-label="Dark mode"
+                  (click)="theme.setMode('dark')"
+                >
+                  <app-icon icon="solar:moon-bold-duotone" size="14" />
+                </button>
+                <button
+                  type="button"
+                  class="size-6.5 rounded-full p-1.5 text-muted transition-colors"
+                  [class.bg-overlay]="theme.mode() === 'system'"
+                  [class.text-foreground]="theme.mode() === 'system'"
+                  aria-label="System mode"
+                  (click)="theme.setMode('system')"
+                >
+                  <app-icon icon="solar:monitor-bold-duotone" size="14" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div av-drawer-body>
+            <div class="flex h-full min-h-0 flex-col">
+              <div class="shrink-0 pb-2">
+                @for (tab of sidebarTabs; track tab.sidebarKey) {
+                  <a
+                    class="flex items-center gap-2 rounded-lg px-2 py-1.5 text-sm text-muted transition-colors hover:bg-default hover:text-foreground"
+                    [class.bg-default]="activeKey() === tab.sidebarKey"
+                    [class.text-foreground]="activeKey() === tab.sidebarKey"
+                    [routerLink]="tab.path"
+                  >
+                    <app-icon [icon]="tab.icon" size="16" />
+                    {{ tab.label }}
+                  </a>
+                }
+              </div>
+
+              <nav
+                class="no-scrollbar min-h-0 flex-1 overflow-y-auto border-t border-border/50 pt-2"
+                aria-label="Documentation"
+              >
+                @for (item of drawerItems(); track trackDrawerItem(item)) {
+                  @if (item.type === 'separator') {
+                    <p class="mt-4 px-2 py-1 text-xs font-medium text-muted first:mt-0">
+                      {{ item.label }}
+                    </p>
+                  } @else if (item.disabled) {
+                    <span
+                      class="flex cursor-not-allowed items-center gap-2 rounded-lg px-2 py-1.5 text-sm text-muted"
+                    >
+                      {{ item.label }}
+                      @if (item.badge) {
+                        <span class="rounded-md bg-default px-1 py-0 text-[10px] font-medium">
+                          {{ item.badge }}
+                        </span>
+                      }
+                    </span>
+                  } @else {
+                    <a
+                      class="flex items-center rounded-lg px-2 py-1.5 text-sm text-muted transition-colors hover:bg-default hover:text-foreground"
+                      [routerLink]="item.path"
+                      routerLinkActive="bg-default text-foreground"
+                      [routerLinkActiveOptions]="{ exact: true }"
+                      (click)="closeNavDrawer()"
+                    >
+                      {{ item.label }}
+                      @if (item.badge) {
+                        <span class="rounded-md bg-default px-1 py-0 text-[10px] font-medium">
+                          {{ item.badge }}
+                        </span>
+                      }
+                    </a>
+                  }
+                }
+              </nav>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </av-drawer>
+
+    <div
+      class="hidden lg:inline-flex items-center rounded-full bg-default p-1"
+      role="group"
+      aria-label="Color mode"
+    >
+      <button
+        type="button"
+        class="size-6.5 rounded-full p-1.5 text-muted transition-colors"
+        [class.bg-overlay]="theme.mode() === 'light'"
+        [class.text-foreground]="theme.mode() === 'light'"
+        aria-label="Light mode"
+        (click)="theme.setMode('light')"
+      >
+        <app-icon icon="solar:sun-bold-duotone" size="14" />
+      </button>
+      <button
+        type="button"
+        class="size-6.5 rounded-full p-1.5 text-muted transition-colors"
+        [class.bg-overlay]="theme.mode() === 'dark'"
+        [class.text-foreground]="theme.mode() === 'dark'"
+        aria-label="Dark mode"
+        (click)="theme.setMode('dark')"
+      >
+        <app-icon icon="solar:moon-bold-duotone" size="14" />
+      </button>
+      <button
+        type="button"
+        class="size-6.5 rounded-full p-1.5 text-muted transition-colors"
+        [class.bg-overlay]="theme.mode() === 'system'"
+        [class.text-foreground]="theme.mode() === 'system'"
+        aria-label="System mode"
+        (click)="theme.setMode('system')"
+      >
+        <app-icon icon="solar:monitor-bold-duotone" size="14" />
+      </button>
+    </div>
+  </div>
+</div>

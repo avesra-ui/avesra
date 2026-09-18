@@ -1,0 +1,139 @@
+<app-doc-page [toc]="toc">
+  <div class="av-doc-prose">
+    <header>
+      <h1 class="av-doc-prose__title">Popover</h1>
+      <p class="av-doc-prose__description">
+        Displays rich content in a portal triggered by a button or any custom element.
+      </p>
+    </header>
+
+    <section class="av-doc-prose__section" id="import">
+      <h2 class="av-doc-prose__heading">Import</h2>
+      <app-doc-snippet component="popover" />
+    </section>
+
+    <section class="av-doc-prose__section" id="usage">
+      <h2 class="av-doc-prose__heading">Usage</h2>
+      <app-component-preview [demo]="demos.basic" />
+    </section>
+
+    <section class="av-doc-prose__section" id="anatomy">
+      <h2 class="av-doc-prose__heading">Anatomy</h2>
+      <p class="av-doc-prose__description">
+        Import the Popover parts and compose them with element and attribute selectors. Optional
+        pieces include <code>av-popover-arrow</code> and <code>av-popover-heading</code>.
+      </p>
+      <app-doc-snippet component="popover" section="anatomy" />
+    </section>
+
+    <section class="av-doc-prose__section" id="with-arrow">
+      <h2 class="av-doc-prose__heading">With Arrow</h2>
+      <p class="av-doc-prose__description">
+        Add <code>av-popover-arrow</code> inside <code>av-popover-content</code> to point at the
+        trigger. Arrow rotation follows <code>[data-placement]</code> on the overlay panel.
+      </p>
+      <app-component-preview [demo]="demos.withArrow" />
+    </section>
+
+    <section class="av-doc-prose__section" id="interactive-content">
+      <h2 class="av-doc-prose__heading">Interactive Content</h2>
+      <p class="av-doc-prose__description">
+        Popover panels accept focusable content — buttons, links, and form controls — while the
+        overlay stays open. Clicking inside the panel does not dismiss the popover.
+      </p>
+      <app-component-preview [demo]="demos.interactive" />
+    </section>
+
+    <section class="av-doc-prose__section" id="placement">
+      <h2 class="av-doc-prose__heading">Placement</h2>
+      <p class="av-doc-prose__description">
+        Set <code>placement</code> on <code>av-popover-content</code> —
+        <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>, and aligned
+        variants such as <code>bottom start</code>. The overlay flips when
+        <code>should-flip</code> is enabled (default).
+      </p>
+      <app-component-preview [demo]="demos.placements" />
+    </section>
+
+    <section class="av-doc-prose__section" id="styling">
+      <h2 class="av-doc-prose__heading">Styling</h2>
+
+      <h3 class="av-doc-prose__subheading" id="passing-tailwind-classes">
+        Passing Tailwind CSS classes
+      </h3>
+      <p class="av-doc-prose__description">
+        Style the portaled panel with <code>overlay-class</code> on
+        <code>av-popover-content</code>, or pass utility classes on
+        <code>div[av-popover-dialog]</code> and other part hosts.
+      </p>
+      <app-component-preview [demo]="demos.customStyling" />
+
+      <h3 class="av-doc-prose__subheading" id="customizing-classes">
+        Customizing the component classes
+      </h3>
+      <p class="av-doc-prose__description">
+        To customize the Popover classes, use the <code>&#64;layer components</code> directive.
+        <a
+          href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Learn more</a
+        >.
+      </p>
+      <app-doc-snippet [source]="cssOverrideExample" lang="css" section="anatomy" />
+      <p class="av-doc-prose__description">
+        Avesra follows the
+        <a href="https://getbem.com/" target="_blank" rel="noopener noreferrer">BEM</a>
+        methodology so component variants and states stay reusable and easy to customize.
+      </p>
+
+      <h3 class="av-doc-prose__subheading" id="css-classes">CSS Classes</h3>
+      <p class="av-doc-prose__description">The Popover component uses these CSS classes:</p>
+
+      <h4 class="av-doc-prose__subheading">Base Classes</h4>
+      <ul class="av-doc-prose__list">
+        <li><code>.av-popover</code> — Base popover container styles</li>
+        <li><code>.av-popover__dialog</code> — Dialog content wrapper</li>
+        <li><code>.av-popover__heading</code> — Heading text styles</li>
+        <li><code>.av-popover__trigger</code> — Trigger element styles</li>
+        <li><code>[data-slot="popover-arrow"]</code> — Arrow positioning wrapper</li>
+        <li><code>[data-slot="popover-overlay-arrow"]</code> — SVG fill matched to overlay background</li>
+      </ul>
+
+      <h3 class="av-doc-prose__subheading" id="interactive-states">Interactive States</h3>
+      <p class="av-doc-prose__description">The component supports these animation and interaction states:</p>
+      <ul class="av-doc-prose__list">
+        <li>
+          <strong>Entering:</strong> <code>[data-entering]</code> — Applied during popover
+          appearance
+        </li>
+        <li>
+          <strong>Exiting:</strong> <code>[data-exiting]</code> — Applied during popover
+          disappearance
+        </li>
+        <li>
+          <strong>Placement:</strong> <code>[data-placement="*"]</code> — Applied based on popover
+          position
+        </li>
+        <li>
+          <strong>Focus:</strong> <code>:focus-visible</code> or
+          <code>[data-focus-visible="true"]</code>
+        </li>
+        <li>
+          <strong>Expanded:</strong> <code>[aria-expanded]</code> on the trigger reflects open
+          state
+        </li>
+      </ul>
+    </section>
+
+    <section class="av-doc-prose__section" id="api">
+      <h2 class="av-doc-prose__heading">API Reference</h2>
+      <p class="av-doc-prose__description">
+        Compound API across <code>av-popover</code>, <code>[av-popover-trigger]</code>,
+        <code>av-popover-content</code>, and child parts. Root props control open state and dismiss
+        behavior; content props control placement and viewport flipping.
+      </p>
+      <app-doc-api-table [props]="apiProps" />
+    </section>
+  </div>
+</app-doc-page>
