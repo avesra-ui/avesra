@@ -1,0 +1,95 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build:docs
+
+      - name: Verify SSR output
+        run: test -f dist/docs/server/server.mjs
+
+      - name: Create release archive
+        run: tar -czf avesra-${{ github.sha }}.tar.gz dist/docs
+
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: avesra-release
+          path: avesra-${{ github.sha }}.tar.gz
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Download release artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: avesra-release
+
+      - name: Upload release to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          source: "avesra-${{ github.sha }}.tar.gz"
+          target: "/tmp"
+
+      - name: Activate release
+        uses: appleboy/ssh-action@v1.2.2
+        env:
+          RELEASE: ${{ github.sha }}
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          envs: RELEASE
+          script: |
+            set -e
+
+            RELEASE_DIR="/var/www/avesra/releases/${RELEASE}"
+            ARCHIVE="/tmp/avesra-${RELEASE}.tar.gz"
+
+            mkdir -p "$RELEASE_DIR"
+
+            tar -xzf "$ARCHIVE" \
+              -C "$RELEASE_DIR" \
+              --strip-components=1
+
+            ln -sfn "$RELEASE_DIR" /var/www/avesra/current
+
+            sudo systemctl restart avesra
+            sudo systemctl is-active --quiet avesra
+
+            rm -f "$ARCHIVE"
+
+            echo "Deployment successful"
+            echo "Release: $RELEASE"
