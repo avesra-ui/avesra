@@ -30,23 +30,21 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract image metadata
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: |
-            type=raw,value=latest,enable={{is_default_branch}}
-            type=sha,format=short
-            type=sha,format=long
+      - name: Set image tags
+        id: tags
+        run: |
+          echo "short=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+          echo "full=${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tags.outputs.short }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tags.outputs.full }}
 
   deploy:
     name: Deploy on server
@@ -57,10 +55,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Resolve image tag
-        id: image
-        run: echo "tag=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
 
       - name: Upload docker-compose to server
         uses: appleboy/scp-action@v0.1.7
@@ -75,7 +69,8 @@ jobs:
       - name: Pull image and restart container
         uses: appleboy/ssh-action@v1.2.2
         env:
-          AVESRA_IMAGE: ghcr.io/${{ github.repository }}:${{ steps.image.outputs.tag }}
+          # Same run always pushes :latest right before this job.
+          AVESRA_IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           GHCR_PAT: ${{ secrets.GHCR_PAT }}
           GHCR_USER: ${{ secrets.GHCR_USER || github.actor }}
         with:
