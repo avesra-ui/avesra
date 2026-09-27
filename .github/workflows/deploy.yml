@@ -7,89 +7,91 @@ on:
 
 permissions:
   contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  build:
+  build-and-push:
+    name: Build and push image
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
         with:
-          node-version: 20
-          cache: npm
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build:docs
-
-      - name: Verify SSR output
-        run: test -f dist/docs/server/server.mjs
-
-      - name: Create release archive
-        run: tar -czf avesra-${{ github.sha }}.tar.gz dist/docs
-
-      - name: Upload release artifact
-        uses: actions/upload-artifact@v4
+      - name: Extract image metadata
+        id: meta
+        uses: docker/metadata-action@v5
         with:
-          name: avesra-release
-          path: avesra-${{ github.sha }}.tar.gz
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha,prefix=
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
   deploy:
-    needs: build
+    name: Deploy on server
+    needs: build-and-push
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
     steps:
-      - name: Download release artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: avesra-release
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Upload release to server
+      - name: Upload docker-compose to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
-          source: "avesra-${{ github.sha }}.tar.gz"
-          target: "/tmp"
+          source: docker-compose.yml
+          target: /var/www/avesra
 
-      - name: Activate release
+      - name: Pull image and restart container
         uses: appleboy/ssh-action@v1.2.2
         env:
-          RELEASE: ${{ github.sha }}
+          AVESRA_IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
+          GHCR_PAT: ${{ secrets.GHCR_PAT }}
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
-          envs: RELEASE
+          envs: AVESRA_IMAGE,GHCR_PAT
+          script_stop: true
           script: |
-            set -e
+            set -euo pipefail
 
-            RELEASE_DIR="/var/www/avesra/releases/${RELEASE}"
-            ARCHIVE="/tmp/avesra-${RELEASE}.tar.gz"
+            cd /var/www/avesra
 
-            mkdir -p "$RELEASE_DIR"
+            echo "$GHCR_PAT" | docker login ghcr.io -u "${{ github.repository_owner }}" --password-stdin
 
-            tar -xzf "$ARCHIVE" \
-              -C "$RELEASE_DIR" \
-              --strip-components=1
+            export AVESRA_IMAGE
+            docker compose pull
+            docker compose up -d
+            docker compose ps
 
-            ln -sfn "$RELEASE_DIR" /var/www/avesra/current
-
-            sudo systemctl restart avesra
-            sudo systemctl is-active --quiet avesra
-
-            rm -f "$ARCHIVE"
+            docker image prune -f
 
             echo "Deployment successful"
-            echo "Release: $RELEASE"
+            echo "Image: $AVESRA_IMAGE"

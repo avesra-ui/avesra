@@ -1,0 +1,10 @@
+services:
+  avesra:
+    image: ${AVESRA_IMAGE:-ghcr.io/avesra-ui/avesra:latest}
+    container_name: avesra
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+    ports:
+      - "127.0.0.1:4000:4000"
