@@ -37,7 +37,8 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
-            type=sha,prefix=
+            type=sha,format=short
+            type=sha,format=long
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
@@ -57,6 +58,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Resolve image tag
+        id: image
+        run: echo "tag=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+
       - name: Upload docker-compose to server
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -70,7 +75,7 @@ jobs:
       - name: Pull image and restart container
         uses: appleboy/ssh-action@v1.2.2
         env:
-          AVESRA_IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
+          AVESRA_IMAGE: ghcr.io/${{ github.repository }}:${{ steps.image.outputs.tag }}
           GHCR_PAT: ${{ secrets.GHCR_PAT }}
           GHCR_USER: ${{ secrets.GHCR_USER || github.actor }}
         with:
