@@ -10,8 +10,15 @@ const browserDistFolder = resolve(serverDistFolder, '../browser');
 const indexHtml = join(serverDistFolder, 'index.server.html');
 
 const app = express();
+app.set('trust proxy', 1);
+
 const commonEngine = new CommonEngine({
-  allowedHosts: ['localhost', '127.0.0.1'],
+  allowedHosts: [
+    'localhost',
+    '127.0.0.1',
+    'avesra.com',
+    'www.avesra.com',
+  ],
 });
 
 /**

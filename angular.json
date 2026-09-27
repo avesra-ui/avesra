@@ -219,7 +219,12 @@
             "scripts": [],
             "server": "projects/docs/src/main.server.ts",
             "security": {
-              "allowedHosts": ["localhost", "127.0.0.1"]
+              "allowedHosts": [
+                "localhost",
+                "127.0.0.1",
+                "avesra.com",
+                "www.avesra.com"
+              ]
             },
             "prerender": false,
             "ssr": {
