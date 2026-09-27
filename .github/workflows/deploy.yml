@@ -84,14 +84,14 @@ jobs:
 
             cd /var/www/avesra
 
-            if [ -z "${GHCR_PAT:-}" ]; then
-              echo "GHCR_PAT secret is missing. Create a classic PAT with read:packages and add it to repo secrets."
-              exit 1
+            export AVESRA_IMAGE
+
+            if [ -n "${GHCR_PAT:-}" ]; then
+              printf '%s' "$GHCR_PAT" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
+            else
+              echo "GHCR_PAT not set — trying anonymous pull (works only if the GHCR package is public)."
             fi
 
-            printf '%s' "$GHCR_PAT" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
-
-            export AVESRA_IMAGE
             docker compose pull
             docker compose up -d
             docker compose ps
