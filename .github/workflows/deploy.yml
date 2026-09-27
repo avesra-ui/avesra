@@ -86,12 +86,11 @@ jobs:
 
             export AVESRA_IMAGE
 
-            if [ -n "${GHCR_PAT:-}" ]; then
-              printf '%s' "$GHCR_PAT" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
-            else
-              echo "GHCR_PAT not set — trying anonymous pull (works only if the GHCR package is public)."
+            if [ -z "${GHCR_PAT:-}" ]; then
+              echo "Missing repo secret GHCR_PAT (classic PAT with read:packages)."
+              exit 1
             fi
-
+            printf '%s' "$GHCR_PAT" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
             docker compose pull
             docker compose up -d
             docker compose ps
