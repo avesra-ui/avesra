@@ -2,6 +2,7 @@
   "name": "@avesra/angular",
   "version": "0.0.1",
   "description": "Avesra UI components for Angular",
+  "license": "MIT",
   "homepage": "https://avesra.com",
   "repository": {
     "type": "git",

@@ -88,11 +88,11 @@ Start the docs site and open the handbook:
 npm run start:docs
 ```
 
-- **Introduction** — `/docs/introduction`
-- **Installation** — `/docs/installation`
-- **Theming** — `/docs/theming`
-- **Components** — `/docs/components`
-- **Changelog** — `/docs/changelog`
+- **Introduction** — [**avesra.com**/docs/introduction](https://avesra.com/docs/introduction)
+- **Installation** — [**avesra.com**/docs/installation](https://avesra.com/docs/installation)
+- **Theming** — [**avesra.com**/docs/theming](https://avesra.com/docs/theming)
+- **Components** — [**avesra.com**/docs/components](https://avesra.com/docs/components)
+- **Changelog** — [**avesra.com**/docs/changelog](https://avesra.com/docs/changelog)
 
 ## Playground
 

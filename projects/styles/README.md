@@ -10,9 +10,9 @@ Run the handbook from the monorepo:
 npm run start:docs
 ```
 
-- **Installation** — `/docs/installation`
-- **Theming** — `/docs/theming`
-- **Components** — `/docs/components`
+- **Installation** — [**avesra.com**/docs/installation](https://avesra.com/docs/installation)
+- **Theming** — [**avesra.com**/docs/theming](https://avesra.com/docs/theming)
+- **Components** — [**avesra.com**/docs/components](https://avesra.com/docs/components)
 
 Source and issues: [github.com/avesra-ui/avesra](https://github.com/avesra-ui/avesra)
 
