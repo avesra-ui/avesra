@@ -3,6 +3,8 @@ import { CommonEngine, isMainModule } from '@angular/ssr/node';
 import express from 'express';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { AVESRA_SITE_ORIGIN } from './app/seo/docs-seo.config';
+import { buildSitemapXml } from './app/seo/docs-sitemap';
 import bootstrap from './main.server';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
@@ -32,6 +34,14 @@ const commonEngine = new CommonEngine({
  * });
  * ```
  */
+
+app.get('/robots.txt', (_req, res) => {
+  res.type('text/plain').send(`User-agent: *\nAllow: /\n\nSitemap: ${AVESRA_SITE_ORIGIN}/sitemap.xml\n`);
+});
+
+app.get('/sitemap.xml', (_req, res) => {
+  res.type('application/xml').send(buildSitemapXml());
+});
 
 /**
  * Serve static files from /browser (assets only — HTML is rendered by SSR).

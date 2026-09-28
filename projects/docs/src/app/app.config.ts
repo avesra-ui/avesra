@@ -7,11 +7,12 @@ import {
   provideZoneChangeDetection,
 } from '@angular/core';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { provideRouter, withInMemoryScrolling } from '@angular/router';
+import { provideRouter, TitleStrategy, withInMemoryScrolling } from '@angular/router';
 
 import { provideAvesraTheme } from '@avesra/styles';
 
 import { routes } from './app.routes';
+import { DocsSeoStrategy } from './seo/docs-seo.strategy';
 import { getDocsStickyOffsetPx } from './utils/docs-anchor-scroll';
 
 function initDocsAnchorScrollOffset(): void {
@@ -33,6 +34,7 @@ export const appConfig: ApplicationConfig = {
         scrollPositionRestoration: 'enabled',
       }),
     ),
+    { provide: TitleStrategy, useClass: DocsSeoStrategy },
     provideClientHydration(withEventReplay()),
     provideAvesraTheme({ mode: 'dark', persist: true }),
   ],

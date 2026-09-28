@@ -6,6 +6,10 @@ export const COMPONENTS_ROUTES: Routes = [
     loadComponent: () =>
       import('./components-index.page').then((m) => m.ComponentsIndexPage),
     title: 'All Components | Avesra Docs',
+    data: {
+      metaDescription:
+        'Browse all Avesra Angular components: buttons, forms, overlays, navigation, and data display primitives.',
+    },
   },
   {
     path: 'button',
