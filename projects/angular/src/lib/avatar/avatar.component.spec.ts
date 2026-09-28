@@ -20,7 +20,7 @@ import type { AvAvatarColor, AvAvatarSize, AvAvatarVariant } from './avatar.util
         <img
           av-avatar-image
           [src]="src"
-          alt="John Doe"
+          [alt]="alt"
         />
       }
       <span av-avatar-fallback>{{ fallbackText }}</span>
@@ -34,6 +34,7 @@ class AvatarHostComponent {
   variant: AvAvatarVariant = 'default';
   showImage = false;
   src = 'https://example.com/avatar.jpg';
+  alt = 'John Doe';
   fallbackText = 'JD';
 }
 
@@ -104,6 +105,13 @@ describe('AvAvatarImageComponent', () => {
   it('should render image with avatar image classes', () => {
     expect(image.classList.contains('av-avatar__image')).toBeTrue();
     expect(image.getAttribute('src')).toBe('https://example.com/avatar.jpg');
+  });
+
+  it('should keep an empty alt for decorative images', () => {
+    host.alt = '';
+    fixture.detectChanges();
+
+    expect(image.getAttribute('alt')).toBe('');
   });
 
   it('should hide fallback after image loads', () => {

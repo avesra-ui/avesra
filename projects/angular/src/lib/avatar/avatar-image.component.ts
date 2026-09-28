@@ -10,7 +10,7 @@ import { avAvatarImageClasses } from './avatar.utils';
   host: {
     '[class]': 'classes()',
     '[attr.src]': 'src() || null',
-    '[attr.alt]': 'alt() || null',
+    '[attr.alt]': 'alt() ?? null',
     '[attr.srcset]': 'srcset() || null',
     '[attr.sizes]': 'sizes() || null',
     '[attr.crossorigin]': 'crossOrigin() || null',
