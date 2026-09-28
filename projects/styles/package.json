@@ -2,6 +2,15 @@
   "name": "@avesra/styles",
   "version": "0.0.1",
   "description": "Avesra design tokens, themes, component styles, and CSS utilities",
+  "homepage": "https://avesra.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avesra-ui/avesra.git",
+    "directory": "projects/styles"
+  },
+  "bugs": {
+    "url": "https://github.com/avesra-ui/avesra/issues"
+  },
   "style": "./src/index.css",
   "peerDependencies": {
     "@angular/common": "^19.2.0",

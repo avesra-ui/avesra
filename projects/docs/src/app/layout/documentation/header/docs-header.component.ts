@@ -17,6 +17,7 @@ import { AvThemeService } from '@avesra/styles';
 import { AppIconComponent } from '../../../components/app-icon/app-icon.component';
 import { AvesraLogoComponent } from '../../../components/avesra-logo/avesra-logo.component';
 import {
+  DOCS_GITHUB_URL,
   DOCS_SIDEBAR_BY_KEY,
   DOCS_SIDEBAR_TABS,
   resolveSidebarKey,
@@ -58,7 +59,7 @@ export class DocsHeaderComponent {
   readonly theme = inject(AvThemeService);
   readonly search = inject(DocsSearchService);
 
-  readonly githubUrl = 'https://github.com/avesra-ui';
+  readonly githubUrl = DOCS_GITHUB_URL;
   readonly sidebarTabs = DOCS_SIDEBAR_TABS;
   navDrawerOpen = false;
 

@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { AvButtonComponent } from '@avesra/angular';
 
 import { AppIconComponent } from '../../components/app-icon/app-icon.component';
-import { DOCS_VERSION } from '../../config/docs-nav.config';
+import { DOCS_GITHUB_URL, DOCS_VERSION } from '../../config/docs-nav.config';
 import { HomeShowcaseComponent } from './home-showcase/home-showcase.component';
 
 @Component({
@@ -15,5 +15,5 @@ import { HomeShowcaseComponent } from './home-showcase/home-showcase.component';
 })
 export class HomePage {
   readonly version = DOCS_VERSION;
-  readonly githubUrl = 'https://github.com/avesra-ui';
+  readonly githubUrl = DOCS_GITHUB_URL;
 }

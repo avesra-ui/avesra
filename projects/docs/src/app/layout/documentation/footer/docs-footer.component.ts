@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { AvLinkComponent } from '@avesra/angular';
 
 import { AppIconComponent } from '../../../components/app-icon/app-icon.component';
-import { DOCS_SOCIAL_MEDIAS } from '../../../config/docs-nav.config';
+import { DOCS_GITHUB_URL, DOCS_SOCIAL_MEDIAS } from '../../../config/docs-nav.config';
 
 /**
  * Docs site footer.
@@ -35,10 +35,11 @@ import { DOCS_SOCIAL_MEDIAS } from '../../../config/docs-nav.config';
       Made with
       <span class="text-red-500">❤</span>
       by SyntaxHertz. Open source and available on
-      <a av-link href="https://github.com/avesra-ui" underline="always">GitHub</a>.
+      <a av-link [href]="githubUrl" underline="always">GitHub</a>.
     </p>
   `,
 })
 export class DocsFooterComponent {
   readonly socialMedias = signal([...DOCS_SOCIAL_MEDIAS]);
+  readonly githubUrl = DOCS_GITHUB_URL;
 }

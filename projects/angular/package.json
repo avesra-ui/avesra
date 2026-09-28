@@ -2,6 +2,15 @@
   "name": "@avesra/angular",
   "version": "0.0.1",
   "description": "Avesra UI components for Angular",
+  "homepage": "https://avesra.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avesra-ui/avesra.git",
+    "directory": "projects/angular"
+  },
+  "bugs": {
+    "url": "https://github.com/avesra-ui/avesra/issues"
+  },
   "peerDependencies": {
     "@angular/common": "^19.2.0",
     "@angular/core": "^19.2.0",

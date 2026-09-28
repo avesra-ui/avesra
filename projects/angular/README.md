@@ -107,13 +107,13 @@ npm start
 We're excited to see the community adopt Avesra, raise issues, and provide feedback.
 Whether it's a feature request, bug report, or a project to showcase, please get involved!
 
-- [GitHub](https://github.com/avesra-ui)
+- [GitHub](https://github.com/avesra-ui/avesra)
 
 ## Contributing
 
 Contributions are always welcome!
 
-Open an issue or pull request on [GitHub](https://github.com/avesra-ui). Star the repo if Avesra helps you ship.
+Open an issue or pull request on [GitHub](https://github.com/avesra-ui/avesra). Star the repo if Avesra helps you ship.
 
 ## License
 

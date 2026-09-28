@@ -11,7 +11,7 @@ import {
 
 import { AppIconComponent } from '../../components/app-icon/app-icon.component';
 import { DocPageComponent } from '../../components/doc-page/doc-page.component';
-import { DOCS_SOCIAL_MEDIAS } from '../../config/docs-nav.config';
+import { DOCS_GITHUB_URL } from '../../config/docs-nav.config';
 import type { DocTocItem } from '../../models/doc-toc.model';
 
 interface IntroFeature {
@@ -46,7 +46,7 @@ export class IntroductionPage {
     themes: '@avesra/styles',
   };
 
-  readonly githubUrl = DOCS_SOCIAL_MEDIAS[0].url;
+  readonly githubUrl = DOCS_GITHUB_URL;
 
   readonly features: IntroFeature[] = [
     {

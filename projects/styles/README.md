@@ -14,7 +14,7 @@ npm run start:docs
 - **Theming** — `/docs/theming`
 - **Components** — `/docs/components`
 
-Source and issues: [github.com/avesra-ui](https://github.com/avesra-ui)
+Source and issues: [github.com/avesra-ui/avesra](https://github.com/avesra-ui/avesra)
 
 ## Installation
 

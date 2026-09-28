@@ -46,6 +46,8 @@ export interface DocsSidebarTab {
 
 export const DOCS_VERSION = 'v0.0.1';
 
+export const DOCS_GITHUB_URL = 'https://github.com/avesra-ui/avesra';
+
 /** Header nav paths. */
 export const DOCS_HEADER_PATHS: DocsNavItem[] = [
   { name: 'Docs', path: '/docs/introduction', available: true },
@@ -56,7 +58,7 @@ export const DOCS_HEADER_PATHS: DocsNavItem[] = [
 export const DOCS_SOCIAL_MEDIAS = [
   {
     name: 'GitHub',
-    url: 'https://github.com/avesra-ui',
+    url: DOCS_GITHUB_URL,
     icon: 'avesra:github',
   },
 ] as const;
