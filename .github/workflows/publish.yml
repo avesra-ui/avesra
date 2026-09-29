@@ -35,7 +35,7 @@ jobs:
           TAG="${GITHUB_REF_NAME}"
           VERSION="${TAG#v}"
           if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "Tag must be a version like v0.1.0 (got ${TAG})."
+            echo "Tag must be a version like v0.0.1 (got ${TAG})."
             exit 1
           fi
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
@@ -59,20 +59,22 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Apply tag version
+      - name: Require tag to match package versions
         env:
           VERSION: ${{ steps.version.outputs.version }}
         run: |
           node <<'EOF'
           const fs = require('fs');
           const version = process.env.VERSION;
-          for (const file of ['projects/angular/package.json', 'projects/styles/package.json']) {
-            const pkg = JSON.parse(fs.readFileSync(file, 'utf8'));
-            pkg.version = version;
-            if (pkg.peerDependencies?.['@avesra/styles']) {
-              pkg.peerDependencies['@avesra/styles'] = `>=${version}`;
-            }
-            fs.writeFileSync(file, `${JSON.stringify(pkg, null, 2)}\n`);
+          const angular = JSON.parse(fs.readFileSync('projects/angular/package.json', 'utf8')).version;
+          const styles = JSON.parse(fs.readFileSync('projects/styles/package.json', 'utf8')).version;
+          if (angular !== version) {
+            console.error(`Tag v${version} does not match @avesra/angular version ${angular}.`);
+            process.exit(1);
+          }
+          if (styles !== version) {
+            console.error(`@avesra/styles version ${styles} does not match @avesra/angular version ${angular}.`);
+            process.exit(1);
           }
           EOF
 
@@ -94,8 +96,77 @@ jobs:
         run: npm publish --access public --provenance
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ github.ref_name }}
-          name: ${{ github.ref_name }}
-          generate_release_notes: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          node <<'EOF'
+          const fs = require('fs');
+          const { execFileSync } = require('child_process');
+
+          const tag = process.env.TAG;
+          const repo = process.env.GITHUB_REPOSITORY;
+          const nav = fs.readFileSync('projects/docs/src/app/config/docs-nav.config.ts', 'utf8');
+          const docsVersion = nav.match(/DOCS_VERSION = '([^']+)'/)?.[1] ?? '';
+          const changelog = fs.readFileSync('projects/docs/src/app/pages/changelog/changelog.data.ts', 'utf8');
+
+          function quotedList(block, key) {
+            const match = block.match(new RegExp(key + ': \\[([\\s\\S]*?)\\]'));
+            if (!match) return [];
+            return [...match[1].matchAll(/'([^']+)'/g)].map((item) => item[1]);
+          }
+
+          let highlights = [];
+          for (const entry of changelog.split(/\n  \{/).slice(1)) {
+            const field = entry.match(/version: ([^,\n]+)/)?.[1]?.trim() ?? '';
+            const version = field === 'DOCS_VERSION' ? docsVersion : field.replace(/['"]/g, '');
+            if (version === tag) {
+              highlights = quotedList(entry, 'highlights');
+              break;
+            }
+          }
+
+          const inside = highlights.length
+            ? highlights.map((line) => `- ${line}`).join('\n')
+            : '- See the commits below.';
+
+          const generated = execFileSync(
+            'gh',
+            [
+              'api',
+              '--method', 'POST',
+              '-H', 'Accept: application/vnd.github+json',
+              `/repos/${repo}/releases/generate-notes`,
+              '-f', `tag_name=${tag}`,
+              '-q', '.body',
+            ],
+            { encoding: 'utf8' },
+          );
+
+          const changelogLine = generated
+            .split('\n')
+            .find((line) => line.startsWith('**Full Changelog**:')) ?? '';
+          const changed = generated
+            .split('\n')
+            .filter((line) => !line.startsWith('**Full Changelog**:'))
+            .join('\n')
+            .trim();
+
+          const body = [
+            "## What's Inside",
+            '',
+            inside,
+            '',
+            changed,
+            '',
+            '## Full Release Note',
+            '',
+            'https://avesra.com/docs/changelog',
+            '',
+            changelogLine,
+            '',
+          ].join('\n');
+
+          fs.writeFileSync('release-notes.md', body);
+          EOF
+          gh release create "$TAG" --title "$TAG" --notes-file release-notes.md --latest

@@ -18,9 +18,38 @@ export interface ChangelogRelease {
 
 export const CHANGELOG_RELEASES: ChangelogRelease[] = [
   {
+    version: 'v0.1.0',
+    date: '2026-09-29',
+    latest: true,
+    highlights: [
+      'Dropdown opens from a real popover, with menu item and section in the same API',
+    ],
+    changes: [
+      {
+        type: 'enhancement',
+        scope: 'Dropdown',
+        text: 'Content is an ng-template and the panel is div[av-dropdown-popover]',
+      },
+      {
+        type: 'enhancement',
+        scope: 'Dropdown',
+        text: 'Placement, offset, and flip are set on av-dropdown',
+      },
+      {
+        type: 'enhancement',
+        scope: 'Dropdown',
+        text: 'Menu item and section use av-dropdown-menu-item and av-dropdown-menu-section',
+      },
+      {
+        type: 'enhancement',
+        scope: 'Docs',
+        text: 'Dropdown examples set a 220px minimum width on the popover',
+      },
+    ],
+  },
+  {
     version: DOCS_VERSION,
     date: '2026-08-22',
-    latest: true,
     highlights: [
       'Initial public release of Avesra for Angular 19',
       'Standalone components, signals, and SSR-ready documentation',

@@ -1,6 +1,6 @@
 {
   "name": "@avesra/angular",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Avesra UI components for Angular",
   "license": "MIT",
   "homepage": "https://avesra.com",
@@ -18,7 +18,7 @@
   "peerDependencies": {
     "@angular/common": "^19.2.0",
     "@angular/core": "^19.2.0",
-    "@avesra/styles": ">=0.0.1"
+    "@avesra/styles": ">=0.1.0"
   },
   "dependencies": {
     "@angular/cdk": "^19.2.0",
