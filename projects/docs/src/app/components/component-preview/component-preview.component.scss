@@ -1,6 +1,8 @@
 .av-component-preview {
   position: relative;
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   margin-block: 1rem;
 }
 
@@ -14,12 +16,17 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .av-component-preview__sandbox {
   display: grid;
-  place-items: center;
+  place-items: safe center;
+  min-width: 0;
+  max-width: 100%;
   min-height: 21.875rem;
+  overflow-x: auto;
   padding: 2.5rem 1rem;
   border: 1px solid var(--av-separator);
   border-bottom: none;
@@ -28,6 +35,8 @@
 }
 
 .av-component-preview__code {
+  min-width: 0;
+  max-width: 100%;
   overflow: hidden;
   border: 1px solid var(--av-separator);
   border-radius: 0 0 0.75rem 0.75rem;

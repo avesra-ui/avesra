@@ -1,5 +1,7 @@
 .av-doc-code-block {
   position: relative;
+  min-width: 0;
+  max-width: 100%;
   margin: 0;
   padding: 1rem 0.5rem 0;
   background-color: transparent;
@@ -84,8 +86,10 @@
 }
 
 .av-doc-code-block__scroll {
+  min-width: 0;
+  max-width: 100%;
   overflow-x: auto;
-  overflow-y: visible;
+  overflow-y: hidden;
   padding: 0;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -98,7 +102,8 @@
 }
 
 .av-doc-code-block--collapsed .av-doc-code-block__scroll {
-  overflow: visible;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .av-doc-code-block__content {

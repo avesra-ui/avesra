@@ -8,7 +8,7 @@ import {
 import { AppIconComponent } from '../../components/app-icon/app-icon.component';
 
 const DEMO_TEMPLATE = `<div av-card class="w-[400px]">
-      <span class="self-start" role="img" aria-label="Dollar sign icon">
+      <span class="inline-flex shrink-0 self-start" role="img" aria-label="Dollar sign icon">
         <app-icon icon="solar:dollar-linear" size="24" class="text-foreground" />
       </span>
       <div av-card-header>
