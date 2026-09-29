@@ -12,6 +12,9 @@
   "bugs": {
     "url": "https://github.com/avesra-ui/avesra/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "@angular/common": "^19.2.0",
     "@angular/core": "^19.2.0",

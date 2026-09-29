@@ -2,6 +2,7 @@
   "name": "@avesra/styles",
   "version": "0.0.1",
   "description": "Avesra design tokens, themes, component styles, and CSS utilities",
+  "license": "MIT",
   "homepage": "https://avesra.com",
   "repository": {
     "type": "git",
@@ -10,6 +11,9 @@
   },
   "bugs": {
     "url": "https://github.com/avesra-ui/avesra/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "style": "./src/index.css",
   "peerDependencies": {
