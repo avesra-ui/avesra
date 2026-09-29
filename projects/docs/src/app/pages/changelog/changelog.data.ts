@@ -18,7 +18,7 @@ export interface ChangelogRelease {
 
 export const CHANGELOG_RELEASES: ChangelogRelease[] = [
   {
-    version: 'v0.1.0',
+    version: DOCS_VERSION,
     date: '2026-09-29',
     latest: true,
     highlights: [
@@ -48,7 +48,7 @@ export const CHANGELOG_RELEASES: ChangelogRelease[] = [
     ],
   },
   {
-    version: DOCS_VERSION,
+    version: 'v0.0.1',
     date: '2026-08-22',
     highlights: [
       'Initial public release of Avesra for Angular 19',

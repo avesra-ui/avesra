@@ -44,7 +44,7 @@ export interface DocsSidebarTab {
   sidebarKey: NonNullable<DocsMainNavItem['sidebarKey']>;
 }
 
-export const DOCS_VERSION = 'v0.0.1';
+export const DOCS_VERSION = 'v0.1.0';
 
 export const DOCS_GITHUB_URL = 'https://github.com/avesra-ui/avesra';
 
