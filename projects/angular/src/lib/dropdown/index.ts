@@ -20,6 +20,10 @@ export {
 export { AvDropdownContext } from './dropdown.context';
 export { AvDropdownComponent } from './dropdown.component';
 export { AvDropdownTriggerDirective } from './dropdown-trigger.directive';
+export { AvDropdownContentDirective } from './dropdown-content.directive';
 export { AvDropdownPopoverComponent } from './dropdown-popover.component';
 export { AvDropdownMenuComponent } from './dropdown-menu.component';
 export { AvDropdownImports } from './dropdown.imports';
+export * from './menu';
+export * from './menu-item';
+export * from './menu-section';

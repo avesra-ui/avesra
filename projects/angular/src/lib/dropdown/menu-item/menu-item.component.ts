@@ -10,13 +10,13 @@ import {
 } from '@angular/core';
 
 import { AvMenuContext } from '../menu/menu.context';
-import { avMenuItemClasses } from './menu-item.utils';
-import type { AvMenuItemVariant } from './menu-item.utils';
+import { avDropdownMenuItemClasses } from './menu-item.utils';
+import type { AvDropdownMenuItemVariant } from './menu-item.utils';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'div[av-menu-item]',
-  exportAs: 'avMenuItem',
+  selector: 'div[av-dropdown-menu-item]',
+  exportAs: 'avDropdownMenuItem',
   template: `<ng-content />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
@@ -27,12 +27,12 @@ import type { AvMenuItemVariant } from './menu-item.utils';
     '[attr.aria-checked]': 'ariaChecked()',
     '[attr.data-selected]': 'isSelected() ? "true" : null',
     '[attr.data-disabled]': 'isDisabled() ? "true" : null',
-    'data-slot': 'menu-item',
+    'data-slot': 'dropdown-menu-item',
     '(click)': 'onClick($event)',
     '(keydown)': 'onKeydown($event)',
   },
 })
-export class AvMenuItemComponent implements FocusableOption {
+export class AvDropdownMenuItemComponent implements FocusableOption {
   private readonly menuContext = inject(AvMenuContext);
   private readonly elementRef = inject(ElementRef<HTMLElement>);
 
@@ -43,7 +43,7 @@ export class AvMenuItemComponent implements FocusableOption {
   readonly textValue = input<string>();
 
   /** Visual style variant. */
-  readonly variant = input<AvMenuItemVariant>('default');
+  readonly variant = input<AvDropdownMenuItemVariant>('default');
 
   /** Disables the item. */
   readonly disabledInput = input(false, { alias: 'disabled', transform: booleanAttribute });
@@ -52,7 +52,7 @@ export class AvMenuItemComponent implements FocusableOption {
   readonly customClass = input<string>('', { alias: 'class' });
 
   protected readonly classes = computed(() =>
-    avMenuItemClasses({ variant: this.variant(), extraClass: this.customClass() }),
+    avDropdownMenuItemClasses({ variant: this.variant(), extraClass: this.customClass() }),
   );
 
   protected readonly isDisabled = computed(

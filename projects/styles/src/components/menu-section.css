@@ -1,5 +1,0 @@
-/* av-menu-section component styles */
-
-.av-menu-section {
-  @apply flex flex-col items-start gap-0;
-}

@@ -9,30 +9,31 @@ import {
 
 const DEMO_TEMPLATE = `<av-dropdown>
   <button av-button variant="secondary" aria-label="Menu" av-dropdown-trigger>Actions</button>
-  <av-dropdown-popover>
+  <ng-template avDropdownContent>
+    <div av-dropdown-popover class="min-w-[220px]">
     <div av-dropdown-menu (action)="onAction($event)">
-      <div av-menu-item id="new" textValue="New">
+      <div av-dropdown-menu-item id="new" textValue="New">
         <label av-label>New</label>
         <kbd av-kbd variant="light" class="ms-auto">
           <abbr av-kbd-abbr key-value="command"></abbr>
           <span av-kbd-content>N</span>
         </kbd>
       </div>
-      <div av-menu-item id="open" textValue="Open">
+      <div av-dropdown-menu-item id="open" textValue="Open">
         <label av-label>Open</label>
         <kbd av-kbd variant="light" class="ms-auto">
           <abbr av-kbd-abbr key-value="command"></abbr>
           <span av-kbd-content>O</span>
         </kbd>
       </div>
-      <div av-menu-item id="save" textValue="Save">
+      <div av-dropdown-menu-item id="save" textValue="Save">
         <label av-label>Save</label>
         <kbd av-kbd variant="light" class="ms-auto">
           <abbr av-kbd-abbr key-value="command"></abbr>
           <span av-kbd-content>S</span>
         </kbd>
       </div>
-      <div av-menu-item id="delete" textValue="Delete" variant="danger">
+      <div av-dropdown-menu-item id="delete" textValue="Delete" variant="danger">
         <label av-label>Delete</label>
         <kbd av-kbd variant="light" class="ms-auto">
           <abbr av-kbd-abbr key-value="command"></abbr>
@@ -41,7 +42,8 @@ const DEMO_TEMPLATE = `<av-dropdown>
         </kbd>
       </div>
     </div>
-  </av-dropdown-popover>
+    </div>
+  </ng-template>
 </av-dropdown>`;
 
 export const DEMO_NAME = 'dropdown-with-keyboard-shortcuts';

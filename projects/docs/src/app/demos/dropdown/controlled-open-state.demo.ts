@@ -6,28 +6,30 @@ import {
   AvLabelComponent,
 } from '@avesra/angular';
 
-const DEMO_TEMPLATE = `<div class="flex min-w-sm flex-col items-center justify-center gap-4">
+const DEMO_TEMPLATE = `<div class="flex flex-col items-center justify-center gap-4">
   <p class="text-sm text-muted">
     Dropdown is: <strong>{{ open() ? 'open' : 'closed' }}</strong>
   </p>
   <av-dropdown [(open)]="open">
     <button av-button variant="secondary" aria-label="Menu" av-dropdown-trigger>Actions</button>
-    <av-dropdown-popover>
+    <ng-template avDropdownContent>
+      <div av-dropdown-popover class="min-w-[220px]">
       <div av-dropdown-menu>
-        <div av-menu-item id="new-file" textValue="New file">
+        <div av-dropdown-menu-item id="new-file" textValue="New file">
           <label av-label>New file</label>
         </div>
-        <div av-menu-item id="open-file" textValue="Open file">
+        <div av-dropdown-menu-item id="open-file" textValue="Open file">
           <label av-label>Open file</label>
         </div>
-        <div av-menu-item id="save-file" textValue="Save file">
+        <div av-dropdown-menu-item id="save-file" textValue="Save file">
           <label av-label>Save file</label>
         </div>
-        <div av-menu-item id="delete-file" textValue="Delete file" variant="danger">
+        <div av-dropdown-menu-item id="delete-file" textValue="Delete file" variant="danger">
           <label av-label>Delete file</label>
         </div>
       </div>
-    </av-dropdown-popover>
+      </div>
+    </ng-template>
   </av-dropdown>
 </div>`;
 

@@ -52,7 +52,7 @@
       <p class="av-doc-prose__description">
         Set <code>selection-mode="multiple"</code> to let users toggle several items without closing
         the menu. Project a custom <code>av-checkbox</code> into the indicator and bind it with
-        <code>#item="avMenuItem"</code> and <code>[selected]="item.isSelected()"</code>.
+        <code>#item="avDropdownMenuItem"</code> and <code>[selected]="item.isSelected()"</code>.
       </p>
       <app-component-preview [demo]="demos.multipleSelection" />
     </section>
@@ -80,7 +80,7 @@
     <section class="av-doc-prose__section" id="with-keyboard-shortcuts">
       <h2 class="av-doc-prose__heading">With Keyboard Shortcuts</h2>
       <p class="av-doc-prose__description">
-        Compose <code>kbd[av-kbd]</code> inside <code>av-menu-item</code> with
+        Compose <code>kbd[av-kbd]</code> inside <code>av-dropdown-menu-item</code> with
         <code>class="ms-auto"</code> to show trailing keyboard shortcuts.
       </p>
       <app-component-preview [demo]="demos.withKeyboardShortcuts" />
@@ -108,18 +108,18 @@
 
       <h3 class="av-doc-prose__subheading" id="menu-classes">Menu Classes</h3>
       <p class="av-doc-prose__description">
-        Dropdown composes the shared <code>av-menu-item</code> and <code>av-menu-section</code>
-        primitives, so their classes are also available for customization:
+        Dropdown composes <code>av-dropdown-menu-item</code> and <code>av-dropdown-menu-section</code>,
+        so their classes are also available for customization:
       </p>
       <ul class="av-doc-prose__list">
-        <li><code>.av-menu-item</code> — Individual menu item container</li>
-        <li><code>.av-menu-item--danger</code> — Danger item variant</li>
-        <li><code>.av-menu-item__indicator</code> — Selection indicator (checkmark or dot)</li>
+        <li><code>.av-dropdown-menu-item</code> — Individual menu item container</li>
+        <li><code>.av-dropdown-menu-item--danger</code> — Danger item variant</li>
+        <li><code>.av-dropdown-menu-item__indicator</code> — Selection indicator (checkmark or dot)</li>
         <li>
-          <code>[data-slot="menu-item-indicator--checkmark"]</code> — Checkmark indicator SVG
+          <code>[data-slot="dropdown-menu-item-indicator--checkmark"]</code> — Checkmark indicator SVG
         </li>
-        <li><code>[data-slot="menu-item-indicator--dot"]</code> — Dot indicator SVG</li>
-        <li><code>.av-menu-section</code> — Section group (<code>role="group"</code>)</li>
+        <li><code>[data-slot="dropdown-menu-item-indicator--dot"]</code> — Dot indicator SVG</li>
+        <li><code>.av-dropdown-menu-section</code> — Section group (<code>role="group"</code>)</li>
         <li><code>[data-slot="separator"]</code> — Separator elements within the menu</li>
       </ul>
 
@@ -153,19 +153,21 @@
   &lt;button av-button variant="secondary" aria-label="Menu" av-dropdown-trigger&gt;
     Actions
   &lt;/button&gt;
-  &lt;av-dropdown-popover&gt;
-    &lt;div av-dropdown-menu (action)="onAction($event)"&gt;
-      &lt;div av-menu-item id="new-file" textValue="New file"&gt;
-        &lt;label av-label&gt;New file&lt;/label&gt;
-      &lt;/div&gt;
-      &lt;div av-menu-item id="open-file" textValue="Open file"&gt;
-        &lt;label av-label&gt;Open file&lt;/label&gt;
-      &lt;/div&gt;
-      &lt;div av-menu-item id="delete-file" textValue="Delete file" variant="danger"&gt;
-        &lt;label av-label&gt;Delete file&lt;/label&gt;
+  &lt;ng-template avDropdownContent&gt;
+    &lt;div av-dropdown-popover class="min-w-[220px]"&gt;
+      &lt;div av-dropdown-menu (action)="onAction($event)"&gt;
+        &lt;div av-dropdown-menu-item id="new-file" textValue="New file"&gt;
+          &lt;label av-label&gt;New file&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div av-dropdown-menu-item id="open-file" textValue="Open file"&gt;
+          &lt;label av-label&gt;Open file&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div av-dropdown-menu-item id="delete-file" textValue="Delete file" variant="danger"&gt;
+          &lt;label av-label&gt;Delete file&lt;/label&gt;
+        &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-  &lt;/av-dropdown-popover&gt;
+  &lt;/ng-template&gt;
 &lt;/av-dropdown&gt;</code></pre>
 
       <h3 class="av-doc-prose__subheading" id="example-controlled-selection">Controlled Selection</h3>
@@ -177,22 +179,24 @@
   &lt;button av-button variant="secondary" aria-label="Format" av-dropdown-trigger&gt;
     Format
   &lt;/button&gt;
-  &lt;av-dropdown-popover&gt;
-    &lt;div
-      av-dropdown-menu
-      selection-mode="multiple"
-      [(selectedKeys)]="selected"
-    &gt;
-      &lt;div av-menu-item id="bold" textValue="Bold"&gt;
-        &lt;label av-label&gt;Bold&lt;/label&gt;
-        &lt;span av-menu-item-indicator&gt;&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;div av-menu-item id="italic" textValue="Italic"&gt;
-        &lt;label av-label&gt;Italic&lt;/label&gt;
-        &lt;span av-menu-item-indicator&gt;&lt;/span&gt;
+  &lt;ng-template avDropdownContent&gt;
+    &lt;div av-dropdown-popover&gt;
+      &lt;div
+        av-dropdown-menu
+        selection-mode="multiple"
+        [(selectedKeys)]="selected"
+      &gt;
+        &lt;div av-dropdown-menu-item id="bold" textValue="Bold"&gt;
+          &lt;label av-label&gt;Bold&lt;/label&gt;
+          &lt;span av-dropdown-menu-item-indicator&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div av-dropdown-menu-item id="italic" textValue="Italic"&gt;
+          &lt;label av-label&gt;Italic&lt;/label&gt;
+          &lt;span av-dropdown-menu-item-indicator&gt;&lt;/span&gt;
+        &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-  &lt;/av-dropdown-popover&gt;
+  &lt;/ng-template&gt;
 &lt;/av-dropdown&gt;</code></pre>
     </section>
 
@@ -225,8 +229,9 @@
       <h2 class="av-doc-prose__heading">API</h2>
       <p class="av-doc-prose__description">
         Compound API across <code>av-dropdown</code>, <code>av-dropdown-trigger</code>,
-        <code>av-dropdown-popover</code>, <code>av-dropdown-menu</code>, <code>av-menu-item</code>,
-        <code>av-menu-item-indicator</code>, and <code>av-menu-section</code> (no inputs). See also
+        <code>ng-template[avDropdownContent]</code>, <code>div[av-dropdown-popover]</code>,
+        <code>av-dropdown-menu</code>, <code>av-dropdown-menu-item</code>,
+        <code>av-dropdown-menu-item-indicator</code>, and <code>av-dropdown-menu-section</code> (no inputs). See also
         <a routerLink="/docs/components/list-box">List Box</a>, which shares the same item and section
         composition for non-overlay selection lists.
       </p>

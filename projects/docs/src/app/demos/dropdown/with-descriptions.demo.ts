@@ -12,9 +12,10 @@ import { AppIconComponent } from '../../components/app-icon/app-icon.component';
 
 const DEMO_TEMPLATE = `<av-dropdown>
   <button av-button variant="secondary" aria-label="Menu" av-dropdown-trigger>Actions</button>
-  <av-dropdown-popover>
+  <ng-template avDropdownContent>
+    <div av-dropdown-popover class="min-w-[220px]">
     <div av-dropdown-menu (action)="onAction($event)">
-      <div av-menu-item id="new-file" textValue="New file">
+      <div av-dropdown-menu-item id="new-file" textValue="New file">
         <div class="flex h-8 items-start justify-center pt-px">
           <app-icon icon="solar:add-square-linear" size="16" class="shrink-0 text-muted" />
         </div>
@@ -27,7 +28,7 @@ const DEMO_TEMPLATE = `<av-dropdown>
           <span av-kbd-content>N</span>
         </kbd>
       </div>
-      <div av-menu-item id="open-file" textValue="Open file">
+      <div av-dropdown-menu-item id="open-file" textValue="Open file">
         <div class="flex h-8 items-start justify-center pt-px">
           <app-icon icon="solar:folder-open-linear" size="16" class="shrink-0 text-muted" />
         </div>
@@ -40,7 +41,7 @@ const DEMO_TEMPLATE = `<av-dropdown>
           <span av-kbd-content>O</span>
         </kbd>
       </div>
-      <div av-menu-item id="save-file" textValue="Save file">
+      <div av-dropdown-menu-item id="save-file" textValue="Save file">
         <div class="flex h-8 items-start justify-center pt-px">
           <app-icon icon="solar:diskette-linear" size="16" class="shrink-0 text-muted" />
         </div>
@@ -53,7 +54,7 @@ const DEMO_TEMPLATE = `<av-dropdown>
           <span av-kbd-content>S</span>
         </kbd>
       </div>
-      <div av-menu-item id="delete-file" textValue="Delete file" variant="danger">
+      <div av-dropdown-menu-item id="delete-file" textValue="Delete file" variant="danger">
         <div class="flex h-8 items-start justify-center pt-px">
           <app-icon icon="solar:trash-bin-trash-linear" size="16" class="shrink-0 text-danger" />
         </div>
@@ -68,7 +69,8 @@ const DEMO_TEMPLATE = `<av-dropdown>
         </kbd>
       </div>
     </div>
-  </av-dropdown-popover>
+    </div>
+  </ng-template>
 </av-dropdown>`;
 
 const DEMO_IMPORTS = [

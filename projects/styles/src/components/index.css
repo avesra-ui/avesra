@@ -41,8 +41,8 @@
 @import "./alert-dialog.css";
 @import "./popover.css";
 @import "./dropdown.css";
-@import "./menu-item.css";
-@import "./menu-section.css";
+@import "./dropdown-menu-item.css";
+@import "./dropdown-menu-section.css";
 @import "./list-box.css";
 @import "./list-box-item.css";
 @import "./list-box-section.css";

@@ -6,26 +6,28 @@ import {
   AvLabelComponent,
 } from '@avesra/angular';
 
-const DEMO_TEMPLATE = `<div class="flex min-w-sm flex-col items-center justify-center gap-4">
+const DEMO_TEMPLATE = `<div class="flex  flex-col items-center justify-center gap-4">
   <p class="text-sm text-muted">Selected: {{ selectedLabel() }}</p>
   <av-dropdown>
     <button av-button variant="secondary" aria-label="Menu" av-dropdown-trigger>Actions</button>
-    <av-dropdown-popover>
+    <ng-template avDropdownContent>
+      <div av-dropdown-popover class="min-w-[220px]">
       <div av-dropdown-menu selection-mode="multiple" [(selectedKeys)]="selected">
-        <div av-menu-item id="bold" textValue="Bold">
+        <div av-dropdown-menu-item id="bold" textValue="Bold">
           <label av-label>Bold</label>
-          <span av-menu-item-indicator></span>
+          <span av-dropdown-menu-item-indicator></span>
         </div>
-        <div av-menu-item id="italic" textValue="Italic">
+        <div av-dropdown-menu-item id="italic" textValue="Italic">
           <label av-label>Italic</label>
-          <span av-menu-item-indicator></span>
+          <span av-dropdown-menu-item-indicator></span>
         </div>
-        <div av-menu-item id="underline" textValue="Underline">
+        <div av-dropdown-menu-item id="underline" textValue="Underline">
           <label av-label>Underline</label>
-          <span av-menu-item-indicator></span>
+          <span av-dropdown-menu-item-indicator></span>
         </div>
       </div>
-    </av-dropdown-popover>
+      </div>
+    </ng-template>
   </av-dropdown>
 </div>`;
 

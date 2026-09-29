@@ -27,15 +27,16 @@
           <span class="truncate">{{ stateLabel() }}</span>
           <app-icon class="ms-auto opacity-60" icon="solar:alt-arrow-down-linear" size="16" />
         </button>
-        <av-dropdown-popover class="w-56">
+        <ng-template avDropdownContent>
+          <div av-dropdown-popover class="w-56">
           <div av-dropdown-menu>
-            <div av-menu-section>
+            <div av-dropdown-menu-section>
               @for (
                 state of ['Florida', 'Delaware', 'California', 'Texas', 'New York', 'Washington'];
                 track state
               ) {
                 <div
-                  av-menu-item
+                  av-dropdown-menu-item
                   [id]="state"
                   [textValue]="state"
                   (click)="selectState(state)"
@@ -45,7 +46,8 @@
               }
             </div>
           </div>
-        </av-dropdown-popover>
+          </div>
+        </ng-template>
       </av-dropdown>
     </div>
 

@@ -105,7 +105,7 @@
         <button av-button type="button" variant="tertiary" size="sm" icon-only aria-label="Refresh">
           <app-icon icon="solar:refresh-linear" size="16" />
         </button>
-        <av-dropdown>
+        <av-dropdown placement="bottom end">
           <av-button-group variant="secondary" size="sm">
             <button av-button type="button">
               <app-icon icon="solar:calendar-linear" size="16" />
@@ -122,15 +122,17 @@
               <app-icon icon="solar:alt-arrow-down-linear" size="16" />
             </button>
           </av-button-group>
-          <av-dropdown-popover placement="bottom end">
+          <ng-template avDropdownContent>
+            <div av-dropdown-popover>
             <div av-dropdown-menu (action)="onPeriodAction($event)">
               @for (period of periods; track period.id) {
-                <div av-menu-item [id]="period.id" [textValue]="period.label">
+                <div av-dropdown-menu-item [id]="period.id" [textValue]="period.label">
                   <label av-label>{{ period.label }}</label>
                 </div>
               }
             </div>
-          </av-dropdown-popover>
+            </div>
+          </ng-template>
         </av-dropdown>
         <button av-button type="button" size="sm">
           <app-icon icon="solar:download-linear" size="16" />
@@ -171,25 +173,27 @@
       <div av-card class="min-h-[11rem]" aria-label="Sales Performance">
         <div av-card-header class="flex flex-row items-start justify-between gap-2">
           <h3 av-card-title>Sales Performance</h3>
-          <av-dropdown>
+          <av-dropdown placement="bottom end">
             <button av-button type="button" variant="tertiary" size="sm" av-dropdown-trigger>
               {{ selectedSalesRangeLabel() }}
               <app-icon icon="solar:alt-arrow-down-linear" size="16" />
             </button>
-            <av-dropdown-popover placement="bottom end">
+            <ng-template avDropdownContent>
+              <div av-dropdown-popover>
               <div
                 av-dropdown-menu
                 selection-mode="single"
                 [(selectedKeys)]="selectedSalesRange"
               >
                 @for (range of salesRangeOptions; track range.id) {
-                  <div av-menu-item [id]="range.id" [textValue]="range.label">
-                    <span av-menu-item-indicator></span>
+                  <div av-dropdown-menu-item [id]="range.id" [textValue]="range.label">
+                    <span av-dropdown-menu-item-indicator></span>
                     <label av-label>{{ range.label }}</label>
                   </div>
                 }
               </div>
-            </av-dropdown-popover>
+              </div>
+            </ng-template>
           </av-dropdown>
         </div>
         <div av-card-content class="p-0">

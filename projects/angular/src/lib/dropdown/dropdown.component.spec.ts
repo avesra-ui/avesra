@@ -3,7 +3,8 @@ import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { AvButtonComponent } from '../button/button.component';
-import { AvMenuItemComponent } from '../menu-item/menu-item.component';
+import { AvDropdownMenuItemComponent } from './menu-item/menu-item.component';
+import { AvDropdownContentDirective } from './dropdown-content.directive';
 import { AvDropdownMenuComponent } from './dropdown-menu.component';
 import { AvDropdownPopoverComponent } from './dropdown-popover.component';
 import { AvDropdownTriggerDirective } from './dropdown-trigger.directive';
@@ -26,23 +27,26 @@ function keydown(target: EventTarget, key: string, keyCode: number): void {
   template: `
     <av-dropdown [(open)]="open">
       <button av-button av-dropdown-trigger>Actions</button>
-      <av-dropdown-popover>
+      <ng-template avDropdownContent>
+        <div av-dropdown-popover class="min-w-[220px]">
         <div av-dropdown-menu (action)="onAction($event)">
-          <div av-menu-item id="new-file" textValue="New file">New file</div>
-          <div av-menu-item id="open-file" textValue="Open file">Open file</div>
-          <div av-menu-item id="delete-file" textValue="Delete file" variant="danger">
+          <div av-dropdown-menu-item id="new-file" textValue="New file">New file</div>
+          <div av-dropdown-menu-item id="open-file" textValue="Open file">Open file</div>
+          <div av-dropdown-menu-item id="delete-file" textValue="Delete file" variant="danger">
             Delete
           </div>
         </div>
-      </av-dropdown-popover>
+        </div>
+      </ng-template>
     </av-dropdown>
   `,
   imports: [
     AvDropdownComponent,
     AvDropdownTriggerDirective,
+    AvDropdownContentDirective,
     AvDropdownPopoverComponent,
     AvDropdownMenuComponent,
-    AvMenuItemComponent,
+    AvDropdownMenuItemComponent,
     AvButtonComponent,
   ],
 })
@@ -61,25 +65,28 @@ class DropdownHostComponent {
   template: `
     <av-dropdown [(open)]="open">
       <button av-button av-dropdown-trigger>Fruit</button>
-      <av-dropdown-popover>
+      <ng-template avDropdownContent>
+        <div av-dropdown-popover>
         <div
           av-dropdown-menu
           [selection-mode]="mode"
           [(selectedKeys)]="selectedKeys"
           (action)="onAction($event)"
         >
-          <div av-menu-item id="apple" textValue="Apple">Apple</div>
-          <div av-menu-item id="banana" textValue="Banana">Banana</div>
+          <div av-dropdown-menu-item id="apple" textValue="Apple">Apple</div>
+          <div av-dropdown-menu-item id="banana" textValue="Banana">Banana</div>
         </div>
-      </av-dropdown-popover>
+        </div>
+      </ng-template>
     </av-dropdown>
   `,
   imports: [
     AvDropdownComponent,
     AvDropdownTriggerDirective,
+    AvDropdownContentDirective,
     AvDropdownPopoverComponent,
     AvDropdownMenuComponent,
-    AvMenuItemComponent,
+    AvDropdownMenuItemComponent,
     AvButtonComponent,
   ],
 })
@@ -115,7 +122,7 @@ describe('AvDropdownComponent', () => {
   }
 
   function menuItems(): NodeListOf<HTMLElement> {
-    return document.querySelectorAll('[av-menu-item]');
+    return document.querySelectorAll('[av-dropdown-menu-item]');
   }
 
   function menuPanel(): HTMLElement | null {
@@ -130,6 +137,14 @@ describe('AvDropdownComponent', () => {
     openByClick();
     expect(fixture.componentInstance.open()).toBe(true);
     expect(menuPanel()).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('[av-dropdown-popover]')).toBeNull();
+
+    const popover = document.querySelector('[data-slot="dropdown-popover"]');
+    expect(popover?.classList.contains('av-dropdown__popover')).toBe(true);
+    expect(popover?.classList.contains('min-w-[220px]')).toBe(true);
+
+    const pane = document.querySelector('.cdk-overlay-pane');
+    expect(pane?.classList.contains('av-dropdown-overlay-pane')).toBe(true);
   });
 
   it('sets aria-expanded and aria-controls while open', () => {
@@ -167,7 +182,7 @@ describe('AvDropdownComponent', () => {
     fixture.detectChanges();
 
     const dangerItem = menuItems()[2];
-    expect(dangerItem.classList.contains('av-menu-item--danger')).toBe(true);
+    expect(dangerItem.classList.contains('av-dropdown-menu-item--danger')).toBe(true);
   });
 
   it('closes on Escape and restores focus to trigger', fakeAsync(() => {
@@ -293,7 +308,7 @@ describe('AvDropdownComponent selection modes', () => {
     tick(AV_DROPDOWN_ENTER_MS);
     fixture.detectChanges();
 
-    const item = document.querySelector('[av-menu-item]') as HTMLElement;
+    const item = document.querySelector('[av-dropdown-menu-item]') as HTMLElement;
     expect(item.getAttribute('role')).toBe('menuitemradio');
     item.click();
     fixture.detectChanges();
@@ -310,7 +325,7 @@ describe('AvDropdownComponent selection modes', () => {
     tick(AV_DROPDOWN_ENTER_MS);
     fixture.detectChanges();
 
-    const items = document.querySelectorAll('[av-menu-item]');
+    const items = document.querySelectorAll('[av-dropdown-menu-item]');
     expect(items[0].getAttribute('role')).toBe('menuitemcheckbox');
     (items[0] as HTMLElement).click();
     fixture.detectChanges();

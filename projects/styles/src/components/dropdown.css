@@ -99,7 +99,7 @@
     @apply p-1.5 outline-none;
   }
 
-  [data-slot="menu-item"] {
+  [data-slot="dropdown-menu-item"] {
     @apply px-2.5;
   }
 }

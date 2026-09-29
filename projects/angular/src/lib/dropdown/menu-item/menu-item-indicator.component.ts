@@ -1,17 +1,17 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 
-import { AvMenuItemComponent } from './menu-item.component';
-import { avMenuItemIndicatorClasses } from './menu-item.utils';
+import { AvDropdownMenuItemComponent } from './menu-item.component';
+import { avDropdownMenuItemIndicatorClasses } from './menu-item.utils';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'span[av-menu-item-indicator]',
+  selector: 'span[av-dropdown-menu-item-indicator]',
   template: `
     <ng-content>
       @if (type() === 'dot') {
         <svg
           aria-hidden="true"
-          data-slot="menu-item-indicator--dot"
+          data-slot="dropdown-menu-item-indicator--dot"
           fill="currentColor"
           fill-rule="evenodd"
           role="presentation"
@@ -23,7 +23,7 @@ import { avMenuItemIndicatorClasses } from './menu-item.utils';
       } @else {
         <svg
           aria-hidden="true"
-          data-slot="menu-item-indicator--checkmark"
+          data-slot="dropdown-menu-item-indicator--checkmark"
           fill="none"
           role="presentation"
           stroke="currentColor"
@@ -45,16 +45,16 @@ import { avMenuItemIndicatorClasses } from './menu-item.utils';
     'aria-hidden': 'true',
     '[attr.data-type]': 'type()',
     '[attr.data-visible]': 'showIndicator() ? "true" : null',
-    'data-slot': 'menu-item-indicator',
+    'data-slot': 'dropdown-menu-item-indicator',
   },
 })
-export class AvMenuItemIndicatorComponent {
-  private readonly menuItem = inject(AvMenuItemComponent, { optional: true });
+export class AvDropdownMenuItemIndicatorComponent {
+  private readonly menuItem = inject(AvDropdownMenuItemComponent, { optional: true });
 
   /** Indicator style used when no custom content is projected. */
   readonly type = input<'checkmark' | 'dot'>('checkmark');
 
-  protected readonly classes = computed(() => avMenuItemIndicatorClasses());
+  protected readonly classes = computed(() => avDropdownMenuItemIndicatorClasses());
 
   protected readonly showIndicator = computed(() => this.menuItem?.isSelected() ?? false);
 }

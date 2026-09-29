@@ -9,13 +9,13 @@ import {
 
 const DEMO_TEMPLATE = `<av-dropdown>
   <button av-button variant="secondary" av-dropdown-trigger>Preferred fruits</button>
-  <av-dropdown-popover>
-    <div class="min-w-[256px]">
+  <ng-template avDropdownContent>
+    <div av-dropdown-popover class="min-w-[220px]">
       <div av-dropdown-menu selection-mode="multiple" [(selectedKeys)]="selected">
-        <div av-menu-section>
+        <div av-dropdown-menu-section>
           <p class="px-2.5 py-1 text-xs font-medium text-muted">Select fruits</p>
-          <div av-menu-item #apple="avMenuItem" id="multi-apple" textValue="Apple">
-            <span av-menu-item-indicator>
+          <div av-dropdown-menu-item #apple="avDropdownMenuItem" id="multi-apple" textValue="Apple">
+            <span av-dropdown-menu-item-indicator>
               <div av-checkbox class="pointer-events-none" [selected]="apple.isSelected()" aria-hidden="true">
                 <span av-checkbox-control>
                   <span av-checkbox-indicator></span>
@@ -24,8 +24,8 @@ const DEMO_TEMPLATE = `<av-dropdown>
             </span>
             <label av-label>Apple</label>
           </div>
-          <div av-menu-item #banana="avMenuItem" id="multi-banana" textValue="Banana">
-            <span av-menu-item-indicator>
+          <div av-dropdown-menu-item #banana="avDropdownMenuItem" id="multi-banana" textValue="Banana">
+            <span av-dropdown-menu-item-indicator>
               <div av-checkbox class="pointer-events-none" [selected]="banana.isSelected()" aria-hidden="true">
                 <span av-checkbox-control>
                   <span av-checkbox-indicator></span>
@@ -34,8 +34,8 @@ const DEMO_TEMPLATE = `<av-dropdown>
             </span>
             <label av-label>Banana</label>
           </div>
-          <div av-menu-item #cherry="avMenuItem" id="multi-cherry" textValue="Cherry">
-            <span av-menu-item-indicator>
+          <div av-dropdown-menu-item #cherry="avDropdownMenuItem" id="multi-cherry" textValue="Cherry">
+            <span av-dropdown-menu-item-indicator>
               <div av-checkbox class="pointer-events-none" [selected]="cherry.isSelected()" aria-hidden="true">
                 <span av-checkbox-control>
                   <span av-checkbox-indicator></span>
@@ -45,8 +45,8 @@ const DEMO_TEMPLATE = `<av-dropdown>
             <label av-label>Cherry</label>
           </div>
         </div>
-        <div av-menu-item #orange="avMenuItem" id="multi-orange" textValue="Orange">
-          <span av-menu-item-indicator>
+        <div av-dropdown-menu-item #orange="avDropdownMenuItem" id="multi-orange" textValue="Orange">
+          <span av-dropdown-menu-item-indicator>
             <div av-checkbox class="pointer-events-none" [selected]="orange.isSelected()" aria-hidden="true">
               <span av-checkbox-control>
                 <span av-checkbox-indicator></span>
@@ -57,7 +57,7 @@ const DEMO_TEMPLATE = `<av-dropdown>
         </div>
       </div>
     </div>
-  </av-dropdown-popover>
+  </ng-template>
 </av-dropdown>`;
 
 const DEMO_IMPORTS = [

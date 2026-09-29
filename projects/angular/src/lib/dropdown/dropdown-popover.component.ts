@@ -1,82 +1,45 @@
-import {
-  AfterViewInit,
-  booleanAttribute,
-  Component,
-  computed,
-  DestroyRef,
-  inject,
-  input,
-  signal,
-  TemplateRef,
-  viewChild,
-  ViewContainerRef,
-} from '@angular/core';
+import { Component, computed, HostAttributeToken, inject } from '@angular/core';
 
 import { AvDropdownContext } from './dropdown.context';
-import {
-  avDropdownAnchorPoint,
-  avDropdownPopoverClasses,
-  avDropdownPositions,
-  AV_DROPDOWN_OFFSET_DEFAULT,
-} from './dropdown.utils';
-import type { AvDropdownPlacement, AvDropdownPlacementAxis } from './dropdown.utils';
+import { avDropdownAnchorPoint, avDropdownPopoverClasses } from './dropdown.utils';
 
+/**
+ * Visual popover surface rendered inside `avDropdownContent`.
+ * Consumer classes stay on this element, same as `div[av-alert-dialog-dialog]`.
+ */
 @Component({
-  selector: 'av-dropdown-popover',
-  template: `
-    <ng-template #panel>
-      <div
-        [class]="classes()"
-        [attr.data-placement]="placementAxis()"
-        [attr.data-entering]="context.animationState() === 'entering' ? 'true' : null"
-        [attr.data-exiting]="context.animationState() === 'exiting' ? 'true' : null"
-        [style.--trigger-anchor-point]="anchorPoint()"
-        data-slot="dropdown-popover"
-        (animationend)="onAnimationEnd($event)"
-      >
-        <ng-content />
-      </div>
-    </ng-template>
-  `,
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'div[av-dropdown-popover]',
+  template: `<ng-content />`,
+  host: {
+    '[class]': 'classes()',
+    '[attr.data-placement]': 'placementAxis()',
+    '[attr.data-entering]': 'entering()',
+    '[attr.data-exiting]': 'exiting()',
+    '[style.--trigger-anchor-point]': 'anchorPoint()',
+    'data-slot': 'dropdown-popover',
+    '(animationend)': 'onAnimationEnd($event)',
+  },
 })
-export class AvDropdownPopoverComponent implements AfterViewInit {
+export class AvDropdownPopoverComponent {
   protected readonly context = inject(AvDropdownContext);
-  private readonly viewContainerRef = inject(ViewContainerRef);
-  private readonly destroyRef = inject(DestroyRef);
+  private readonly hostClass = inject(new HostAttributeToken('class'), { optional: true }) ?? '';
 
-  private readonly panelTemplate = viewChild.required<TemplateRef<unknown>>('panel');
-
-  /** Preferred placement relative to the trigger. */
-  readonly placement = input<AvDropdownPlacement>('bottom');
-
-  /** Distance between trigger and menu in pixels. */
-  readonly offset = input(AV_DROPDOWN_OFFSET_DEFAULT);
-
-  /** Extra classes applied to the overlay panel (e.g. Tailwind `max-w-*`). */
-  readonly customClass = input<string>('', { alias: 'class' });
-
-  /** Whether the menu can flip to fit the viewport. */
-  readonly shouldFlip = input(true, { alias: 'should-flip', transform: booleanAttribute });
-
-  protected readonly placementAxis = signal<AvDropdownPlacementAxis>('bottom');
-
-  protected readonly classes = computed(() => avDropdownPopoverClasses(this.customClass()));
+  protected readonly placementAxis = computed(() => this.context.placementAxis());
 
   protected readonly anchorPoint = computed(() => avDropdownAnchorPoint(this.placementAxis()));
 
-  ngAfterViewInit(): void {
-    this.context.registerPanel({
-      templateRef: this.panelTemplate(),
-      viewContainerRef: this.viewContainerRef,
-      getPositions: () => avDropdownPositions(this.placement(), this.offset()),
-      shouldFlip: () => this.shouldFlip(),
-      setPlacementAxis: (axis) => this.placementAxis.set(axis),
-    });
+  protected readonly entering = computed(() =>
+    this.context.animationState() === 'entering' ? 'true' : null,
+  );
 
-    this.destroyRef.onDestroy(() => {
-      this.context.unregisterPanel();
-    });
-  }
+  protected readonly exiting = computed(() =>
+    this.context.animationState() === 'exiting' ? 'true' : null,
+  );
+
+  protected readonly classes = computed(() =>
+    [avDropdownPopoverClasses(), this.hostClass].filter(Boolean).join(' '),
+  );
 
   protected onAnimationEnd(event: AnimationEvent): void {
     if (this.context.animationState() !== 'exiting') {

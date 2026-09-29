@@ -18,9 +18,9 @@ import {
   untracked,
 } from '@angular/core';
 
-import { AvMenuItemComponent } from '../menu-item/menu-item.component';
-import { AvMenuContext } from '../menu/menu.context';
-import type { AvMenuSelectionMode } from '../menu/menu.context';
+import { AvDropdownMenuItemComponent } from './menu-item/menu-item.component';
+import { AvMenuContext } from './menu/menu.context';
+import type { AvMenuSelectionMode } from './menu/menu.context';
 import { AvDropdownContext } from './dropdown.context';
 import type { AvDropdownMenuPanel } from './dropdown.context';
 import { avDropdownMenuClasses } from './dropdown.utils';
@@ -49,8 +49,8 @@ export class AvDropdownMenuComponent implements AfterContentInit, OnDestroy, AvD
   private readonly elementRef = inject(ElementRef<HTMLElement>);
   private readonly destroyRef = inject(DestroyRef);
 
-  @ContentChildren(AvMenuItemComponent, { descendants: true })
-  private readonly items!: QueryList<AvMenuItemComponent>;
+  @ContentChildren(AvDropdownMenuItemComponent, { descendants: true })
+  private readonly items!: QueryList<AvDropdownMenuItemComponent>;
 
   /** How menu items can be selected. */
   readonly selectionMode = input<AvMenuSelectionMode>('none', { alias: 'selection-mode' });
@@ -68,7 +68,7 @@ export class AvDropdownMenuComponent implements AfterContentInit, OnDestroy, AvD
 
   protected readonly classes = computed(() => avDropdownMenuClasses());
 
-  private keyManager!: FocusKeyManager<AvMenuItemComponent>;
+  private keyManager!: FocusKeyManager<AvDropdownMenuItemComponent>;
 
   constructor() {
     this.dropdownContext.registerMenu(this);

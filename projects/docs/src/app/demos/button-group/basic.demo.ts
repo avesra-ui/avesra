@@ -12,7 +12,7 @@ import { AppIconComponent } from '../../components/app-icon/app-icon.component';
 
 const DEMO_TEMPLATE = `<div class="flex flex-col items-start gap-6">
       <div class="flex flex-col gap-2">
-        <av-dropdown>
+        <av-dropdown placement="bottom end">
           <av-button-group>
             <button av-button>Merge pull request</button>
             <button av-button icon-only aria-label="More options" av-dropdown-trigger>
@@ -20,10 +20,11 @@ const DEMO_TEMPLATE = `<div class="flex flex-col items-start gap-6">
               <app-icon icon="solar:alt-arrow-down-linear" size="16" />
             </button>
           </av-button-group>
-          <av-dropdown-popover class="max-w-[290px]" placement="bottom end">
+          <ng-template avDropdownContent>
+            <div av-dropdown-popover class="max-w-[290px]">
             <div av-dropdown-menu>
               <div
-                av-menu-item
+                av-dropdown-menu-item
                 id="merge"
                 textValue="Create a merge commit"
                 class="flex flex-col items-start gap-1"
@@ -34,7 +35,7 @@ const DEMO_TEMPLATE = `<div class="flex flex-col items-start gap-6">
                 </p>
               </div>
               <div
-                av-menu-item
+                av-dropdown-menu-item
                 id="squash-and-merge"
                 textValue="Squash and merge"
                 class="flex flex-col items-start gap-1"
@@ -46,7 +47,7 @@ const DEMO_TEMPLATE = `<div class="flex flex-col items-start gap-6">
                 </p>
               </div>
               <div
-                av-menu-item
+                av-dropdown-menu-item
                 id="rebase-and-merge"
                 textValue="Rebase and merge"
                 class="flex flex-col items-start gap-1"
@@ -57,7 +58,8 @@ const DEMO_TEMPLATE = `<div class="flex flex-col items-start gap-6">
                 </p>
               </div>
             </div>
-          </av-dropdown-popover>
+            </div>
+          </ng-template>
         </av-dropdown>
       </div>
 

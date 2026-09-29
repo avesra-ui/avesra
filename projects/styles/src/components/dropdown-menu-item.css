@@ -1,6 +1,6 @@
-/* av-menu-item component styles */
+/* av-dropdown-menu-item component styles */
 
-.av-menu-item {
+.av-dropdown-menu-item {
   @apply relative flex min-h-9 w-full items-center justify-start gap-3 rounded-2xl px-2 py-1.5 outline-none av-no-highlight;
 
   transition:
@@ -22,7 +22,7 @@
     @apply size-3.5;
   }
 
-  &:has(.av-menu-item__indicator) {
+  &:has(.av-dropdown-menu-item__indicator) {
     @apply ps-7;
   }
 
@@ -46,12 +46,12 @@
   &[aria-checked="true"],
   &[aria-selected="true"],
   &[data-selected="true"] {
-    [data-slot="menu-item-indicator--checkmark"] {
+    [data-slot="dropdown-menu-item-indicator--checkmark"] {
       transition: stroke-dashoffset 100ms linear;
       @apply av-motion-reduce:transition-none;
     }
 
-    [data-slot="menu-item-indicator--dot"] {
+    [data-slot="dropdown-menu-item-indicator--dot"] {
       @apply scale-100 opacity-100;
     }
   }
@@ -61,28 +61,28 @@
   }
 }
 
-.av-menu-item__indicator {
+.av-dropdown-menu-item__indicator {
   @apply absolute top-1/2 start-2 flex size-4 shrink-0 -translate-y-1/2 items-center justify-center text-muted;
   @apply transition duration-250 av-motion-reduce:transition-none;
 
-  [data-slot="menu-item-indicator--checkmark"] {
+  [data-slot="dropdown-menu-item-indicator--checkmark"] {
     @apply size-2.5;
 
-    .av-menu-item[data-selection-mode="multiple"] & {
+    .av-dropdown-menu-item[data-selection-mode="multiple"] & {
       @apply transition-all duration-300 av-motion-reduce:transition-none;
     }
   }
 
-  [data-slot="menu-item-indicator--dot"] {
+  [data-slot="dropdown-menu-item-indicator--dot"] {
     @apply size-2 scale-70 opacity-0;
 
-    .av-menu-item[data-selection-mode="multiple"] & {
+    .av-dropdown-menu-item[data-selection-mode="multiple"] & {
       @apply transition-all duration-250 av-motion-reduce:transition-none;
     }
   }
 }
 
-.av-menu-item__indicator--submenu {
+.av-dropdown-menu-item__indicator--submenu {
   @apply text-muted;
 
   svg {
@@ -90,8 +90,8 @@
   }
 }
 
-.av-menu-item--danger {
-  .av-menu-item__indicator {
+.av-dropdown-menu-item--danger {
+  .av-dropdown-menu-item__indicator {
     @apply text-danger;
   }
 

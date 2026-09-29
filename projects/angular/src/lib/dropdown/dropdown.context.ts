@@ -1,23 +1,20 @@
-import type { ConnectedPosition } from '@angular/cdk/overlay';
 import { Injectable, signal, TemplateRef, ViewContainerRef } from '@angular/core';
 
 import type {
   AvDropdownAnimationState,
   AvDropdownCloseReason,
   AvDropdownOpenOrigin,
+  AvDropdownPlacement,
   AvDropdownPlacementAxis,
 } from './dropdown.utils';
-import { AV_DROPDOWN_ENTER_MS, AV_DROPDOWN_EXIT_MS } from './dropdown.utils';
+import { AV_DROPDOWN_ENTER_MS, AV_DROPDOWN_EXIT_MS, AV_DROPDOWN_OFFSET_DEFAULT } from './dropdown.utils';
 
 /** Fallback when exit CSS animation does not fire (e.g. reduced motion). */
 const EXIT_ANIMATION_FALLBACK_MS = AV_DROPDOWN_EXIT_MS + 50;
 
-export interface AvDropdownPanelConfig {
+export interface AvDropdownContentConfig {
   templateRef: TemplateRef<unknown>;
   viewContainerRef: ViewContainerRef;
-  getPositions: () => ConnectedPosition[];
-  shouldFlip: () => boolean;
-  setPlacementAxis: (axis: AvDropdownPlacementAxis) => void;
 }
 
 export interface AvDropdownMenuPanel {
@@ -32,8 +29,13 @@ export class AvDropdownContext {
   readonly isOpen = signal(false);
   readonly isVisible = signal(false);
   readonly animationState = signal<AvDropdownAnimationState>('idle');
-  readonly panelReady = signal(false);
+  readonly contentReady = signal(false);
+  readonly contentTemplate = signal<TemplateRef<unknown> | null>(null);
   readonly panelId = signal<string | null>(null);
+  readonly placement = signal<AvDropdownPlacement>('bottom');
+  readonly offset = signal(AV_DROPDOWN_OFFSET_DEFAULT);
+  readonly shouldFlip = signal(true);
+  readonly placementAxis = signal<AvDropdownPlacementAxis>('bottom');
   readonly dismissable = signal(true);
   readonly keyboardDismissDisabled = signal(false);
 
@@ -43,7 +45,7 @@ export class AvDropdownContext {
   private exitAnimationFinished = false;
   private openChangeHandler: ((open: boolean) => void) | null = null;
   private triggerElement: HTMLElement | null = null;
-  private panelConfig: AvDropdownPanelConfig | null = null;
+  private contentConfig: AvDropdownContentConfig | null = null;
   private menuPanel: AvDropdownMenuPanel | null = null;
   private openedBy: AvDropdownOpenOrigin = 'program';
   private closeReason: AvDropdownCloseReason;
@@ -58,14 +60,20 @@ export class AvDropdownContext {
     this.triggerElement = element;
   }
 
-  registerPanel(config: AvDropdownPanelConfig): void {
-    this.panelConfig = config;
-    this.panelReady.set(true);
+  registerContent(config: AvDropdownContentConfig): void {
+    this.contentConfig = config;
+    this.contentTemplate.set(config.templateRef);
+    this.contentReady.set(true);
   }
 
-  unregisterPanel(): void {
-    this.panelConfig = null;
-    this.panelReady.set(false);
+  unregisterContent(): void {
+    this.contentConfig = null;
+    this.contentTemplate.set(null);
+    this.contentReady.set(false);
+  }
+
+  getContentConfig(): AvDropdownContentConfig | null {
+    return this.contentConfig;
   }
 
   registerMenu(menu: AvDropdownMenuPanel): void {
@@ -86,10 +94,6 @@ export class AvDropdownContext {
   }): void {
     this.detachOverlayHandler = handlers.detach;
     this.restoreFocusHandler = handlers.restoreFocus;
-  }
-
-  getPanelConfig(): AvDropdownPanelConfig | null {
-    return this.panelConfig;
   }
 
   getMenuPanel(): AvDropdownMenuPanel | null {
@@ -188,9 +192,10 @@ export class AvDropdownContext {
     this.isVisible.set(false);
     this.animationState.set('idle');
     this.triggerElement = null;
-    this.panelConfig = null;
+    this.contentConfig = null;
+    this.contentTemplate.set(null);
+    this.contentReady.set(false);
     this.menuPanel = null;
-    this.panelReady.set(false);
     this.panelId.set(null);
     this.openChangeHandler = null;
     this.detachOverlayHandler = null;

@@ -8,22 +8,24 @@ import {
 
 const DEMO_TEMPLATE = `<av-dropdown>
   <button av-button variant="secondary" aria-label="Menu" av-dropdown-trigger>Actions</button>
-  <av-dropdown-popover>
-    <div av-dropdown-menu (action)="onAction($event)">
-      <div av-menu-item id="new-file" textValue="New file">
+  <ng-template avDropdownContent>
+    <div av-dropdown-popover class="min-w-[220px]">
+      <div av-dropdown-menu (action)="onAction($event)">
+      <div av-dropdown-menu-item id="new-file" textValue="New file">
         <label av-label>New file</label>
       </div>
-      <div av-menu-item id="copy-link" textValue="Copy link">
+      <div av-dropdown-menu-item id="copy-link" textValue="Copy link">
         <label av-label>Copy link</label>
       </div>
-      <div av-menu-item id="edit-file" textValue="Edit file">
+      <div av-dropdown-menu-item id="edit-file" textValue="Edit file">
         <label av-label>Edit file</label>
       </div>
-      <div av-menu-item id="delete-file" textValue="Delete file" variant="danger">
+      <div av-dropdown-menu-item id="delete-file" textValue="Delete file" variant="danger">
         <label av-label>Delete file</label>
       </div>
+      </div>
     </div>
-  </av-dropdown-popover>
+  </ng-template>
 </av-dropdown>`;
 
 export const DEMO_NAME = 'dropdown-basic';

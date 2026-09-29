@@ -24,7 +24,8 @@ const DEMO_TEMPLATE = `<av-dropdown>
       <span av-avatar-fallback delay-ms="600">JD</span>
     </span>
   </button>
-  <av-dropdown-popover>
+  <ng-template avDropdownContent>
+    <div av-dropdown-popover class="min-w-[220px]">
     <div class="px-3 pt-3 pb-1">
       <div class="flex items-center gap-2">
         <span av-avatar size="sm">
@@ -38,32 +39,33 @@ const DEMO_TEMPLATE = `<av-dropdown>
       </div>
     </div>
     <div av-dropdown-menu>
-      <div av-menu-item id="dashboard" textValue="Dashboard">
+      <div av-dropdown-menu-item id="dashboard" textValue="Dashboard">
         <label av-label>Dashboard</label>
       </div>
-      <div av-menu-item id="profile" textValue="Profile">
+      <div av-dropdown-menu-item id="profile" textValue="Profile">
         <label av-label>Profile</label>
       </div>
-      <div av-menu-item id="settings" textValue="Settings">
+      <div av-dropdown-menu-item id="settings" textValue="Settings">
         <div class="flex w-full items-center justify-between gap-2">
           <label av-label>Settings</label>
           <app-icon icon="solar:settings-linear" size="14" class="text-muted" />
         </div>
       </div>
-      <div av-menu-item id="new-project" textValue="New project">
+      <div av-dropdown-menu-item id="new-project" textValue="New project">
         <div class="flex w-full items-center justify-between gap-2">
           <label av-label>Create Team</label>
           <app-icon icon="solar:users-group-rounded-linear" size="14" class="text-muted" />
         </div>
       </div>
-      <div av-menu-item id="logout" textValue="Logout" variant="danger">
+      <div av-dropdown-menu-item id="logout" textValue="Logout" variant="danger">
         <div class="flex w-full items-center justify-between gap-2">
           <label av-label>Log Out</label>
           <app-icon icon="solar:logout-2-linear" size="14" class="text-danger" />
         </div>
       </div>
     </div>
-  </av-dropdown-popover>
+    </div>
+  </ng-template>
 </av-dropdown>`;
 
 const DEMO_IMPORTS = [

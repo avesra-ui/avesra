@@ -1,0 +1,5 @@
+/* av-dropdown-menu-section component styles */
+
+.av-dropdown-menu-section {
+  @apply flex flex-col items-start gap-0;
+}
