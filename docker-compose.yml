@@ -17,21 +17,10 @@ services:
       - "4000"
     networks:
       - web
-
-  nginx:
-    image: nginx:1.27-alpine
-    container_name: avesra-nginx
-    restart: unless-stopped
-    depends_on:
-      - avesra
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./deploy/nginx/docker/default.conf:/etc/nginx/conf.d/default.conf:ro
-      - /etc/letsencrypt:/etc/letsencrypt:ro
-    networks:
-      - web
+      - central-proxy
 
 networks:
   web:
+  central-proxy:
+    external: true
+    name: central-proxy
